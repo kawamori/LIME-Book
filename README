@@ -1,0 +1,47 @@
+﻿
+LIME Book
+
+DEFINITIONS
+
+  * LIME: Lightweight Interactive Multimedia Environment
+  * IPTV: Internet Protocol TeleVision
+
+LANGUAGES
+
+  JavaScript*, XHTML*, CSS*
+
+  * (kind of) as profiled in LIME ITU-T standard [1]
+
+DESCRIPTION
+
+  An interactive book to learn by example how to develop LIME applications for TV sets. 
+
+
+REFERENCES
+
+  [1] ITU-T H.762 (2009)
+  "Lightweight interactive multimedia environment (LIME) for IPTV services"
+  http://www.itu.int/rec/T-REC-H.762
+
+  [2] IPTV Application Challenge, by ITU-T
+  http://www.itu.int/en/ITU-T/challenges/pages/iptv.aspx
+
+  [3] 7 Days Gallery
+  http://7x7days.tumblr.com
+
+AUTHORS
+  Masahito Kawamori <kawamorim@gmail.com>
+  Eric Bréchemier <lime@eric.brechemier.name>
+
+LICENSE
+
+  BSD License
+  http://creativecommons.org/licenses/BSD/
+
+SPECIAL THANKS
+
+
+HISTORY
+
+  2012-04-28, v0.0.1, README created
+
