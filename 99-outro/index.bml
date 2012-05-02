@@ -1,0 +1,20 @@
+<?bml bml-version="100.0" ?>
+<bml>
+  <head>
+    <title>LIME Book - Index</title>
+    <link href="../css/lime-book-on-tv.css" />
+  </head>
+  <body>
+    <div class="title-box">
+      <p class="title-text">Index</p>
+    </div>
+    <div class="navigation">
+      <p class="previous-page">
+        <a class="previous-page-link" href="bibliography.bml">&lt;</a>
+      </p>
+      <p class="next-page">
+        <a class="next-page-link" href="the-end.bml">&gt;</a>
+      </p>
+    </div>
+  </body>
+</bml>

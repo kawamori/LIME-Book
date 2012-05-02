@@ -1,0 +1,20 @@
+<?bml bml-version="100.0" ?>
+<bml>
+  <head>
+    <title>LIME Book - Colophon</title>
+    <link href="../css/lime-book-on-tv.css" />
+  </head>
+  <body>
+    <div class="title-box">
+      <p class="title-text">Colophon</p>
+    </div>
+    <div class="navigation">
+      <p class="previous-page">
+        <a class="previous-page-link" href="acknowledgments.bml">&lt;</a>
+      </p>
+      <p class="next-page">
+        <a class="next-page-link" href="../01-chapterI/000.bml">&gt;</a>
+      </p>
+    </div>
+  </body>
+</bml>

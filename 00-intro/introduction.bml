@@ -2,7 +2,7 @@
 <bml>
   <head>
     <title>LIME Book - Introduction</title>
-    <link href="css/lime-book-on-tv.css" />
+    <link href="../css/lime-book-on-tv.css" />
   </head>
   <body>
     <div class="title-box">
@@ -10,10 +10,10 @@
     </div>
     <div class="navigation">
       <p class="previous-page">
-        <a class="previous-page-link" href="0001-contents.bml">&lt;</a>
+        <a class="previous-page-link" href="../contents.bml">&lt;</a>
       </p>
       <p class="next-page">
-        <a class="next-page-link" href="0100-chapter1.bml">&gt;</a>
+        <a class="next-page-link" href="acknowledgements.bml">&gt;</a>
       </p>
     </div>
   </body>
