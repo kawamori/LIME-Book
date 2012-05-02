@@ -31,8 +31,8 @@ REFERENCES
 
 AUTHORS
 
-  Masahito Kawamori <kawamorim@gmail.com>
-  Eric Bréchemier <lime@eric.brechemier.name>
+  KAWAMORI Masahito <kawamorim@gmail.com>
+  Eric BRECHEMIER <lime@eric.brechemier.name>
 
 LICENSE
 
