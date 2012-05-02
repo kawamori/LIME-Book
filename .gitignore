@@ -1,0 +1,5 @@
+# ignore temporary vim files
+*.swp
+
+# ignore Windows Thumbnails
+Thumbs.db
