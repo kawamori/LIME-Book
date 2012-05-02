@@ -36,10 +36,25 @@ AUTHORS
 
 LICENSE
 
-  BSD License
-  http://creativecommons.org/licenses/BSD/
+  Creative Commons BY-NC-SA
+  http://creativecommons.org/licenses/by-nc-sa/3.0/
+
+  * Attribution - You must attribute the work in the following manner:
+
+    LIME Book
+    by KAWAMORI Masahito and Eric BRECHEMIER
+    https://github.com/kawamori/LIME-Book
+    Licensed under Creative Commons BY-NC-SA
+
+  * Noncommercial - You may not use this work for commercial purposes.
+    If you are a publisher, please contact the authors to waive this condition.
+
+  * Share Alike - if you alter, transform, or build upon this work, you may
+    distribute the resulting work only under the same or similar license to
+    this one.
 
 HISTORY
 
   2012-04-28, v0.0.1, README created
+  2012-05-02, v0.0.2, Switch license from BSD to Creative Commons BY-NC-SA
 
