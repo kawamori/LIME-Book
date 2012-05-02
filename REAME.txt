@@ -14,8 +14,8 @@ LANGUAGES
 
 DESCRIPTION
 
-  An interactive book to learn by example how to develop LIME applications for TV sets. 
-
+  An interactive book to learn by example how to develop LIME applications
+  for TV sets. 
 
 REFERENCES
 
