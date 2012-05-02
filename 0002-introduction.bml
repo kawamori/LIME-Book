@@ -1,0 +1,20 @@
+<?bml bml-version="100.0" ?>
+<bml>
+  <head>
+    <title>LIME Book - Introduction</title>
+    <link href="css/lime-book-on-tv.css" />
+  </head>
+  <body>
+    <div class="title-box">
+      <p class="title-text">Introduction</p>
+    </div>
+    <div class="navigation">
+      <p class="previous-page">
+        <a class="previous-page-link" href="0001-contents.bml">&lt;</a>
+      </p>
+      <p class="next-page">
+        <a class="next-page-link" href="0100-chapter1.bml">&gt;</a>
+      </p>
+    </div>
+  </body>
+</bml>
