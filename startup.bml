@@ -13,9 +13,13 @@
       <object class="fullscreen"
         type="image/jpeg" data="media/grid.jpg" />
     </div>
-    <div class="title-box">
-      <p class="title-text">LIME Book</p>
-    </div>
+    <div class="north-west on-blue"></div>
+    <div class="north-east on-yellow"></div>
+    <div class="south-west on-red"></div>
+    <div class="south-east on-green"></div>
+    <div class="title-box center on-white black"></div>
+    <p class="title-text align-center xx-large black bold colK row7 on-7cols on-2rows"
+    >LIME Book</p>
     <div class="authors-list">
       <p class="author">KAWAMORI Masahito</p>
       <p class="author">Eric BRECHEMIER</p>
