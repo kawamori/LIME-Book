@@ -9,6 +9,15 @@
       <p class="title-text">Acknowledgments</p>
     </div>
     <div class="navigation">
+      <p class="back-to-contents">
+        <a class="back-to-contents-link" href="../contents.bml">^</a>
+      </p>
+      <p class="previous-section">
+        <a class="previous-section-link" href="introduction.bml">&lt;&lt;</a>
+      </p>
+      <p class="next-section">
+        <a class="next-section-link" href="colophon.bml">&gt;&gt;</a>
+      </p>
       <p class="previous-page">
         <a class="previous-page-link" href="introduction.bml">&lt;</a>
       </p>
