@@ -9,6 +9,17 @@
       <p class="title-text">Introduction</p>
     </div>
     <div class="navigation">
+      <p class="body-copy">
+      We wrote the LIME Book using LIME markup
+      to teach you how to create applications
+      or sites for LIME TV sets.
+      </p>
+      <p class="body-copy">
+      LIME stands for Lightweight Interactive Multimedia Environment (LIME)
+      for IPTV services. It is registered as recommendation H.762 at the
+      International Telecommunication Union, a United Nations agency
+      based in Geneva.
+      </p>
       <p class="previous-page">
         <a class="previous-page-link" href="../contents.bml">&lt;</a>
       </p>
