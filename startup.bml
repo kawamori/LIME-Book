@@ -9,6 +9,10 @@
     <link href="css/lime-book-on-tv.css" />
   </head>
   <body>
+    <div class="fullscreen">
+      <object class="fullscreen"
+        type="image/jpeg" data="media/grid.jpg" />
+    </div>
     <div class="title-box">
       <p class="title-text">LIME Book</p>
     </div>
