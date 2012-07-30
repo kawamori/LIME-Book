@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Slideshow</title>
+<style><![CDATA[
+  body {
+    resolution:960x540;
+    display-aspect-ratio:16v9;
+ 	 }
+	p {background-color-index:2;}
+	#text {background-color-index:0;font-size:16px;}
+	.button	{top:490px;height:24px;width:85px;text-align:center; border-style:solid;border-width:2px;}
+]]></style>
+
+<script><![CDATA[
+var timer
+var position;
+var preLoad;
+
+function onload(){
+    position=0;
+    	preLoad = new Array(10);
+    	
+    	
+preLoad[0] = "120428_175304.jpg";
+preLoad[1] = "120428_181449.jpg";
+preLoad[2] = "120428_175727.jpg";
+preLoad[3] = "120428_180141.jpg";
+preLoad[4] = "120428_180225.jpg";
+preLoad[5] = "120428_181832.jpg";
+preLoad[6] = "120428_182211.jpg";
+preLoad[7] = "120428_182317.jpg";
+preLoad[8] = "120428_182602.jpg";
+preLoad[9] = "120428_182916.jpg";
+
+/*
+for (var i=0 ; i<8; i++) {
+   	 preLoad[i] = "images/pic" + i + ".JPG";
+}*/
+
+caption = new Array(10);
+
+caption[0]="Shopps";
+caption[1]="Les Hauts de Cologny";
+caption[2]="Houses of Cologny";
+caption[3]="City hall of Cologny";
+caption[4]="City hall of Cologny";
+caption[5]="The temple and a house";
+caption[6]="view of the other side of Lake Leman";
+caption[7]="view of auberges of Cologny (seen from the lakeside)";
+caption[8]="Martin Bodmer Museum: It is a Swiss heritage site of national significance. The library was established by Martin Bodmer and is famous as the home of the Bodmer Papyri. Some of these papyri are among the oldest remaining copies of the New Testament. Some manuscripts are written in Greek, others in Coptic (e.g. Papyrus Bodmer III). The first of the manuscripts was purchased in 1956 (Papyrus Bodmer II &#8212; P66). It also houses a copy of the Gutenberg Bible. Martin Bodmer (November 13, 1899 - March 22, 1971) was a Swiss bibliophile, scholar and collector.";
+
+caption[9]="The temple of Cologny: Construit au XVIII &#232;me si&#232;cle, son clocher en est sa particularit&#233;. Ancienne &#233;glise Saint-Jacques, le temple a conserv&#233; un caract&#232;re gothique. En 1684, le clocher est exhauss&#233;.En 1730, la nef, le toit et le clocher sont reconstruits. La vo&#251;te est &#233;tablie par B.Revillod et M.Turrettini.";
+
+startShow();
+}
+
+function startShow() {
+        timer = setTimeout("forward()", 5000);
+}
+
+function restartShow() {
+    browser.clearTimer(timer);
+    startShow();
+}
+        
+function forward() {
+    if (position < 9) {
+            position++;
+    } else {
+        position = 0;
+    }
+
+    $("img").data = preLoad[position];
+    $("text").firstChild.data= caption[position];
+    timer = setTimeout("forward()", 5000);
+}
+
+function onunload(){
+	browser.clearTimer(timer);
+}
+
+function $(id) {
+		return document.getElementById(id);
+	}
+
+function setTimeout(code,delay){
+         return   browser.setInterval(code,delay,1);
+        }
+
+function goback(){ browser.launchDocument("../../startup.bml", "cut");	}
+]]></script>
+</head>
+
+<body onload="onload();">
+
+<div id="imageBox" style="top:50px;left:50px;width:810px;height:440px;">
+<object id="img" style="top:0px;left:0px;width:640px;height:480px" data="120428_175304.jpg" type="image/jpeg"/>
+<p id="text" style="top:0px;left:500px;width:340px;height:480px;color-index:7"><![CDATA[]]></p>
+</div>
+
+<p id="blue" class="button" style="left:10px; background-color-index:4;" onclick="startShow();" accesskey="B">Start</p>
+<p id="red" class="button" style="left:110px;background-color-index:1;"	onclick="onunload();" accesskey="R">Stop</p>
+<p id="green" class="button" style="left:210px;background-color-index:2;" onclick="restartShow();" accesskey="G">Restart</p>
+
+<p id="yellow" class="button" style="left:810px;background-color-index:3;" onclick="goback();" accesskey="Y">Back</p>
+
+</body>
+</bml>
