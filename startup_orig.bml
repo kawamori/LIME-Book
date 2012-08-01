@@ -1,0 +1,37 @@
+<?bml bml-version="100.0" ?>
+<bml>
+  <head>
+    <title>LIME Book</title>
+    <meta name="description">
+      An interactive book to learn by example
+      how to develop LIME applications for TV sets
+    </meta>
+    <link href="css/lime-book-on-tv.css" />
+  </head>
+  <body>
+    <div class="fullscreen">
+      <object class="fullscreen"
+        type="image/jpeg" data="media/grid.jpg" />
+    </div>
+    <div class="north-west on-blue"></div>
+    <div class="north-east on-yellow"></div>
+    <div class="south-west on-red"></div>
+    <div class="south-east on-green"></div>
+    <div class="title-box center on-white black"></div>
+    <p class="title-text align-center xx-large black bold colK row7 on-7cols on-2rows"
+    >LIME Book</p>
+    <div class="authors-list">
+      <p class="author">KAWAMORI Masahito</p>
+      <p class="author">Eric BRECHEMIER</p>
+    </div>
+    <div class="license-box">
+      <p class="license">Creative Commons BY-NC-SA, Some Rights Reserved</p>
+      <p class="license-url">http://bit.ly/CC-BY-NC-SA</p>
+    </div>
+    <div class="navigation">
+      <p class="next-page">
+        <a class="next-page-link" href="contents.bml">&gt;</a>
+      </p>
+    </div>
+  </body>
+</bml>

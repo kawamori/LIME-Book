@@ -89,7 +89,7 @@ function setTimeout(code,delay){
          return   browser.setInterval(code,delay,1);
         }
 
-function goback(){ browser.launchDocument("../../startup.bml", "cut");	}
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
 ]]></script>
 </head>
 

@@ -17,19 +17,19 @@
 
 		var urlList = new Array();
 		
-		urlList[0] = "audio/startup.bml";
-		urlList[1] = "aiff/startup.bml";
-		urlList[2] = "video/video.xml";
-	    urlList[3] = "mng/capoeira.xml";
-		urlList[4] = "Shenzhen/top.bml";
+		urlList[0] = "";
+		urlList[1] = "";
+		urlList[2] = "";
+	    urlList[3] = "";
+		urlList[4] = "";
 		urlList[5] = "jpegtest/index.xml";
 		urlList[6] = "text/richmen/startup.xml";
 		urlList[7] = "";
-		urlList[8] = "dungeon.aac";
-		urlList[9] = "touch-out.aac";
-		urlList[10] = "cn_phone_08_out.aac";
-		urlList[11] = "nevesintro_out.aac";
-		urlList[12] = "standbyme_out.aac";
+		urlList[8] = "";
+		urlList[9] = "";
+		urlList[10] = "";
+		urlList[11] = "";
+		urlList[12] = "";
 		
 
 //var base = "http://localhost/";
@@ -52,20 +52,20 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 <p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ Sample LIME code ]]></p>
 		
         <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();">Audio:AAC</p>
+		onclick="jump();"></p>
 
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();">Audio:AIFF</p>
+		onclick="jump();"></p>
 		
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
-		onclick="jump();">Video</p>
+		onclick="jump();"></p>
 		
 		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
-		onclick="jump();">MNG Test - Capoeira</p>
+		onclick="jump();"></p>
 		
 		
 		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
-		onclick="jump();">Shenzhen</p>
+		onclick="jump();"></p>
 
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
 		onclick="jump();">JPEG</p>
