@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head  xmlns="http://www.w3.org/1999/xhtml">
+<title>Startup for LIME Sample code</title>
+
+<style><![CDATA[
+    body {
+        background-color-index:7;
+    }
+
+]]>
+</style>
+<script><![CDATA[
+
+function onload() {
+browser.launchDocument("lime/samples/startup.bml", "cut");
+}
+
+]]></script>
+
+</head>
+<body  xmlns="http://www.w3.org/1999/xhtml" id="body" onload="onload();" >
+
+
+</body>
+</bml>
