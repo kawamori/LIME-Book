@@ -19,6 +19,10 @@ var position;
 var preLoad;
 
 function onload(){
+
+	GE("bgm").streamStatus="play";
+	browser.setInterval("BGMrp();",31000,0);
+	
     position=0;
     	preLoad = new Array(6);
     	
@@ -82,11 +86,24 @@ function setTimeout(code,delay){
          return   browser.setInterval(code,delay,1);
         }
 
+
+function GE(id){
+	return document.getElementById(id);
+}
+function BGMrp(){
+	GE("bgm").streamStatus="stop";
+	GE("bgm").streamStatus="play";
+}
+
 function goback(){ browser.launchDocument("../index.xml", "cut");	}
 ]]></script>
 </head>
 
 <body onload="onload();">
+
+<div>
+	<object id="bgm" data="audio/oceanwavescrushing.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
+</div>
 
 <div id="imageBox" style="top:50px;left:50px;width:910px;height:440px;">
 <object id="img" style="top:0px;left:0px;width:648px;height:432px" data="" type="image/jpeg"/>
