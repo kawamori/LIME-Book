@@ -21,7 +21,7 @@ var preLoad;
 function onload(){
 
 	GE("bgm").streamStatus="play";
-	browser.setInterval("BGMrp();",33800,0);
+	browser.setInterval("BGMrp();",19000,0);
 	
     position=0;
     	preLoad = new Array(6);
@@ -102,7 +102,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 <body onload="onload();">
 
 <div>
-	<object id="bgm" data="audio/evening-in-the-forest.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
+	<object id="bgm" data="audio/genghis-attenborough__wave-guitar-1.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
 </div>
 
 <div id="imageBox" style="top:50px;left:50px;width:910px;height:440px;">
