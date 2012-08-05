@@ -81,8 +81,6 @@ function setTimeout(code,delay){
          return   browser.setInterval(code,delay,1);
         }
 
-
-
 function GE(id){
 	return document.getElementById(id);
 }

@@ -22,6 +22,11 @@ function onload(){
     position=0;
     	preLoad = new Array(10);
     	
+
+
+	GE("bgm").streamStatus="play";
+	browser.setInterval("BGMrp();",33800,0);
+
     	
 preLoad[0] = "120428_175304.jpg";
 preLoad[1] = "120428_181449.jpg";
@@ -89,11 +94,25 @@ function setTimeout(code,delay){
          return   browser.setInterval(code,delay,1);
         }
 
+function GE(id){
+	return document.getElementById(id);
+}
+function BGMrp(){
+	GE("bgm").streamStatus="stop";
+	GE("bgm").streamStatus="play";
+}
+
+
 function goback(){ browser.launchDocument("../index.xml", "cut");	}
 ]]></script>
 </head>
 
 <body onload="onload();">
+
+<div>
+	<object id="bgm" data="audio/evening-in-the-forest.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
+</div>
+
 
 <div id="imageBox" style="top:50px;left:50px;width:810px;height:440px;">
 <object id="img" style="top:0px;left:0px;width:640px;height:480px" data="120428_175304.jpg" type="image/jpeg"/>
