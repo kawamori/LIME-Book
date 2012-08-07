@@ -21,7 +21,7 @@ var preLoad;
 function onload(){
 
 	GE("bgm").streamStatus="play";
-	browser.setInterval("BGMrp();",500,0);
+	browser.setInterval("BGMrp();",18000,0);
 	
     position=0;
     	preLoad = new Array(6);
