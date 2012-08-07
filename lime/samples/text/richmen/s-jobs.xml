@@ -38,7 +38,7 @@ function gonext(){ browser.launchDocument("startup.xml", "cut");	}
 </div>
 
 <div style="left:0px; top:100px; width:960px; height:440px">
-  <object type="image/jpeg" data="media/s-jobs.jpg" style="left:60px;top:10px;width:492px;height:328px;"/>
+  <object type="image/jpeg" data="media/s-jobs.jpg" style="left:60px;top:10px;width:346px;height:308px;"/>
 </div>
 <div style="left:0px; top:50px; width:960px; height:440px">
 <object type="image/jpeg" data="media/s-jobs-text.jpg" style="left:500px;top:0px;width:294px;height:404px;"/>
