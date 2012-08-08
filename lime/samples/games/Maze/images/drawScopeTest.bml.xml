@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<!--
+============================================================
+Copyright (C)2009, NTT Inc. All rights reserved.
+============================================================
+-->
+<bml>
+<head>
+<title/>
+<style><![CDATA[
+	body	{background-color-index:12;
+	 	resolution:1960x1080;
+    display-aspect-ratio:16v9;
+						}
+	#maze	{left:50px;top:50px;width:450px; height:450px;
+		background-color-index:8;
+	}
+	#map	{font-size:16px;width:336px;height:336px;left:520px;top:100px;
+		color-index:7;background-color-index:105;visibility:hidden;}
+	#end	{color-index:7;background-color-index:26;font-size:36px;
+		left:100px;top:100px;width:500px;height:300px;
+		text-align:center;line-height:100px;visibility:hidden;}
+	.icon	{width:46px;height:48px;}
+	p.time	{font-size:24px;left:120px;height:36px;width:300px;top:10px;
+		color-index:7}
+	p.cell	{width:50px;height:50px;background-color-index:8;}
+]]></style>
+
+<script><![CDATA[
+
+
+var SIZE = 21;	// width and hight of the maze;
+var Time = 0;	// elapsed time from the start of game
+var DoRefresh;	// need for redrawing the scroll;
+var Maze;	// matrix for maze data
+var Hero;	// Hero Object 
+var Enemies;	// Enemy Object array 
+
+var ShowMapTimer = NaN;	// timer for displaying the map
+var CounterTimer = NaN;	// timer for game progression
+
+
+
+
+//
+// Constructer for Objects for Characters (hero and enemies)
+function CharacterObject(x,y,id){
+	this.X = x;
+	this.Y = y;
+	this.Object	= document.getElementById(id);
+	this.Style	= document.getElementById(id).normalStyle;
+}
+
+
+//
+//    construct the maze
+// 　size：width and height
+function createMaze( size ){
+
+	// initialize maze[x,y]
+	var maze = new Array(size);
+	for(var x = 0 ; x < size ; x++)
+	{
+		maze[x] = new Array(size);
+		for(var y = 0 ; y < size ; y++)
+		{
+			maze[x][y] = 0;
+		}
+	}
+
+	// 棒倒し法で迷路作成
+	for(var x = 1 ; x < size-1 ; x += 2)
+	{
+		for(var y = 1 ; y < size-1 ; y += 2)
+		{
+			maze[x][y] = 1;		// pillar
+
+			// 最左列は上下左右、それ以外は上下右のみ
+			var dir = browser.random( (x == 1) ? 4 : 3 );
+
+			var px = x;
+			var py = y;
+			if( dir == 0 ) { py--; }
+			else if( dir == 1 ) { py++; }
+			else if( dir == 2 ) { px++; }
+			else if( dir == 3 ) { px--; }
+
+			maze[px][py] = 1;	// 倒れた柱
+		}
+	}
+
+	return maze;
+}
+
+//
+// Initialize the game
+function start(){
+
+
+
+
+	document.getElementById("end").normalStyle.visibility = "hidden";
+	document.getElementById("maze").focus();
+
+	Time = 0;
+	DoRefresh = true;
+
+	Maze	= createMaze( SIZE );
+	Hero	= new CharacterObject( 0, 0, "hero" );		//Upper left
+	Enemies	= new Array(
+		new CharacterObject( SIZE, 0, "enemy0" ),	// Upper right
+		new CharacterObject( 0, SIZE, "enemy1" ),	// Lower left
+		new CharacterObject( SIZE, SIZE, "enemy2" )	// Lower right
+	 );
+
+	drawScope();
+	CounterTimer = browser.setInterval("gameTick();", 1000, 0);
+}
+
+//
+// Event Handler for Keydown
+function keydown(){
+	var x = Hero.X;		// x-coordinate for the next move
+	var y = Hero.Y;		// y-coordinate for the next move 
+
+	var code = document.currentEvent.keyCode;
+	if( code == 1 ){	// up
+		y--;
+		Hero.Object.data = "hero1.png";
+	}else if( code == 2 ){	// down
+		y++;
+		Hero.Object.data = "hero2.png";
+	}else if( code == 3 ){	// left
+		x--;
+		Hero.Object.data = "hero3.png";
+	}else if( code == 4 ){	// right
+		x++;
+		Hero.Object.data = "hero4.png";
+	}else if( code == 18 ){	// Enter
+		showMap();
+	}
+
+	if( 0 <= x && x < SIZE && 0 <= y && y < SIZE )
+	{
+		if( Maze[x][y] == 0 )	// move to a space (corridor);
+		{
+			// check if scrolling is needed
+			DoRefresh = (Hero.X / 7 != x / 7) || (Hero.Y / 7 != y / 7);
+
+			Hero.X = x;
+			Hero.Y = y;
+
+			drawScope();
+
+			if( Hero.X == SIZE-1 && Hero.Y == SIZE-1 )
+				gameOver("Cleared ! !  Time:"+getTimeString(Time));
+		}
+	}
+}
+
+//
+// draw the field
+function drawScope()
+{
+	browser.lockScreen();
+
+	// scrolling is done with 7x7([x,y]、[x+6,y+6]) units
+	// while rendering is done, to include the outer frame, with 9x9([x-1,y-1]、[x+7,y+7]) units
+
+	var scopeX = Hero.X / 7;
+	var scopeY = Hero.Y / 7;
+
+	// draw the maze
+	if( DoRefresh )
+	{
+		DoRefresh = false;
+
+		for(var y = 0 ; y < 9 ; y++)
+		{
+			for(var x = 0 ; x < 9 ; x++)
+			{
+				var obj = document.getElementById("c"+y+x);
+
+				var dx = scopeX * 7 + x - 1;
+				var dy = scopeY * 7 + y - 1;
+
+				// draw the corridor (without the outer ridge and walls)
+				var flag = true;
+				if( 0 <= dx && dx < SIZE && 0 <= dy && dy < SIZE ){
+					flag = Maze[dx][dy];
+				}
+
+				obj.normalStyle.visibility = flag ? "hidden" : "visible";
+			}
+		}
+	}
+
+	// render the hero 
+	Hero.Style.top  = (Hero.Y % 7 + 1) * 50 + "px";
+	Hero.Style.left = (Hero.X % 7 + 1) * 50 + "px";
+
+	// render the enemy character
+	for(var i = 0 ; i < Enemies.length ; i++)
+	{
+		var enemy = Enemies[i];
+
+		// render only when sharing the scope with the hero
+		if( enemy.X / 7 == scopeX && enemy.Y / 7 == scopeY )
+		{
+			enemy.Style.visibility	= "visible";
+			enemy.Style.top		= (enemy.Y % 7 + 1) * 50 + "px";
+			enemy.Style.left	= (enemy.X % 7 + 1) * 50 + "px";
+		}else{
+			enemy.Style.visibility	= "hidden";
+		}
+
+		if( enemy.X == Hero.X && enemy.Y == Hero.Y ){
+			gameOver("Shucks, Captured ...");
+			return;
+		}
+	}
+
+	browser.unlockScreen();
+}
+
+
+//
+// obtains the string "mm:ss" from the seconds;
+function getTimeString(time){
+	var m0 = (time / 60) / 10;
+	var m1 = (time / 60) % 10;
+	var s0 = (time % 60) / 10;
+	var s1 = (time % 60) % 10;
+	return " "+m0+m1+":"+s0+s1;
+}
+
+//
+// timer function called regularly; moves the enemy and updates the clock;
+function gameTick()
+{
+	// updates the elapsed time;
+	Time++;
+	document.getElementById("time").firstChild.data = getTimeString(Time);
+//	setTimeImage(Time);
+
+	// chases the hero;
+	for(var i = 0 ; i < Enemies.length ; i++){
+		var enemy = Enemies[i];
+		var xdiff = Hero.X - enemy.X;
+		var ydiff = Hero.Y - enemy.Y;
+
+		var dir = browser.random(3);
+		if( dir == 1 ){
+			// approaches the x-axis;
+			if( xdiff < 0 ){
+				enemy.X--;
+				enemy.Object.data = "enemy3.png";
+			}
+			else if( xdiff > 0 ){
+				enemy.X++;
+				enemy.Object.data = "enemy4.png";
+			}
+		}
+		else if( dir == 2 ){
+			// approaches the y-axis;
+			if( ydiff < 0 ){
+				enemy.Y--;
+				enemy.Object.data = "enemy1.png";
+			}
+			else if( ydiff > 0 ){
+				enemy.Y++;
+				enemy.Object.data = "enemy2.png";
+			}
+		}
+	}
+
+	drawScope();
+}
+
+
+//
+// displays the map for a fixed length of time; 
+function showMap(){
+	if( !isNaN(ShowMapTimer) )
+		return;
+
+	var str = "";
+	for(var y = 0 ; y < SIZE ; y++)
+	{
+		for(var x = 0 ; x < SIZE ; x++)
+		{
+			if( x == Hero.X && y == Hero.Y ){
+				str += "★";		// Self;
+			}else if( Maze[x][y] == 1 ){
+				str += "■";		// Wall;
+			}else{
+				str += "　";		// Corridor;
+			}
+		}
+		str += "\r\n";
+	}
+
+	var map = document.getElementById("map");
+	map.firstChild.data = str;
+	map.normalStyle.visibility = "visible";
+
+	ShowMapTimer = browser.setInterval("hideMap();",3000,1);
+}
+
+//
+// map non-displayed; 
+function hideMap(){
+	document.getElementById("map").normalStyle.visibility = "hidden";
+	ShowMapTimer = NaN;
+}
+
+//
+// displays "Game Over"; 
+function gameOver(msg){
+	browser.clearTimer(CounterTimer);
+	
+	
+	var mobj = document.getElementById("endMsg");
+	mobj.lastChild.firstChild.data = msg;
+	//obj.focus();
+	
+	var obj = document.getElementById("end");
+	obj.normalStyle.visibility = "visible";
+	obj.lastChild.firstChild.data = msg;
+	obj.focus();
+
+}
+]]></script>
+
+</head>
+<body onload="start();">
+<!--
+1024 768
+
+-->
+
+	<div id="" style="top:0px;left:0px;height:1080px;width:360px;background-color-index:1;">
+	<object type="image/jpeg" data="cow.jpg" style="height:384px;width:512px;"/>
+       <!-- <object id="pic" type="image/jpeg"  data="red.jpg" style="top:0px;left:0px;height:540px;width:960px"/>-->
+</div>
+
+<div id="frame" style="top:0px;height:540px;width:560px;background-color-index:8;">
+<div class="frame" style="top:0px;left:0px;height:240px;width:50px;background-color-index:2;">
+</div>
+<div class="frame" style="top:0px;left:0px;height:50px;width:360px;background-color-index:2;">
+</div>
+<div class="frame" style="top:0px;left:310px;height:440px;width:250px;background-color-index:2;">
+</div>
+<div class="frame" style="top:190px;left:0px;height:250px;width:360px;background-color-index:2;">
+</div></div>
+<div id="maze" onkeydown="keydown();">
+
+<!--	<object type="image/jpeg" data="wall-manor.JPG"  id="c00" class="cell" style="left:0px; top:0px"/>
+	<object type="image/jpeg" data="wall-manor.JPG"  id="c01" class="cell" style="left:50px; top:0px"/>-->
+	<p id="c00" class="cell" style="left:0px; top:0px"/>
+	<p id="c01" class="cell" style="left:50px; top:0px"/>
+	<p id="c02" class="cell" style="left:100px; top:0px"/>
+	<p id="c03" class="cell" style="left:150px; top:0px"/>
+	<p id="c04" class="cell" style="left:200px; top:0px"/>
+	<p id="c05" class="cell" style="left:250px; top:0px"/>
+	<p id="c06" class="cell" style="left:300px; top:0px"/>
+	<p id="c07" class="cell" style="left:350px; top:0px"/>
+	<p id="c08" class="cell" style="left:400px; top:0px"/>
+
+	<p id="c10" class="cell" style="left:0px; top:50px"/>
+	<p id="c11" class="cell" style="left:50px; top:50px"/>
+	<p id="c12" class="cell" style="left:100px; top:50px"/>
+	<p id="c13" class="cell" style="left:150px; top:50px"/>
+	<p id="c14" class="cell" style="left:200px; top:50px"/>
+	<p id="c15" class="cell" style="left:250px; top:50px"/>
+	<p id="c16" class="cell" style="left:300px; top:50px"/>
+	<p id="c17" class="cell" style="left:350px; top:50px"/>
+	<p id="c18" class="cell" style="left:400px; top:50px"/>
+
+	<p id="c20" class="cell" style="left:0px; top:100px"/>
+	<p id="c21" class="cell" style="left:50px; top:100px"/>
+	<p id="c22" class="cell" style="left:100px; top:100px"/>
+	<p id="c23" class="cell" style="left:150px; top:100px"/>
+	<p id="c24" class="cell" style="left:200px; top:100px"/>
+	<p id="c25" class="cell" style="left:250px; top:100px"/>
+	<p id="c26" class="cell" style="left:300px; top:100px"/>
+	<p id="c27" class="cell" style="left:350px; top:100px"/>
+	<p id="c28" class="cell" style="left:400px; top:100px"/>
+
+	<p id="c30" class="cell" style="left:0px; top:150px"/>
+	<p id="c31" class="cell" style="left:50px; top:150px"/>
+	<p id="c32" class="cell" style="left:100px; top:150px"/>
+	<p id="c33" class="cell" style="left:150px; top:150px"/>
+	<p id="c34" class="cell" style="left:200px; top:150px"/>
+	<p id="c35" class="cell" style="left:250px; top:150px"/>
+	<p id="c36" class="cell" style="left:300px; top:150px"/>
+	<p id="c37" class="cell" style="left:350px; top:150px"/>
+	<p id="c38" class="cell" style="left:400px; top:150px"/>
+
+	<p id="c40" class="cell" style="left:0px; top:200px"/>
+	<p id="c41" class="cell" style="left:50px; top:200px"/>
+	<p id="c42" class="cell" style="left:100px; top:200px"/>
+	<p id="c43" class="cell" style="left:150px; top:200px"/>
+	<p id="c44" class="cell" style="left:200px; top:200px"/>
+	<p id="c45" class="cell" style="left:250px; top:200px"/>
+	<p id="c46" class="cell" style="left:300px; top:200px"/>
+	<p id="c47" class="cell" style="left:350px; top:200px"/>
+	<p id="c48" class="cell" style="left:400px; top:200px"/>
+
+	<p id="c50" class="cell" style="left:0px; top:250px"/>
+	<p id="c51" class="cell" style="left:50px; top:250px"/>
+	<p id="c52" class="cell" style="left:100px; top:250px"/>
+	<p id="c53" class="cell" style="left:150px; top:250px"/>
+	<p id="c54" class="cell" style="left:200px; top:250px"/>
+	<p id="c55" class="cell" style="left:250px; top:250px"/>
+	<p id="c56" class="cell" style="left:300px; top:250px"/>
+	<p id="c57" class="cell" style="left:350px; top:250px"/>
+	<p id="c58" class="cell" style="left:400px; top:250px"/>
+
+	<p id="c60" class="cell" style="left:0px; top:300px"/>
+	<p id="c61" class="cell" style="left:50px; top:300px"/>
+	<p id="c62" class="cell" style="left:100px; top:300px"/>
+	<p id="c63" class="cell" style="left:150px; top:300px"/>
+	<p id="c64" class="cell" style="left:200px; top:300px"/>
+	<p id="c65" class="cell" style="left:250px; top:300px"/>
+	<p id="c66" class="cell" style="left:300px; top:300px"/>
+	<p id="c67" class="cell" style="left:350px; top:300px"/>
+	<p id="c68" class="cell" style="left:400px; top:300px"/>
+
+	<p id="c70" class="cell" style="left:0px; top:350px"/>
+	<p id="c71" class="cell" style="left:50px; top:350px"/>
+	<p id="c72" class="cell" style="left:100px; top:350px"/>
+	<p id="c73" class="cell" style="left:150px; top:350px"/>
+	<p id="c74" class="cell" style="left:200px; top:350px"/>
+	<p id="c75" class="cell" style="left:250px; top:350px"/>
+	<p id="c76" class="cell" style="left:300px; top:350px"/>
+	<p id="c77" class="cell" style="left:350px; top:350px"/>
+	<p id="c78" class="cell" style="left:400px; top:350px"/>
+
+	<p id="c80" class="cell" style="left:0px; top:400px"/>
+	<p id="c81" class="cell" style="left:50px; top:400px"/>
+	<p id="c82" class="cell" style="left:100px; top:400px"/>
+	<p id="c83" class="cell" style="left:150px; top:400px"/>
+	<p id="c84" class="cell" style="left:200px; top:400px"/>
+	<p id="c85" class="cell" style="left:250px; top:400px"/>
+	<p id="c86" class="cell" style="left:300px; top:400px"/>
+	<p id="c87" class="cell" style="left:350px; top:400px"/>
+	<object type="image/jpeg" data="wall-manor.JPG"   id="c88" class="cell" style="left:400px; top:400px"/>
+
+	<object id="hero" class="icon" type="image/X-arib-png"
+		style="left:50px;top:50px;" data="hero2.png"/>
+	<object id="enemy0" class="icon" style="visibility:hidden;" type="image/X-arib-png" data="enemy1.png"/>
+	<object id="enemy1" class="icon" style="visibility:hidden;" type="image/X-arib-png" data="enemy2.png"/>
+	<object id="enemy2" class="icon" style="visibility:hidden;" type="image/X-arib-png" data="enemy3.png"/>
+</div>
+
+
+<div style="left:0px; top:0px; width:960px; height:540px">
+<object type="image/X-arib-png" data="chest-book.png" style="left:900px;top:490px;width:64px;height:64px;visibility:hidden"/>
+
+</div>
+
+<!-- minutes 
+  	<div id="clock" style="top:120px;left:540px;height:260px;width:230px">
+        <object id="minutes0" type="image/jpeg"  data="digits/0.JPG" style="top:0px;left:0px;height:120px;width:30px"/>
+        <object id="minutes1" type="image/jpeg"  data="digits/0.JPG" style="top:0px;left:30px;height:60px;width:30px"/>
+        <object id="seconds0" type="image/jpeg"  data="digits/0.JPG"  style="top:0px;left:60px;height:60px;width:30px"/>
+        <object id="seconds1" type="image/jpeg"  data="digits/0.JPG" style="top:0px;left:90px;height:60px;width:30px"/></div>
+  </div> end of the widget -->
+ 
+<p class="time">
+	Elapsed<span id="time"><![CDATA[]]></span>
+</p>
+
+<p id="map"><![CDATA[]]></p>
+
+
+
+<p id="endMsg"><span><![CDATA[]]></span></p>
+<p id="end" onclick="start();">
+<!--	Game Over<br/>-->
+
+		<span><![CDATA[]]>
+		<br/>Hit "ENTER" to start over<br/></span>
+
+</p>
+
+
+</body>
+</bml>

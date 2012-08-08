@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE bml PUBLIC"-//IPTVF CDN:2008//DTD BML Document for IPTV//JA"
+"http://www.iptvforum.jp/CDN/DTD/bml_100_0_iptv.dtd">
+<?bml bml-version="100.0"?>
+<bml>
+ <head>
+  <title>Welcome to LIME world</title>
+  <style>
+   <![CDATA[
+    .base{background-color-index: 0;resolution:960x540;}
+    #base {width:960px; height:540px; left:0px; top:0px;background-color-index:0;}
+    #title0 {width:520px; height:80px; left:30px; top:30px; color-index:7; font-size:36px;}
+    
+    #photo1{width:960px; height:540px; left:0px; top:0px;}
+    
+    #text0 {font-size:28px; left:655px; top:50px; nav-index:0;nav-up:0;nav-down:1; color-index:7;}
+    #text1 {font-size:28px; left:655px; top:100px; nav-index:1;nav-up:0;nav-down:2; color-index:7; }
+    #text2 {font-size:28px; left:655px; top:150px; nav-index:2;nav-up:1;nav-down:3; color-index:7; }
+    #text3 {font-size:28px; left:655px; top:200px; nav-index:3;nav-up:2;nav-down:4; color-index:7;}
+    #text4 {font-size:28px; left:655px; top:250px; color-index:3; nav-index:4;nav-up:3;nav-down:4; color-index:7;}
+    
+    #text5 {font-size:28px; left:655px; top:300px; color-index:3; nav-index:5;nav-up:4;nav-down:5; color-index:7;}
+    
+    p {width:400px;height:60px;background-color-index:0}
+  
+    a:focus {background-color-index:4}
+    a:blur {background-color-index:0}
+
+    p.pfInfo {
+        font-size:20px;
+        padding-top:3px;
+        padding-left:10px;
+        color-index:7;
+        grayscale-color-index:7 15;
+        font-weight:bold;
+    }
+
+     p.pfInfoList {
+        background-color-index:79;
+    }
+
+     p.pfInfoListBackground {
+        background-color-index:94;
+    }
+
+     p.pfInfoListFocus {
+        background-color-index:60;
+    }
+   ]]>
+  </style>
+ </head>
+ <body>
+  <div id="base" ><object id="photo1" type="image/jpeg" data="images/Ateneo_SOMSOSE.jpg" style="left:30px; top:115px; position:relative" ></object>
+   <p id="title0" style="font-color-index:7;background-color-index:0;">Ateneo 
+de Manila University 
+LIME portal</p>
+   <p  id="text0">
+    <a id="text0" href="content1/startup.bml">Video on Demand</a></p>
+   <p  id="text1">
+    <a id="text1" href="content2/slideshow.bml">Slideshow</a></p>
+   <p id="text2" >
+    <a  id="text2" href="content3/sample6_cursol_navi.bml">Sample</a></p>
+   <p  id="text3">
+    <a  id="text3" href="/poweron/Phi/oki-top.bml">Others</a></p>
+  <p id="text4" >
+      <a id="text4" href="jason.bml">Members</a></p>
+    </div>
+ </body>
+</bml>
