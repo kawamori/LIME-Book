@@ -17,7 +17,7 @@
 
 		var urlList = new Array();
 		
-		urlList[0] = "";
+		urlList[0] = "ateneo/welcome.xml";
 		urlList[1] = "";
 		urlList[2] = "";
 	    urlList[3] = "";
