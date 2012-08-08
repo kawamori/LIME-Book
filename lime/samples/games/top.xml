@@ -37,7 +37,7 @@
 ]]>
 </style>
 <script><![CDATA[
-function goback(){ browser.launchDocument("../top.bml", "cut");	}
+function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 //===========================================================================
 // 再生制御メタファイルURI
 
