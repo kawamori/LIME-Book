@@ -22,7 +22,7 @@
 		urlList[1] = "cologny/slideshow.bml";
 		urlList[2] = "gakken/slideshow.bml";
 		urlList[3] = "akijii/slideshow.bml";
-		urlList[4] = "kyoto/slideshow.bml";
+		urlList[4] = "kyoto/slideshow.xml";
 		urlList[5] = "";
 		urlList[6] = "";
 		urlList[7] = "";
