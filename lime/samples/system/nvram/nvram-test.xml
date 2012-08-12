@@ -8,16 +8,15 @@
 	.button {width:140px;height:32px;}
 	p:focus {background-color-index:2;}
 	p.button {text-align:center;color-index:0;line-height:30px;}
-		#display	{ font-size:20px;background-color-index:16;color-index:7;
+	#display	{ font-size:20px;background-color-index:16;color-index:7;
 		top:30px;left:30px;width:600px;height:560px;}
 ]]></style>
 
 
 <script><![CDATA[
 
-function main(){
 
-var pref="nvram://receiverinfo/prefecture";@
+var pref="nvram://receiverinfo/prefecture";¡¡
 var region="nvram://receiverinfo/regioncode";   
 var zip = "nvram://receiverinfo/zipcode";
 var parental = "nvram://receiverinfo/parentallevel";
@@ -27,6 +26,8 @@ var r = browser.readPersistentArray(region,'U:2B');
 var z = browser.readPersistentArray(zip, "S:7B");
 var pr= browser.readPersistentArray(parental,"S:7B");
 
+function main(){
+
 
 alert("pref:"+p+";\n region: "+r+";\n Zipcode: "+z+";\n Parental: "+pr+";");
 
@@ -34,7 +35,7 @@ alert("pref:"+p+";\n region: "+r+";\n Zipcode: "+z+";\n Parental: "+pr+";");
 }
 
 
-function goback(){ browser.launchDocument("../../startup.xml", "cut");	}
+function goback(){ browser.launchDocument("../../startup.bml", "cut");	}
 
 
 function println(str,display){
@@ -79,12 +80,8 @@ function alert(str){
 
 		<p id="p02" class="button"  style="top:50;left:0;nav-index:1;nav-up:0;nav-down:0" onclick="changeText();">Button2</p>
 
-<p id="p03" class="button"  style="top:90;left:0;;">foo</p>
 
-<div>
-<object id="img" type="image/jpeg" data="images/Sunset.jpg"/>
-</div>
-<p id="entry-links" />
+
 <p id="display" style="top:0px;left:250px"><![CDATA[]]></p>
 
  <p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
