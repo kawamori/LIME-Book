@@ -14,7 +14,7 @@
 
 
 <script><![CDATA[
-
+/*
 
 var pref="nvram://receiverinfo/prefecture";¡¡
 var region="nvram://receiverinfo/regioncode";   
@@ -25,40 +25,18 @@ var p = browser.readPersistentArray(pref,'U:1B');
 var r = browser.readPersistentArray(region,'U:2B');
 var z = browser.readPersistentArray(zip, "S:7B");
 var pr= browser.readPersistentArray(parental,"S:7B");
-
+*/
 function main(){
 
+alert("hello");
 
-alert("pref:"+p+";\n region: "+r+";\n Zipcode: "+z+";\n Parental: "+pr+";");
+//alert("pref:"+p+";\n region: "+r+";\n Zipcode: "+z+";\n Parental: "+pr+";");
 
 
 }
 
 
 function goback(){ browser.launchDocument("../../startup.bml", "cut");	}
-
-
-function println(str,display){
-	var obj = document.getElementById(display);
-	obj.firstChild.data += str + "\r\n";
-}
-
-function print(str,display){
-	var obj = document.getElementById(display);
-	obj.firstChild.data = str ;
-}
-
-
-function printd(str){
-	var obj = document.getElementById("display");
-	obj.firstChild.data = str ;
-}
-
-
-function printlnd(str){
-	var obj = document.getElementById("display");
-	obj.firstChild.data += str + "\r\n";
-}
 
 
 function alert(str){
