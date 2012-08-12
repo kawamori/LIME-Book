@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title/>
+<style><![CDATA[
+	#status	{font-size:20px;border-style:solid;border-width:2px;
+		left:30px;top:30px;width:300px;height:50px;
+		color-index:7;background-color-index:16;}
+]]></style>
+
+<script><![CDATA[
+var Pref = new Array(
+ "北海道","青　森","岩　手","宮　城","秋　田","山　形","福　島","茨　城","栃　木","群　馬",
+ "埼　玉","千　葉","東　京","神奈川","新　潟","富　山","石　川","福　井","山　梨","長　野",
+ "岐　阜","静　岡","愛　知","三　重","滋　賀","京　都","大　阪","兵　庫","奈　良","和歌山",
+ "鳥　取","島　根","岡　山","広　島","山　口","徳　島","香　川","愛　媛","高　知","福　岡",
+ "佐　賀","長　崎","熊　本","大　分","宮　崎","鹿児島","沖　縄"
+ );
+
+function start()
+{
+	var str = "";
+	var ret = browser.readPersistentArray("nvram://receiverinfo/prefecture", "U:1B");
+	
+	if( ret != null && 0 <= ret[0] && ret[0] < 50 )
+	{
+		var pid = ret[0];
+		if( pid == 0) pid = 1;		// 東北海道→北海道
+		else if( pid == 48) pid = 13;	// 東京島部→東京都
+		else if( pid == 49) pid = 46;	// 鹿児島島部→鹿児島
+
+		pid--;
+		str = "あなたのお住まいは"+Pref[pid]+"です。";
+	}
+	else{
+		str = "県域情報が設定されていません。";
+	}
+
+	ret = browser.readPersistentArray("nvram://receiverinfo/zipcode", "S:7B");
+	if( ret != null && ret[0] != "" ){
+		str += "郵便番号は「"+ret[0]+"」です。";
+	}else{
+		str += "郵便番号が設定されていません。";
+	}
+
+	document.getElementById("status").firstChild.data = str;
+}
+]]></script>
+
+</head>
+<body style="background-color-index:7;" onload="start();">
+<p id="status"><![CDATA[]]></p>
+</body>
+</bml>
