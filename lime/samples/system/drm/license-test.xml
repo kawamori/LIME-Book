@@ -46,7 +46,7 @@ if( va != null && va[0] != "" ){
 	}
 
 }
-
+/*
 	
 var val = browser.getIPTVLicenseInfo(0000000000,1);
 
@@ -55,6 +55,8 @@ if( val != null && val[0] != "" ){
 	}else{
 		alert("License info error: "+ val);;
 	}
+*/
+
 
 }
 
