@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Running Arabic</title>
+
+<style><![CDATA[
+       body {background-color-index:0;}
+	#result	{font-size:24px;background-color-index:2;color-index:7;top:10px;left:30px;width:300px;height:24px;}
+]]></style>
+
+<script src='../scripts/mycommon.ecm.js'/>
+<script><![CDATA[
+
+//document.body.clientWidth
+
+var textLength =  937;
+var clientWidth = 960;
+
+
+    var x=-1 * textLength; // initial position of the text
+    var dx=10; // 
+
+    function move()
+    {
+
+        setTimeout("move()",100);
+        var text=document.getElementById("text");
+        x+=dx;
+
+        text.normalStyle.left=x;
+
+        if (x+10>=clientWidth)
+            x=-937;
+
+    }
+    
+    function goback(){ browser.launchDocument("../top.xml", "cut");	}
+]]></script>
+</head>
+<body onload="move();">
+
+
+<div style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;">
+<object id="text" type="image/jpeg" data="dubai-1.jpg" style="left:10px;top:0;width:400px;height:540px;"/>
+
+<object type="image/X-arib-png" data="dubai-title.png" style="left:700px;top:0;width:202px;height:150px;"/>
+
+</div>
+
+
+<div style="left:0px; top:300px; width:960px; height:40px;">
+<object id="text" type="image/X-arib-png" data="arabic-line-test.png" style="top:0;width:936px;height:40px;"/>
+</div>
+
+<!--<p id="result"><![CDATA[]]></p>-->
+<p style="top:470px;left:850px;height:36px;width:60px;background-color-index:4;color-index:7;" accesskey="B" onclick="goback();">Back</p>
+</body>
+</bml>
