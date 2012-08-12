@@ -25,20 +25,22 @@ function alert(str){
 
 
 var pref="nvram://receiverinfo/prefecture";¡¡
-var region="nvram://receiverinfo/regioncode";   
-var zip = "nvram://receiverinfo/zipcode";
-var parental = "nvram://receiverinfo/parentallevel";
+//var region="nvram://receiverinfo/regioncode";   
+//var zip = "nvram://receiverinfo/zipcode";
+//var parental = "nvram://receiverinfo/parentallevel";
 
 var p = browser.readPersistentArray(pref,'U:1B');
-var r = browser.readPersistentArray(region,'U:2B');
-var z = browser.readPersistentArray(zip, "S:7B");
-var pr= browser.readPersistentArray(parental,"S:7B");
+//var r = browser.readPersistentArray(region,'U:2B');
+//var z = browser.readPersistentArray(zip, "S:7B");
+//var pr= browser.readPersistentArray(parental,"S:7B");
 
 function main(){
 
 alert("hello");
 
-alert("pref:"+p+";\n region: "+r+";\n Zipcode: "+z+";\n Parental: "+pr+";");
+alert("pref:"+p[0]);
+
+//+";\n region: "+r+";\n Zipcode: "+z+";\n Parental: "+pr+";");
 
 
 }
