@@ -72,7 +72,7 @@ alert("pref:"+ret[0]);}
 }
 
 
-function goback(){ browser.launchDocument("../../startup.bml", "cut");	}
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 
 

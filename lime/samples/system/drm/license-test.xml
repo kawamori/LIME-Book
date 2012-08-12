@@ -41,7 +41,7 @@ alert("hello");
 }
 
 
-function goback(){ browser.launchDocument("../../startup.bml", "cut");	}
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 
 

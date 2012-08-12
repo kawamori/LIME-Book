@@ -46,10 +46,15 @@ function start()
 
 	document.getElementById("status").firstChild.data = str;
 }
+
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
+
 ]]></script>
 
 </head>
 <body style="background-color-index:7;" onload="start();">
 <p id="status"><![CDATA[]]></p>
+
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
 </body>
 </bml>
