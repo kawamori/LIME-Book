@@ -38,6 +38,15 @@ function main(){
 
 alert("hello");
 
+ var ret = browser.readPersistentArray("nvram://receiverinfo/parental", "S:7B");
+	if( ret != null && ret[0] != "" ){
+		alert("parental is "+ret[0]);
+	}else{
+		alert("error "+ ret);;
+	}
+	
+
+/*
 
 var ret = browser.readPersistentArray("nvram://receiverinfo/prefecture","U:1B");
 
@@ -47,6 +56,8 @@ alert("pref:"+ret[0]);}
 	alert("error"+ret);
 	
 	}
+*/
+
 
 //+";\n region: "+r+";\n Zipcode: "+z+";\n Parental: "+pr+";");
 
