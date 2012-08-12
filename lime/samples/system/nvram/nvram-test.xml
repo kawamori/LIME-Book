@@ -40,14 +40,14 @@ alert("hello");
 
  var ret = browser.readPersistentArray("nvram://receiverinfo/parentallevel", "S:7B");
 	if( ret != null && ret[0] != "" ){
-		alert("parental is "+ret[0]);
+		alert("parental age level is "+ret[0]);
 	}else{
 		alert("error: Parental is not set"+ ret);;
 	}
 	
  var ret = browser.readPersistentArray("nvram://receiverinfo/parentallevel", "B:1B");
 	if( ret != null && ret[0] != "" ){
-		alert("parental is "+ret[0]);
+		alert("parental value is "+ret[0]);
 	}else{
 		alert("error:"+ ret);;
 	}
