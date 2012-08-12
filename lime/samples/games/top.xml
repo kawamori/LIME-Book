@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="EUC-JP" ?>
-<!DOCTYPE bml PUBLIC
-  "-//IPTVF CDN:2008//DTD BML Document for IPTV//JA"
-  "http://www.iptvforum.jp/CDN/DTD/bml_100_0_iptv.dtd">
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
@@ -363,11 +360,11 @@ function onload() {
     <p id="name14" class="pfInfo" style="left:0px;top:108px;width:420px;height:25px;">05　 Maze </p>
     <p id="name15" class="pfInfo" style="left:0px;top:135px;width:420px;height:25px;">06　 Action Game</p>
     <p id="name16" class="pfInfo" style="left:0px;top:162px;width:420px;height:25px;">07　 DoomLike</p>
-    <p id="name17" class="pfInfo" style="left:0px;top:189px;width:420px;height:25px;">08　 VOD List Sample 3</p>
-    <p id="name18" class="pfInfo" style="left:0px;top:216px;width:420px;height:25px;">09　 AQUOS Tests</p>
-    <p id="name19" class="pfInfo" style="left:0px;top:243px;width:420px;height:25px;">10　 Clock</p>
-    <p id="name20" class="pfInfo" style="left:0px;top:270px;width:420px;height:25px;">11　 DRPC Demo</p>
-    <p id="name21" class="pfInfo" style="left:0px;top:297px;width:420px;height:25px;">12　 Play Video</p>
+    <p id="name17" class="pfInfo" style="left:0px;top:189px;width:420px;height:25px;">08　 </p>
+    <p id="name18" class="pfInfo" style="left:0px;top:216px;width:420px;height:25px;">09　 </p>
+    <p id="name19" class="pfInfo" style="left:0px;top:243px;width:420px;height:25px;">10　</p>
+    <p id="name20" class="pfInfo" style="left:0px;top:270px;width:420px;height:25px;">11　</p>
+    <p id="name21" class="pfInfo" style="left:0px;top:297px;width:420px;height:25px;">12　</p>
 </div>
 <p style="top:470px;left:850px;height:36px;width:60px;background-color-index:4;color-index:7;" accesskey="B" onclick="goback();">Back</p>
 </body>
