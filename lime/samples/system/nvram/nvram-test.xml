@@ -8,12 +8,21 @@
 	.button {width:140px;height:32px;}
 	p:focus {background-color-index:2;}
 	p.button {text-align:center;color-index:0;line-height:30px;}
-	#display	{ font-size:20px;background-color-index:16;color-index:7;
-		top:30px;left:30px;width:600px;height:560px;}
+	#display	{background-color-index:16;color-index:7;
+		top:30px;left:30px;width:600px;height:500px;}
 ]]></style>
 
 
 <script><![CDATA[
+
+
+
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+
+
 /*
 
 var pref="nvram://receiverinfo/prefecture";¡¡
@@ -37,13 +46,6 @@ alert("hello");
 
 
 function goback(){ browser.launchDocument("../../startup.bml", "cut");	}
-
-
-function alert(str){
-	var obj = document.getElementById("display");
-	obj.firstChild.data += str + "\r\n";
-}
-
 
 
 
