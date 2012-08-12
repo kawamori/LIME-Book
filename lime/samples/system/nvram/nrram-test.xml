@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title>NVRAM Test</title>
+<style><![CDATA[
+	.button {width:140px;height:32px;}
+	p:focus {background-color-index:2;}
+	p.button {text-align:center;color-index:0;line-height:30px;}
+		#display	{ font-size:20px;background-color-index:16;color-index:7;
+		top:30px;left:30px;width:600px;height:560px;}
+]]></style>
+
+
+<script><![CDATA[
+
+function main(){
+
+var pref="nvram://receiverinfo/prefecture";�@
+var region="nvram://receiverinfo/regioncode";   
+var zip = "nvram://receiverinfo/zipcode";
+var parental = "nvram://receiverinfo/parentallevel";
+
+var p = browser.readPersistentArray(pref,'U:1B');
+var r = browser.readPersistentArray(region,'U:2B');
+var z = browser.readPersistentArray(zip, "S:7B");
+var pr= browser.readPersistentArray(parental,"S:7B");
+
+
+alert("pref:"+p+";\n region: "+r+";\n Zipcode: "+z+";\n Parental: "+pr+";");
+
+
+}
+
+
+function goback(){ browser.launchDocument("../../startup.xml", "cut");	}
+
+
+function println(str,display){
+	var obj = document.getElementById(display);
+	obj.firstChild.data += str + "\r\n";
+}
+
+function print(str,display){
+	var obj = document.getElementById(display);
+	obj.firstChild.data = str ;
+}
+
+
+function printd(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data = str ;
+}
+
+
+function printlnd(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+
+
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+
+
+
+
+
+]]></script>
+
+</head>
+<body style="background-color-index:7;">
+
+		<p id="p01" class="button" style="top:10;left:0:color-index:0;nav-index:0;nav-up:1;nav-down:1;" onclick="main();">Button1</p>
+
+
+		<p id="p02" class="button"  style="top:50;left:0;nav-index:1;nav-up:0;nav-down:0" onclick="changeText();">Button2</p>
+
+<p id="p03" class="button"  style="top:90;left:0;;">foo</p>
+
+<div>
+<object id="img" type="image/jpeg" data="images/Sunset.jpg"/>
+</div>
+<p id="entry-links" />
+<p id="display" style="top:0px;left:250px"><![CDATA[]]></p>
+
+ <p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+ 
+</body>
+</bml>

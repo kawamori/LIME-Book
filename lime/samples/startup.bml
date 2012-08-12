@@ -20,7 +20,7 @@
 		urlList[0] = "";
 		urlList[1] = "";
 		urlList[2] = "";
-	        urlList[3] = "";
+	        urlList[3] = "system/nvram/nvram-test.xml";
 		urlList[4] = "games/top.xml";
 		urlList[5] = "jpegtest/index.xml";
 		urlList[6] = "text/richmen/startup.xml";
@@ -61,7 +61,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();"></p>
 		
 		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
-		onclick="jump();"></p>
+		onclick="jump();">nvram-test</p>
 		
 		
 		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
