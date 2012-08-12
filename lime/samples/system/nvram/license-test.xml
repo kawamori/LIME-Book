@@ -29,11 +29,11 @@ function main(){
 
 alert("hello");
 
- var ret = browser.getDRMID("marline-es");
+ var ret = browser.getDRMID("marlin_iptv_es");
 	if( ret != null ){
-		alert("DRM ID is  "+ret;
+		alert("DRM ID is  "+ret);
 	}else{
-		alert("error:"+ ret);;
+		alert("error:"+ ret);
 	}
 	
 	
