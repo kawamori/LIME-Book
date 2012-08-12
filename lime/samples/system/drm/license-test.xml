@@ -37,6 +37,13 @@ alert("hello");
 	}
 	
 	
+var va = browser.checkIPTVServiceRegistrationInfo("¤Ò¤«¤ê£Ô£Ö");
+
+if( va != null && va[0] != "" ){
+		alert("Registration info is "+va[0]);
+	}else{
+		alert("registration error: "+ va);;
+	}
 
 }
 
@@ -59,8 +66,8 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 
 <p id="display" style="top:100px;left:250px"><![CDATA[]]></p>
-
- <p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+ 
  
 </body>
 </bml>
