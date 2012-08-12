@@ -18,7 +18,7 @@
 		var urlList = new Array();
 		
 		urlList[0] = "";
-		urlList[1] = "";
+		urlList[1] = "system/nvram/license-test.xml"";
 		urlList[2] = "system/nvram/ziptest.xml";
 	        urlList[3] = "system/nvram/nvram-test.xml";
 		urlList[4] = "games/top.xml";
@@ -55,7 +55,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();"></p>
 
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();"></p>
+		onclick="jump();">license test</p>
 		
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
 		onclick="jump();">ziptest</p>
