@@ -31,7 +31,7 @@ function start()
 		else if( pid == 49) pid = 46;	// 集基喷喷婶ⅹ集基喷
 
 		pid--;
-		str = "You domicile is "+Pref[pid]+".\n";
+		str = "You live in "+Pref[pid]+" Prefecture.\n";
 	}
 	else{
 		str = "Prefecture information is not registered.";
