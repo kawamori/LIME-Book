@@ -31,7 +31,7 @@ function start()
 		else if( pid == 49) pid = 46;	// 集基喷喷婶ⅹ集基喷
 
 		pid--;
-		str = "You domicile is "+Pref[pid]+".";
+		str = "You domicile is "+Pref[pid]+".\n";
 	}
 	else{
 		str = "Prefecture information is not registered.";
@@ -39,7 +39,7 @@ function start()
 
 	ret = browser.readPersistentArray("nvram://receiverinfo/zipcode", "S:7B");
 	if( ret != null && ret[0] != "" ){
-		str += "Your Zipcode is" +ret[0]+".";
+		str += "Your Zipcode is " +ret[0]+".\n";
 	}else{
 		str += "Zipcode is not registered.";
 	}
