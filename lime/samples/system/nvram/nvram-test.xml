@@ -45,7 +45,14 @@ alert("hello");
 		alert("error: Parental is not set"+ ret);;
 	}
 	
-
+ var ret = browser.readPersistentArray("nvram://receiverinfo/parentallevel", "B:1B");
+	if( ret != null && ret[0] != "" ){
+		alert("parental is "+ret[0]);
+	}else{
+		alert("error:"+ ret);;
+	}
+	
+	
 /*
 
 var ret = browser.readPersistentArray("nvram://receiverinfo/prefecture","U:1B");
