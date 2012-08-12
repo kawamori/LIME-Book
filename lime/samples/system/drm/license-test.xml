@@ -35,36 +35,11 @@ alert("hello");
 	}else{
 		alert("error:"+ ret);
 	}
-	
-	
-var va = browser.checkIPTVServiceRegistrationInfo("¤Ò¤«¤ê£Ô£Ö");
-
-if( va != null && va[0] != "" ){
-		alert("Registration info is "+va[0]);
-	}else{
-		alert("registration error: "+ va);;
 	}
-
-}
-/*
-	
-var val = browser.getIPTVLicenseInfo(0000000000,1);
-
-if( val != null && val[0] != "" ){
-		alert("License info is "+val[0]);
-	}else{
-		alert("License info error: "+ val);;
-	}
-*/
-
-
-}
 
 
 
 function goback(){ browser.launchDocument("../index.xml", "cut");	}
-
-
 
 
 ]]></script>
