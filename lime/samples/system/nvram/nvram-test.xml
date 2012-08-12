@@ -38,11 +38,11 @@ function main(){
 
 alert("hello");
 
- var ret = browser.readPersistentArray("nvram://receiverinfo/parental", "S:7B");
+ var ret = browser.readPersistentArray("nvram://receiverinfo/parentallevel", "S:7B");
 	if( ret != null && ret[0] != "" ){
 		alert("parental is "+ret[0]);
 	}else{
-		alert("error "+ ret);;
+		alert("error: Parental is not set"+ ret);;
 	}
 	
 
