@@ -84,7 +84,7 @@ function kc() {
     }
     if (id=="17") {
         browser.playRomSound("romsound://7");
-        browser.launchDocument("lime1/bml/startup.bml");
+        browser.launchDocument("marquee/marquee-graphics.xml");
     }
     if (id=="18") {
         browser.playRomSound("romsound://7");
@@ -360,7 +360,7 @@ function onload() {
     <p id="name14" class="pfInfo" style="left:0px;top:108px;width:420px;height:25px;">05　 Maze </p>
     <p id="name15" class="pfInfo" style="left:0px;top:135px;width:420px;height:25px;">06　 Action Game</p>
     <p id="name16" class="pfInfo" style="left:0px;top:162px;width:420px;height:25px;">07　 DoomLike</p>
-    <p id="name17" class="pfInfo" style="left:0px;top:189px;width:420px;height:25px;">08　 </p>
+    <p id="name17" class="pfInfo" style="left:0px;top:189px;width:420px;height:25px;">08　 Arabic Marquee</p>
     <p id="name18" class="pfInfo" style="left:0px;top:216px;width:420px;height:25px;">09　 </p>
     <p id="name19" class="pfInfo" style="left:0px;top:243px;width:420px;height:25px;">10　</p>
     <p id="name20" class="pfInfo" style="left:0px;top:270px;width:420px;height:25px;">11　</p>
