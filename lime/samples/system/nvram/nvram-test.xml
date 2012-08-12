@@ -24,12 +24,12 @@ function alert(str){
 
 
 
-var pref="nvram://receiverinfo/prefecture";¡¡
+//var pref="";¡¡
 //var region="nvram://receiverinfo/regioncode";   
 //var zip = "nvram://receiverinfo/zipcode";
 //var parental = "nvram://receiverinfo/parentallevel";
 
-var p = browser.readPersistentArray(pref,'U:1B');
+
 //var r = browser.readPersistentArray(region,'U:2B');
 //var z = browser.readPersistentArray(zip, "S:7B");
 //var pr= browser.readPersistentArray(parental,"S:7B");
@@ -38,10 +38,19 @@ function main(){
 
 alert("hello");
 
-alert("pref:"+p[0]);
+/*
+
+var ret = browser.readPersistentArray("nvram://receiverinfo/prefecture","U:1B");
+
+	if( ret != null && 0 <= ret[0] && ret[0] < 50 ) {
+alert("pref:"+ret[0]);}
+	else{
+	alert("error"+ret);
+	
+	}
 
 //+";\n region: "+r+";\n Zipcode: "+z+";\n Parental: "+pr+";");
-
+*/
 
 }
 
