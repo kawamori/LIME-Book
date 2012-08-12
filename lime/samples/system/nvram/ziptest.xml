@@ -11,8 +11,8 @@
 
 <script><![CDATA[
 var Pref = new Array(
- "ËÌ³¤Æ»","ÀÄ¡¡¿¹","´ä¡¡¼ê","µÜ¡¡¾ë","½©¡¡ÅÄ","»³¡¡·Á","Ê¡¡¡Åç","°ñ¡¡¾ë","ÆÊ¡¡ÌÚ","·²¡¡ÇÏ",
- "ºë¡¡¶Ì","Àé¡¡ÍÕ","Åì¡¡µþ","¿ÀÆàÀî","¿·¡¡³ã","ÉÙ¡¡»³","ÀÐ¡¡Àî","Ê¡¡¡°æ","»³¡¡Íü","Ä¹¡¡Ìî",
+ "Hokkaido","Aomori","Iwate","Miyagi","Akita","Yamagata","Fkushima","°ñ¡¡¾ë","ÆÊ¡¡ÌÚ","·²¡¡ÇÏ",
+ "Saitama","Chiba","Tokyo","Kanagawa","¿·¡¡³ã","ÉÙ¡¡»³","ÀÐ¡¡Àî","Ê¡¡¡°æ","»³¡¡Íü","Ä¹¡¡Ìî",
  "´ô¡¡Éì","ÀÅ¡¡²¬","°¦¡¡ÃÎ","»°¡¡½Å","¼¢¡¡²ì","µþ¡¡ÅÔ","Âç¡¡ºå","Ê¼¡¡¸Ë","Æà¡¡ÎÉ","ÏÂ²Î»³",
  "Ä»¡¡¼è","Åç¡¡º¬","²¬¡¡»³","¹­¡¡Åç","»³¡¡¸ý","ÆÁ¡¡Åç","¹á¡¡Àî","°¦¡¡É²","¹â¡¡ÃÎ","Ê¡¡¡²¬",
  "º´¡¡²ì","Ä¹¡¡ºê","·§¡¡ËÜ","Âç¡¡Ê¬","µÜ¡¡ºê","¼¯»ùÅç","²­¡¡Æì"
@@ -31,17 +31,17 @@ function start()
 		else if( pid == 49) pid = 46;	// ¼¯»ùÅçÅçÉô¢ª¼¯»ùÅç
 
 		pid--;
-		str = "¤¢¤Ê¤¿¤Î¤ª½»¤Þ¤¤¤Ï"+Pref[pid]+"¤Ç¤¹¡£";
+		str = "You domicile is "+Pref[pid]+".";
 	}
 	else{
-		str = "¸©°è¾ðÊó¤¬ÀßÄê¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£";
+		str = "Prefecture information is not registered.";
 	}
 
 	ret = browser.readPersistentArray("nvram://receiverinfo/zipcode", "S:7B");
 	if( ret != null && ret[0] != "" ){
-		str += "Í¹ÊØÈÖ¹æ¤Ï¡Ö"+ret[0]+"¡×¤Ç¤¹¡£";
+		str += "Your Zipcode is" +ret[0]+".";
 	}else{
-		str += "Í¹ÊØÈÖ¹æ¤¬ÀßÄê¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£";
+		str += "Zipcode is not registered.";
 	}
 
 	document.getElementById("status").firstChild.data = str;
