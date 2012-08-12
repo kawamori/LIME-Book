@@ -9,7 +9,7 @@
 	p:focus {background-color-index:2;}
 	p.button {text-align:center;color-index:0;line-height:30px;}
 	#display	{background-color-index:16;color-index:7;
-		top:30px;left:30px;width:600px;height:500px;}
+		top:30px;left:30px;width:600px;height:400px;}
 ]]></style>
 
 
@@ -23,7 +23,6 @@ function alert(str){
 }
 
 
-/*
 
 var pref="nvram://receiverinfo/prefecture";¡¡
 var region="nvram://receiverinfo/regioncode";   
@@ -34,12 +33,12 @@ var p = browser.readPersistentArray(pref,'U:1B');
 var r = browser.readPersistentArray(region,'U:2B');
 var z = browser.readPersistentArray(zip, "S:7B");
 var pr= browser.readPersistentArray(parental,"S:7B");
-*/
+
 function main(){
 
 alert("hello");
 
-//alert("pref:"+p+";\n region: "+r+";\n Zipcode: "+z+";\n Parental: "+pr+";");
+alert("pref:"+p+";\n region: "+r+";\n Zipcode: "+z+";\n Parental: "+pr+";");
 
 
 }
@@ -62,7 +61,7 @@ function goback(){ browser.launchDocument("../../startup.bml", "cut");	}
 
 
 
-<p id="display" style="top:0px;left:250px"><![CDATA[]]></p>
+<p id="display" style="top:100px;left:250px"><![CDATA[]]></p>
 
  <p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
  
