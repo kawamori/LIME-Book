@@ -54,9 +54,9 @@ caption[4]="City hall of Cologny";
 caption[5]="The temple and a house";
 caption[6]="view of the other side of Lake Leman";
 caption[7]="view of auberges of Cologny (seen from the lakeside)";
-caption[8]="Martin Bodmer Museum: It is a Swiss heritage site of national significance. The library was established by Martin Bodmer and is famous as the home of the Bodmer Papyri. Some of these papyri are among the oldest remaining copies of the New Testament. Some manuscripts are written in Greek, others in Coptic (e.g. Papyrus Bodmer III). The first of the manuscripts was purchased in 1956 (Papyrus Bodmer II &#8212; P66). It also houses a copy of the Gutenberg Bible. Martin Bodmer (November 13, 1899 - March 22, 1971) was a Swiss bibliophile, scholar and collector.";
+caption[8]="Martin Bodmer Museum: It is a Swiss heritage site of national significance. The library was established by Martin Bodmer and is famous as the home of the Bodmer Papyri. Some of these papyri are among the oldest remaining copies of the New Testament. Some manuscripts are written in Greek, others in Coptic (e.g. Papyrus Bodmer III). The first of the manuscripts was purchased in 1956. It also houses a copy of the Gutenberg Bible. Martin Bodmer (November 13, 1899 - March 22, 1971) was a Swiss bibliophile, scholar and collector.";
 
-caption[9]="The temple of Cologny: Construit au XVIII &#232;me si&#232;cle, son clocher en est sa particularit&#233;. Ancienne &#233;glise Saint-Jacques, le temple a conserv&#233; un caract&#232;re gothique. En 1684, le clocher est exhauss&#233;.En 1730, la nef, le toit et le clocher sont reconstruits. La vo&#251;te est &#233;tablie par B.Revillod et M.Turrettini.";
+caption[9]="The temple of Cologny: Construit au XVIII eme siecle, son clocher en est sa particularite. Ancienne eglise Saint-Jacques, le temple a conserve un caractere gothique. En 1684, le clocher est exhausse.En 1730, la nef, le toit et le clocher sont reconstruits. La voite est etablie par B.Revillod et M.Turrettini.";
 
 startShow();
 }
@@ -110,13 +110,13 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 <body onload="onload();">
 
 <div>
-	<object id="bgm" data="audio/evening-in-the-forest.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
+	<object id="bgm" data="audio/oceanwavescrushing.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
 </div>
 
 
 <div id="imageBox" style="top:50px;left:50px;width:810px;height:440px;">
 <object id="img" style="top:0px;left:0px;width:640px;height:480px" data="120428_175304.jpg" type="image/jpeg"/>
-<p id="text" style="top:0px;left:500px;width:340px;height:480px;color-index:7"><![CDATA[]]></p>
+<p id="text" style="top:0px;left:500px;width:340px;height:480px;color-index:7"><![CDATA[Cologny]]></p>
 </div>
 
 <p id="blue" class="button" style="left:10px; background-color-index:4;" onclick="startShow();" accesskey="B">Start</p>
