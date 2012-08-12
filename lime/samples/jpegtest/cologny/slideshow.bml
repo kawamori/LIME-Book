@@ -62,7 +62,7 @@ startShow();
 }
 
 function startShow() {
-        timer = setTimeout("forward()", 5000);
+        timer = setTimeout("forward()", 10000);
 }
 
 function restartShow() {
@@ -79,7 +79,7 @@ function forward() {
 
     $("img").data = preLoad[position];
     $("text").firstChild.data= caption[position];
-    timer = setTimeout("forward()", 5000);
+    timer = setTimeout("forward()", 10000);
 }
 
 function onunload(){
@@ -114,7 +114,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 </div>
 
 
-<div id="imageBox" style="top:50px;left:50px;width:810px;height:440px;">
+<div id="imageBox" style="top:50px;left:50px;width:910px;height:440px;">
 <object id="img" style="top:0px;left:0px;width:640px;height:480px" data="120428_175304.jpg" type="image/jpeg"/>
 <p id="text" style="top:0px;left:500px;width:440px;height:480px;color-index:7"><![CDATA[Cologny]]></p>
 </div>
