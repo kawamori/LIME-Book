@@ -1,0 +1,60 @@
+/**********************************************************************
+ * Copyright (C) 2009 Nippon Telegraph and Telephone Corporation.
+ * Copyright (C) 2010 Institute for Infocomm Research.
+ * All rights reserved.
+ **********************************************************************/
+p.listtext {
+  text-align:center;
+  font-size:20px;
+  color-index:41;
+  grayscale-color-index:83 106;
+  width:140px;
+  height:20px;
+}
+
+#menubox {
+  width:960px;
+  height:540px;
+  visibility:hidden;
+}
+
+#menu {
+  left:56px;
+  top:113px;
+  width:161px;
+  height:75px;
+}
+
+#menut0 {  left:66px; top:140px; }
+#menut1 { left:238px; top:140px; }
+#menut2 { left:410px; top:140px; }
+#menut3 { left:582px; top:140px; }
+#menut4 { left:754px; top:140px; }
+
+#menut5 {  left:66px; top:281px; }
+#menut6 { left:238px; top:281px; }
+#menut7 { left:410px; top:281px; }
+#menut8 { left:582px; top:281px; }
+#menut9 { left:754px; top:281px; }
+
+#input {
+  font-size:20px;
+  color-index:41;
+  grayscale-color-index:83 106;
+  left:420px;
+  top:367px;
+  width:270px;
+  height:20px;
+}
+
+#info {
+  font-size:16px;
+  color-index:32;
+  grayscale-color-index:131 83;
+  left:135px;
+  top:418px;
+  width:688px;
+  height:40px;
+  line-height:20px;
+}
+

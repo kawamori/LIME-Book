@@ -1,0 +1,76 @@
+/*Mio CSS*/
+
+/* 0,0,960,540*/
+.mio_main_h
+{
+	width:960px;
+	height:70px;
+	visibility:hidden;
+}
+.mio_sub_h
+{
+	width:100px;
+	height:30px;
+	visibility:hidden;
+}
+.mio_cont_h
+{
+	width:205px;
+	height:30px;
+	visibility:hidden;
+}
+.mio_main_t
+{
+	width:960;
+	height:70px;
+	visibility:hidden;
+	font-size:24px;
+	color-index:56;
+	grayscale-color-index:141 15;
+}
+.mio_sub_t
+{
+	width:100;
+	height:50px;
+	visibility:hidden;
+	font-size:16px;
+	color-index:56;
+	grayscale-color-index:141 15;
+}
+.mio_cont_t
+{
+	width:100;
+	height:50px;
+	visibility:hidden;
+	font-size:16px;
+	color-index:56;
+	grayscale-color-index:141 15;
+}
+.tv_video_control
+{
+	left:44px;
+	top:300px;
+	width:440px;
+	height:200px;
+	visibility:hidden;
+}
+#mio_heading
+{
+	left:0px;
+	top:0px;
+	width:960px;
+	height:540px;
+}
+#mio_headingText
+{
+	left:0px;
+	top:0px;
+	width:960px;
+	height:540px;
+}
+#tv_video
+{
+	width:960px;
+	height:540px;
+}
+

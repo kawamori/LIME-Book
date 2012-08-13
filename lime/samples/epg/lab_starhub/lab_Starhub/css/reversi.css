@@ -1,0 +1,167 @@
+/**********************************************************************
+ * Copyright (C) 2009 Nippon Telegraph and Telephone Corporation.
+ * Copyright (C) 2010 Institute for Infocomm Research.
+ * All rights reserved.
+ **********************************************************************/
+body {
+  background-color-index:0;
+  resolution:960x540;
+  display-aspect-ratio:16v9;
+  }
+
+p.clocktext {
+  font-size:16px;
+  color-index:7;
+}
+
+p {
+  width:50px;
+  height:50px;
+  border-style:solid;
+  border-width:1px;
+  border-top-color-index:7;
+  border-left-color-index:7;
+  border-bottom-color-index:7;
+  border-right-color-index:7
+}
+	
+p:focus {
+  border-style:solid;
+  border-width:1px;
+  border-top-color-index:0;
+  border-left-color-index:0;
+  border-bottom-color-index:0;
+  border-right-color-index:0;
+}
+	
+p.no {
+  color-index:21;
+}
+
+p.bl {
+  color-index:0;
+}
+
+p.wh {
+  color-index:7;
+}
+
+p.cell {
+  width:50px;
+  height:50px;
+  background-color-index:18;
+}
+
+#display {
+  font-size:20px;
+  background-color-index:16;
+  color-index:7;
+  top:30px;
+  left:330px;
+  width:600px;
+  height:480px;
+}
+
+#alert {
+  font-size:20px;
+  background-color-index:12;
+  color-index:7;
+  top:130px;
+  left:330px;
+  width:280px;
+  height:280px;
+}
+
+#play_board {
+  left:500px;
+  top:80px;
+  width:400px;
+  height:400px;
+  background-color-index:21;
+}
+
+#p00 { nav-index: 0; nav-down:10; nav-up: 0; nav-right: 1; nav-left: 0; }
+#p10 { nav-index:10; nav-down:20; nav-up: 0; nav-right:11; nav-left:10; }
+#p20 { nav-index:20; nav-down:30; nav-up:10; nav-right:21; nav-left:20; }
+#p30 { nav-index:30; nav-down:40; nav-up:20; nav-right:31; nav-left:30; }
+#p40 { nav-index:40; nav-down:50; nav-up:30; nav-right:41; nav-left:40; }
+#p50 { nav-index:50; nav-down:60; nav-up:40; nav-right:51; nav-left:50; }
+#p60 { nav-index:60; nav-down:70; nav-up:50; nav-right:61; nav-left:60; }
+#p70 { nav-index:70; nav-down:70; nav-up:60; nav-right:71; nav-left:70; }
+
+#p01 { nav-index: 1; nav-down:11; nav-up: 1; nav-right: 2; nav-left: 0; }
+#p11 { nav-index:11; nav-down:21; nav-up: 1; nav-right:12; nav-left:10; }
+#p21 { nav-index:21; nav-down:31; nav-up:11; nav-right:22; nav-left:20; }
+#p31 { nav-index:31; nav-down:41; nav-up:21; nav-right:32; nav-left:30; }
+#p41 { nav-index:41; nav-down:51; nav-up:31; nav-right:42; nav-left:40; }
+#p51 { nav-index:51; nav-down:61; nav-up:41; nav-right:52; nav-left:50; }
+#p61 { nav-index:61; nav-down:71; nav-up:51; nav-right:62; nav-left:60; }
+#p71 { nav-index:71; nav-down:71; nav-up:61; nav-right:72; nav-left:70; }
+
+#p02 { nav-index: 2; nav-down:12; nav-up: 2; nav-right: 3; nav-left: 1; }
+#p12 { nav-index:12; nav-down:22; nav-up: 2; nav-right:13; nav-left:11; }
+#p22 { nav-index:22; nav-down:32; nav-up:12; nav-right:23; nav-left:21; }
+#p32 { nav-index:32; nav-down:42; nav-up:22; nav-right:33; nav-left:31; }
+#p42 { nav-index:42; nav-down:52; nav-up:32; nav-right:43; nav-left:41; }
+#p52 { nav-index:52; nav-down:62; nav-up:42; nav-right:53; nav-left:51; }
+#p62 { nav-index:62; nav-down:72; nav-up:52; nav-right:63; nav-left:61; }
+#p72 { nav-index:72; nav-down:72; nav-up:62; nav-right:73; nav-left:71; }
+
+#p03 { nav-index: 3; nav-down:13; nav-up: 3; nav-right: 4; nav-left: 2; }
+#p13 { nav-index:13; nav-down:23; nav-up: 3; nav-right:14; nav-left:12; }
+#p23 { nav-index:23; nav-down:33; nav-up:13; nav-right:24; nav-left:22; }
+#p33 { nav-index:33; nav-down:43; nav-up:23; nav-right:34; nav-left:32; }
+#p43 { nav-index:43; nav-down:53; nav-up:33; nav-right:44; nav-left:42; }
+#p53 { nav-index:53; nav-down:63; nav-up:43; nav-right:54; nav-left:52; }
+#p63 { nav-index:63; nav-down:73; nav-up:53; nav-right:64; nav-left:62; }
+#p73 { nav-index:73; nav-down:73; nav-up:63; nav-right:74; nav-left:72; }
+
+#p04 { nav-index: 4; nav-down:14; nav-up: 4; nav-right: 5; nav-left: 3; }
+#p14 { nav-index:14; nav-down:24; nav-up: 4; nav-right:15; nav-left:13; }
+#p24 { nav-index:24; nav-down:34; nav-up:14; nav-right:25; nav-left:23; }
+#p34 { nav-index:34; nav-down:44; nav-up:24; nav-right:35; nav-left:33; }
+#p44 { nav-index:44; nav-down:54; nav-up:34; nav-right:45; nav-left:43; }
+#p54 { nav-index:54; nav-down:64; nav-up:44; nav-right:55; nav-left:53; }
+#p64 { nav-index:64; nav-down:74; nav-up:54; nav-right:65; nav-left:63; }
+#p74 { nav-index:74; nav-down:74; nav-up:64; nav-right:75; nav-left:73; }
+
+#p05 { nav-index: 5; nav-down:15; nav-up: 5; nav-right: 6; nav-left: 4; }
+#p15 { nav-index:15; nav-down:25; nav-up: 5; nav-right:16; nav-left:14; }
+#p25 { nav-index:25; nav-down:35; nav-up:15; nav-right:26; nav-left:24; }
+#p35 { nav-index:35; nav-down:45; nav-up:25; nav-right:36; nav-left:34; }
+#p45 { nav-index:45; nav-down:55; nav-up:35; nav-right:46; nav-left:44; }
+#p55 { nav-index:55; nav-down:65; nav-up:45; nav-right:56; nav-left:54; }
+#p65 { nav-index:65; nav-down:75; nav-up:55; nav-right:66; nav-left:64; }
+#p75 { nav-index:75; nav-down:75; nav-up:65; nav-right:76; nav-left:74; }
+
+#p06 { nav-index: 6; nav-down:16; nav-up: 6; nav-right: 7; nav-left: 5; }
+#p16 { nav-index:16; nav-down:26; nav-up: 6; nav-right:17; nav-left:15; }
+#p26 { nav-index:26; nav-down:36; nav-up:16; nav-right:27; nav-left:25; }
+#p36 { nav-index:36; nav-down:46; nav-up:26; nav-right:37; nav-left:35; }
+#p46 { nav-index:46; nav-down:56; nav-up:36; nav-right:47; nav-left:45; }
+#p56 { nav-index:56; nav-down:66; nav-up:46; nav-right:57; nav-left:55; }
+#p66 { nav-index:66; nav-down:76; nav-up:56; nav-right:67; nav-left:65; }
+#p76 { nav-index:76; nav-down:76; nav-up:66; nav-right:77; nav-left:75; }
+
+#p07 { nav-index: 7; nav-down:17; nav-up: 7; nav-right: 7; nav-left: 6; }
+#p17 { nav-index:17; nav-down:27; nav-up: 7; nav-right:17; nav-left:16; }
+#p27 { nav-index:27; nav-down:37; nav-up:17; nav-right:27; nav-left:26; }
+#p37 { nav-index:37; nav-down:47; nav-up:27; nav-right:37; nav-left:36; }
+#p47 { nav-index:47; nav-down:57; nav-up:37; nav-right:47; nav-left:46; }
+#p57 { nav-index:57; nav-down:67; nav-up:47; nav-right:57; nav-left:56; }
+#p67 { nav-index:67; nav-down:77; nav-up:57; nav-right:67; nav-left:66; }
+#p77 { nav-index:77; nav-down:77; nav-up:67; nav-right:77; nav-left:76; }
+
+#navi {
+  top:250px;
+  left:390px;
+  color-index:0;
+  background-color-index:15;
+}
+
+#alert {
+  top:150px;
+  left:50px;
+  background-color-index:15;
+}
+

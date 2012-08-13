@@ -1,0 +1,36 @@
+/**********************************************************************
+ * Copyright (C) 2009 Nippon Telegraph and Telephone Corporation.
+ * Copyright (C) 2010 Institute for Infocomm Research.
+ * All rights reserved.
+ **********************************************************************/
+#menubox {
+  width:960px;
+  height:540px;
+  visibility:hidden;
+}
+
+#menu {
+  left:57px;
+  top:145px;
+  width:159px;
+  height:94px;
+}
+
+#menu1 {
+  left:57px;
+  top:426px;
+  width:159px;
+  height:94px;
+}
+
+#info {
+  text-align:center;
+  font-size:20px;
+  color-index:32;
+  grayscale-color-index:131 83;
+  left:305px;
+  top:426px;
+  width:350px;
+  height:20px;
+}
+

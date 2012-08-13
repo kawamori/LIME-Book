@@ -1,0 +1,285 @@
+/*Traffic camera CSS*/
+
+/* 0,0,960,540*/
+.tv_top
+{
+	width:480px;
+	height:271px;
+	visibility:hidden;
+}
+.tv_row
+{
+	width:480px;
+	height:271px;
+	visibility:hidden;
+}
+.tv_but
+{
+	width:240px;
+	height:271px;
+	visibility:hidden;
+}
+.tv_text
+{
+	width:480;
+	height:271px;
+	visibility:hidden;
+	font-size:14px;
+
+	color-index:56;
+	grayscale-color-index:141 15;
+
+}
+.tv_menu_button
+{
+	width:240px;
+	height:271px;
+	visibility:hidden;
+}
+.tv_video_control
+{
+	left:44px;
+	top:111px;
+	width:600px;
+	height:337px;
+	visibility:hidden;
+}
+.tv_bg
+{
+	width:480px;
+	height:500px;
+	visibility:hidden;	
+}
+.widget_menu
+{
+	top:355px;
+	width:240px;
+	height:266px;
+	visibility:hidden;
+}
+.widget_footer
+{
+	top:480px;
+	left:0px;
+	width:960px;
+	height:400px;
+	visibility:hidden;
+}
+.selection_bar
+{
+	top:100px;
+	left:10px;
+	width:480px;
+	height:30px;
+	visibility:hidden;
+}
+.widget_sub_menu
+{
+	visibility:hidden;
+}
+.sm_main_text
+{	
+	left:300px;
+	top:70px;
+	width:360px;
+	height:24px;
+	visibility:hidden;
+	font-size:24px;
+	text-align:center;
+	color-index:19;
+	grayscale-color-index:132 86;
+}
+.sm_title
+{	
+	visibility:hidden;
+	font-size:24px;
+	text-align:left;
+	color-index:32;
+	grayscale-color-index:131;
+}
+.sm_text
+{	
+	visibility:hidden;
+	font-size:16px;
+	text-align:left;
+	color-index:0;
+	grayscale-color-index:131;
+}
+.list_box
+{
+	top:50px;
+	left:10px;
+	width:960px;
+	height:542px;
+	visibility:hidden;
+}
+.app_menu
+{
+	top:55px;
+	left:0px;
+	width:960px;
+	height:800px;
+	visibility:hidden;
+}
+.app_button
+{
+	top:100px;
+	left:260px;
+	width:200px;
+	height:100px;
+	visibility:hidden;
+}
+.sm_Axis_text
+{
+	left:10px;
+	top:108px;
+	width:50px;
+	height:18px;
+	visibility:hidden;
+	font-size:16px;
+	text-align:right;
+	color-index:0;
+}
+.history_button
+{
+	top:320px;
+	left:10px;
+	width:180px;
+	height:94px;
+	visibility:hidden;
+}
+.tsv_text
+{
+	left:10px;
+	top:120px;
+	width:420px;
+	height:150px;
+	visibility:hidden;
+	font-size:20px;
+	text-align:left;
+	color-index:0;
+}
+.QPictureBox
+{
+	left:300px;
+	top:325px;
+	width:480px;
+	height:300px;
+	visibility:hidden;
+}
+.QueueText
+{
+	visibility:hidden;
+	font-size:18px;
+	text-align:left;
+	color-index:0;
+	left:10px;
+	top:115px;
+	width:620px;
+	height:30px;
+}
+#tv_left_z0
+{
+	left:0px;
+	top:0px;
+	width:960px;
+	height:540px;
+}
+#tv_left_z1
+{
+	left:0px;
+	top:0px;
+	width:960px;
+	height:540px;
+}
+#tv_center_z2
+{
+	left:0px;
+	top:0px;
+	width:960px;
+	height:540px;
+}
+#tv_center_z3
+{
+	left:0px;
+	top:0px;
+	width:960px;
+	height:540px;
+}
+#tv_button_z4
+{
+	left:0px;
+	top:0px;
+	width:960px;
+	height:540px;
+}
+#tv_video
+{
+	width:960px;
+	height:540px;
+}
+#innermenu
+{
+	width:960px;
+	height:540px;
+	visibility:hidden;
+}
+#backbox
+{
+	width:960px;
+	height:540px;
+	visibility:hidden;
+}
+#homebox
+{
+	width:960px;
+	height:540px;
+	visibility:hidden;
+}
+#meterlistbox
+{
+	width:960px;
+	height:540px;
+	visibility:hidden;
+}
+#gbox
+{
+	width:960px;
+	height:540px;
+}
+#gbox1
+{
+	width:960px;
+	height:540px;
+}
+#historyButton
+{
+	width:700px;
+	height:540px;
+	visibility:hidden;
+}
+#devicelistbox
+{
+	width:960px;
+	height:540px;
+}
+#LightOn
+{
+	width:960px;
+	height:540px;
+}
+#Polylistbox
+{
+	width:960px;
+	height:540px;
+}
+#QueuePicture1
+{
+	width:960px;
+	height:540px;
+}
+#Footer1
+{
+	width:960px;
+	height:540px;
+}

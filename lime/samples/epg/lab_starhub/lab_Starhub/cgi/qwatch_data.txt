@@ -1,0 +1,8 @@
+REGISTRATION AREA->No. of Patients In Queue : 21
+REGISTRATION AREA->Estimated Waiting Time : 14 mins
+
+CONSULTATION AREA->No. of Patients In Queue : 86
+CONSULTATION AREA->Estimated Waiting Time : 35 mins
+
+PHARMACY AREA->No. of Patients In Queue : 21
+PHARMACY AREA->Estimated Waiting Time : 14 mins

@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://ws.service.knxEib" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://ws.service.knxEib">
+    <wsdl:documentation>
+		STARhome ABB EIB System Web Interface
+	</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.service.knxEib">
+            <xs:element name="shutterUp">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="grpAddressKey" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="shutterUpResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="shutterStepUp">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="grpAddressKey" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="shutterStepUpResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="shutterStepDown">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="grpAddressKey" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="shutterStepDownResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="shutterDown">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="grpAddressKey" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="shutterDownResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="setBrightness">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="grpAddressKey" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="value" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="setBrightnessResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="listDevicesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="lightOn">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="grpAddressKey" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="lightOnResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="lightOff">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="grpAddressKey" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="lightOffResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="isLightOn">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="grpAddressKey" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="isLightOnResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMeterReading">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="grpAddressKey" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMeterReadingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBrightness">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="grpAddressKey" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBrightnessResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="shutterDownRequest">
+        <wsdl:part name="parameters" element="ns:shutterDown"/>
+    </wsdl:message>
+    <wsdl:message name="shutterDownResponse">
+        <wsdl:part name="parameters" element="ns:shutterDownResponse"/>
+    </wsdl:message>
+    <wsdl:message name="listDevicesRequest"/>
+    <wsdl:message name="listDevicesResponse">
+        <wsdl:part name="parameters" element="ns:listDevicesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getMeterReadingRequest">
+        <wsdl:part name="parameters" element="ns:getMeterReading"/>
+    </wsdl:message>
+    <wsdl:message name="getMeterReadingResponse">
+        <wsdl:part name="parameters" element="ns:getMeterReadingResponse"/>
+    </wsdl:message>
+    <wsdl:message name="lightOnRequest">
+        <wsdl:part name="parameters" element="ns:lightOn"/>
+    </wsdl:message>
+    <wsdl:message name="lightOnResponse">
+        <wsdl:part name="parameters" element="ns:lightOnResponse"/>
+    </wsdl:message>
+    <wsdl:message name="shutterUpRequest">
+        <wsdl:part name="parameters" element="ns:shutterUp"/>
+    </wsdl:message>
+    <wsdl:message name="shutterUpResponse">
+        <wsdl:part name="parameters" element="ns:shutterUpResponse"/>
+    </wsdl:message>
+    <wsdl:message name="isLightOnRequest">
+        <wsdl:part name="parameters" element="ns:isLightOn"/>
+    </wsdl:message>
+    <wsdl:message name="isLightOnResponse">
+        <wsdl:part name="parameters" element="ns:isLightOnResponse"/>
+    </wsdl:message>
+    <wsdl:message name="setBrightnessRequest">
+        <wsdl:part name="parameters" element="ns:setBrightness"/>
+    </wsdl:message>
+    <wsdl:message name="setBrightnessResponse">
+        <wsdl:part name="parameters" element="ns:setBrightnessResponse"/>
+    </wsdl:message>
+    <wsdl:message name="shutterStepDownRequest">
+        <wsdl:part name="parameters" element="ns:shutterStepDown"/>
+    </wsdl:message>
+    <wsdl:message name="shutterStepDownResponse">
+        <wsdl:part name="parameters" element="ns:shutterStepDownResponse"/>
+    </wsdl:message>
+    <wsdl:message name="stopServiceRequest"/>
+    <wsdl:message name="lightOffRequest">
+        <wsdl:part name="parameters" element="ns:lightOff"/>
+    </wsdl:message>
+    <wsdl:message name="lightOffResponse">
+        <wsdl:part name="parameters" element="ns:lightOffResponse"/>
+    </wsdl:message>
+    <wsdl:message name="shutterStepUpRequest">
+        <wsdl:part name="parameters" element="ns:shutterStepUp"/>
+    </wsdl:message>
+    <wsdl:message name="shutterStepUpResponse">
+        <wsdl:part name="parameters" element="ns:shutterStepUpResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getBrightnessRequest">
+        <wsdl:part name="parameters" element="ns:getBrightness"/>
+    </wsdl:message>
+    <wsdl:message name="getBrightnessResponse">
+        <wsdl:part name="parameters" element="ns:getBrightnessResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="HomeAutomationPortType">
+        <wsdl:operation name="shutterDown">
+            <wsdl:input message="ns:shutterDownRequest" wsaw:Action="urn:shutterDown"/>
+            <wsdl:output message="ns:shutterDownResponse" wsaw:Action="urn:shutterDownResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="listDevices">
+            <wsdl:input message="ns:listDevicesRequest" wsaw:Action="urn:listDevices"/>
+            <wsdl:output message="ns:listDevicesResponse" wsaw:Action="urn:listDevicesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getMeterReading">
+            <wsdl:input message="ns:getMeterReadingRequest" wsaw:Action="urn:getMeterReading"/>
+            <wsdl:output message="ns:getMeterReadingResponse" wsaw:Action="urn:getMeterReadingResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="lightOn">
+            <wsdl:input message="ns:lightOnRequest" wsaw:Action="urn:lightOn"/>
+            <wsdl:output message="ns:lightOnResponse" wsaw:Action="urn:lightOnResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="shutterUp">
+            <wsdl:input message="ns:shutterUpRequest" wsaw:Action="urn:shutterUp"/>
+            <wsdl:output message="ns:shutterUpResponse" wsaw:Action="urn:shutterUpResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="isLightOn">
+            <wsdl:input message="ns:isLightOnRequest" wsaw:Action="urn:isLightOn"/>
+            <wsdl:output message="ns:isLightOnResponse" wsaw:Action="urn:isLightOnResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="setBrightness">
+            <wsdl:input message="ns:setBrightnessRequest" wsaw:Action="urn:setBrightness"/>
+            <wsdl:output message="ns:setBrightnessResponse" wsaw:Action="urn:setBrightnessResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="shutterStepDown">
+            <wsdl:input message="ns:shutterStepDownRequest" wsaw:Action="urn:shutterStepDown"/>
+            <wsdl:output message="ns:shutterStepDownResponse" wsaw:Action="urn:shutterStepDownResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="stopService">
+            <wsdl:input message="ns:stopServiceRequest" wsaw:Action="urn:stopService"/>
+        </wsdl:operation>
+        <wsdl:operation name="lightOff">
+            <wsdl:input message="ns:lightOffRequest" wsaw:Action="urn:lightOff"/>
+            <wsdl:output message="ns:lightOffResponse" wsaw:Action="urn:lightOffResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="shutterStepUp">
+            <wsdl:input message="ns:shutterStepUpRequest" wsaw:Action="urn:shutterStepUp"/>
+            <wsdl:output message="ns:shutterStepUpResponse" wsaw:Action="urn:shutterStepUpResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getBrightness">
+            <wsdl:input message="ns:getBrightnessRequest" wsaw:Action="urn:getBrightness"/>
+            <wsdl:output message="ns:getBrightnessResponse" wsaw:Action="urn:getBrightnessResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="HomeAutomationSoap11Binding" type="ns:HomeAutomationPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="shutterDown">
+            <soap:operation soapAction="urn:shutterDown" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listDevices">
+            <soap:operation soapAction="urn:listDevices" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="lightOn">
+            <soap:operation soapAction="urn:lightOn" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getMeterReading">
+            <soap:operation soapAction="urn:getMeterReading" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shutterUp">
+            <soap:operation soapAction="urn:shutterUp" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="isLightOn">
+            <soap:operation soapAction="urn:isLightOn" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setBrightness">
+            <soap:operation soapAction="urn:setBrightness" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shutterStepDown">
+            <soap:operation soapAction="urn:shutterStepDown" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="stopService">
+            <soap:operation soapAction="urn:stopService" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="lightOff">
+            <soap:operation soapAction="urn:lightOff" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shutterStepUp">
+            <soap:operation soapAction="urn:shutterStepUp" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBrightness">
+            <soap:operation soapAction="urn:getBrightness" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="HomeAutomationSoap12Binding" type="ns:HomeAutomationPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="shutterDown">
+            <soap12:operation soapAction="urn:shutterDown" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listDevices">
+            <soap12:operation soapAction="urn:listDevices" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="lightOn">
+            <soap12:operation soapAction="urn:lightOn" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getMeterReading">
+            <soap12:operation soapAction="urn:getMeterReading" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shutterUp">
+            <soap12:operation soapAction="urn:shutterUp" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="isLightOn">
+            <soap12:operation soapAction="urn:isLightOn" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setBrightness">
+            <soap12:operation soapAction="urn:setBrightness" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shutterStepDown">
+            <soap12:operation soapAction="urn:shutterStepDown" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="stopService">
+            <soap12:operation soapAction="urn:stopService" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="lightOff">
+            <soap12:operation soapAction="urn:lightOff" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shutterStepUp">
+            <soap12:operation soapAction="urn:shutterStepUp" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBrightness">
+            <soap12:operation soapAction="urn:getBrightness" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="HomeAutomationHttpBinding" type="ns:HomeAutomationPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="shutterDown">
+            <http:operation location="HomeAutomation/shutterDown"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="shutterDown"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="shutterDown"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listDevices">
+            <http:operation location="HomeAutomation/listDevices"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="listDevices"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="listDevices"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="lightOn">
+            <http:operation location="HomeAutomation/lightOn"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="lightOn"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="lightOn"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getMeterReading">
+            <http:operation location="HomeAutomation/getMeterReading"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getMeterReading"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getMeterReading"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shutterUp">
+            <http:operation location="HomeAutomation/shutterUp"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="shutterUp"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="shutterUp"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="isLightOn">
+            <http:operation location="HomeAutomation/isLightOn"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="isLightOn"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="isLightOn"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setBrightness">
+            <http:operation location="HomeAutomation/setBrightness"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="setBrightness"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="setBrightness"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shutterStepDown">
+            <http:operation location="HomeAutomation/shutterStepDown"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="shutterStepDown"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="shutterStepDown"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="stopService">
+            <http:operation location="HomeAutomation/stopService"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="stopService"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="lightOff">
+            <http:operation location="HomeAutomation/lightOff"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="lightOff"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="lightOff"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shutterStepUp">
+            <http:operation location="HomeAutomation/shutterStepUp"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="shutterStepUp"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="shutterStepUp"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBrightness">
+            <http:operation location="HomeAutomation/getBrightness"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getBrightness"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getBrightness"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="HomeAutomation">
+        <wsdl:port name="HomeAutomationHttpSoap11Endpoint" binding="ns:HomeAutomationSoap11Binding">
+            <soap:address location="http://192.168.234.6:8080/axis2/services/HomeAutomation.HomeAutomationHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="HomeAutomationHttpSoap12Endpoint" binding="ns:HomeAutomationSoap12Binding">
+            <soap12:address location="http://192.168.234.6:8080/axis2/services/HomeAutomation.HomeAutomationHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="HomeAutomationHttpEndpoint" binding="ns:HomeAutomationHttpBinding">
+            <http:address location="http://192.168.234.6:8080/axis2/services/HomeAutomation.HomeAutomationHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

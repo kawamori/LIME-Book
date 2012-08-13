@@ -67,7 +67,7 @@ function onload(){
 
 ]]></script>
 </head>
-<!--//-------------------------------------------------------------- -->
+//--------------------------------------------------------------
 <body id="body" onload="onload();" onunload="onunload();">
 
 <div id="basePane" style="top:0px;width:960px;height:540px;visibility:hidden;">
@@ -78,7 +78,7 @@ function onload(){
 	</div>
 </div>
 
-<!-- //-------------------------------------------------------------- -->
+//--------------------------------------------------------------
 <div id="list" style="top:62px;width:960px;height:450px;visibility:hidden;">
 	<object id="img_listBg0" type="image/jpeg" data="images/list/btn_list01.jpg" style="left:100px;top: 86px;width:474px;height:30px;visibility:hidden;"/>
 	<object id="img_listBg1" type="image/jpeg" data="images/list/btn_list02.jpg" style="left:100px;top:116px;width:474px;height:30px;visibility:hidden;"/>
@@ -117,7 +117,7 @@ function onload(){
 
 </div>
 
-<!--//--------------------------------------------------------------  - >
+//--------------------------------------------------------------
 <div id="detail" style="top:62px;width:960px;height:406px;visibility:hidden;">
 	<object id="btn_play" type="image/jpeg" data="images/detail/btn_play.jpg" style="left:70px;top: 90px;width:153px;height:53px;visibility:hidden;" onkeydown="onDetailKeyDown();"/>
 	<object id="btn_flip" type="image/jpeg" data="images/detail/btn_flip.jpg" style="left:71px;top:145px;width:120px;height:32px;visibility:hidden;" onkeydown="onDetailKeyDown();"/>
@@ -129,12 +129,13 @@ function onload(){
 	<object id="img_thmbLarge" type="image/jpeg" data="images/detail/noimage.jpg" style="left:405px;top:85px;width:480px;height:270px;visibility:hidden;"/>
 </div>
 
-<!-- //-------------------------------------------------------------- -->
+
+//--------------------------------------------------------------
 <div id="shortcut" style="left:677px;top:471px;width:286px;height:36px;visibility:visible;">
 	<object id="btn_back" type="image/jpeg" data="images/btn_back.jpg" style="left:96px;width:116px;height:37px;visibility:hidden;" onkeydown="onShortcutKeyDown();"/>
 </div>
      
-<!-- //--------------------------------------------------------------  -->
+//--------------------------------------------------------------
 <div id="default" style="width:2px;height:2px;nav-index:0;" onkeydown="dummyKey();"/>
 <div id="loading" style="left:290px;top:233px;width:380px;height:74px;">
 	<object type="image/jpeg" data="images/load.jpg" style="width:380px;height:74px;"/>

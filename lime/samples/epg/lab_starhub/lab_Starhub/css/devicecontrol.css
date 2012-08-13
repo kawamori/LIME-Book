@@ -1,0 +1,26 @@
+/**********************************************************************
+ * Copyright (C) 2009 Nippon Telegraph and Telephone Corporation.
+ * Copyright (C) 2010 Institute for Infocomm Research.
+ * All rights reserved.
+ **********************************************************************/
+#LightOn {
+  width:200px;
+  height:540px;
+  visibility:hidden;
+}
+
+#LightOn1 {
+  left:50px;
+  top:400px;
+  width:200px;
+  height:100px;
+}
+
+#textButton {
+  font-size:15px;
+  left:70px;
+  top:400px;
+  height:35px;
+  width:100px;
+}
+

@@ -1,0 +1,14 @@
+<ns:getDailyMainUsageResponse xmlns:ns="http://power.starhomeWS">
+<ns:return>
+<sh:DailyMainUsage xmlns:sh="http://starhome.sg/powerusage/feeds">
+	<sh:Usage sh:Id="11-Dec" sh:Value="0" /> 
+	<sh:Usage sh:Id="12-Dec" sh:Value="0" /> 
+	<sh:Usage sh:Id="13-Dec" sh:Value="0" /> 
+	<sh:Usage sh:Id="14-Dec" sh:Value="0" /> 
+	<sh:Usage sh:Id="15-Dec" sh:Value="0" /> 
+ 	<sh:Usage sh:Id="16-Dec" sh:Value="0" /> 
+ 	<sh:Usage sh:Id="17-Dec" sh:Value="15548032" /> 
+</sh:DailyMainUsage>
+</ns:return>
+</ns:getDailyMainUsageResponse>
+

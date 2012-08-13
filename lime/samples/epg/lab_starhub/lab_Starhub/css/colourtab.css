@@ -1,0 +1,48 @@
+/**********************************************************************
+ * Copyright (C) 2010 Institute for Infocomm Research.
+ * All rights reserved.
+ **********************************************************************/
+#graphbox_native {
+  left:510px;
+  top:50px;
+  width:320px;
+  height:320px;
+  visibility:visible;
+}
+
+#graphbox_background {
+  left:10px;
+  top:50px;
+  width:220px;
+  height:220px;
+}
+
+#graphbox_overlay {
+  left:10px;
+  top:50px;
+  width:220px;
+  height:220px;
+  background-color-index:255;
+  font-size:24px;
+  text-align:center;
+  line-height:200%;
+}
+
+.colourSleeve {
+  width:20px;
+  height:20px;
+  background-color-index:2;
+}
+
+.colourBox {
+  color-index:7;
+  font-size:10px;
+  text-align:center;
+  line-height:20%;
+  visibility:visible;
+  background-color-index:1;
+  grayscale-color-index:7 190;
+  border-width:1px;
+  border-style:solid;
+}
+
