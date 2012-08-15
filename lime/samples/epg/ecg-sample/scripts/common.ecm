@@ -2,9 +2,9 @@
 // Copyright (C)2009, NTT Inc. All rights reserved.
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-var VOD_CONTENT_LIST_PATH = 'tsv/list.tsv';
+var VOD_CONTENT_LIST_PATH = '../tsv/list.tsv';
 //var VOD_CONTENT_LIST_PATH = 'http://cdn.iptvf.jp/lab/tsv/list.tsv';
-//var HTTP_ROOT_PATH        = 'http://127.0.0.1';
+var HTTP_ROOT_PATH        = '../.';
 //var VOD_CONTENT_LIST_PATH = 'http://127.0.0.1/bml/oversea/tsv/list.tsv';
 //var HTTP_ROOT_PATH        = 'http://nec.iptvf.jp';
 //browser.launchIPTVContent = dummyLaunchIPTVContent; // remove this line
