@@ -1,8 +1,16 @@
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Copyright (C)2009, NTT Inc. All rights reserved.
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+//var HTTP_ROOT_PATH        = 'http://nec.iptvf.jp';
+var HTTP_ROOT_PATH        = 'http://kawamori.github.com/LIME-Book/lime/samples/epg/ecg-sample';
 var VOD_CONTENT_LIST_PATH = '../tsv/list.tsv';
+//var VOD_CONTENT_LIST_PATH = 'http://cdn.iptvf.jp/lab/tsv/list.tsv';
+//var HTTP_ROOT_PATH        = 'http://127.0.0.1';
+//var VOD_CONTENT_LIST_PATH = 'http://127.0.0.1/bml/oversea/tsv/list.tsv';
 //browser.launchIPTVContent = dummyLaunchIPTVContent; // remove this line
+
+
+function isUndefined(value)     { return(typeof(value) == 'undefined'); }
 
 function upKeyPressed(code)     { return(code == 1); }
 function downKeyPressed(code)   { return(code == 2); }
@@ -11,9 +19,14 @@ function rightKeyPressed(code)  { return(code == 4); }
 function isNumericTuned(code)   { return((code >= 5) && (code <= 14)); }
 function getTunedNumber(code)   { return(isNumericTuned(code) ? code - 5 : -1); }
 function isColorPressed(code)   { return((code >= 21) && (code <= 24)); }
-function getColorNumber(code)   { return(isColorClicked(code) ? code - 21 : -1); }
+function getColorNumber(code)   { return(isColorPressed(code) ? code - 21 : -1); }
 function enterKeyPressed(code)  { return(code == 18); }
 function returnKeyPressed(code) { return(code == 19); }
+function isBlueButtonPressed(code)  { return(getColorNumber(code) == 0); }
+function isRedButtonPressed(code)   { return(getColorNumber(code) == 1); }
+function isGreenButtonPressed(code) { return(getColorNumber(code) == 2); }
+function isYellowButtonPressed(code){ return(getColorNumber(code) == 3); }
+
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 var gParams = new GlobalParams();
@@ -25,6 +38,7 @@ function GlobalParams() {
   this.activeObj   = null;
   this.listObj     = null;
   this.detailObj   = null;
+  this.embedObj    = null;
   this.shortcutObj = new ShortcutKey();
 
   this.verticalKeyEnable   = true;
@@ -63,7 +77,7 @@ function ListInformation(list, totalNum) {
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 function getContentInfoListOverIP(page, numPerPage, length) {
   page       = page       || 0;
-  numPerPage = numPerPage || 9;
+  numPerPage = numPerPage || 0;
   length     = length     || -1;
 
   var tmp = browser.transmitTextDataOverIP(VOD_CONTENT_LIST_PATH, null, "EUC-JP");
@@ -93,6 +107,23 @@ function getContentInfoListOverIP(page, numPerPage, length) {
 }
 
 
+function getContentInfoFromList(crid, vodList) {
+  if (!crid || !vodList) return(null);
+
+  var cntInfo = null;
+  if ((vodList.list == null) || (vodList.list.length <= 0)) return(null);
+
+  var list = vodList.list;
+  for(var i = 0, j = list.length; i < j; i++) {
+    var tmp = list[i];
+    if (tmp.crid == crid) {
+      cntInfo = tmp;
+      break;
+    }
+  }
+  return(cntInfo);
+}
+
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 function min(a, b) { return((a < b) ? a : b); }
 function max(a, b) { return((a > b) ? a : b); }
@@ -110,8 +141,8 @@ function truncate(string, length) {
   length = length || 32;
 
   // needs refactoring ->
-  for(var i = 0, len = 0; i < string.length; i++) {
-    len += (string.charCodeAt(i) < 256) ? 1 : 2;
+  for(var i = 0, len = 0, strLen = string.length; i < strLen; i++) {
+    len += (string.charCodeAt(i) <= 0xff) ? 1 : 2;
     if (len - length > 0) return(string.substring(0, i)+'¡Ä');
   }
   // <- needs refactoring
@@ -148,6 +179,7 @@ function multiByteSubstring(string, start, end) {
   return((eIdx >= 0) ? string.substring(sIdx, eIdx) : string.substring(sIdx));
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 function setTextColor(id, colorIdx, grayscaleColorIdx){
   var elmStyle=getElementById(id).normalStyle;
 
@@ -160,11 +192,84 @@ function playSound(id){
   gParams.isFirstSound = false;
 }
 
+function isNonEscapeCharCode(code) {
+  if (code > 0xff) return(false);
+  return( (code == 0x21) ||                    // !
+         ((code >= 0x27) && (code <= 0x2a)) || // '()*
+          (code == 0x2d) || (code == 0x2e)  || // -.
+          (code == 0x5f) || (code == 0x7e)  || // _~
+         ((code >= 0x30) && (code <= 0x39)) || // 0-9
+         ((code >= 0x41) && (code <= 0x5a)) || // A-Z
+         ((code >= 0x61) && (code <= 0x7a)));  // a-z
+}
+
+/*function isSingleCharCode(code) {
+  if (code > 0xff) return(false);
+  return(((code >= 0x20) && (code <= 0x2f)) || // [ -/]
+         ((code >= 0x3a) && (code <= 0x40)) || // [:-@]
+         ((code >= 0x5b) && (code <= 0x60)) || // [[-`]
+         ((code >= 0x7b) && (code <= 0x7e)) || // [{-~]
+         ((code >= 0x30) && (code <= 0x39)) || // [0-9]
+         ((code >= 0x41) && (code <= 0x5a)) || // A-Z
+         ((code >= 0x61) && (code <= 0x7a)));  // a-z
+}*/
+
+function encodeURIComponent(str) {
+  var ret = '';
+
+  for(var i = 0, strLen = str.length, code; i < strLen; i++) {
+    code = str.charCodeAt(i);
+
+    if (isNonEscapeCharCode(code)) {
+      ret += str.charAt(i);
+    } else if (code <= 0xff) {
+      ret += '%'+code.toString(16);
+    } else {
+      // do not encode multibyte character code
+/*      code = code.toString(16);
+      if (code.length % 2) code = '0'+code;
+
+      code = code.split('');
+      for(var j = 0, len = code.length; j < len; j += 2) {
+        ret += '%'+code[j]+code[j+1];
+      }*/
+    }
+      
+  }
+  return(ret);
+}
+
+function decodeURIComponent(str) {
+  var ret = '';
+
+  var tmp = str.split('');
+  for(var i = 0, strLen = tmp.length, code; i < strLen;) {
+    code = tmp[i++];
+    if (code == '%') {
+      // this implementation can not handle multibyte character code
+      ret += String.fromCharCode(parseInt(tmp[i++]+tmp[i++], 16));
+    } else {
+      ret += code;
+    }
+  }
+  return(ret);
+}
+
+function getCurrentPath() {
+  var uri = browser.getActiveDocument();
+
+  uri = uri.split('?')[0];
+  var pos = uri.lastIndexOf('/');
+  if (pos >= 0) uri = uri.substring(0, pos+1);
+
+  return((uri.indexOf('http') != 0) ? HTTP_ROOT_PATH+uri : uri);
+}
+
 function createUri(uri, key, val) {
-  var tmp = (uri || '').split('?');
-  return(uri+((tmp.length <= 1) ? '?' : '&')+key+'='+val);
-//  return(uri+((tmp.length <= 1) ? '?' : '&')+
-//         encodeURIComponent(key)+'='+encodeURIComponent(val));
+  if (isUndefined(key)) return(uri);
+  
+  return(uri+(((uri || '').split('?').length <= 1) ? '?' : '&')+
+         encodeURIComponent(key)+'='+encodeURIComponent(val));
 }
 
 function Arguments() {}
@@ -176,8 +281,7 @@ function parseArguments(uri) {
   tmp = tmp[1].split('&');
   for(var i = 0; i < tmp.length; i++) {
     var buf = tmp[i].split('=');
-    arg[buf[0]] = buf[1];
-//    arg[decodeURIComponent(buf[0]]) = decodeURIComponent(buf[1]);
+    arg[decodeURIComponent(buf[0])] = decodeURIComponent(buf[1]);
   }
   return(arg);
 }
