@@ -3,7 +3,8 @@
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 //var HTTP_ROOT_PATH        = 'http://nec.iptvf.jp';
 var HTTP_ROOT_PATH        = 'http://kawamori.github.com/LIME-Book/lime/samples/epg/ecg-sample';
-var VOD_CONTENT_LIST_PATH = '../tsv/list.tsv';
+//var VOD_CONTENT_LIST_PATH = '../tsv/list.tsv';
+var VOD_CONTENT_LIST_PATH = 'http://kawamori.github.com/LIME-Book/lime/samples/epg/ecg-sample/tsv/list.tsv';
 //var VOD_CONTENT_LIST_PATH = 'http://cdn.iptvf.jp/lab/tsv/list.tsv';
 //var HTTP_ROOT_PATH        = 'http://127.0.0.1';
 //var VOD_CONTENT_LIST_PATH = 'http://127.0.0.1/bml/oversea/tsv/list.tsv';
