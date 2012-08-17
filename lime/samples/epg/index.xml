@@ -19,7 +19,7 @@
 
 		var urlList = new Array();
 		urlList[0] = "ecg-sample/bml/startup.bml";
-		urlList[1] = "";
+		urlList[1] = "simple-epg/startup.bml";
 		urlList[2] = "";
 		urlList[3] = "";
 		urlList[4] = "";
@@ -60,7 +60,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">EPG Sample</p>
 
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();"></p>
+		onclick="jump();">Simple Sample</p>
 		
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
 		onclick="jump();"></p>

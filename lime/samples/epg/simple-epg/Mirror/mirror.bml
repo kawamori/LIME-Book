@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>template for BS</title>
+
+<style><![CDATA[
+	body{
+		clut:url(../images/default.clt);
+		background-color-index:0;
+	background-image:url(5.jpg);
+	}
+]]></style>
+
+
+<script>
+<![CDATA[
+
+function getHome(){
+browser.lockScreen();
+	browser.launchDocument("../startup.bml", "cut");
+}
+]]>
+</script>
+</head>
+<body>
+
+	<div id="stream" style="left:0px; top:0px; width:960px; height:540px;">
+		<object id="video" type="application/X-arib-contentPlayControl" data="http://example.video.vid" streamstatus="play" style="left:145px; top:110px;width:580px; height:326px;" onfocus="getHome();" accesskey="B" />
+	</div>
+<div style="left:0px; top:0px; width:960px; height:540px">
+
+
+<object type="image/X-arib-png" data="Mirror202_2t.png" style="left:0;top:20;width:872px;height:513px;"/>
+
+<object type="image/X-arib-png" data="home.png" style="left:850px;top:470px;width:58px;height:59px;"/>
+</div>
+
+
+</body>
+</bml>
+
