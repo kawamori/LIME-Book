@@ -122,8 +122,11 @@ function setParam(p)// setParam
 
 function load()
 {
+ browser.lockScreen(); {
 	getObject("mono").focus();
 	setParam(2);
+  }; browser.unlockScreen();
+
 }
 function keyDown() // key down
 {
