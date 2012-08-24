@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title>Media Test 1:  full-display (VOD)</title>
+<style><![CDATA[
+  body {
+    background-color-index:7;
+    resolution:960x540;
+    display-aspect-ratio:16v9;
+  }
+  p.title {
+    font-size:20px;
+    color-index:15;
+    grayscale-color-index:171 167;
+    text-align:center;
+  }
+.button
+{
+	width:240px;
+	height:271px;
+}
+#buttons
+{
+	left:0px;
+	top:0px;
+	width:960px;
+	height:540px;
+}
+
+]]></style>
+	<script ><![CDATA[
+	
+function goback(){ browser.launchDocument("../startup.bml", "cut");	}
+
+		]]></script>
+</head>
+<body id="body">
+
+<div id="basePane" style="top:0px;width:960px;height:540px;visibility:visible;">
+
+	<div style="left:100px;top:18px;width:760px;height:20px;">
+		<p id="txt_title" class="title" style="width:760px;height:20px;color-index:0;"><![CDATA[Multimedia (Video) test 1 -Full Display]]></p>
+	</div>
+	<div style="top:0px;left:0px;width:960px;height:540px">
+
+		<object id="vod" type="application/X-arib-contentPlayControl" data="http://219.101.45.66/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/world_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;visibility:visible;" />
+	</div>
+</div>
+<div style="left:10px;top:0px; width:960px; height:540px">
+<object data="ITU-Logo.JPG" type="image/jpeg" style="width:189px;height:77px;left:0px;top:10px;"/>
+<object data="small-lime.JPG"  type="image/jpeg" style="width:70px;height:74px;left:100px;top:360px;"/>
+</div>
+	<div id="buttons">
+
+			<object id="tv_left_bu" class="button" style="left:29px;top:248px;width:36px;height:27px;" type="image/X-arib-png"
+				data="arrow_up.png" 
+			/>
+			<object id="bd" class="button" style="left:29px;top:298px;width:36px;height:27px;" type="image/X-arib-png"
+				data="arrow_down.png" 
+			/>
+			<object id="br" class="button" style="left:85px;top:248px;width:252px;height:103px;" type="image/X-arib-png"
+				data="arrow_right.png" 
+			/>
+
+		</div>
+
+
+<div style="left:50px;top:180px;width:760px;height:20px;">
+		<p id="" class="title" style="width:760px;height:120px;color-index:7;"><![CDATA[Video test: Full Display. This text in white should appear on the video 
+]]></p>
+	</div>
+	
+	<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+</body>
+</bml>
