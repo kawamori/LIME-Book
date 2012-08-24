@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title/>
+<style><![CDATA[
+	body{background-color-index:0;resolution:960x540;display-aspect-ratio:16v9;used-key-list:basic data-button numeric-tuning;clut:url(images/baria.clt);}
+	p:focus{grayscale-color-index:61 56;}
+	.main {left:0px; top:56px; width:960px; height:484px;}
+	.clrbutton {width:140px;height:35px;}
+	p.clrbutton {text-align:center;color-index:7;}
+	.databutton {width:120px;height:35px;}
+	p.databutton {text-align:center;color-index:0;line-height:30px;}
+	.header {left:0px; top:0px; width:960px; height:56px;}
+	.footer {left:0px; top:505px; width:960px; height:35px;}
+	#status	{left:30px;top:80px;width:400px;height:24px;background-color-index:6;}
+	p.clocktext{font-size:16px;color-index:110;grayscale-color-index:45 201;}
+	
+]]></style>
+
+<script><![CDATA[
+var gRecomend=false;
+var gPlayState=false;	//フルスクリーンフラグ
+
+var gTicker=new TickerData(); // ティッカー処理
+
+function getElementById(id){return document.getElementById(id);}
+function showElem(id){getElementById(id).normalStyle.visibility="visible";}
+function hideElem(id){getElementById(id).normalStyle.visibility="hidden";}
+
+function onloadVideo(){
+	PlayVideo("http://www.hogehoge.jp:8080/test/servlet/mkmeta?cid=20101201183149461miyagi1&roll=off");
+	//startMsg();
+}
+
+function PlayVideo(URL){
+	if(!URL)return;
+	URL=String(URL);
+	var elm=getElementById("Video");
+	elm.data=URL;
+	showElem("Video");
+	elm.streamStatus="play";
+//	showElem("ts");
+	getElementById("MediaStopped").subscribe=true;
+}
+function setText(id,str){getElementById(id).firstChild.data=String(str);}
+function lockScreen(){browser.lockScreen();}
+function unlockScreen(){browser.unlockScreen();}
+
+function startMsg(){
+	gTicker.stop();
+	setTicker("ticker", 100, 16, "testetest ", 71+4);
+}
+
+function VideoStop(){
+	if(gRecomend){
+		getElementById("MediaStopped").subscribe=false;
+		show();
+		gRecomend=false;
+		unlockScreen();
+	}else{
+		getElementById("Video").streamStatus="stop";
+		getElementById("MediaStopped").subscribe=false;
+		hideElem("Video");
+		browser.launchDocument("news.bml");
+	}
+}
+
+function TickerData(){
+	this.timerId=NaN;
+
+	this.targetid="";
+	this.text = new Array();// アニメーションさせる文字列配列
+	this.textIdx=0;
+
+	this.time=100;
+	this.move=10;
+	
+	this.buffer="";
+	this.byteCnt=0;
+	this.gap=0;
+	this.riv=0;
+
+	this.font_size=NaN;
+	this.width=NaN;
+	this.left=NaN;
+	
+
+	this.start= Ticker_start;
+	this.stop = Ticker_stop;
+	this.getTextCountEx=Ticker_getTextCountEx;
+}
+function setTicker(targetid,itime,move,text,byteCnt){
+	gTicker.targetid=targetid;
+	gTicker.time=itime;		// ティッカー処理間隔
+	gTicker.move=move;		// ティッカー速度　１処理で進むドット数　1文字8バイト
+	gTicker.text=text;		// 表示文字列
+	gTicker.byteCnt=byteCnt;
+	gTicker.start();
+	
+	for(var i=0;i<byteCnt;i++) gTicker.buffer+=" ";
+}
+function Ticker_start(){
+	if( !isNaN(this.timerId) ){
+		browser.clearTimer( this.timerId );
+		this.timerId = NaN;
+	}
+	if(this.text.length<=0) return false;
+	this.textIdx=0;
+	this.timerId=browser.setInterval("TickerInit();",this.time,1);
+	return true;
+}
+function Ticker_stop(){
+	if( !isNaN(this.timerId) ){
+		browser.clearTimer( this.timerId );
+		this.timerId = NaN;
+	}
+	if(!isVis(this.targetid)) return;
+	setText(this.targetid,"");
+	if(!isNaN(Number(this.left)))getElementById(this.targetid).normalStyle.left=Number(this.left)+"px";
+	if(!isNaN(Number(this.width)))getElementById(this.targetid).normalStyle.width=Number(this.width)+"px";
+	this.timerId=NaN;
+
+	this.targetid="";
+	this.text = new Array();// アニメーションさせる文字列配列
+	this.textIdx=0;
+	this.time=100;
+	this.move=10;
+	this.buffer="";
+	this.byteCnt=0;
+	this.gap=0;
+	this.riv=0;
+	this.font_size=NaN;
+	this.width=NaN;
+	this.left=NaN;
+}
+function TickerInit(){
+	var obj=gTicker;
+	if(!obj) return;
+	if( !isNaN(obj.timerId) ){
+		browser.clearTimer( obj.timerId );
+		obj.timerId = NaN;
+	}
+	if(isNaN(obj.width))  obj.width=String(getElementById(obj.targetid).normalStyle.width).substring(0,String(getElementById(obj.targetid).normalStyle.width).length-2);
+	if(isNaN(obj.left))   obj.left=String(getElementById(obj.targetid).normalStyle.left).substring(0,String(getElementById(obj.targetid).normalStyle.left).length-2);
+	if(isNaN(obj.font_size)) obj.font_size=String(getElementById(obj.targetid).normalStyle.fontSize).substring(0,String(getElementById(obj.targetid).normalStyle.fontSize).length-2);
+	lockScreen();
+	if(isNaN(obj.width)||isNaN(obj.font_size)) return;
+	else getElementById(obj.targetid).normalStyle.width=(Number(obj.width)+Number(obj.font_size*2))+"px";
+	
+	for(var i=0;obj.buffer.length<gTicker.byteCnt;i++){
+		obj.buffer+=obj.text[obj.textIdx];
+		obj.textIdx++;
+		if(obj.textIdx>=obj.text.length) obj.textIdx=0;
+	}
+	setText(obj.targetid,obj.buffer);
+	Ticker();
+}
+function Ticker(){
+	var obj=gTicker;
+	if(!obj) return;
+
+	if( !isNaN(obj.timerId) ){
+		browser.clearTimer( obj.timerId );
+		obj.timerId = NaN;
+	}
+
+	if(isVis(obj.targetid)){
+		var char_length=0;
+		var charSize=obj.font_size;
+		lockScreen();
+		obj.gap+=obj.move;
+		if(obj.gap>=charSize/2){
+			var flg=false;
+			for(var i=0;i<obj.buffer.length;i++){
+				var gap=0;
+				if(obj.buffer.charCodeAt(0)<0xFF) gap=charSize/2;
+				else gap=charSize;
+				if(obj.gap<=gap) break;
+				obj.gap-=gap;
+				obj.buffer=obj.buffer.substring(1);
+				flg=true;
+			}
+			if(flg) setText(obj.targetid,obj.buffer);
+		}
+		var tc=obj.getTextCountEx(obj.buffer,obj.byteCnt);
+		getElementById(obj.targetid).normalStyle.left=(obj.left-obj.gap-obj.riv)+"px";
+
+		if((tc-4)*obj.font_size/2<=obj.width) obj.timerId = browser.setInterval( "TickerInit();", obj.time, 1 );
+		else obj.timerId = browser.setInterval( "Ticker();", obj.time, 1 );
+	}
+}
+function Ticker_getTextCountEx(txt,byteCont){
+	var c=0,bt=0;
+	this.riv=this.font_size/4;
+	for(var i=0;i<txt.length;i++){
+		c=txt.charCodeAt(i);
+		bt+=(c<256?1:2);
+		if((byteCont+4)==bt) this.riv=0;
+	}
+	return bt;
+}
+function getTextCount(txt){
+	var c=0,bt=0;
+	for(var i=0;i<txt.length;i++){
+		c=txt.charCodeAt(i);
+		bt+=(c<256?1:2);
+	}
+	return bt;
+}
+
+
+//ウィンドウ表示に切り替える
+function WindowShow(){
+	gPlayState=false;
+	var elm=getElementById("Video");
+	elm.normalStyle.left="44px";
+	elm.normalStyle.top="111px";
+	elm.normalStyle.width="600px";
+	elm.normalStyle.height="337px";
+}
+
+//フルスクリーン表示に切り替える
+function FullShow(){
+	gPlayState=true;
+	var elm=getElementById("Video");
+	elm.normalStyle.left="0px";
+	elm.normalStyle.top="0px";
+	elm.normalStyle.width="960px";
+	elm.normalStyle.height="540px";
+}
+
+function focus(){
+	var target = document.currentEvent.target;
+	browser.playRomSound("romsound://9");
+	target.nextSibling.normalStyle.visibility = "visible";
+//	target.focusStyle.colorIndex = "1";
+}
+function blur(){
+	var target = document.currentEvent.target;
+	target.nextSibling.normalStyle.visibility = "hidden";
+}
+
+function click(){
+	var target = document.currentEvent.target;
+	var text = target.nextSibling.nextSibling.firstChild.data;
+	browser.playRomSound("romsound://7");
+	
+	
+	if(text == "メインメニュー") {
+		browser.launchDocument("top.bml");
+	}
+	if(text == "1つ前に戻る") {
+		browser.launchDocument("news.bml");
+	}
+	if(text == "フルスクリーン") {
+		if(gPlayState) WindowShow();
+		else FullShow();
+	}
+}
+
+function kakudai(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("news_sc.bml");
+}
+
+function menufocus(){
+	var target = document.currentEvent.target;
+	browser.playRomSound("romsound://9");
+	target.focusStyle.colorIndex = "1";
+}
+
+function menuclick(){
+	browser.playRomSound("romsound://7");
+	var target = document.currentEvent.target;
+	var key_id = target.id;
+	if(key_id == "ch1"){
+	}
+	if(key_id == "ch2"){
+		browser.launchDocument("play.bml");
+	}
+}
+
+function DataButtonHandler(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("../../lab2.sample/bml/startup.bml");
+}
+
+]]></script>
+
+<bevent>
+	<beitem id="be0" type="DataButtonPressed" onoccur="DataButtonHandler();" subscribe="subscribe"/>
+	<beitem id="MediaStopped" type="MediaStopped" onoccur="VideoStop();" object_id="Video"/>
+</bevent>
+
+</head>
+<body style="background-color-index:7;" onload="onloadVideo();">
+
+<!-- ヘッダ -->
+<div class="header">
+	<object type="image/jpeg" data="images/head_meshA.jpg" style="width:1920px; height:112px"/>
+</div>
+
+<!-- メインコンテンツ -->
+<div class="main">
+
+	<!-- <object id="bg" type="image/jpeg" data="images/bg_common.jpg" style="width:960px;height:540px;"/> -->
+	<object id="news" type="image/jpeg" data="images/20100531kahoku.jpg" 
+		style="nav-index:0; nav-down:1; nav-left:6; nav-right:6; left:0px; top:0px; width:398px; height:450px;"
+		onclick="kakudai();"/>
+	
+	<object id="Video" type="application/X-arib-contentPlayControl" data="" style="left:390px;top:0px;width:592px;height:333px;visibility:hidden;" streamstatus="stop"/>
+	<p id="link0" style="left:900px; top:5px; width:50px; height:16px; font-size:16px;color-index:15;background-color-index:8; text-align:center; font-weight:bold;">LIVE</p>
+	<p id="link0" style="left:800px; top:30px; width:150px; height:16px; font-size:16px;color-index:24;background-color-index:0; text-align:center; font-weight:bold;">今日のニュース</p>	
+
+	<object type="image/jpeg" data="images/global2_02.jpg" style="left:390px;top:350px;width:110px;height:100px;"/>
+	<object type="image/jpeg" data="images/global2_04.jpg" style="left:500px;top:350px;width:120px;height:100px;"/>
+	<object type="image/jpeg" data="images/global2_05.jpg" style="left:620px;top:350px;width:110px;height:100px;"/>
+	<object type="image/jpeg" data="images/global2_06.jpg" style="left:730px;top:350px;width:120px;height:100px;"/>
+	<object type="image/jpeg" data="images/global2_03.jpg" style="left:850px;top:350px;width:110px;height:100px;"/>
+	<div style="left:390px;top:333px;width:570px;height:40px;">
+		<p id="ticker" style="width:568px;height:20px;font-size:16px; background-color-index:6"><![CDATA[]]></p>
+	</div>
+</div>
+
+<!-- フッタ(カラーボタン) -->
+<div class="footer">
+	<object type="image/jpeg" data="images/foot_meshA.jpg" style="width:1920px; height:70px"/>
+</div>
+
+
+<!--<p id="status"><![CDATA[]]></p>-->
+</body>
+</bml>
+

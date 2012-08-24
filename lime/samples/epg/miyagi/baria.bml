@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA" "http://www.arib.or.jp/B24/DTD/bml_1_0.dtd">
+<?bml bml-version="1.0" ?>
+<bml>
+<head>
+<title/>
+<style><![CDATA[
+	body{background-color-index:0;resolution:960x540;display-aspect-ratio:16v9;used-key-list:basic data-button numeric-tuning;clut:url(images/baria.clt);}
+	.main {left:0px; top:100px; width:960px; height:450px;}
+	.mysq {left:700px; top:100px; width:500px; height:450px;}
+	.clrbutton {width:140px;height:70px;}
+	p.clrbutton {text-align:center;color-index:7;}
+	.databutton {width:120px;height:70px;}
+	p.databutton {text-align:center;color-index:0;line-height:30px;}
+	.header {left:0px; top:0px; width:960px; height:160px;}
+	#status	{left:30px;top:80px;width:400px;height:24px;
+		background-color-index:6;}
+]]></style>
+
+<script><![CDATA[
+/*
+var code = document.currentEvent.keyCode;
+var id = document.currentEvent.target.id;
+if(code==19){
+	launchTop();
+}
+*/
+function focus(){
+	var target = document.currentEvent.target;
+	browser.playRomSound("romsound://9");
+	target.nextSibling.normalStyle.visibility = "visible";
+	target.focusStyle.colorIndex = "1";
+}
+function blur(){
+	var target = document.currentEvent.target;
+	target.nextSibling.normalStyle.visibility = "hidden";
+}
+
+function click(){
+	var target = document.currentEvent.target;
+	var text = target.nextSibling.nextSibling.firstChild.data;
+	//var nowtext = target.firstChild.data;
+	browser.playRomSound("romsound://7");
+	
+	
+	if(text == "メインメニュー") {
+		browser.launchDocument("top.bml");
+	}
+	if(text == "1つ前に戻る") {
+		browser.launchDocument("top.bml");
+	}
+	if(text == "多目的トイレ") {
+		browser.launchDocument("toire.bml");
+	}
+	
+	
+	/*
+	if(link != "") {
+		browser.launchDocument(link);
+	}
+	*/
+	//document.getElementById("status").firstChild.data = "["+text+"]がクリックされました";
+}
+
+function DataButtonHandler(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("../../lab2.sample/bml/startup.bml");
+}
+
+]]></script>
+
+<bevent>
+<beitem id="be0" type="DataButtonPressed" onoccur="DataButtonHandler();" subscribe="subscribe"/>
+</bevent>
+
+</head>
+<body style="background-color-index:7;">
+
+<!-- ヘッダ -->
+<div class="header">
+	<object type="image/jpeg" data="images/fletssq.jpg" style="width:1920px; height:112px"/>
+</div>
+
+<!-- メインコンテンツ -->
+<div class="main">
+	<p style="left:75px; top:0px; width:600px; height:45px; font-size:30px;color-index:0;background-color-index:7;">京急川崎駅　周辺の交通バリアフリー情報</p>
+	
+	<object type="image/jpeg" data="images/fig5.jpg" style="left:30px; top:80px; width:112px; height:111px; nav-index:0;nav-right:1;nav-left:5;nav-down:6;" accesskey="" onfocus="focus();" onblur="blur();" onclick="click();"/>
+	<object type="image/jpeg" data="images/fig5_h.jpg" style="left:30px; top:80px; width:112px; height:111px; visibility:hidden;"/>
+	<p id="link0" style="left:30px; top:195px; width:112px; height:30px; font-size:15px;color-index:0;background-color-index:7; text-align:center;">トイレ</p>
+	
+	<object type="image/jpeg" data="images/fig6.jpg" style="left:162px; top:80px; width:112px; height:111px; nav-index:1;nav-right:2;nav-left:0;nav-down:7;" accesskey="" onfocus="focus();" onblur="blur();" onclick="click();"/>
+	<object type="image/jpeg" data="images/fig6_h.jpg" style="left:162px; top:80px; width:112px; height:111px; visibility:hidden;"/>
+	<p id="link1" style="left:162px; top:195px; width:112px; height:30px; font-size:15px;color-index:0;background-color-index:7; text-align:center;">多目的トイレ</p>
+	
+	<object type="image/jpeg" data="images/fig7.jpg" style="left:284px; top:80px; width:112px; height:111px; nav-index:2;nav-right:3;nav-left:1;nav-down:8;" accesskey="" onfocus="focus();" onblur="blur();" onclick="click();"/>
+	<object type="image/jpeg" data="images/fig7_h.jpg" style="left:284px; top:80px; width:112px; height:111px; visibility:hidden;"/>
+	<p id="link2" style="left:284px; top:195px; width:112px; height:30px; font-size:15px;color-index:0;background-color-index:7; text-align:center;">タクシー乗り場</p>
+	
+	<object type="image/jpeg" data="images/fig8.jpg" style="left:406px; top:80px; width:112px; height:111px; nav-index:3;nav-right:4;nav-left:2;nav-down:9;" accesskey="" onfocus="focus();" onblur="blur();" onclick="click();"/>
+	<object type="image/jpeg" data="images/fig8_h.jpg" style="left:406px; top:80px; width:112px; height:111px; visibility:hidden;"/>
+	<p id="link3" style="left:406px; top:195px; width:112px; height:30px; font-size:15px;color-index:0;background-color-index:7; text-align:center;">ホーム</p>
+	
+	<object type="image/jpeg" data="images/fig9.jpg" style="left:528px; top:80px; width:112px; height:111px; nav-index:4;nav-right:5;nav-left:3;nav-down:10;" accesskey="" onfocus="focus();" onblur="blur();" onclick="click();"/>
+	<object type="image/jpeg" data="images/fig9_h.jpg" style="left:528px; top:80px; width:112px; height:111px; visibility:hidden;"/>
+	<p id="link4" style="left:528px; top:195px; width:112px; height:30px; font-size:15px;color-index:0;background-color-index:7; text-align:center;">バス乗り場</p>
+
+	<object type="image/jpeg" data="images/fig10.jpg" style="left:650px; top:80px; width:112px; height:111px; nav-index:5;nav-right:0;nav-left:4;nav-down:10;" accesskey="" onfocus="focus();" onblur="blur();" onclick="click();"/>
+	<object type="image/jpeg" data="images/fig10_h.jpg" style="left:650px; top:80px; width:112px; height:111px; visibility:hidden;"/>
+	<p id="link5" style="left:650px; top:195px; width:112px; height:30px; font-size:15px;color-index:0;background-color-index:7; text-align:center;">その他</p>
+	
+</div>
+
+<!-- フッタ(カラーボタン) -->
+<div style="left:30px; top:480px; width:750px; height:40px">
+	<div class="clrbutton" style="left:0px;">
+		<object class="clrbutton" type="image/jpeg" data="images/button_blue.jpg"
+			style="nav-index:6;nav-right:7;nav-left:10;nav-up:0;" accesskey="B"
+			onfocus="focus();" onblur="blur();" onclick="click();"/>
+		<object class="clrbutton" type="image/jpeg" data="images/button_blue_h.jpg"
+			style="visibility:hidden;"/>
+		<p class="clrbutton" style="top:8px; font-size:18px; text-align:center; grayscale-color-index:104 86;">メインメニュー</p>
+	</div>
+
+	<div class="clrbutton" style="left:145px;">
+		<object class="clrbutton" type="image/jpeg" data="images/button_red.jpg"
+			accesskey="X"
+			onfocus="focus();" onblur="blur();" onclick="click();"/>
+		<object class="clrbutton" type="image/jpeg" data="images/button_red_h.jpg"
+			style="visibility:hidden;"/>
+		<p class="clrbutton" style="top:8px;font-size:18px; grayscale-color-index:61 56;">1つ前に戻る</p>
+	</div>
+
+	<div class="clrbutton" style="left:145px;">
+		<object class="clrbutton" type="image/jpeg" data="images/button_red.jpg"
+			style="nav-index:7;nav-right:8;nav-left:6;nav-up:1;" accesskey="R"
+			onfocus="focus();" onblur="blur();" onclick="click();"/>
+		<object class="clrbutton" type="image/jpeg" data="images/button_red_h.jpg"
+			style="visibility:hidden;"/>
+		<p class="clrbutton" style="top:8px; font-size:18px; grayscale-color-index:61 56;">1つ前に戻る</p>
+	</div>
+	
+	<div class="clrbutton" style="left:290px;">
+		<object class="clrbutton" type="image/jpeg" data="images/button_green.jpg"
+			style="nav-index:8;nav-right:9;nav-left:7;nav-up:2;" accesskey="G"
+			onfocus="focus();" onblur="blur();" onclick=""/>
+		<object class="clrbutton" type="image/jpeg" data="images/button_green_h.jpg"
+			style="visibility:hidden;"/>
+		<p class="clrbutton"></p>
+	</div>
+
+	<div class="clrbutton" style="left:435px;">
+		<object class="clrbutton" type="image/jpeg" data="images/button_yellow.jpg"
+			style="nav-index:9;nav-right:10;nav-left:8;nav-up:3;" accesskey="Y"
+			onfocus="focus();" onblur="blur();" onclick=""/>
+		<object class="clrbutton" type="image/jpeg" data="images/button_yellow_h.jpg"
+			style="visibility:hidden;"/>
+		<p class="clrbutton"></p>
+	</div>
+	
+	<div class="databutton" style="left:580px;">
+		<object class="databutton" type="image/jpeg" data="images/button_data.jpg"
+			style="nav-index:10;nav-right:6;nav-left:9;nav-up:4;"
+			onfocus="focus();" onblur="blur();" onclick=""/>
+		<object class="databutton" type="image/jpeg" data="images/button_data_h.jpg"
+			style="visibility:hidden;"/>
+		<p class="databutton" style="top:2;font-size:18px;">切替</p>
+	</div>
+</div>
+<!--<p id="status"><![CDATA[]]></p>-->
+</body>
+</bml>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title/>
+<style><![CDATA[
+	body{background-color-index:0;resolution:960x540;display-aspect-ratio:16v9;used-key-list:basic data-button numeric-tuning;}
+	p:focus{grayscale-color-index:61 56;}
+	.main {left:0px; top:0px; width:960px; height:540px;}
+	.title {width:300px;height:20px;}
+	.clrbutton {width:140px;height:35px;}
+	p.clrbutton {text-align:center;color-index:7;}
+	.databutton {width:120px;height:35px;}
+	p.databutton {text-align:center;color-index:0;line-height:30px;}
+	#status	{left:30px;top:80px;width:400px;height:24px;background-color-index:6;}
+	p.clocktext{font-size:16px;color-index:110;grayscale-color-index:45 201;}
+]]></style>
+
+<script><![CDATA[
+var gRecomend=false;
+
+function getElementById(id){return document.getElementById(id);}
+function showElem(id){getElementById(id).normalStyle.visibility="visible";}
+function hideElem(id){getElementById(id).normalStyle.visibility="hidden";}
+function isVis(id){
+	if(getElementById(id)==null) return false;
+	if(getElementById(id).normalStyle.visibility=="visible")return true;
+	return false;
+}
+
+function onload(){
+	PlayVideo("http://portal.miyagi.flets-east.jp:8080/test/servlet/mkmeta?cid=20101201183149205miyagi1&roll=off");
+	startMsg();
+}
+
+function PlayVideo(URL){
+	if(!URL)return;
+	URL=String(URL);
+	var elm=getElementById("Video");
+	elm.data=URL;
+	showElem("Video");
+	elm.streamStatus="play";
+//	showElem("ts");
+	getElementById("MediaStopped").subscribe=true;
+}
+
+function setText(id,str){getElementById(id).firstChild.data=String(str);}
+function lockScreen(){browser.lockScreen();}
+function unlockScreen(){browser.unlockScreen();}
+
+function startMsg(){
+	gTicker.stop();
+	setTicker("ticker", 70, 5,text, 71+4);
+}
+
+//------------------------------
+// ティッカー処理
+// Ticker data
+// 表示する文字の設定
+var list = new Array();//流すメッセージの配列
+list[0]="";
+list[1]="【今月のイベント】　8/5 仙台七夕祭り前夜祭　花火大会";
+list[2]="【今日の天気】　宮城東部：晴れのち曇り　　宮城西部：曇り";
+
+var gTimerID = NaN;			// タイマー
+var gLeft = NaN;			// 左座標
+var gTextIndex = NaN;		// メッセージリストのインデックス
+var gTickerMove = NaN;		// メッセージ移動量（ピクセル）
+var gTimerInterval = NaN;	// タイマー実行間隔（msec）
+var gTimerSleep = NaN;		// 端での停止時間（msec）
+var gWaitFlag = NaN;		// 端で停止中フラグ
+var gCounter = NaN;			// カウンタ
+
+function startMsg(){
+
+	// 左座標はp要素の右端からスタート
+	gLeft = String(getElementById("ticker").normalStyle.width).substring(0,String(getElementById("ticker").normalStyle.width).length-2);
+
+	gTextIndex = 0;			// listの0番から開始
+	gTickerMove = 80;		// 一度のタイマー実行で20ピクセル移動
+	gTimerInterval = 1;	// 200msec間隔でタイマー実行
+	gTimerSleep = 100;		// 端で1000msec停止
+	gWaitFlag = 0;
+	gCounter = 0;
+
+	if( !isNaN(gTimerID) ){
+		browser.clearTimer( gTimerID );
+		gTimerID = NaN;
+	}
+	gTimerID = browser.setInterval("Ticker();", gTimerInterval, 0);	// タイマーをセット（以後、定期的にTicker()が呼ばれる）
+}
+
+function Ticker(){
+	if(gWaitFlag == 0){
+		if(gLeft - gTickerMove > 0){	// 左端に着いたかの判定
+			// 表示位置の更新
+			gLeft = gLeft - gTickerMove;
+			setText("ticker", list[gTextIndex]);
+			getElementById("ticker").normalStyle.left = gLeft + "px";
+		} else {
+			gLeft = String(getElementById("ticker").normalStyle.width).substring(0,String(getElementById("ticker").normalStyle.width).length-2);
+
+			if(gTextIndex < list.length-1) {
+				// listのインデックスを更新
+				gTextIndex = gTextIndex + 1;
+			} else {
+				// listの最初に戻る
+				gTextIndex = 0;
+			}
+			gWaitFlag = 1;	// 左端に着いたのでフラグをON
+		}
+	} else {
+		// 停止中
+		if(gTimerSleep > gCounter * gTimerInterval){	// 指定時間経過したかの判定
+			gCounter = gCounter + 1;	// カウントアップ
+		} else {
+			gCounter = 0;	// カウンターのリセット
+			gWaitFlag = 0;	// フラグをOFF
+		}
+	}
+}
+
+function VideoStop(){
+	if(gRecomend){
+		getElementById("MediaStopped").subscribe=false;
+		show();
+		gRecomend=false;
+		unlockScreen();
+	}else{
+		getElementById("Video").streamStatus="stop";
+		getElementById("MediaStopped").subscribe=false;
+		hideElem("Video");
+		browser.launchDocument("kankou.bml");
+	}
+}
+
+//ビデオをウィンドウ表示に切り替える
+function WindowShow(){
+	gPlayState=false;
+	var elm=getElementById("Video");
+	elm.normalStyle.left="390px";
+	elm.normalStyle.top="56px";
+	elm.normalStyle.width="592px";
+	elm.normalStyle.height="333px";
+}
+
+//ビデオをフルスクリーン表示に切り替える
+function FullShow(){
+	gPlayState=true;
+	var elm=getElementById("Video");
+	elm.normalStyle.left="0px";
+	elm.normalStyle.top="0px";
+	elm.normalStyle.width="960px";
+	elm.normalStyle.height="540px";
+}
+
+// dボタン操作
+function DataButtonHandler(){
+	browser.playRomSound("romsound://7");
+	if(gPlayState) WindowShow();
+		else FullShow();
+}
+
+// ポータルTOPに戻る
+function launchTop(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("startup_demo.bml");
+}
+
+// 画面更新
+function launchUpdate(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("kankou.bml");
+}
+
+function menufocus(){
+	var target = document.currentEvent.target;
+	browser.playRomSound("romsound://9");
+	target.nextSibling.normalStyle.visibility = "visible";
+	target.focusStyle.colorIndex = "1";
+}
+
+function menuclick(){
+	browser.playRomSound("romsound://7");
+	var target = document.currentEvent.target;
+	var key_id = target.id;
+	if(key_id == "ch1"){
+		browser.launchDocument("kahoku.bml");
+	}
+	if(key_id == "ch2"){
+		browser.launchDocument("vod_thumbnail.bml");
+	}
+	if(key_id == "ch3"){
+		browser.launchDocument("kankou.bml");
+	}
+	if(key_id == "ch4"){
+		browser.launchDocument("tuhan.bml");
+	}
+	if(key_id == "ch5"){
+		browser.launchDocument("mcast_test.bml");
+	}
+	if(key_id == "ch6"){
+		browser.launchDocument("test1.bml");
+	}
+	if(key_id == "vod1"){
+		browser.launchDocument("miyagisiki_play.bml");
+	}
+	if(key_id == "vod2"){
+		browser.launchDocument("sendai_play.bml");
+	}
+	if(key_id == "vod3"){
+		browser.launchDocument("tanabata.bml");
+	}
+	if(key_id == "vod4"){
+		browser.launchDocument("kensei.bml");
+	}
+}
+
+function blur(){
+	var target = document.currentEvent.target;
+	target.nextSibling.normalStyle.visibility = "hidden";
+}
+
+]]></script>
+
+<bevent>
+	<beitem id="be0" type="DataButtonPressed" onoccur="DataButtonHandler();" subscribe="subscribe"/>
+	<beitem id="MediaStopped" type="MediaStopped" onoccur="VideoStop();" object_id="Video"/>
+</bevent>
+
+</head>
+
+<body style="background-color-index:7;" onload="onload();">
+
+<!-- メインコンテンツ 960x540 -->
+<div class="main">
+	
+	<!-- ヘッダ -->
+	<object type="image/jpeg" data="images/head_meshA.jpg" style="top:0px; left:0px; width:960px; height:56px"/>
+
+	<!-- 観光紙面-->
+	<p class="title" style="top:56px;left:0px;font-size:20px; color-index:0;">観光案内</p>
+	<p class="title" style="top:256px;left:0px;font-size:20px; color-index:0;">観光パンフ</p>
+	<p class="title" style="top:371px;left:0px;font-size:20px; color-index:0;">おしらせ</p>
+	<object id="vod1" type="image/jpeg" data="kankou/miyagikanko.jpg" 
+		style="nav-index:0; nav-up:8; nav-down:6; nav-left:10; nav-right:1;left:5px; top:86px; width:398px; height:75px;"onfocus="menufocus();"onblur="blur();"onclick="menuclick();"/>
+	<object id="vod1" type="image/jpeg" data="kankou/miyagikanko_b.jpg" 
+		style="nav-index:0; nav-up:8; nav-down:6; nav-left:10; nav-right:1;left:5px; top:86px; width:398px; height:75px;visibility:hidden;"/>
+
+	<object id="vod2" type="image/jpeg" data="kankou/sendai.jpg" 
+		style="nav-index:6; nav-up:0; nav-down:7; nav-left:10; nav-right:1;left:5px; top:171px; width:398px; height:75px;"onfocus="menufocus();"onblur="blur();"onclick="menuclick();"/>
+	<object id="vod2" type="image/jpeg" data="kankou/sendai_b.jpg" 
+		style="nav-index:6; nav-up:0; nav-down:7; nav-left:10; nav-right:1;left:5px; top:171px; width:398px; height:75px;visibility:hidden;"/>
+
+	<object id="vod3" type="image/jpeg" data="kankou/tanabatamaturi.jpg" 
+		style="nav-index:7; nav-up:6; nav-down:8; nav-left:10; nav-right:1;left:5px; top:286px; width:398px; height:75px;"onfocus="menufocus();"onblur="blur();"onclick="menuclick();"/>
+	<object id="vod3" type="image/jpeg" data="kankou/tanabatamaturi_b.jpg" 
+		style="nav-index:7; nav-up:6; nav-down:8; nav-left:10; nav-right:1;left:5px; top:286px; width:398px; height:75px;visibility:hidden;"/>
+
+	<object id="vod4" type="image/jpeg" data="kankou/kennseidayori.jpg" 
+		style="nav-index:8; nav-up:7; nav-down:0; nav-left:10; nav-right:1;left:5px; top:401px; width:398px; height:75px;"onfocus="menufocus();"onblur="blur();"onclick="menuclick();"/>
+	<object id="vod4" type="image/jpeg" data="kankou/kennseidayori_b.jpg" 
+		style="nav-index:8; nav-up:7; nav-down:0; nav-left:10; nav-right:1;left:5px; top:401px; width:398px; height:75px;visibility:hidden;"/>
+		
+	<!-- メニューアイコン　onfocusでボーダ入画像に変更-->
+<!-- ボタン説明-->
+	<object id="ch1" type="image/jpeg" data="images/global2_02.jpg" style="nav-index:1; nav-down:0; nav-left:0; nav-right:2;left:390px;top:405px;width:95px;height:100px;" onfocus="menufocus();" onblur="blur()" onclick="menuclick();"/>
+	<object id="ch1" type="image/jpeg" data="images/global2_02_b.jpg" style="nav-index:1; nav-down:0; nav-left:0; nav-right:2;left:390px;top:405px;width:95px;height:100px;visibility:hidden;"/>
+	
+	<object id="ch2" type="image/jpeg" data="images/global2_04.jpg" style="nav-index:2; nav-down:0; nav-left:1; nav-right:3;left:485px;top:405px;width:95px;height:100px;"onfocus="menufocus();" onblur="blur();" onclick="menuclick();"/>
+	<object id="ch2" type="image/jpeg" data="images/global2_04_b.jpg" style="nav-index:2; nav-down:0; nav-left:1; nav-right:3;left:485px;top:405px;width:95px;height:100px;visibility:hidden"/>
+	
+	<object id="ch3" type="image/jpeg" data="images/global2_05.jpg" style="nav-index:3; nav-down:0; nav-left:2; nav-right:4;left:580px;top:405px;width:95px;height:100px;"onfocus="menufocus();" onblur="blur();" onclick="menuclick();"/>
+	<object id="ch3" type="image/jpeg" data="images/global2_05_b.jpg" style="nav-index:3; nav-down:0; nav-left:2; nav-right:4;left:580px;top:405px;width:95px;height:100px;visibility:hidden"/>
+
+	<object id="ch4" type="image/jpeg" data="images/global2_07.jpg" style="nav-index:4; nav-down:0; nav-left:3; nav-right:5;left:675px;top:405px;width:95px;height:100px;"onfocus="menufocus();" onblur="blur();" onclick="menuclick();"/>
+	<object id="ch4" type="image/jpeg" data="images/global2_07_b.jpg" style="nav-index:4; nav-down:0; nav-left:3; nav-right:5;left:675px;top:405px;width:95px;height:100px;visibility:hidden"/>
+
+	<object id="ch5" type="image/jpeg" data="images/global2_03.jpg" style="nav-index:5; nav-down:0; nav-left:4; nav-right:10;left:770px;top:405px;width:95px;height:100px;"onfocus="menufocus();" onblur="blur();" onclick="menuclick();"/>
+	<object id="ch5" type="image/jpeg" data="images/global2_03_b.jpg" style="nav-index:5; nav-down:0; nav-left:4; nav-right:10;left:770px;top:405px;width:95px;height:100px;visibility:hidden"/>
+
+	<object id="ch6" type="image/jpeg" data="images/global2_08.jpg" style="nav-index:10; nav-down:0; nav-left:5; nav-right:0;left:865px;top:405px;width:95px;height:100px;"onfocus="menufocus();" onblur="blur();" onclick="menuclick();"/>
+	<object id="ch6" type="image/jpeg" data="images/global2_08_b.jpg" style="nav-index:10; nav-down:0; nav-left:5; nav-right:0;left:865px;top:405px;width:95px;height:100px;visibility:hidden"/>
+
+	<!-- 流れる文字 -->
+	<div style="left:390px;top:389px;width:570px;height:16px;background-color-index:0;">
+		<p id="ticker" style="width:568px;height:16px;font-size:16px; color-index: 7; "><![CDATA[]]></p>
+	</div>
+	
+	<!-- フッタ -->
+	<object type="image/jpeg" data="images/foot_meshA.jpg" style="top:505px; left:0px; width:960px; height:35px"/>
+	
+	<!-- ビデオ -->
+	<object id="Video" type="application/X-arib-contentPlayControl" data="" style="left:390px;top:56px;width:592px;height:333px;visibility:hidden;" streamstatus="stop"/>
+	
+</div>
+
+<div style="left:400px; top:505px; width:750px; height:35px">
+	<p class="clrbutton" style="nav-index:1; nav-right:2; nav-left:4; nav-up:0;top:8px;left:0px;font-size:18px; text-align:center; color-index:4;"
+	onfocus="focus();" onblur="blur();" onclick="launchTop();" accesskey="B">青：トップ</p>
+	<p class="clrbutton" style="nav-index:2; nav-right:3; nav-left:1; nav-up:0;top:8px;left:140px;font-size:18px; text-align:center; color-index:1;"
+	onfocus="focus();" onblur="blur();" accesskey="R"></p>
+	<p class="clrbutton" style="nav-index:3; nav-right:4; nav-left:2; nav-up:0;top:8px;left:280px;font-size:18px; text-align:center; color-index:2;"
+	onfocus="focus();" onblur="blur();" accesskey="G"></p>
+	<p class="clrbutton" style="nav-index:4; nav-right:1; nav-left:3; nav-up:0;top:8px;left:420px;font-size:18px; text-align:center; color-index:3;"
+	onfocus="focus();" onblur="blur();" onclick="launchUpdate()" accesskey="Y">黄：更新</p>
+</div>
+
+<!--<p id="status"><![CDATA[]]></p>-->
+</body>
+</bml>
+
