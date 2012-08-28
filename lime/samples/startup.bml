@@ -24,7 +24,7 @@
 		urlList[4] = "games/top.xml";
 		urlList[5] = "jpegtest/index.xml";
 		urlList[6] = "text/richmen/startup.xml";
-		urlList[7] = "ateneo/jason.bml";
+		urlList[7] = "ateneo/welcome.xml";
 		urlList[8] = "";
 		urlList[9] = "";
 		urlList[10] = "";
