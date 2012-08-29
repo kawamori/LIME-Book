@@ -42,7 +42,7 @@ var base = "";
 		browser.launchDocument(base + url);
 }
 	
-function goback(){ browser.launchDocument("../startup.bml", "cut");	}
+function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lime-iptv-portal/bml/startup.bml", "cut");	}
 
 		]]></script>
 
