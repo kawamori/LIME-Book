@@ -3,76 +3,103 @@
 
 <bml>
 <head>
-<title>Media Test 1:  full-display (VOD)</title>
-<style><![CDATA[
-  body {
-    background-color-index:7;
-    resolution:960x540;
-    display-aspect-ratio:16v9;
-  }
-  p.title {
-    font-size:20px;
-    color-index:15;
-    grayscale-color-index:171 167;
-    text-align:center;
-  }
-.button
-{
-	width:240px;
-	height:271px;
-}
-#buttons
-{
-	left:0px;
-	top:0px;
-	width:960px;
-	height:540px;
+	<title>System test</title>
+	<style>
+		<![CDATA[
+			p {height:16px;color-index:7;grayscale-color-index:15 15}
+			
+			p:focus{background-color-index:1}
+			.button {top:180px;left:250px;width:250px;height:28px;}
+			.bgm {
+		width:300px; height:300px; top:10px; left:10px;
+	}
+		]]>
+	</style>
+	<script ><![CDATA[
+
+		var urlList = new Array();
+		urlList[0] = "itu-test/video.xml";
+		urlList[1] = "mccann/startup.xml";
+		urlList[2] = "";
+		urlList[3] = "";
+		urlList[4] = "";
+		urlList[5] = "";
+		urlList[6] = "";
+		urlList[7] = "";
+		urlList[8] = "";
+		urlList[9] = "";
+		urlList[10] = "";
+		urlList[11] = "";
+		urlList[12] = "";
+		
+
+//var base = "http://localhost/";
+//var base = "http://127.0.0.1/";
+var base = "";
+
+function jump(){
+	var url = urlList[document.currentEvent.target.id]
+	
+		browser.launchDocument(base + url);
 }
 
-]]></style>
-	<script ><![CDATA[
-	
+
+
 function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 
 		]]></script>
+
 </head>
-<body id="body">
+<body>
+		
+<p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ Some Video-related Tests ]]></p>
+		
+			
+		
+        <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
+		onclick="jump();">ITU Media test</p>
 
-<div id="basePane" style="top:0px;width:960px;height:540px;visibility:visible;">
+		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
+		onclick="jump();">McCann Tests</p>
+		
+		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
+		onclick="jump();"></p>
+		
+		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
+		onclick="jump();"></p>
+		
+		
+		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
+		onclick="jump();"></p>
 
-	<div style="left:100px;top:18px;width:760px;height:20px;">
-		<p id="txt_title" class="title" style="width:760px;height:20px;color-index:0;"><![CDATA[Multimedia (Video) test 1 -Full Display]]></p>
-	</div>
-	<div style="top:0px;left:0px;width:960px;height:540px">
+	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
+		onclick="jump();"></p>
+   <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
+		onclick="jump();"></p>
+		
+		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
+		onclick="jump();"></p>
+		
+				 <p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
+		onclick="jump();"></p>
+				
+				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
+		onclick="jump();"></p>
+		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
+		onclick="jump();"></p>
 
-		<object id="vod" type="application/X-arib-contentPlayControl" data="http://219.101.45.66/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/world_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;visibility:visible;" />
-	</div>
-</div>
-<div style="left:10px;top:0px; width:960px; height:540px">
-<object data="ITU-Logo.JPG" type="image/jpeg" style="width:189px;height:77px;left:0px;top:10px;"/>
-<object data="small-lime.JPG"  type="image/jpeg" style="width:70px;height:74px;left:100px;top:360px;"/>
-</div>
-	<div id="buttons">
-
-			<object id="tv_left_bu" class="button" style="left:29px;top:248px;width:36px;height:27px;" type="image/X-arib-png"
-				data="arrow_up.png" 
-			/>
-			<object id="bd" class="button" style="left:29px;top:298px;width:36px;height:27px;" type="image/X-arib-png"
-				data="arrow_down.png" 
-			/>
-			<object id="br" class="button" style="left:85px;top:248px;width:252px;height:103px;" type="image/X-arib-png"
-				data="arrow_right.png" 
-			/>
-
-		</div>
-
-
-<div style="left:50px;top:180px;width:760px;height:20px;">
-		<p id="" class="title" style="width:760px;height:120px;color-index:7;"><![CDATA[Video test: Full Display. This text in white should appear on the video 
-]]></p>
-	</div>
+		<p id="11" class="button" style="top:480px;nav-index:11;nav-up:10;nav-down:12;"
+		onclick="jump();"></p>
+		<p id="12" class="button" style="top:510px;nav-index:12;nav-up:11;nav-down:12;"
+		onclick="jump();"></p>
 	
-	<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+
+
+
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
 
 </body>
 </bml>
+
+
