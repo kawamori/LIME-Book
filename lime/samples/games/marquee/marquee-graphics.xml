@@ -49,13 +49,12 @@ var clientWidth = 960;
 <div style="left:10px; top:0px; width:352px;height:528px;">
 <object id="text" type="image/jpeg" data="dubai-1.jpg" style="left:0px;top:0;width:352px;height:528px;"/>
 </div>
-
+<!--
 
 <div style="left:700px;top:0;width:202px;height:150px;background-color-index:8;">
 <object type="image/X-arib-png" data="dubai-title.png" style="left:0px;top:0;width:202px;height:150px;"/>
-
 </div>
-
+-->
 
 
 <div style="left:0px; top:300px; width:960px; height:40px;">
