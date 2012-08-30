@@ -28,11 +28,28 @@
 	width:960px;
 	height:540px;
 }
-
+#display	{ font-size:20px;background-color-index:80;color-index:7;
+		top:30px;left:30px;width:100px;height:40px;}
+		
 ]]></style>
 	<script ><![CDATA[
 	
 function goback(){ browser.launchDocument("../video.xml", "cut");	}
+
+function sendLike(){
+
+var url = "http://127.0.0.1/cgi-bin/count.pl";
+
+	var ret = browser.transmitTextDataOverIP(url,'1',"EUC-JP");
+	 alert(ret);
+	
+
+}
+
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data = str + "\r";
+}
 
 		]]></script>
 </head>
@@ -46,7 +63,7 @@ function goback(){ browser.launchDocument("../video.xml", "cut");	}
 </div>
 	
 	<div style="left:870px; top:490px; width:78px;height:35px;">
-<object type="image/X-arib-png" data="images/fb-like.png" style="left:0;top:0;width:78px;height:35px;"/>
+<object type="image/X-arib-png" data="images/fb-like.png" style="left:0;top:0;width:78px;height:35px;"  accesskey="B" onclick="sendLike();"/>
 </div>
 
 <!--
@@ -59,6 +76,6 @@ function goback(){ browser.launchDocument("../video.xml", "cut");	}
 
 </div>
 
-
+<p id="display" style=""><![CDATA[]]></p>
 </body>
 </bml>
