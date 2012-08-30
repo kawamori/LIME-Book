@@ -40,18 +40,21 @@ var clientWidth = 960;
 </head>
 <body onload="move();">
 
-	<div id="stream" style="left:300px; top:210px; width:600px; height:330px;">
-		<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/world_out.mp4&protocol=http_tts" streamstatus="play" style="left:20px; top:17px;width:600px; height:330px;" />
-	</div>
 
 <div style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;">
 <object id="text" type="image/jpeg" data="dubai-1.jpg" style="left:10px;top:0;width:400px;height:540px;"/>
-
+</div>
+<div style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;">
 <object type="image/X-arib-png" data="dubai-title.png" style="left:700px;top:0;width:202px;height:150px;"/>
 
 </div>
 
 
+
+	<div id="stream" style="left:300px; top:210px; width:600px; height:330px;">
+		<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/world_out.mp4&protocol=http_tts" streamstatus="play" style="left:0px; top:0px;width:600px; height:330px;" />
+	</div>
+	
 <div style="left:0px; top:300px; width:960px; height:40px;">
 <object id="text" type="image/X-arib-png" data="arabic-line-test.png" style="top:0;width:936px;height:40px;"/>
 </div>
