@@ -40,8 +40,8 @@ var clientWidth = 960;
 </head>
 <body onload="move();">
 
-	<div id="stream" style="left:0px; top:0px; width:960px; height:540px;">
-		<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/world_out.mp4&protocol=http_tts" streamstatus="play" style="left:20px; top:17px;width:600px; height:337px;" />
+	<div id="stream" style="left:300px; top:210px; width:600px; height:330px;">
+		<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/world_out.mp4&protocol=http_tts" streamstatus="play" style="left:20px; top:17px;width:600px; height:330px;" />
 	</div>
 
 <div style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;">
