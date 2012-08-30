@@ -25,14 +25,10 @@ browser.lockScreen();
 </head>
 <body>
 
-
-
-
-	<div id="stream" style="left:0px; top:0px; width:960px; height:540px;">
+<div id="stream" style="left:0px; top:0px; width:960px; height:540px;">
 		<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/world_out.mp4&protocol=http_tts" streamstatus="play" style="left:145px; top:110px;width:580px; height:326px;" />
 	</div>
 <div style="left:0px; top:0px; width:960px; height:540px">
-
 
 <object type="image/X-arib-png" data="Mirror202_2t.png" style="left:0;top:20;width:872px;height:513px;"/>
 

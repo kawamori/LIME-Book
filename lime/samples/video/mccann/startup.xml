@@ -62,7 +62,7 @@ function alert(str){
 	</div>
 </div>
 	
-	<div style="left:870px; top:490px; width:78px;height:35px;">
+	<div style="top:500px;left:18px; width:78px;height:35px;">
 <object type="image/X-arib-png" data="images/fb-like.png" style="left:0;top:0;width:78px;height:35px;"  accesskey="B" onclick="sendLike();"/>
 </div>
 
@@ -71,7 +71,7 @@ function alert(str){
 	<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:3;" accesskey="Y" onclick="goback();">Back </p>
 	
 	-->
-<div style="top:500px;left:18px;width:34px;height:34px;" >
+<div style="left:870px; top:490px;width:34px;height:34px;" >
 <object type="image/X-arib-png" data="images/return-button.png" style="left:0;top:0;width:34px;height:34px;" accesskey="Y" onclick="goback();"/>
 
 </div>
