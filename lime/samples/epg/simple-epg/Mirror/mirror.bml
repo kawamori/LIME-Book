@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="EUC-JP" ?>
-<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
-<title>template for BS</title>
+<title></title>
 
 <style><![CDATA[
 	body{
@@ -27,7 +26,7 @@ browser.lockScreen();
 <body>
 
 	<div id="stream" style="left:0px; top:0px; width:960px; height:540px;">
-		<object id="video" type="application/X-arib-contentPlayControl" data="http://example.video.vid" streamstatus="play" style="left:145px; top:110px;width:580px; height:326px;" onfocus="getHome();" accesskey="B" />
+		<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/world_out.mp4&protocol=http_tts" streamstatus="play" style="left:145px; top:110px;width:580px; height:326px;" onfocus="getHome();" accesskey="B" />
 	</div>
 <div style="left:0px; top:0px; width:960px; height:540px">
 
