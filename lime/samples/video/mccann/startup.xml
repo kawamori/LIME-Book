@@ -39,9 +39,28 @@ var timerID = NaN;
 var ct=0;
 var drmID;
 
+alert("start");
+
+
+function timer(){
+ tm++;	
+
+var lb = document.getElementById("likeb");
+
+if (tm > 5){ lb.normalStyle.visibility="visible";}
+ alert(tm+"hello");
+
+}
+
+function startTimer(){
+		timerID = browser.setInterval("timer();", 1000, 0);}
+}
+
 
 
 function myload(){
+
+alert("myload");
 
 startTimer();
 
@@ -79,20 +98,6 @@ function alert(str){
 }
 
 
-
-function timer(){
- tm++;	
-
-var lb = document.getElementById("likeb");
-
-if (tm > 5){ lb.normalStyle.visibility="visible";}
- alert(tm+"hello");
-
-}
-
-function startTimer(){
-		timerID = browser.setInterval("timer();", 1000, 0);}
-}
 
 	
 function goback(){ browser.launchDocument("../video.xml", "cut");	}
