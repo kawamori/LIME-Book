@@ -62,7 +62,7 @@
 <script><![CDATA[
   
   function refresh(){ browser.reloadActiveDocument();}
-  function goback(){ browser.launchDocument("../../startup.bml", "cut");	}
+  function goback(){ browser.launchDocument("../startup.bml", "cut");	}
   
 ]]></script>
  </head>

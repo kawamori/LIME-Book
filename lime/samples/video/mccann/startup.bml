@@ -29,85 +29,41 @@
 	height:540px;
 }
 #display	{ font-size:20px;background-color-index:80;color-index:7;
-		top:30px;left:30px;width:420px;height:40px;}
+		top:30px;left:30px;width:100px;height:40px;}
 		
 ]]></style>
 	<script ><![CDATA[
-
-var tm = 0;
-var timerID = NaN;
-var ct=0;
-var drmID;
-
-
-
-function myload(){
-
-startTimer();
-
-
-var did =browser.getDRMID("marlin_iptv_es");
-
-
-	if( did != null ){
-			drmID=did;
-		}else{
-			drmID="fixed client";
-		}
 	
-}
+function goback(){ browser.launchDocument("../video.xml", "cut");	}
 
 function sendLike(){
 
-ct++;
-
-var ret="Like-button pushed "+ct+" times by "+drmID;
-/*
 var url = "http://127.0.0.1/cgi-bin/count.pl";
 
 	var ret = browser.transmitTextDataOverIP(url,'1',"EUC-JP");
-	*/
 	 alert(ret);
 	
 
 }
-
 
 function alert(str){
 	var obj = document.getElementById("display");
 	obj.firstChild.data = str + "\r";
 }
 
-
-
-function timer(){
- tm++;	
-
-var lb = document.getElementById("likeb");
-
-if (tm > 4){ lb.normalStyle.visibility="visible"; return;}
-
-}
-
-function startTimer(){
-		timerID = browser.setInterval("timer();", 1000, 0);}
-}
-
-	
-function goback(){ browser.launchDocument("../video.xml", "cut");	}
 		]]></script>
 </head>
-<body id="body" onload="myload();">
+<body id="body">
 
 <div id="basePane" style="top:0px;width:960px;height:540px;visibility:visible;">
 
-	<div style="top:0px;left:0px;width:960px;height:540px;visibility:visible;">
-		<object id="vod" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_720p_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
+	<div style="top:0px;left:0px;width:960px;height:540px">
+		<object id="vod" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_720p_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;visibility:visible;" />
 	</div>
 </div>
 	
 	<div style="top:500px;left:18px; width:78px;height:35px;">
-<object id="likeb" type="image/X-arib-png" data="images/fb-like.png" style="left:0;top:0;width:78px;height:35px;visibility:hidden;"  accesskey="B" onclick="sendLike();"/>
+<object type="image/X-arib-png" data="images/fb-like.png" style="left:0;top:0;width:78px;height:35px;"  accesskey="B" onclick="sendLike();"/>
 </div>
 
 <!--
