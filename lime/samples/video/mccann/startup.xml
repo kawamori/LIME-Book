@@ -85,7 +85,8 @@ function timer(){
 
 var lb = document.getElementById("likeb");
 
-if (tm > 4){ lb.normalStyle.visibility="visible"; return;}
+if (tm > 5){ lb.normalStyle.visibility="visible";}
+ alert(tm+"hello");
 
 }
 
