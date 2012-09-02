@@ -49,7 +49,9 @@ function goback(){ browser.launchDocument("../video.xml", "cut");	}
 	</div>
 </div>
 
-		<object id="vod" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:360px;height:202px;visibility:visible;" />
+
+<div style="top:100px;left:300px;width:460px;height:302px;background-color-index:1;">	
+	<object id="vod" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts" streamstatus="play" style="top:10px;left:10px;width:360px;height:202px;visibility:visible;" />
 	</div>
 	
 
