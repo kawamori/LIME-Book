@@ -16,11 +16,9 @@
     grayscale-color-index:171 167;
     text-align:center;
   }
-.button
-{
-	width:240px;
-	height:271px;
-}
+
+    	.button	{top:510px;height:24px;width:85px;text-align:center; }
+    	
 #buttons
 {
 	left:0px;
@@ -29,12 +27,12 @@
 	height:540px;
 }
 #display	{ font-size:20px;background-color-index:80;color-index:7;
-		top:30px;left:30px;width:420px;height:40px;}
+		top:30px;left:30px;width:520px;height:40px;}
 		
 ]]></style>
 	<script ><![CDATA[
 
-alert("start");
+alert("==============================start======================\n");
 
 
 var tm;
@@ -47,7 +45,7 @@ var drmID;
 
 function myload(){
 
-alert("myload");
+alert("\nmyload");
 
 tm = 0;
 timerID = NaN;
@@ -82,7 +80,7 @@ function alert(str){
 
 	
 function goback(){ browser.launchDocument("../video.xml", "cut");	}
-
+function refresh(){ browser.reloadActiveDocument();}
 		]]></script>
 </head>
 <body id="body" onload="myload();">
@@ -105,8 +103,9 @@ function goback(){ browser.launchDocument("../video.xml", "cut");	}
 	-->
 <div style="left:870px; top:490px;width:34px;height:34px;" >
 <object type="image/X-arib-png" data="images/return-button.png" style="left:0;top:0;width:34px;height:34px;" accesskey="Y" onclick="goback();"/>
-
 </div>
+
+<p id="p01" class="button" style="left:250px;color-index:7;background-color-index:1;" onclick="refresh();"  accesskey="R">Reload</p>
 
 <p id="display" style=""><![CDATA[]]></p>
 </body>
