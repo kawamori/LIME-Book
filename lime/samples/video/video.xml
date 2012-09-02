@@ -20,7 +20,7 @@
 		var urlList = new Array();
 		urlList[0] = "itu-test/video.xml";
 		urlList[1] = "mccann/startup.xml";
-		urlList[2] = "";
+		urlList[2] = "PinP/video.xml";
 		urlList[3] = "";
 		urlList[4] = "";
 		urlList[5] = "";
