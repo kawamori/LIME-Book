@@ -9,7 +9,7 @@
                         body { background-image: url("images/chiloncastle.jpg");}
 			p {height:16px;color-index:15;grayscale-color-index:15 15}
 			
-			p:focus{background-color-index:80;color-index:7;}
+			p:focus{color-index:7;}
 			.button {top:180px;left:221px;width:429px;height:28px;}
 			
 		]]>
