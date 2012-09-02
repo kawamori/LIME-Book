@@ -34,27 +34,14 @@
 ]]></style>
 	<script ><![CDATA[
 
-var tm = 0;
-var timerID = NaN;
-var ct=0;
-var drmID;
-
 alert("start");
 
 
-function timer(){
- tm++;	
+var tm;
+var timerID;
+var ct;
+var drmID;
 
-var lb = document.getElementById("likeb");
-
-if (tm > 5){ lb.normalStyle.visibility="visible";}
- alert(tm+"hello");
-
-}
-
-function startTimer(){
-		timerID = browser.setInterval("timer();", 1000, 0);}
-}
 
 
 
@@ -62,34 +49,29 @@ function myload(){
 
 alert("myload");
 
-startTimer();
+tm = 0;
+timerID = NaN;
+ct=0;
 
+//startTimer();
 
 var did =browser.getDRMID("marlin_iptv_es");
-
 
 	if( did != null ){
 			drmID=did;
 		}else{
 			drmID="fixed client";
 		}
-	
 }
+
+
 
 function sendLike(){
 
 ct++;
 
 var ret="Like-button pushed "+ct+" times by "+drmID;
-/*
-var url = "http://127.0.0.1/cgi-bin/count.pl";
-
-	var ret = browser.transmitTextDataOverIP(url,'1',"EUC-JP");
-	*/
-	 alert(ret);
-	
-
-}
+	 alert(ret);}
 
 
 function alert(str){
@@ -98,9 +80,9 @@ function alert(str){
 }
 
 
-
 	
 function goback(){ browser.launchDocument("../video.xml", "cut");	}
+
 		]]></script>
 </head>
 <body id="body" onload="myload();">
@@ -113,7 +95,7 @@ function goback(){ browser.launchDocument("../video.xml", "cut");	}
 </div>
 	
 	<div style="top:500px;left:18px; width:78px;height:35px;">
-<object id="likeb" type="image/X-arib-png" data="images/fb-like.png" style="left:0;top:0;width:78px;height:35px;visibility:hidden;"  accesskey="B" onclick="sendLike();"/>
+<object id="likeb" type="image/X-arib-png" data="images/fb-like.png" style="left:0;top:0;width:78px;height:35px;visibility:;"  accesskey="B" onclick="sendLike();"/>
 </div>
 
 <!--
