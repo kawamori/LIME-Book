@@ -22,7 +22,7 @@
 		urlList[1] = "mccann/startup.xml";
 		urlList[2] = "PinP/video.xml";
 		urlList[3] = "MNG-Video/startup.xml";
-		urlList[4] = "caption/startup.xml";
+		urlList[4] = "caption/bml/startup.xml";
 		urlList[5] = "";
 		urlList[6] = "";
 		urlList[7] = "";
