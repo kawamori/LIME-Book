@@ -21,7 +21,7 @@
 		urlList[0] = "nvram/ziptest.xml";
 		urlList[1] = "nvram/nvram-test.xml";
 		urlList[2] = "drm/license-test.xml";
-		urlList[3] = "";
+		urlList[3] = "http/startup.xml";
 		urlList[4] = "";
 		urlList[5] = "";
 		urlList[6] = "";
@@ -66,7 +66,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">DRM ID test</p>
 		
 		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
-		onclick="jump();"></p>
+		onclick="jump();">HTTP test</p>
 		
 		
 		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"

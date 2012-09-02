@@ -1,6 +1,6 @@
 /**************************  共通データ  ********************************/
 
-//var gVodURL = "http://htvl-pgw.iptvf.jp:12345/pgw/resolvecontent?contract_id=1234567890&purchase_id=1234567890&promo=on&crypt=no&drmid=100400000005ee98&cid=00g6lvgp7n";
+
 var gVodURL = "http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts";
 //var gVodLength = 730;	// Show VOD Time [100msec] ex.10=1sec, 300=30sec
 var gVodLength = 12150;
