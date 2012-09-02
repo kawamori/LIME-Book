@@ -6,10 +6,13 @@
 <title>MNG over Video</title>
 <style><![CDATA[
   body {
+  	clut:url(images/asl0.clt);
     background-color-index:7;
     resolution:960x540;
     display-aspect-ratio:16v9;
-  }
+
+
+	}
   p.title {
     font-size:20px;
     color-index:15;
