@@ -9,7 +9,7 @@
                         body { background-image: url("images/chiloncastle.jpg");}
 			p {height:16px;color-index:15;grayscale-color-index:15 15}
 			
-			p:focus{color-index:7;}
+			p:focus{background-color-index:80;color-index:7;}
 			.button {top:180px;left:221px;width:429px;height:28px;}
 			
 		]]>
@@ -18,7 +18,7 @@
 
 		var urlList = new Array();
 		
-		urlList[0] = "";
+		urlList[0] = "news/index.xml";
 		urlList[1] = "video/video.xml";
 		urlList[2] = "epg/index.xml";
 	        urlList[3] = "system/index.xml";
@@ -53,7 +53,7 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 <p id="display" style="top:20px;left:50px;width:350px;height:400px;"><![CDATA[ Sample LIME code ]]></p>
 		
         <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();"></p>
+		onclick="jump();">News</p>
 
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
 		onclick="jump();">Video Test</p>
@@ -93,6 +93,9 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 
 
 
+<div style="left:188px; top:150px; width:32px;height:15px;">
+<object type="image/X-arib-png" data="images/graphic_new_transparent3.png" style="left:0;top:0;width:32px;height:15px;"/>
+</div>
 
 <p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
 
