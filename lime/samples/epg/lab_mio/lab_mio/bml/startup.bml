@@ -495,7 +495,7 @@ object_id="video"/>
 			data="../images/widget_menu/btn_on.jpg"
 		/>
 
-		<p id="TextTitleL"class="sm_title"><![CDATA[]]></p>
+		<p id="TextTitleL" class="sm_title"><![CDATA[]]></p>
 		<p id="tsv1" class="tsv_text"><![CDATA[]]></p>
 	</div>
 
