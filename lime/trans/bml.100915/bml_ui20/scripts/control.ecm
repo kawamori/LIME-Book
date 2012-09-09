@@ -1,0 +1,89 @@
+function $(id) { return(document.getElementById(id)); }
+
+function MenuObj() {
+  this.showTime   = 500;//[ms]
+  this.hideTime   = 500;//[ms]
+  this.toggleMenu = false;
+  this.timerID    = null;
+  this.startDate  = null;
+
+  this.showMenu = showMenuFunc;
+  this.hideMenu = hideMenuFunc;
+}
+var gMenu = new MenuObj();
+
+function showMenuFunc() {
+  if (gMenu.toggleMenu || gMenu.timerID) return;
+  gMenu.toggleMenu = true;
+  gMenu.startDate  = new Date();
+
+  $('controlSmoke').normalStyle.backgroundColorIndex = 151;
+  $('menuPane'    ).normalStyle.left  = '-217px';
+  $('timePane'    ).normalStyle.top   = '-48px';
+  $('titlePane'   ).normalStyle.top   = '-48px';
+
+  var bunner = $('bunnerPane');
+  bunner.normalStyle.width = '0px';
+  bunner.normalStyle.left  = '220px';
+
+  gMenu.timerID = browser.setInterval("_showMenuImpl();", 100, 0);
+}
+
+function _showMenuImpl() {
+  var diff = browser.subDate(new Date(), gMenu.startDate, 0) * 100 / gMenu.showTime;
+  if (diff >= 100) { // 時間経過が100%以上
+    $('controlSmoke').normalStyle.backgroundColorIndex = 156;
+    $('menuPane'    ).normalStyle.left  = '0px';
+    $('timePane'    ).normalStyle.top   = '0px';
+    $('titlePane'   ).normalStyle.top   = '0px';
+    $('bunnerPane'  ).normalStyle.width = '657px';
+
+    browser.clearTimer(gMenu.menuTimer);
+  } else {
+    $('controlSmoke').normalStyle.backgroundColorIndex = 151 + (5 * diff / 100);
+    $('menuPane'    ).normalStyle.left  = (-217 + (217 * diff / 100)) + 'px';
+    $('timePane'    ).normalStyle.top   = (-48  + (48  * diff / 100)) + 'px';
+    $('titlePane'   ).normalStyle.top   = (-48  + (48  * diff / 100)) + 'px';
+    $('bunnerPane'  ).normalStyle.width = ( 0   + (657 * diff / 100)) + 'px';
+  }
+}
+
+function hideMenuFunc() {
+  if (!gMenu.toggleMenu || gMenu.menuTimer) return;
+  gMenu.toggleMenu = false;
+  gMenu.startDate  = new Date();
+
+  $('controlSmoke').normalStyle.backgroundColorIndex = 156;
+  $('menuPane'    ).normalStyle.left  = '0px';
+  $('timePane'    ).normalStyle.top   = '0px';
+  $('titlePane'   ).normalStyle.top   = '0px';
+
+  var bunner = $('bunnerPane');
+  bunner.normalStyle.width = '657px';
+  bunner.normalStyle.left  = '220px';
+
+  gMenu.timerID = browser.setInterval("_hideMenuImpl();", 100, 0);
+}
+
+function _hideMenuImpl() {
+  var diff = browser.subDate(new Date(), gMenu.startDate, 0) * 100 / gMenu.showTime;
+  if (diff >= 100) { // 時間経過が100%以上
+    $('controlSmoke').normalStyle.backgroundColorIndex = 151;
+    $('menuPane'    ).normalStyle.left  = '-217px';
+    $('timePane'    ).normalStyle.top   = '-48px';
+    $('titlePane'   ).normalStyle.top   = '-48px';
+
+  var bunner = $('bunnerPane');
+  bunner.normalStyle.width = '0px';
+  bunner.normalStyle.left  = '-657px';
+
+    browser.clearTimer(gMenu.menuTimer);
+  } else {
+    $('controlSmoke').normalStyle.backgroundColorIndex = 156 - (5 * diff / 100);
+    $('menuPane'    ).normalStyle.left  = (0 - (217 * diff / 100)) + 'px';
+    $('timePane'    ).normalStyle.top   = (0 - (48  * diff / 100)) + 'px';
+    $('titlePane'   ).normalStyle.top   = (0 - (48  * diff / 100)) + 'px';
+    $('bunnerPane'  ).normalStyle.width = (0 - (657 * diff / 100)) + 'px';
+  }
+}
+

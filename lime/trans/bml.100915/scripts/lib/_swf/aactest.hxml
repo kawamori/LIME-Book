@@ -1,0 +1,4 @@
+-swf AACtest.swf
+-swf-header 800:600:30:000000
+-swf-version 10
+-main AACtest

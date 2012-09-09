@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA" "bml_1_0.dtd">
+<?bml bml-version="1.0" ?>
+<bml>
+<head>
+<title>template for BS</title>
+
+<style><![CDATA[
+	body{
+		clut:url(default.clt);
+		background-color-index:0;
+	}
+	
+  #display	{ font-size:20px;
+    background-color-index:16;
+    color-index:7;
+    font-size:16px;
+	top:450px;left:760px;width:200px;height:80px;}
+	
+]]></style>
+
+
+
+
+
+<script src='../WORK/step1/stepbystep/scripts/mycommon.ecm.js'/>
+<script>
+<![CDATA[
+
+
+var     max_pics=16;	// <---- set this value to the total number of pictures in film
+
+
+/* **** animation runtime module ****/ 
+
+var timer
+var position;
+var myid; 
+var prev;
+
+
+function load(){
+alert("onload");
+    position=1;
+    	forward();
+}
+
+function restartShow() {
+
+    browser.clearTimer(timer);
+    forward();
+}
+        
+function forward() {
+
+printd("forward\n");
+
+ printlnd("position="+position);
+            myid = "t"+position;
+            prev = "t"+ (position -1);
+
+    if (position < max_pics) {
+            position++;
+           
+    } else {
+        position = 1;
+        
+    }
+
+     
+ printlnd("myid="+myid+"; prev="+prev);  
+
+for(var m=1;m<=max_pics;m++){
+var viz1=document.getElementById('t'+m).normalStyle;
+if(m==position){
+viz1.visibility = 'visible';
+}else{
+
+viz1.visibility = 'hidden';
+}
+}
+ printlnd("myid="+myid+"; prev="+prev);  
+    
+    timer = setTimeout("forward()", 100);
+}
+
+function onunload(){
+	browser.clearTimer(timer);
+}
+
+
+]]></script>
+
+</head>
+<body onload="load();">
+
+<div id="t0" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden"> 
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+ 
+                                                                                                     
+                                                                                                    
+                                                                                  M0                
+                                 ;277rX                                           XMMM7             
+                             08M2 82SSaMW@M@MWrr               aM@WaiMS   r8i  MMM2  MMWMMMW:       
+                          :ZMa.MX Z7rr;ii;;;;r70MMMB@@@ZMS M20MZ;;i8Z,MM;MaXWM 7i.MS   02rM i       
+                        2@0X;iiX  Xrrrrrrrrrrr;ii rri;;:8  M,;ii;riSX:B :i:iiiM ai.B@S8Z :.SMXM     
+                      SMXi:iri8i M2rrrrriiirrrri28 r;rr,M XS:rrrrriaa;M:;S7:; M S:.0 riXM8;MM ;Mi   
+                     Wai aSir,MS.8irrrrr,M.irrr,7MM;rrr.M M;irrrrr;;; :i,7MZ, M7,iMaMW7 i.,.@M  X   
+                    8Z:,rMa:r,Mr88ir;ii;.M0,;r;:B,;i;;;.W M;;rrrr:;:702M,:,WB 8M,W8 .iM Z;;i.7MMBB  
+                   ;Mi.8@ZS,ri2 .riri2a;:,M::r;;M:ii 7.:M Z;;rrrr.M:;i M X,.aX aZrX M;. ;Sir;r iB :i
+                   8M7ZM aS.;;iM0r:;iaX.i.7M:i;:::;i8M S  7;iii;r.@ :ri,Mr8:.M .BS;  M;B 8rirXX;.M  
+                       i 8M7iri.rM7i;iaXM: Z0.;rrr7Z:M ZM;rriZXiri7MXZXiiai;::BMMMXrM  ZiW:iZ  X 8 @
+                  :MMrM :. a;iriW B:;;:M M@7Ma:rr7B  M SMS;ri0B.r;:.  XXirBri M  aMMMMMMB0@MB2XMMM  
+                   a  M S.X M,;i;M2;;ri;M   r0i;rS   ;i:,:;ri7M.i;r7@M rZ,SZ, M22           XM M    
+                   Z. MiM2i,M:ri:.M: .iirr2WSM;,,r  Marrrrrr;.XW::;;irX WX,i MM              XMa    
+                  MW MiiZSrii,X2 ,,0MMX;i;;:,,@MMM0 B::;rrrr;iXMM7,;rr0  M , M                      
+                2MMZ M i  7iiiMMWri..  MZi;iMM    a @MZ ..,irai  WX i;r;i0rMMB                      
+               M  Wa M i :M7ZM, .Bri7a. W8@:2,        M@MMB77 iM@BMM,;;rMM                          
+              Z8X;Mr:M 0@ MM      M.rr27   M          M7iiXrWW     00:i.:iXZSM                      
+            2MS,:iM MZWMM0.      BM:r;iiXMM             i,X M       WMX:::;;,aW                     
+            i;.W@  MB:           :  :;2BMi             MMXSM@         W@M0:,00Br                    
+       .;:i,@MXii8              @BM M02i               ,@i   .          .0 ,7,:M                    
+      WM0W  @ ;@0X             20,:r82                  SZ;S20            ;MM7W ;8                  
+      .ZMM  M88W              :M7:ii@                   i8:M7M               02r2M;                 
+           S@ i2               MM;:iWr                   8X2 M                @0,iW8                
+           M,,M                 iMMi;0S                  XaiiWW8               BMi,WM               
+           MZ:,MMMS               r2W20Xr. .7             8M;iX8MM              XMX.aM0MMMMB        
+            BMZ2SZMMi                aBiMM88MM@            ;WWB0WM8               7M07.: M,MM.      
+                                      rrX,i:,2Mr                                    77XX;0;         
+                                      
+                                      
+                                      
+]]></p>
+</div>
+
+<div id="t1" style="left:0px; top:0px; width:960px; height:540px;"> 
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+ 
+                                                                                                     
+                                                                                                    
+                                                                                  M0                
+                                 ;277rX                                           XMMM7             
+                             08M2 82SSaMW@M@MWrr               aM@WaiMS   r8i  MMM2  MMWMMMW:       
+                          :ZMa.MX Z7rr;ii;;;;r70MMMB@@@ZMS M20MZ;;i8Z,MM;MaXWM 7i.MS   02rM i       
+                        2@0X;iiX  Xrrrrrrrrrrr;ii rri;;:8  M,;ii;riSX:B :i:iiiM ai.B@S8Z :.SMXM     
+                      SMXi:iri8i M2rrrrriiirrrri28 r;rr,M XS:rrrrriaa;M:;S7:; M S:.0 riXM8;MM ;Mi   
+                     Wai aSir,MS.8irrrrr,M.irrr,7MM;rrr.M M;irrrrr;;; :i,7MZ, M7,iMaMW7 i.,.@M  X   
+                    8Z:,rMa:r,Mr88ir;ii;.M0,;r;:B,;i;;;.W M;;rrrr:;:702M,:,WB 8M,W8 .iM Z;;i.7MMBB  
+                   ;Mi.8@ZS,ri2 .riri2a;:,M::r;;M:ii 7.:M Z;;rrrr.M:;i M X,.aX aZrX M;. ;Sir;r iB :i
+                   8M7ZM aS.;;iM0r:;iaX.i.7M:i;:::;i8M S  7;iii;r.@ :ri,Mr8:.M .BS;  M;B 8rirXX;.M  
+                       i 8M7iri.rM7i;iaXM: Z0.;rrr7Z:M ZM;rriZXiri7MXZXiiai;::BMMMXrM  ZiW:iZ  X 8 @
+                  :MMrM :. a;iriW B:;;:M M@7Ma:rr7B  M SMS;ri0B.r;:.  XXirBri M  aMMMMMMB0@MB2XMMM  
+                   a  M S.X M,;i;M2;;ri;M   r0i;rS   ;i:,:;ri7M.i;r7@M rZ,SZ, M22           XM M    
+                   Z. MiM2i,M:ri:.M: .iirr2WSM;,,r  Marrrrrr;.XW::;;irX WX,i MM              XMa    
+                  MW MiiZSrii,X2 ,,0MMX;i;;:,,@MMM0 B::;rrrr;iXMM7,;rr0  M , M                      
+                2MMZ M i  7iiiMMWri..  MZi;iMM    a @MZ ..,irai  WX i;r;i0rMMB                      
+               M  Wa M i :M7ZM, .Bri7a. W8@:2,        M@MMB77 iM@BMM,;;rMM                          
+              Z8X;Mr:M 0@ MM      M.rr27   M          M7iiXrWW     00:i.:iXZSM                      
+            2MS,:iM MZWMM0.      BM:r;iiXMM             i,X M       WMX:::;;,aW                     
+            i;.W@  MB:           :  :;2BMi             MMXSM@         W@M0:,00Br                    
+       .;:i,@MXii8              @BM M02i               ,@i   .          .0 ,7,:M                    
+      WM0W  @ ;@0X             20,:r82                  SZ;S20            ;MM7W ;8                  
+      .ZMM  M88W              :M7:ii@                   i8:M7M               02r2M;                 
+           S@ i2               MM;:iWr                   8X2 M                @0,iW8                
+           M,,M                 iMMi;0S                  XaiiWW8               BMi,WM               
+           MZ:,MMMS               r2W20Xr. .7             8M;iX8MM              XMX.aM0MMMMB        
+            BMZ2SZMMi                aBiMM88MM@            ;WWB0WM8               7M07.: M,MM.      
+                                      rrX,i:,2Mr                                    77XX;0;         
+                                      
+                                      
+                                      
+]]></p>
+</div>
+<div id="t2" style="left:0px; top:0px; width:960px; height:540px;">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+                                                                                                    
+                                                                                                    
+                                                                                :M0                 
+                                ,aMWMMS                                         ,WXMMWa7            
+                             rMM  2r;rS@MMMMMWMaZ,           aMMMMMW ,;ia@MM8rMM00  .MWXMMBM:       
+                           2W@,8  S7rr;i:iiiii;XS aMMMMMMB,MBWi::::X.rMMr;i:M  8 a0   ZS2iBMi       
+                        a8BX;;.M.72rrrrrrrrrrrr7i  X,:i M, M.i;rrr;BW r.;rri.M M:,rMaZZ . M22@@,    
+                      XMZaSirr:M a7rrrrr;;;rrrr;7Ba;;rr M: rirrrrr;r ZMir;ii M M:,XB8.;M0:X  0WM    
+                     Ma:i02ir;X 08irrrrr;Siirr;,7MM:rrr M 2Srrrrii:X  .;;rZM;W X.Z0M@7rM irSMBMii   
+                    M7;ZB,i;ria iS;;;r;riSM,;r;;M :,;i;,M Br:;ir,Mr:0@X2i;,X2iiZ0M  :: M,rri.;r W7  
+                   8Z:Z  iirr:MX X;;SW.;iiWi:r;iZ.i;MS;S 2a:iM.r,MMi::MS;ii.MXi2:M  M70..i;r;raXM M.
+                  0M:M7 MMiir,M2 X;;:8ar: rM:ir;;i;M r77M@:i,M ;ii Mii:r7;,:rS;0;.8 XX:iM2i,  . M  :
+                       M a2,;iZ i2;r;i;XMM2WW:;rriB  X7  ;i;:M,ir7Si:i;i2M :XaiiMMMa 7M,X2iSMM8:rM7 
+                  MaM ZX ;0::;riS2;;rr7    0Srir;7W rSrBMrr;:ZZ:riZMaW7;.X8.72,M  .MM@M87;WM  iMZ   
+                  M M7a:iMM0.:rri;X:ir7SWM  ,Z,;i2  M7;ii;rrirB,i;,;  Zar78 2S@,            MZM.    
+                 XM M,i:XMi0M.;r7 7M.ii;irSBMM27i8 Xairrrrrr; SZ:;;rM2  7i,7MM               7      
+                 7X M:iii@S 8S.i7r020Ma7rri a :a0M2:7,,i;rrr;rWM;ir;;Z :r;;W.                       
+                ;M7 M:ia; Z.,ZM,:ii2   aXiiB0      X@MZ2:.,:r8ZM;,;r;rMM;rBa                        
+              7M2a; Mii2iaM.:iWM2;;72M, MiZ8         M.ZM@ZM0  ZM;;rrriW 8X                         
+            ,Ma;.B.;S :;  WMMS ,Xi:;i;W  Mr          M. ; WS    Mri;X, X  a                         
+            M7::BZ2MM@MMM 7      Mirr:iM :           MXZZ@M     ,Ma;;7X8XZB                         
+           Mr.7Zr             7M  Mr,WM7             MiM          XM0r77r:aa                        
+          M2,0@ MXMX          M7r7;rMW               M r;M          ,WM ,M,MZ                       
+         W2:Sa 0;2Z          MXi;,M7                 M.r2M            :WMi iS;                      
+        ZZ:;X ,;MM           MZi;,M                  M.rMM              ;MZ8M,7                     
+       Z0i,2Z@  a             807:7M                 M.,r                 8SiiM                     
+       M2,aM7ZM,               i@X:SZ                Ma:7MW8Z              :BriWX                   
+       .M;i7;MX                 .@SiMS,r7i            BMi;i;@M              rM8;MMMMMBMS            
+        ;8M8ZMMZ                  M7:BMMZMMW           iWWWBB@r               BMX.,, MMM7           
+                                   8;:i:i8 0X                                   rXXX;S              
+
+]]></p>
+</div>
+
+
+<div id="t3" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+                                                                                                    
+                                                                                 X                  
+                                                                                iMMMM.              
+                               Zi MZWWBMWM0S                   rWBBMa.   r8W:  W88 .8MMM@8Z         
+                             WWM; M ;;iiiirX0MMBMW @MBWWBMMMMM027r;:MMB@Ma77ZM M 8X   XaXiMMMi      
+                          7MMr M: M rrrrrrr;iii,aM Z;;rirS M::i;rr;:M;.rii;;,M M i2@S;M;,  a 0M     
+                        SMM;:;.Mi M rrrr;;;rrrr:2M 2rrr:M. W:;rrrrir; 7X;;ii,Z M i 0iW XM7ZMi,SM,   
+                      a@:0Z:;riMX M.rrrriS,irrriZM Xrrr.M  r;iiirri0M 22ri8MiS M ,Z@ 2,.S.,iM,  ,   
+                     M7;2B:ir;X  8X:ii;r:M@,rrr:.;27rrr.M MS,XBi:;,i2  rii:Wai0Z,BM M:MXri;i;8S2M   
+                    W77@.7i;r;Zr BX;SWr;::M irr7M;X:;i;.M Bi:M,i:M,;;M M:ii,0i;iX2  Mi: 7i;r;iB. 7, 
+                  riSM0  Zair;Z, ir;7.,2i,ZM,;riiii M:::,Ma,,M r..7;ii0X@ir,M2,XMB@  M2aMZ;i,.,;8S 2
+                     M   2B:r;Z @B;;;SBX8i.Xairrr;;aM,:WM,,i.M r:M :i;i;r.i,rSX S8.M   i  ,,MMX.:S ;
+                  MZM    X8,r;2 aZir;:@ r MW0irr;:W Mi::;;;;:M ;:.ZMr;;iXM.,88i SMM0ZMMMMMMSBirMBMX 
+                 ,M70   SMB.;;iM ;;ir;;M ;  ZrrriXM B;;;;;r;:M2,r:M ;;:iiM. @iiM   i7;     SW ,M    
+                 Mi8   Mi.@;.;i7,2M;i;;;;aM  ;:iiMZ X;rrrrrr:7M,iiX@XM8i::.rW@M             ZMM.    
+                 M W@aXM ,SMr.ir:M ZM;i;;ir72MMZX.  Xrrrrrrr;,Z8iri:2 ;;;;;MMX                      
+                 M 0S Wr,;.iM8;;ir2  0W;i;20   70@MM;,.,:ii;7r;i,rr;iWMi;;BX                        
+                 ; 02.:,i;; S Mi;r72; :M7i0S        2M8@0S72Z  Mi;rri 2.:22                         
+                MM BMiMMWWW0M B27rrr7M, MW7         0; .;XM7:8WMi;i:irBM0@                          
+               MiM MS         M ii:i:ir 0i          MiMS,2S    Z;irM0 a                             
+              M7.8S.         a8 SBX@,:MM;           M.a;iW     0M7::;r0:M                           
+            .MX.:2  :        M;S:iXXMM7            :8:X MX       0MSiiriZ8                          
+            MB,aM:MSM      2Mriir0B2               22irZM          ZMW:.;8Z                         
+            88;M  M W      M7:r:M,                 82:X:;             0iiaX                         
+            8  :Z M;M      iM;i:@7                 W2,M0              .MBa2M:                       
+           MM8:0M M Z        M2:iM                 WS,ri                @@.rM:                      
+          :M;MWM  M7M         Mr:;M                MX,SMi2               rB:7M                      
+                  MM;         ,@7,;M               7Mr;270M7              Wa:aM0MMM.M               
+                  r,           ;MS BM7MMMM          SBBBB0MM               XBXi,,,ZMMM              
+                                 8Z;rr08iM;                                  7XXXX,                 
+
+
+
+]]></p>
+</div>
+
+
+<div id="t4" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+                                                                                                    
+                                                                                 Mr                 
+                                 .                                            i iMMMM@a:            
+                              a0 ;MWMM@BW0BBWSri               MMWBMM;S 7WBM, iMBB  iZMSMM@M;       
+                            0WMX  M ::i;;;rrr7aMMMrMWWWWMi .WM8riiiX7 2M2r;r2M M 7M,  rXi.rM 02     
+                         rBMai:Mi M.rrrrrrrrrri,SMr:;;;.M, Mri;;rr;22 S7i;;;:0 M i,ZW78.0X.MMWMZ    
+                       BMX@S:;i0 2a:rrrrrrrrrrrri M,rrr.M SXi;;;rr;S2 2X;;;;: MM i:2rS;7@r @ iXB7   
+                     MBi;.SririB WX;rrrr:;:rrr;7S M:rrr.M Mri;XiiiiXX 77;i8W: M8 ;BaM,@ Z:i7ZZM Z   
+                   ;M;;M0M0:;r:a  r;ii;r:M.irrrr7 X:;;;iM Mr,a8iS8i;Bi8Si;:8S M0 rM W M 2i;;i.W  a  
+                  2M7aM  aSirr.MW;7;70i;,7W,;rrrZaX r,i7  i,iM.iaX7i;Z Bi;i7B..rMa; .BX,;7ir;r2aMMZ 
+                 i  MM   a;;rr MZ.r;78rr;iWiirr;;i,2M:iMaXZ M,:;a M,;;MXXi; Mr;;i2 M M.SM2:,:.;:i  8
+                iM. i    2;;rr W2 ;;,0Z:r:XM,;rr;iZrMii  8; M ;r0 M rii.Z:r M;iZMMa7M @.:i:0M. ;;MMZ
+                M:W2     Mairr.MM:irir8raX:27;rr;aW  :r0W;;.M ir2 M i;;;M.r Mi M   Z08Ma8rSM .WM2.  
+               M7ra      aWi;r:22Zii;:M  XM0XirrrZ 88;;ii;riiM,;7M @Mr;,M,i WrMB            M;B     
+               M:M:       ZX;r;:,2M;ii;B   SXii:;. rX;rrrrr;.S;:i;M  07iii:MMM              MW      
+              S;iM        8ZXrr;XX M;i;7SWZZBWMMM0 7i;rrrrr;:WM.riXB  S;;i20                        
+              Mi2Z    Z8MS; i:r;;Z2 M;;r:;M     a8@MBXiiii,;20M rr;Z7 SiiSW                         
+             2W.M    rMi;;S8Mi;r;iM, M;iiMX         .8BMXaWM  M ;r7SWM2,ZM                          
+             aa:M     Mri;:8 M7rriiM iW2Mi                 Mr8M i0    SM2                           
+             07 M      M7:.M  :riii7  ZB               ;MXZMW MrirWMM;8                             
+             Z  M      ,W;aMM. W8Zr0M,:                :M.M    BS:,,,Sr                             
+             aMMM       .MX,:Sia 2MX                   :M i,Mi  MB   r0                             
+             S7 M       20.;;SBM8                       @.W M    7MMW.M                             
+             XZ.M       ;@i;i0                         r@.r@M     :M.:8:                            
+              MWM        r7i:M                      .BMSX:iM        M7iM                            
+                 M      ;M0:,W:                  MM@22;ZBM0,        ,0i;M                           
+              ZM2M      M;M7,ZM                  MMrZW8              rM,@.                          
+               MWM:     M@MWiiZ:                  ,7;                 WrrMM8M@MM;                   
+                           ,@r20S@MM0,                                 BM:i:i WMMM,                 
+                             @;7;B BB2                                  :XXXXrS  .                  
+
+
+]]></p>
+</div>
+
+<div id="t5" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+                                                                                                    
+                                                                                .2                  
+                                :  7X                                      r2rM0MMMMMMWX7ri         
+                             XMMM  MMMMMBMMMBWZXSr            ZMMWMMM B0@MMM. .2iX  ;ZB7MSMM;       
+                           MM0ia   8::::iii;;r77MMiMWMWMMX MM@7;ii:7 XM,ii:iW  M,SM,  iW. X; M8     
+                        28WS.:i2  M7rrrrrrrrrrrr7  ;:ii;X Zr:i;rrriX iW.r;;;;M M::.aBaMiXr8M B8M.   
+                     ,M@X,@2ir:M  Mirrrriiirrrr7SiMirr;2, MX;;;;rriZB:@.;iriiS @:,0aXM rM;.@ Z.2M   
+                   aMZ::,MB.;;iM.0Xirrrr,M.;rr;iiZM,rr;Z: 2;:;Xi;;:Z@rM:;SM,i727.2M  2 ai,i77   M   
+                  ZW:;ZMS riri; i2irrrrr.M;:rr;i2 2:;;ia ;Z:iM2:rS.r   i;,8M::M.a@X2X7Z 8;;r7SMM M  
+                 ZZS0M  MM,;r;MM8i;;iiir:iM,rr;;MM:X2;iMXiX.M2,:XM,;Z@MS;ii2;,,rMr  Mra;,X;;:,,raBr;
+               ,M, M2   MW r;,  ,;ri7M.i;:X.ir;,  X2Brr  8,;W.;iZr;;iZ i;;.Ba.0MWa7r  Xii;:iS2.,,; i
+               @iSM2    MM riXMWirriXMBi;iZM,rr;iXS ,;:BM: M iri@ X:;iX2;r.02 W  2M8M;MMMM7SMMMZ8M;i
+              Mr;M      SM riiMa:rr;i :S;:;M rr;SB XZ;7a,i M,:riM M.;,M;;r.0S W,:         iM  XB    
+             M2,M:      iM,ii7M,i;rr7irX;i2M,rrr0,ZMi;;;;r:,M riM @8,.W;;;.0BM@             MMM     
+            .W,M;        MMii7. airrriMB ZM:i;ii2 .2irrrrr; M r;X8 WM.ii;iSM0               :       
+            aa,M          Z7;iWMS;;rri,0X MZB0MMM ,S:,:ir;;ir rrrS  M rr;XM.                        
+            M M           XXiii: 7i;rri.MB       :8WMMMSr;2.M.rrr7ZBM.iirW,                         
+            MiM           .8:;;S7BM7;;;WB             i2BZM M ;,..i; X;MM                           
+           MXM,           0Mr;;;2  2,X@:                    M,:ZMX;SiZB                             
+           M Z          ., .iiiiiM MaW                      iMa.i,0a :                              
+          XBZX         @MSMrX2Wi M M.                         S2iiiiMM                              
+          M,Z.        M0iii7X7 SMS                             M@ a 8Z                              
+          M:M:       aa.ii8BB.M7,Sa                              WM:8S                              
+          M.Z         M.;ZZ   ,0MaSM7                           XB iMS                              
+             .        M.i0       7WSZ0S:                     ;M0r@Z,;X.                             
+          MWZ         Za:0.        MS;SM M:             iMMMBSi;0XM.iM7                             
+          M8@         ,0 Z          2W82iMMa            :MM22BWM; M,,ar                             
+          Si          ,M.MM70.         2BZW                 Xi    0W,Z;2MBMM0                       
+                       Mii:.MMMM                                   W@8S;ii0MMM                      
+                        X227B;..                                      7;;X                          
+
+
+]]></p>
+</div>
+
+<div id="t6" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+                                                                                                    
+                                                                                 MB                 
+                                 ,.                                         .   iMXMMMM877,         
+                              aM0X;MWW@B0MBWWWWXSi            0MMWBW 70rWMBMW MMW@   .a;MZZMM       
+                            MMZ8   Z;;;;;;;rrrrrBBZMBM08M; MM@7;ii:0M7M7;ii:M  0 iWZ  07,.7M i.     
+                         S8@r:,8   2rrrrrrrrrrr;2  ;:;;:M; Z:i;rrr;B8rW.;rr;;M M i,;0BXi;i:@@WM2    
+                      ;M8BMririMi M7rrrrrrrrrrr;i.M;rrr.M. Xrrrrrrr  7W:r;;ii:XM :XWii  ar,Z:8B :   
+                    ;MS.;Br:;;rS XS;rrrr;iiirrri8M irrriM aX:iirrrr8i.Zi;7Z7i.M2 ,8 ::MX;iii:rM B   
+                   @0:ZWM0.;riX  a7rrrrr;XM,rrri;:iiiii7  @.MBi;i;iX, S;;i28:.XiX2MWZ:MiXi;r;,M  W  
+                 :MXiM8 2air;i@MS7r;7rrri:M rrr;8M: W:iMX7riW.iiS8,rZ 77r;;a;:rSM7M  rr:iX;ii:;X0W:i
+                 .X B.  W:;r;Xi ;;rrS ii;,M rrr;:,:ZM,,  a.M ir.7M.;:MM;r;.BZ,2 7X X 7;XM7iiZ,  iX ;
+                M;MM.   @irr;rMM;rri7M@;i,M rrrr;iM M:SMMi.a,rr Mii;:a  r;:8X:W MMMW8MM2XSrXMMMMMXZZ
+               M,,2     @irrrX 7irria8 ri,M rrrriZ  2:,:.i:8:rr M 0ii,MX;iS8::X0   .X   ...M. W0    
+              Xa:MX     @irrra ZrrriS7BWi,M rrrr:0. X;;;rr:8:rr.M Ma;.M;i,X2,aM             M@S     
+              MrZW      @irr;S Z;rr;iZ  :Mr.,irii7MMirrrrr:8:rria  M7i7:.7M7Ma               .      
+             8rS0       @irr;ZXXrirr;:M 7W7MMS@2MZ a,ii;rr:8:rr;;M  X;i.XM0;                        
+           :M2Ma        0.;r;Z2SM;rr; 7ir. a.     .0MMBar;,a:rrr:8 Sri7MM;                          
+          XZ M2         M0ir;7  .;;i.,M@; MM           Z07MZ.i;r;;M;rM                              
+         aMM ,         M 2:irrX B2 .0Mr 0M X              Mi;Mi BX:ZWrrMM                           
+       :M72Z         :@8 @8.i:@iZ8ZMZ,:i,ZB              .Mi.ia.r M8. W  W                          
+      ;W;Mr         0Wrr7;Z2@iMM M X: 7i2@                XM8ar:M  XMBM@:BZ                         
+     XMZM:         2@ii;;:MS @i   @X,SXrM                  .  a.M    ,SW,aM8                        
+       0           S0:iSZZi       M:iiiS;                    M@.8M     iMW;7Z,                      
+    0WM7           S0i7M          SMBWaraBX                   WSB         a7iM8                     
+    M.Mi           ,Si;@              XWWWBM@S:               i8.,M      Za7:M.                     
+    M@8            ,2;r0                  SZ2SWBMMZ            @XiM     7M rM7                      
+                   :2;ia                    BM0XrrMMi          @a:SB   MM.0M                        
+                   :2iZM7a;                    ;a0WMM          rMr:ZM0XMMa                          
+                   :BiX;iWMMM                                   ;0MXrrX:MMM                         
+                    ,XSXXr:.:                                       rr,                             
+
+
+]]></p>
+</div>
+
+<div id="t7" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+                                                                                                    
+                                                                                                    
+                                                                                 MMMM:              
+                                M:M@B0M@BW0;                    ;r;ri     i7MMMZ8@ .8MMMM8r         
+                             MMM   Xr;;;;r7S@MM0WZ 0MWWB@@MM8M@MZS7WM2MMMMBrZ  Z 02   r822MM0       
+                          .WM;i2  MXrrrrrrr;i:i:BM 0;;riZ  M:iii;r:2Z.B ::ii2Z M :8M; SS  ; MM      
+                       iMWMX:i;Z  M;rrrrrrrrrrr;;  2;rrrMX 2;rrrrr:Z0,@,rrrr;iSM :.:20i2Mr2  rM@    
+                      M@ Z8:;ri0 ZS;rrrrriiirrr;Xi 2rrr7   ;i;;rrriSr:Mirrrrr MW ,0XM2 ,X:raa  M    
+                    7MiSMZ:ir;iM.ir;;;rr;iW,rrri2@ X;;ia. MXMZ;ri;i;S ,r;rrrr M; XZ 8 MM,i;;Sa      
+                   Z2;Z  a:rrrZ iS;i7,iriiM.rrriSM0iXiiM2 7W::;;.M.rX 87;r;ii M,ZZMaZ,X Z,;r;;WM. 2 
+                   0BM  Z0irrX ,B;;rMMrriXB.rrr;,: :MSa: XZ@.;r;SM r;:M:;r:82 ,;M S2 M72MXi;i:,iiM S
+                 .0 .;  M.;rirrX;;;;; Xr.27:rrrr;i:M    8,M,:ri;,M.r.BM ;r,Ba.W M0 08 0 Z7..Xa.. M  
+                 aW0M   M,r;;M Xrr;72 Zi M:;rrrrrrM M28MX M,;riM 8:r.BM ;;.BZ,a XBMMXMM0@MMMBWMMSM2 
+                .M,Mr  87ir,@ Mirrrr7 M: M ;rrrr;r  S:::i M,;riB B:r:.Mi;:X8,:8M   :r;;:    W X8    
+                M:;a   M,;r M 0,rrrrZaMX M ,,,,::0 @0irrr M,;ria Mr;7i,:ii0r BS             0MM.    
+                M.BS   M:rr M M.rrr;;:  MMWW8MWMZ0  ;;rri Mi;r,M  Mirr;:,ZrrMM                      
+               M:;@   M;irr M MirrrrrXi 2.   M  7rMM2ri: 8a:;riM  Biri.ZWZMZ,B;                     
+              i8,00  ;Bi;rr M  7irri,rMi B;XMM      :MMZMW.:,i:  M7i::BM;;,,:iM;                    
+              MX8@  i @Si;;,B .M,;,:@WrXrZ@             B7.M M8X7i;0MM0. i;ri::@W                   
+              2 W  ,M; @.XXr7M M,MZM0,,i;iiMM          iM,,r2 7iMMZr  SMX,iS:Mr:MM:                 
+           .@War  ZMr2WMai r:2 MZi   ;a;ii70            M8;ii;0WS       MMM. 7ii7 r0r               
+          @M7M0   M:ii, WXWMMB      MWM8i;Wi              aS 2Z            .aWMaMMZ:M.W             
+        0Mrr@,    M,i;BW8           M. ,iSB               MMiS0i                  rZM7S8Mi          
+      B.:2MM      M,:M:             XW7;iX0                WriS7                     X@irBM         
+    Z@MW W.       M.:M               ,W8;i8;                MiXM                      Z8XirBr       
+    XMB7          M.Sa                 SMSiWB               :W S0                       ZS:,MZ      
+                  M 27                   8B:a8               Mi.M                       ,Z80MZ      
+                 iB.8W                    B0778B@MM          8Z,7MXraWr                   MSi       
+                 XM.SZ0MMMX                :M@88a@MS         .W2;2a7SMMMX                           
+                  XZr;iXZ8B                                    i7;;;X;,.                            
+
+
+
+]]></p>
+</div>
+<div id="t8" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+
+                                                                                                    
+                                                                                                    
+                                                                                 ;MMM               
+                                2MM2B0M@WBXS7                   ;SXr          78i8  7MM8            
+                             BMM  M r;;;r7XXa@MBBM88WBWB@@MM0M@MMX7MM WMMMBM.  MiZW   0BaMMB2       
+                           XMSiS  M.rrrrrrrr;ii:X;:Mi;r;Z  8:iiii;iXiXM 7:irrM M :2B; XS;.B Xi      
+                        78MBiii0  Birrrrrrrrrrri2a Sirri0 a7;rrrrriX ;@.;;rr:0 M i.;Z2S ai;MMMMZ    
+                      WM;2S,;;;M:02;rrrrr;;;;rri2a BirriM M7i;;rrr;ZS;M:rrrrr2 M :a8iS.MM:.M   M    
+                     MSi8M7iriX  ;r;ii;r;:r7;rriaZ 8irr7X X:XS;riiiiSr7;rrrrrrSM ,ZBM M,::i7SMM 8   
+                   ;M;7X,S,;;iMS00rraMr;;iM.;rr;;i ;i;;X WBM:;;i B.:Mr.XrrrrriZW,0M B,M 8i;;i.Z2a.  
+                  7Mr;M Sr;r;Si.Zi;7  a;i:M rrr;X0,X7:ZS rB:iri;WM :7  7rriii:.,WiB  Mri2S:rr;ii.M8Z
+                    MM  Mir;r2 @i;rX: 0;,r0,rrr;;:.MMi; 8Sa:;;:B 7.iBM;;r;,@8,;;0Z M a82S@i.     M X
+                 SM    Mriir2 Mi;r;;X 0;.M:irrrrrrM Wii a@r:rrWBM7i;;MWirii0X,ZM MMXXW aS08ZMMMMMM Z
+                 M;ZM  M:i;M M:irr;7M 0, @.;rrrr;X  M777.M7irX  M::7  ;i;:ZB,: Mr  aMMa0,  X8 ,r    
+                ,M Mr MXi:M  W:rrr;;M 2.M. ..,:iiZ, ;i;; @rirSr M;:XMWr;,;0::;MW            iMM;    
+                M.7Z  Mi; M  B;rrr;i7  MrWMWWM@87@;MW;;:SW;;rX; Mrir8 ,.7M..S0                      
+                M.S :Miir M  Brrrr;;r2@X ....M  80 ;Si:;W7:;r2r Z;;:,  MZ SMM                       
+               Mi,8BM7:rr M  Wir;:.rZr WBaX;B0     X@WSMB ::iirMZi::XBMM@0r.,M                      
+              M8,8a .S;rr M  M ;;8MWi;@2  r@2          W.,M MW;r;8MMWM8  .:;i7M                     
+             W r MZ7 2S 2 M  MaMZ M;;ii2a, M          :M,:7i   M2     0Mr2MZi;rMX                   
+            ;M  :;i7Xi0 MZMB M     .a;;irM8           ,M   :7M2        7M   ,:,B S                  
+          rW7;SM ;iiSZM  .r      .M iX;2M              ZMMMXi2           .MMMaM @@M,                
+         rM;aM M ;aM7            MSr2i8S                rS,.i@               iM0;i .Z               
+     .28a MMW  M.iZ;             MX:i;W                  aS;MZ,                ,MMaaZMS             
+    ,MMMM X   ZS:r0               @B:,MX                  0rS:0                   WM:.XMWZM         
+              Zri2M                8MS:7M                 a0:;0                    .M08rii0MM       
+              M7,7Z                  WM;X0ZZ0@X            @8,BX                      7BM0ZZMZ      
+              M7iMMZ8BX               SMar;;;XM2            MiiB22S@8                     7,        
+              707 . 7MMM                :MMMM0M..           ;M8;r7rWMMr                             
+                Sa2S2SiX:                                     ;;;;i:,:                              
+
+
+
+]]></p>
+</div>
+
+<div id="t9" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+
+                                                                                                    
+                                                                                                    
+                                                                                  MMa               
+                                 rM8WWWZS                                         r2MMM,            
+                             .MM  M.rrr7XMMWW0BB27              :BWBMM0    ,BM M82M  8@WBMa2        
+                            M@r   M rrrr;iii;rr;Z8 MMMW@MZ.M0@MM07ria 7MMMM8,M 72.;@   Z;00MMX      
+                        .XMWii:M0 M,rrrrrrrrrrri28 7,:i:2  M,i::i;r,MS r..,i::W M :aM8ZMii , rB     
+                       MWa0:i;rS  rirrrrr;ii;rri8B,Wir;iM: ;irrrrrr:@r,X;rrrr:M M .;:  . Mi@MrM0W   
+                     XZi Z2:ri2 rMSr;ii;ri70irr;; .Zir;8i M2;rr;i;;iX iX;rrrr:M M aMrMXMM;,:7 X M   
+                    7Bi,8M,;;,Bi:S;r;ZZi;:WSir;i, Miiii7  M:;rr:rZii2 iX;rrrriZ ;2@0 :8 7.i;ra@M M  
+                   ;B;;BaB,rrSMa2;;;i;ZXi:M ;r;7MZ::2rBW;MBi;riiMWi:8. rrrrrr;rBaX; Ma2BM2;r;::8W,7;
+                   ZM;2;:::i: X;i;rrZr r,7M.rr;:,,i@2;. 7Mr:r;;M .i:0MMir;ii;r,,M0.M  Z,;i:;:,...M  
+                  ,  .i S;:0;Mi;rr;i. M, @::rrrrrrr;S;. MS.;rr@ iS;X  ;iriX2ir:MMW.r  r2:M;:X0B; SMZ
+                  .7  M:;iZaW,irrr;rM B M0,;rrrr;7Z M728Wa:r;r, aX.i0@;;;,aW:;,r MaMMMMMBa2MMB8WMS  
+                   0aM.,;M Z;irrrr;;M MZZ  ,,:;r;2. @;,:SiiriZM X;SMS,irirMS:iaM:           .a M    
+                   BM:i;a  7irrrrr;:Z ;WBM@8M8;r:0i Si,ZM;;ri2W riM:.;i,:Z, 7M8              0B7    
+                   W;i;rW 8Z;rrrri,.MS2. ...Z0XWMM a2,;0iirriSZ 2ii::, MM.:M2                       
+                 X@rir;S7 7S;;i:,iM@B:Z7ii;7Z      M@ZM;;77;i2M82:, iBM  0W8X                       
+                M 0:iii22 Xr:;Z@MZ:.,W ;Mir0i         W,7 08;..,;2MMM2ZMW:,,@i                      
+              0MM.8iMZiXr MMMBr ZaiiirZ  ZM.         M:i7ZS 7MMM0,  ,Mr .,i:;M                      
+             B8::ri; 0SWM:WS    X Mi;;i7MB           Mi;7irMWi       7M8@:M:;SM                     
+             Z;;,,SM  Mi       .Z0iXi;2Mi             M, ,M,           a r8 ,  X                    
+            2Zi:iMMW           aZiXiXM,               r 0.2a             :MMMMSX8                   
+      2M8M  M0::MX             WZ:;;a                  MXiX8                rWSr@Z                  
+      .B8M  MZ.rB              :MZii2a                 i@r.i@                 :MWXB                 
+            ;Z M                 8MX:82                 X2;iM                   8;XM                
+            Mr,W                   MWiZM;                M2,70                  i@,;8M0MM,          
+            M,:MMMM2                ;MriaZ80MZ           aZ:iMMaMM8              WMB8888MM2         
+            0@7: .MMM                 0B888ZMM            @Wr::iMMMM                                
+              ;22Xr                                        .7;r.                                    
+
+
+
+]]></p>
+</div>
+
+<div id="t10" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+
+                                                                                                    
+                                                                                                    
+                                                                                 8MMWi              
+                                ;0MMBW8Sr                       7SX;           X:0,,XMMWS7r         
+                             ;MM   Mir7XZMMMMMMMM8;M@BM8a8Z, .MM0X7MM XBW@MMZ  M78X   .WMWSMM.      
+                           72W;:M  Mirrrii::iii;i Z:;;;;a  MZZXi;;:XXrM:;;iiiM  XiZBS.iW. .M  B     
+                       .2WMMr;; M @2;rrrrrrrrrrX; M.rrr:0  M.;;rrri2X:@.rrrr,M  2;,::X, r:M  MMM,   
+                      8M;:Zi:ri.M M:;rrrrr;;;;rX. M rrr:M.Sri;r;;;ia27M:rrrr;8 M:,r@0MXMM:iWB2  i   
+                     MB.,M0:;;iW 87ir;;;r;iaX;r7  M,rr;rr M0X;r:XXir  X;rrrrr2 M SM  ,M Xiii;  Z    
+                    B;:aX;:i;:a ,Sirr:7i;:SM:;rrZX7:;i;7XM0,i;; M7i:Mr 7rrrrr7BM;M2SMi7i::;r77MMB;  
+                   0Wr0  Wi;;aM7Xr;r;iMSiiW irrrBi;;22;  X.irr: M.i:0M;;rrrrri, a8X  M,7MZi;i:. 78B:
+                  XM: 0 Mri;S  ;;rr;r;0r.:M,rrr;;;ir.0iMM0:rr;iMM,ii,MW:r;ii;i8 rZ.@8;2. ri:SS .,i :
+                       WX:ir M;rrrrraX2:.Mi:rrrrr;iM Z:Xr,irrrW Z;i;  ri;:SZii72MMMWrMMMBW0;MMMM8M@ 
+                  XMM.M2iiS7M,irrrrr; S 2i.;rrrrrrM ,7,7B;;r;7i ;7i7MMi;:iMaii:M   .r;i,   X0  M    
+                  8;SW:i:;rMi:rrrrr;8SrMMi;..,,iir  M7.aB,;r;2a SX:7M iiiM8.iZM:            @MMa    
+                  2XW:i;iM :i;rrr;i,.,Z;;XMWMMMM7W: a.r@:irr;2r :7;Bi.,rZ;:2@2                      
+                  MaiiriS, ;Xr;:,.iM0M::i:..@:  r@8M@ @Z:iii;X.WWi. .2Mr ,;S                        
+                 XM.,i;:WZ 7ri;a@MMX  BS7;r@X        M;i 8MBr;aX. aMZ722@M8                         
+              ,MM  iaB;.B2 MMBZZr.,iZM  XZM,        ia.rX   Z@8M0MM0Z7;, rZ                         
+             MM;;27.M MaMZ.;   ;iii;irS Mr          @27rirMMr2    @.:;72i2@                         
+            .Wii;:;2M M       iM;Wr;;XM8            .0 7BSS       2B X.;iia                         
+            X2i:;,BM;         r2i7iaMS                  XM           MM7:2Wr7                       
+           ;MiiZW7;B          Miii8:                 MXS:M             MWi;i8a                      
+           Mi:a;rMM2          Mai:2a                 M:0 M              rMX:MXZ                     
+          Mr,2.M  :            BM7,M                 M,X W                80;;ZS                    
+         MS,;7raXM.              M2rB                M,riW                 BMri2WMMM;               
+        0M:;2MS:M                 Z7;BW@Ma           Mii7M                  :M2i;7;rM X             
+        M2.r8aM0                   MarrrrWMi         rW:;222MMM               @WWBBBWMa             
+         MW0ZaMW0                   8WZ22a7           2MBWBZM@M,                                    
+                                                                                                    
+
+
+]]></p>
+</div>
+
+<div id="t11" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+
+                                                                                                    
+                                                                                 a                  
+                                                                                 MMM0:              
+                                rXMMa@@@@MB0XX                 aWWBMM,    iarMM0@Z S0MM@M@BX        
+                             X@BM MM ;;;i;;7XaMMM0WMWBBBMMXX@M0Srr;Si 88M@WS2  2 WS   SZ2X MM       
+                          .MMa; M MM rrrrrrrr;i,7 ;W:;r;;M 0Xii;rr;S: Mi,,i;;SMM :S@88@;.:iB MM     
+                        7@BSiir 0M M rrrrrr;;;r;2: 2irri;  B:;rr;;i27 M;;rrr;i M i.Z,i.aMXiM iZM    
+                      ZMr8S:;rr 2M X:rrrrr;i7r;;X, Z;rrrMM MX;rr:2,X; ir;rrrr,MM ,8B Zi :,,:  MM    
+                     @W;XWSirrr,@MWr;r777riaB;;iSa 2;rrX @MB:;r;;M;r@ ZX;rrrr M: Z@ M:Mr;;rrXWM @   
+                    0;8M ri;rrr;. :irrS XriXriri2M2i,::S  X:;rr:a XiZ ar;rrrr:ai2rM W.a.r;;;i;  W.S 
+                  iMM8S  2rr;rX77MSrri2 X;r@r;r;:,,iMM Z  X;rr;,M X;i.M:;r;;;;,,BX2a M; WZi:,,r;M 8 
+                   ; M   Z;r787 r;;rriM ::rM.;rrr;:0 M WM;rrrrrS7M;r.BM ;;rZX;,MaMi XrW a:,:MZ. 7WM7
+                 rM@8   70ii7  B7rrr;;rMS.Ma:rrrri882S ,8X;rr;72 Z.r 8M ;i;S;;,B M@MW@@WM@MaMWMM0B  
+                 MiW   M@i,88 Mr;rrriZ  :WM ;rrr;i2 8r.20.;rr;Z  Mrr.MM.:iB2:i;M:           W Si    
+                 M 2 SM;i,SXSM;;rrrr:0M  M  :::irWM7;:iM2:rrr;;,M 2ri:. rM2.iMM             0MM:    
+                 Mr W;;;r,Mi  irrri: 7Z 2SWWBMM8X  2S SW :;rrr,MW a;:.X@M 2MB                       
+               B@2,MB:Z 7riMM ;i,.,MW0arr:.ZS  X28 M88M:087;i;,Mr;i,X08.2.@                         
+              iBi:iX,,i SX MM .78MM  i,i;;08         M.:i  MS: .X2XW0200M,                          
+              M7i:7a0MZMMM; W0MMi,i7MiZ7;Ma         .8 iXZ  8MaMMWBZ,. X0                           
+             70i:ZMZ            ;:iii8 MM           ;MMar;M7   r2,.;B2:S0                           
+             Br:0B Mr        MZSMai;r@Mi            ;   XXS     ,@:;.X.:a.                          
+            WX,0S   :       M:ii;raW@.              rW27iM,        M0;:M                            
+           ZZ:ZM  MrM       MiiiSM                  :BXWMZ          .@SrrZ8                         
+           @i.M   M W        MXiSX                  ;07 ar            @M,rMM                        
+         ;Mri M   M M         @r:M                  MX;WX              :M2.2M                       
+        2@..: M   M M         :W:XM                 M;:X                 MZ,7M7MMM                  
+        MM0M7MM  iBMZ          8Z.B0a@              BiSB                  8BiiXSX2M2                
+          0Mi,   SMX            MB:a880a.           M;:ZZZM0M              8WWB008MMr               
+                                 8MZZZZMM           XMWB22MMMZ                                      
+                                                                                                    
+
+
+
+]]></p>
+</div>
+
+<div id="t12" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+
+    
+                                                                                                    
+                                                                                 8MMM87,            
+                                B  MS8888MM@aZr               i0@00MM;  iZ@M8  Mr@i ;MM8MM2M,       
+                            ;WMB8  M rrr;;ir7XZ8W8 S8@MMMM  MMW7;;;7, aMa7;i@  M ;8r   W.0.MMi,     
+                         7ZMMrii,M M rrrrrrrrr;iS7iMi;iiiM M:ii;rrrSr iXirr;:M M i,ZS8XS,7 7X8BB    
+                       WMr07.:rr,M M.rrrrrrrrrri2a.Wirr;2  M i;rrrrS; rSrr;i.0 M i.0:X.aXW7M  @@M   
+                      Mr.S0i;rr;; 8iirrrr;iiirri2Z S;rriB  8:Wiriii7: .XrriaX:iM .Z@ MriX,,r82. M   
+                    @MiZM0a:rr;i@ @ir;;;riXW:rri72 r;;ri0 a:Miir.Mr;W,Xr;r:BB.MS rM,M , M;r;i7Ma M  
+                   00;M. :Z:rr;rSMri;;;,;i7M.rriXMM:X:;r@ 00W,rriMa::MM7;ri,0:. 7aM  Mai rrr;:2MMBW 
+                  2M M   S0irii;MSir;ZMZi:rM rr;,..;MS;i X:M iri7 B::a 7irr.M7;XMa M  ia i7i.    M B
+                  M      S0ir:@; r;r;, Xr:7M.rrrri;.  iZM2.M rr,M M,;:;Z:ri M7i MMB;MZM0r7iiMMW. M Z
+                 MSM7    20:;,MS 2rrriM8i.XZ,rrrr;M M2;;;.7a.rr M M:r.M8:;.00.iMa  2aXXS2W@@rXZMSM  
+                W0a7      M2i:WX Xiir,M M:Wrirrr;7 M0:;;;,Xairr.M Z7r.MX..2@,,M@            M.82    
+                M;M       WSiirS XM7;irr MM .:i;;W..7ir;: Miirri:7 Xr:i .M8.XM2             BZX     
+               M,X8      .M7;r;;M  88r;7 :28MMBX78 ,7:i:2Ma,;;rr,Mr7i, MB rMX                       
+               M 2Z    i7Mii;rri;@a  M,iM0;MX ;7ZX.MM0iaZi.282Xr,7r ia8:8MS                         
+               B:M   MM. X.07irr;:Zr  MM.BM           8M ,i7  i;..ZWMW0MM                           
+              8;,M   MrXM8  Mii,. 2M ar0M;             MBX:;X7;B8M 8 .ZZ                            
+              BMMM    M,,:M S.iM@B72 rM;               MiiW;XM,M; M:iW:                             
+              0  M    ,M;,8MX:Bi ;MMM                  M;X7iM  M  0,                                
+              WMMM     ;8: M. rWMS                     M.,,M    2Mr2WMM                             
+              0i:Z      aZ,:Mi2                        Mi M8      MZ. 2r                            
+              BrrM       @7.r00                        W2@M        BZ,@M.                           
+              ZMaM       XZi,iMi                    8aM7 M.         ZM; X,                          
+                  a      8X:.:Mi               MMMMBa:XXW2           aZrWM                          
+               MM@M    8@i i:MZ0 :            :MB.ia0B@Z              Mr,70MMMZ                     
+                SM0    MM2MMMM iMMMW           .aaa7                  XMBXii;7BM                    
+                       .,82  7MZ2SZM@7                                  S0ZZ8r:a                    
+                                                                                                    
+
+
+
+]]></p>
+</div>
+<div id="t13" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+
+                                                                                                    
+                                                                                 Wr                 
+                                 : ,rSSX                                  .iWMMZWMWMMMZXSaZ.        
+                              SMMM M7XXaMMWMMMW2S.           XM@B@MMM BMWM@XM  Z:8   ;aZM8aMW.      
+                           .M02:0  M:rr;iiiii;rrZaiM@WWW@M7MWar;;i:77 ZW:ii:,M M iMW  .M i. 7MM     
+                         8MM7i;i@  Z;rrrrrrrrrriS0 ri;;:7  X:;;rrr;22 S7i;;;:7 M : XZB2r:MiM WMMX   
+                      0BBMZ:irr;@ M;;rrr;;;rrrr:rM.rrrr:M 7Xiii;iiiS2 2X;;X;i.MM ,ZBXX7Z i,;2 M M   
+                    ;Mr.2Z irr;r:Z7irrrr:S,;rrriXMZ:rrriM M;:MS;,M.X7 r7;i8W: MW 2M M M B;;i;2; ;   
+                   Ma;ZZMXirrrr@ ,;;ii;r,M;irrr: :7,ii;7  Z Ma,;iM::W;M2;;:8X Xii@  M,S a7;r;irMBS. 
+                 ;WM;M  0 ;rrii :2;r0W;;,;B,rrrrM@. 8:;a MZ:M ;rS M.iM r:ri7M;:rMSr@ M;i S::,,.. MWa
+                @  aM   M.rrr:SMZ,;ri Z;iiM.rrri,.:0Mi.:.: M irr0 M ;r M ri MX; ZW M X8X7M;:MX .   i
+               MMMra    M,rrr;ZM2.r;XZZX;iW.rrrr;iM X,XMMi M rrr0 M r;WM r:a2:i:aMM8M MX28ZiMMMMWMXa
+              S2 80     W:;rri i@;r;S; :: S.rrrr;Wi X:rW.i M rrrZ M:;i M i:B2:iM8  iSXSri  Zr Sr    
+             .MiZM      XMirr;MS ;ri;Za8MrM.rrr;X  ar;i:ii M rrrSi ;Xi M ,Z8.2M             MMW     
+             B7XM        0r;ri;Z rM:iiX  .@ ;;i:SXSMirrrr,8M ;rX77M:S; , 0Z;@W               ,      
+            i8.M         SBi;riW  aMi;;:M Mr@MWMM. S,:i;r M.:Xa  MiiB.rM22MS                        
+            @:Mr          BS;r;ra@ Bi. SW@       ;Z@MM8Xr,Mi:;7W ,;W;Z8ZMM                          
+           7MXM           02irrr;B  M.WMM              2WM.MS::r7;MX2BSWW                           
+           M              SZ;;;;irM  MMZ                    0MWX iXM:XS                             
+           MrM,         W. 72;72rW MW8                       ,S ar:iMS                              
+          iZ,@        MBMM,,a:ii8W                             @WiXZM                               
+          M.BS       .M.B :2rXMr                                7M:.7W.                             
+          M Z         M,MWSi:SB                                  ,M,:aW                             
+          M8Mi        2X 2ZZW;0Wr                                 @8,iM                             
+                      .M 0   WBX2M@.                             rBi,8:                             
+          M0M          M @     ZBrrM0:                        aMB2 ;MM7                             
+          MWW          M 7WMM    80:rZaBBW                  2MM.,rMM. aaMMM;                        
+                       MBri72WM   M@ZBZZMM:                  @MMMM 7MB2SX7MMr                       
+                        r88M@MMX     ,i.r0                           riiiir:                        
+                                                                                                    
+
+
+]]></p>
+</div>
+
+<div id="t14" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+
+                                                                                                    
+                                                                                 ;                  
+                                 ,.                                             7@MM@M2i            
+                              7MaS;MWWWWBM00MMWXS;          :@MMMMMM XWSWMWMB M8B@  :WXSMMMMa       
+                           .MM0a   2;;;;i;;;;;rr08XMWWM8Mi M@;i::::2;7Mr;i:i@ M ,7Wr  WS, @  .      
+                        ,@M@;::2  @Xrrrrrrrrrr;;8 M,i;;;Mi ii;rrrr;S rW.i;::7:M ;: a8B2.i:.MMMMa    
+                      i@Z;Ziir:@  Mirrrrrrrrrr;;M M.rr;7  MS;rr;;;;2,2M,r8Z:.rM ;.2WW rMW;:2 i:.:   
+                    0Ma, ZZ:;r:M @Sirrrrr;iiir;7M M,rriai M;i;;;2X;7  a7ii8M: M ,2M.0. r,i;7W77 M   
+                   M2:XWMMX,r;7Xr7irrrrrr;XW:i;i  0:;;,MZ 0i:X:;;,Z;Wr 7;i,28 M ZM M2SarXrr;;:MWWM  
+                 SM0X@8  MX:ri2  Srrriii;;iBB:;raMi.7:,@S00.2M:riZ,r:0 W7;;.MX::MrX  a;rirr;i,,,i7,i
+                ;7  M    MS:riW: ;;r;7@S;ri,2S:;ii::M:..Z2: M iriM Mii0 ai;:7Sr.02,Z MiX:7;,7r  iM i
+                MBMX    .MX.;;;aM8;ri0 XXrr;:Wi;;;B2MiXM;;; M rri;a M7rMXS:,rS02MM@aMM;X22XrMMMMa aZ
+               M:7Z     :WBi;riZ  ;;;:M aX;i.Mi;;@; .,rWi;r M rrriM  ;;i M..M7r    ;;Mr2i.,B, rS:   
+              M7rM      iXWr,;;ria2;r:S; .@i MiiX, SZ;iiirr M ;rriZ   87MM .8aM             MM@     
+             0SiM       iS:M7.;r7Xii,;r7M Sr8M,.SXZM:;rrrrr.Mi;rr;7ZZ ;i..:MMX                      
+            XW:M        Mi: Mir;iM MZS7;;;a7 :MMM XW ii;rrr,ii7rrr;ii2M;ii02                        
+           00,@:       BXir M Mri;M  Saa7;i@0   ,iWMMM87;ir7M Xrri;SZWMaXM2                         
+            MMS       MM.ir:B  Z;irM   iB7a@          i8MMM  M.;riM     M                           
+        ,MZ Z        B rS7r;XXrS:;i;8M   M0                 MM:.iiiXSS@M                            
+       r878M       aM27S;;iii2@82,i:iX@M M                 iMXMMi,7@ ZSSB                           
+      aZ;W2       iM7:iiirZMMB a2B@iai M                    8   ZM,  ii:22:                         
+     MMSMi         22ii2MX;    S7  M:r@                      X rSMS0MM0iarBM.                       
+    ;  0           78ii0       ;MB7i:iXZM.                    @@      rBWX:rWX                      
+    MXM2            0i;M         7@@@ar:rZB,                   0X;aM     XZ7iBW                     
+    Mi@             MriM             ;8BWS708:                 rM:MXr     W8::B8                    
+    MM;             MriM                 8MaS00M@80             2rX0M   r@r.:BM                     
+                    Wr:WWM0                XMarr;;@M7            Mi,782M@,iiMX                      
+                    B@:,;X8M;               ,SZZ0@WMM             Z0W0aMMMMWS                       
+                     aMMM@WMM                                      .X,                              
+                                                                                                    
+
+
+
+]]></p>
+</div>
+
+<div id="t15" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+
+                                                                                                    
+                                                                                                    
+                                                                                 WMMMS              
+                                 iMWWWWWWXi                     ,rr7        XaMMXB  aMM0a80         
+                             S@Mr ;Srrrr7X0MMMMBBM88@WBXiS.2S@MMBSSW2 M M@MWW  MiB0   7ZZZXMMa      
+                           MMa;2   2rrrrr;i:::i:Xr W;r77XM Mi;iii;;Xi BXr:::iM  X:XMBrSS., M r      
+                        a@Za:i;a  WSrrrrrrrrrrri8M 2irr;M, Zirrrrrrr8 MSiiiii M 8i a ;:r0X,M MM@    
+                      M@: a0iri8  2rrrrrr;ii;rriSX Z;rr7S  Z7rrrrrr;0. 0;XWri M S,aMMM7.2;iiWM  ;   
+                    :Mi;BMM;:r:M Ma;rrrrr;70,;rii  2;rrS   Xrrrrrrr;;8  B,rMS M.:SM :,M Z;rii; S7;  
+                   78iW, :0;ir,M ;i;rrrrr;r@a:iiaM0;:i:2  M2rrrrrrii:SW 0a,.Zr;M;ZM WiX7;i;;;r8i MM 
+                  XMSM  rSWriri0 ZXir;i:i;i,0B,:iX irM 0iXZirrrrr;rMiiX  ZX,.M7.MrXZ M, 0Zi;;;rXZ. X
+                    M0  @ @rir;iM 0ir;XM:iii,a@.;i;Z7M .0Zi;;iiir;irSZrS2MXX .M 08 2;70,88,... .a   
+                  M;M  7M Mr,rri:M2;i;.M.Wi:i M irM  8 @M.;r;aB:rr;;S7S2i,BM, M WM@Zr;aZMMMaMMMMM M,
+                 iMa8  M:.2@,:rr:X M:;i,M M2X.WB.S  Ma:i;irri7M,irr;77 7 M.WZ M8   ;Z@8     M  0    
+                 Wr0  .0:: SM :r;rMa;:i:i@   2rM Zi i;;;;rrr;,28,irr;rM2  Mii M              MMB    
+                ,M2B  M7irMi.M:,;ii 0M2X;;XM7. M a  Srrrrrrri. M2.irrii7MM S. M                     
+                M,2;  M,;i7M:rMS.ir70   a7ii;7MMZBZMBr;ii;rirM8 MM ,irr;:rMMaMM                     
+               MS8W  Mi,r:M :Z7MZ,ii;aM2 ZW;:.M     iZMM@S: 0 Z  :MWXr;r;;X                         
+              aZiM  i M:riiMS 8.MM;;;::7M. W0M.          7SMiM88Z2MS Bi;;r2S8Z2MS                   
+             72W@  MBMr:rri,@ iMS.Miirrii88 aW            r; ,.i:MS  @a:i;;i;Xr72@@:                
+           SM, M :BS::7i;;SZMM.    Mi;;ii;S2X             .M@0Z::W   iMM2;;iXZ M.ir MW              
+          MZi8W  Mr:ii2@BMW:       a7:MXiZ i:              7;  SMM     .ZBMWMX MW2XrXaM2            
+        MWi7M2   rM:,Mi             M  r;SMZ                MMX@ X               7MMMii7MM;         
+      7 M2a@      Mi M              SMW7i:2,                 Wr. M                   2M7,rZ@,       
+    ;W0:rM        a; M                7@ri7B.                .M:Z.S                    @0;:;8M      
+    WMM2          8;.M                 ;WX:SZ                 X2MMM                     aX Z @a     
+                  M::M                   M7:W0                :8  M;MM@                 ;M2MZMX     
+                  Mi.87ZW:                8X.MS ,a             M@XrZSXW@                 Z2Z;       
+                  SMWWBWMMM.              .M7,0WWBMM7            M0ZZZZMM                           
+                                            SX7r;r;ZM                                               
+
+
+]]></p>
+</div>
+
+
+<div id="t16" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+ <p style="left:0px; top:0px; width:960px; height:540px;background-color-index:0;color-index:2;font-size:16px"><![CDATA[
+
+                                                                                                    
+                                                                                                    
+                                                                                 rMMMr              
+                                 rSMBW8Sa                       rS2r         S2W:8, 2MM02X          
+                             ;WM M Mir77ZMMMMWMWM22MBWWWBMM0ZWMMZXX8MMWWM@MMM  M7rM   ,@8MBWM       
+                           2M@:7 M 0irrrii::ii;i8B Sirr;7 MM ;ii;r;7i r7Xii:,M  XiaMS 0B  7 M 0     
+                         BMaii,8M,M:;rrrrrrrrrrrX 70irr;0 MM rrrrr;SX 7;;;;;:;  8i,,;0Z:0rM  ZX0.   
+                      2MZ a7ir.ZMZ;:rrrrr;iiirrX: W2irri0  W.rrrrr;Xi MSir2ri,M Z:Ba;8  Xi:MaMM7M   
+                     BMi0MM;ir:@ ;;;rrrrr;X@,;rX: 0:;rr,M Xrirrrrrr;ZM 0r:7WX M S7W 2:M2SriiX  ,r2  
+                    MX7X  B;ir::7rirrrrrr;rMXi;ri Wiii:,M 87;rrrr;i:,rr Mi,:B:X 0XM @i8 :;;;rr2: MM 
+                   Ba;8 2r@rir;W82;;r;7r7r:X8iirM8;;7M.Wi:Si;;;;r;;M,;rMiiB,XM.BM;ZS Mr.W0i;i:;7;  ;
+                   rZM :M Mr,r;r 2i;r;Z .ii:aZ:::::; M. rMi;iirir;;MXWriX..  @8ZrZ 7rX0X Z:,SZ,..M W
+                  ZX ; M:,XM:irX7MX.r;;Mr@:i,8X:ri:M ::7;iir;ZM,rrii  XXiSMa, M 7MMZr2SSaMMZW88MMWB,
+                 .MrM a2ii BB,;r,,M ;;i,M:70i M rrM.M2;XXrrrirB,irrrWM  M,7ai M:i  rZZZX.   0:i2    
+                 8iX,:Mir02.0a,i;.2iaXriii8 .rM,i7  ir;;;rrr;:Sa:ir;iiMa Sr,; M8             MMZ    
+                 M WMXiiX r7.20::i:M ;S;ii;rM2 M7Z. ;7rrrrrr;i,aM::;riiX  M.: Z              ,      
+                BB7MS:;ra M0::aMr.:XW  MZri:,XM .MMWM2riii;;;Sr,;Mi:;rr7XMMXMMM                     
+                M r .r;rX  07..iMBi:r0.0 0M;,aZ      XWMMa,:SS . .W8.ir;XS                          
+               MaiM 8X;rrM  MrWW  M,;r;Z 8 Z@M           WMM rM@008MM7;;;aS882M                     
+              : rMB2Ziii:iMMSW    M.irr7XX:8Z           70 ,;rSB    ,Z;;;;ii;:XMr                   
+            .MSM X ,ir8MMBZ       aMXX;;;7a              M0r;2a      7M0r;;rW:MiaWS                 
+           BMrrM7iXW0W:           r  ir8 MW                87ar.       :W@M0  S,:aaBX               
+        r;MXS0 M i0X              ZMMMrZ 8                BZ7 B2            8.MM0rX7SMS             
+      80M SM2  M ;2,              MS .:;Bi                 Mi:M:                7Z8Wa;X80;.         
+     iM@M7     M.iS,               XMX;iiM                 ;0;M;                     0Mii2@88@M     
+              Zr:XW                  8Zr:S0                 M.SM                       MBaXiiBMM    
+              M7:XM08                 SM7i8M                BS.rMMMX                    ;XrMZMMM    
+              ZMX,;X8Zr                 8S,W07MMa            MM2:,iMM7                              
+                WMM@MMM                  M8;XS.7MM;            ZZZaaXi                              
+                                          rZXSXX0SS                                                 
+
+
+]]></p>
+</div>
+
+
+ <p id="display" style=""><![CDATA[]]></p>
+</body>
+</bml>

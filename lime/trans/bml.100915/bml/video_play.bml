@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA" "http://www.arib.or.jp/B24/DTD/bml_1_1.dtd">
+<?bml bml-version="3.0" ?>
+<!--
+============================================================
+Copyright (C)2009, NTT Plala Inc. All rights reserved.
+Copyright(C) Nippon Telegraph and Telephone Corporation 2010
+============================================================
+-->
+<bml>
+<head>
+<title>IPTV DTV PORTAL IP-VOD Player</title>
+<style><![CDATA[
+body{resolution:960x540;display-aspect-ratio:16v9;used-key-list:basic data-button;clut:url(images/hikari.clt);}
+p.clocktext{font-size:16px;width:16px;height:16px;color-index:7;grayscale-color-index:178 171;}
+p.temaIconSub{font-size:16px;color-index:7;grayscale-color-index:178 171;}
+.btn{width:156px;height:36px;}
+]]></style>
+<script src="../scripts/plalavideo.ecm"/>
+<script src="../scripts/common.ecm"/>
+<script><![CDATA[
+var gFcsId="";
+var gFcsTbl=new Array();
+var gCloseTimer=NaN;
+var gRefTimer=0;
+
+//イベントハンドラ
+//Extension event handler
+function onStateChanged(newState){
+	if(newState == 3) {
+		WritePopup();
+		VisiblePopup();
+	}
+	else if(newState == 2) {
+		WritePopup();
+		VisiblePopup();
+	}
+	else if(newState == 5) {
+	gState.launchDocument("video.bml");
+	}
+	return 0;
+}
+function onRateChangeTo(newRate,newRateIndex){
+	WritePopup();
+	VisiblePopup();
+	return 0;
+}
+//キーイベント処理
+//Key event handler
+function keyDown(){
+	var keyCode = document.currentEvent.keyCode;
+	//(Pause/Play key)再生・一時停止キー押下。決定キーで代用
+	if(keyCode == 18) {
+		if(iptv_uui.Media2Status == 3) {
+			iptv_uui.Media2Pause();
+		}
+		else if(iptv_uui.Media2Status == 2) {
+			iptv_uui.Media2Start();
+		}
+		VisiblePopup();
+	}
+	//(Stop key)停止キー押下。戻るキーで代用
+	else if(keyCode == 19) {
+		iptv_uui.Media2Stop();
+	}
+	//(REW key)巻き戻しキー押下。左キーで代用
+	else if(keyCode == 3) {
+		iptv_uui.Media2SetRate(1,-1);
+	}
+	//(FF key)早送りキー押下。右キーで代用
+	else if(keyCode == 4) {
+		iptv_uui.Media2SetRate(1,1);
+	}
+}
+
+
+
+
+function onload(){
+	var time = gState.outofbml_data[0];
+	var crid = gState.Ureg[23];
+	var displayType = gState.Ureg[24];
+	var info = getConDet(crid,displayType,gState.ispid,gState.mode,gState.age);
+	setText("v_title",convOverText(info.basicDescription.title,58));
+	iptv_uui.Media2OpenPlayControl(String(info.contentDetail.activeLicense.programUrl),parseInt(time,10) * 1000);
+}
+function onunload(){}
+function btnFocus(pId,nId){
+	if(pId!="")hideElem(pId+"F");
+	showElem(nId+"F");
+	setFcs(nId);
+	gFcsId=nId;
+}
+
+function WritePosition(){
+	var timestr = MilliSrc2HHMMSS(iptv_uui.Media2GetPosition());
+	if(!timestr) timestr = "--:--:--";
+	setText("v_position",timestr);
+	return 0;
+}
+
+function MilliSrc2HHMMSS(time){
+	var date = new Date(1980,0,1,0,0,0,0);
+	date.setMilliseconds(time);
+	var timearr = (date.toString()).split("T");
+	if(timearr.length == 2) return timearr[1];
+	else return null;
+}
+
+function WritePopup(){
+	var rate=iptv_uui.Media2GetRate(1);
+
+	//現在位置を描画
+	lockScreen();
+	WritePosition();
+	//終了時刻を描画
+	var timestr = MilliSrc2HHMMSS(iptv_uui.Media2GetDuration());
+	if(!timestr) timestr = "--:--:--";
+	setText("v_duration",timestr);
+
+	if(iptv_uui.Media2Status == 2) {
+		setImg("v_status","images/pause.png");
+	}
+	else if(iptv_uui.Media2Status == 3) {
+		if(rate == 0)
+			setImg("v_status","images/play.png");
+		else if(rate > 0 & rate < 5)
+			setImg("v_status","images/ff"+rate+".png");
+		else if(rate < 0 && rate > -5)
+			setImg("v_status","images/rew"+(rate*(-1))+".png");
+		else 
+			setImg("v_status","images/play.png");
+	}
+	unlockScreen();
+	return 0;
+}
+function VisiblePopup(){
+	if(!isNaN(gCloseTimer)) browser.clearTimer(gCloseTimer);
+	gCloseTimer = browser.setInterval("HiddenPopup();",5000,1);
+	WritePosition();
+	showElem("popup");
+	if(gRefTimer == 0) {
+		browser.setInterval("RefleashTimer();",200,1);
+		gRefTimer+=1;
+	}
+	return 0;
+}
+function HiddenPopup(){
+	lockScreen();
+	hideElem("popup");
+	unlockScreen();
+	gCloseTimer=NaN;
+	return 0;
+}
+function RefleashTimer(){
+	gRefTimer--;
+	if(isVis("popup") == false) return 0;
+	if(gRefTimer == 0) {
+		browser.setInterval("RefleashTimer();",200,1);
+		gRefTimer+=1;
+	}
+	lockScreen();
+	WritePosition();
+	unlockScreen();
+	return 0;
+}
+
+function getConDet(crid,displayType,ispid,mode,age){
+	var func=null;
+	var cd="00";
+	if((displayType=="channel_package")||(displayType=="subscription_package")||(displayType=="series_svod")||(displayType=="channel_svod")){ func = getCHSVODContentDetail;cd="36";}
+	else if((displayType=="video_program")||(displayType=="video_package")||(displayType=="video_series")||(displayType=="wizard")){ func=getVODContentDetail;cd="23";}
+
+	if(func==null) return null;
+	var contentDetail = func(crid,displayType,ispid,mode,age);
+	if(contentDetail!=null){
+		if(!checkParental(contentDetail)) return null;
+		if(!interimCheck(contentDetail.period.displayStart,contentDetail.period.displayEnd)){
+			//showPopup(new Array("ホームへ"),gohome,"エラー","\r\n提供期間外のためご利用いただけません。\r\n\r\n状態番号：190"+cd,"");
+			return null;
+		}
+		return contentDetail;
+	}
+	var ret = getErrStat();
+	if(ret==null){
+		contentDetail = func(crid,displayType,ispid,mode,age);
+		if(contentDetail!=null){
+			if(!checkParental(contentDetail)) return null;
+			if(!interimCheck(contentDetail.period.displayStart,contentDetail.period.displayEnd)){
+				//showPopup(new Array("ホームへ"),gohome,"エラー","\r\n提供期間外のためご利用いただけません。\r\n\r\n状態番号：190"+cd,"");
+				return null;
+			}
+			return contentDetail;
+		}
+		ret = getErrStat();
+	}
+	if(ret==null){
+		//showLoginErr();
+	}else{
+		//showPopup(new Array("ホームへ"),gohome,"エラー",ret[1],ret[0]);
+	}
+	return null;
+}
+
+
+]]></script>
+</head>
+<bevent>
+	<beitem id="StateChanged" type="onStateChanged" onoccur="onStateChanged();" subscribe="subscribe"/>
+	<beitem id="RateChangeTo" type="onRateChangeTo" onoccur="onRateChangeTo();" subscribe="subscribe"/>
+</bevent>
+<body id="body" onload="onload();" onunload="onunload();">
+
+
+
+<div id="popup" style="left:39px;top:39px;width:882px;height:77px;">
+	<object type="image/X-arib-png" data="images/base_popInfo.png" style="width:882px;height:77px;"/>
+
+	<object id="v_sound" type="image/X-arib-png" data="images/icon_sound.png" style="left:760px;top:10px;width:24px;height:24px;"/>
+	<object id="v_copy" type="image/X-arib-png" data="images/icon_copy_never.png" style="left:734px;top:10px;width:24px;height:24px;"/>
+	<object id="v_hivision" type="image/X-arib-png" data="images/icon_hivision.png" style="left:812px;top:10px;width:24px;height:24px;"/>
+	<object id="v_caption" type="image/X-arib-png" data="images/icon_caption.png" style="left:786px;top:10px;width:24px;height:24px;"/>
+	<object id="v_pg12" type="image/X-arib-png" data="images/icon_pg12.png" style="left:838px;top:10px;width:24px;height:24px;"/>
+
+	<object id="v_status" type="image/X-arib-png" data="images/play.png" style="left:21px;top:46px;width:54px;height:24px;"/>
+
+	<p id="v_title" style="left:19px;top:10px;width:696px;height:24px;text-align:left;color-index:7;grayscale-color-index:25 45;"><![CDATA[]]></p>
+	<p id="v_position" style="left:81px;top:48px;width:80px;height:20px;font-size:20px;text-align:right;color-index:7;grayscale-color-index:25 45;"><![CDATA[]]></p>
+	<p style="left:171px;top:48px;width:10px;height:20px;font-size:20px;text-align:left;color-index:7;grayscale-color-index:25 45;"><![CDATA[/]]></p>
+	<p id="v_duration" style="left:191px;top:48px;width:80px;height:20px;font-size:20px;text-align:left;color-index:7;grayscale-color-index:25 45;"><![CDATA[]]></p>
+
+	<p id="v_text" style="left:602px;top:48px;width:100px;height:20px;font-size:20px;text-align:left;color-index:7;grayscale-color-index:25 45;"><![CDATA[字幕：第1]]></p>
+	<p id="v_text" style="left:712px;top:48px;width:140px;height:20px;font-size:20px;text-align:left;color-index:7;grayscale-color-index:25 45;"><![CDATA[第1音声：主/副]]></p>
+</div>
+
+
+<div id="default" style="width:2px;height:2px;nav-index:0;" onkeydown="keyDown();"/>
+<div id="loading2" style="left:290px;top:233px;width:380px;height:74px;visibility:hidden;">
+</div>
+</body>
+</bml>
