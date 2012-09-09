@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title/>
+<style><![CDATA[
+	body{background-color-index:0;resolution:960x540;display-aspect-ratio:16v9;used-key-list:basic data-button numeric-tuning;clut:url(images/baria.clt);}
+	.main {left:0px; top:0px; width:960px; height:540px;}
+	.clrbutton {width:140px;height:35px;}
+	p.clrbutton {text-align:center;color-index:7;}
+	.databutton {width:120px;height:35px;}
+	p.databutton {text-align:center;color-index:0;line-height:30px;}
+	.header {left:0px; top:0px; width:960px; height:56px;}
+	.footer {left:0px; top:505px; width:960px; height:35px;}
+	#status	{left:30px;top:80px;width:400px;height:24px;background-color-index:6;}
+]]></style>
+
+<script><![CDATA[
+var gRecomend=false;
+function getElementById(id){return document.getElementById(id);}
+function showElem(id){getElementById(id).normalStyle.visibility="visible";}
+function hideElem(id){getElementById(id).normalStyle.visibility="hidden";}
+function isVis(id){
+	if(getElementById(id)==null) return false;
+	if(getElementById(id).normalStyle.visibility=="visible")return true;
+	return false;
+}
+
+// ポータルTOPに戻る
+function launchTop(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("kahoku.bml");
+}
+
+// 紙面サムネールを表示
+function launchThumb(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("simenthumb.bml");
+}
+
+// 見開き紙面へ
+function launchMihiraki(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("mihiraki.bml");
+}
+
+// 更新
+function launchUpdate(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("news_sc.bml");
+}
+
+// 縦スクロール
+var now_y1=0;
+//var now_y2=450;
+//var now_y3=900;
+//var obj = document.getElementById("news_obj");
+var obj1 = document.getElementById("o1");
+//var obj2 = document.getElementById("o2");
+//var obj3 = document.getElementById("o3");
+function handler(){
+	var evt = document.currentEvent;
+	if (String(evt.keyCode) == "1" || String(evt.keyCode) == "2"){
+		if (String(evt.keyCode) == "1"){
+			now_y1=now_y1+50;
+//			now_y2=now_y2+10;
+//			now_y3=now_y3+10;
+		}
+		if (String(evt.keyCode) == "2"){
+			now_y1=now_y1-50;
+//			now_y2=now_y2-10;
+//			now_y3=now_y3-10;
+		}
+		obj1.normalStyle.top = now_y1;
+//		obj2.normalStyle.top = now_y2;
+//		obj3.normalStyle.top = now_y3;
+		
+	}
+}
+
+]]></script>
+
+<bevent>
+</bevent>
+
+</head>
+
+<body style="background-color-index:7;">
+
+<!-- メインコンテンツ -->
+<div class="main">
+	<object id="o1" type="image/jpeg" data="simen/kakudai/kahoku.jpg" 
+		style="nav-index:0; left:0px; top:0px; width:960px; height:1004px;" onclick="launchTop();" onkeydown="handler();"/>
+</div>
+
+
+<!-- ボタン-->
+<div style="left:400px; top:505px; width:750px; height:35px">
+	<p class="clrbutton" style="nav-index:1; nav-right:2; nav-left:4; nav-up:0;top:8px;left:0px;font-size:18px; text-align:center; color-index:4;"
+	onfocus="focus();" onblur="blur();" onclick="launchTop();" accesskey="B">青：戻る</p>
+	<p class="clrbutton" style="nav-index:2; nav-right:3; nav-left:1; nav-up:0;top:8px;left:140px;font-size:18px; text-align:center; color-index:1;"
+	onfocus="focus();" onblur="blur();" onclick="launchMihiraki();" accesskey="R">赤：紙面見開</p>
+	<p class="clrbutton" style="nav-index:3; nav-right:4; nav-left:2; nav-up:0;top:8px;left:280px;font-size:18px; text-align:center; color-index:2;"
+	onfocus="focus();" onblur="blur();" onclick="launchThumb();" accesskey="G">緑：紙面一覧</p>
+	<p class="clrbutton" style="nav-index:4; nav-right:1; nav-left:3; nav-up:0;top:8px;left:420px;font-size:18px; text-align:center; color-index:3;"
+	onfocus="focus();" onblur="blur();" onclick="launchUpdate();" accesskey="Y">黄：更新</p>
+</div>
+</body>
+</bml>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title/>
+<style><![CDATA[
+	body{background-color-index:0;resolution:960x540;display-aspect-ratio:16v4;used-key-list:basic data-button numeric-tuning;clut:url(images/baria.clt);}
+	p:focus{grayscale-color-index:61 56;}
+	
+	.head {left:0px; top:0px; width:960px; height:60px;}
+	.display {left:0px; top:70px; width:960px; height:320}
+	.line1 {left:12px; top:410px; width:940px; height:84px;}
+    .foot {left:0px; top:505px; width:960px; height:35px;}
+    
+	.clrbutton {width:140px;height:35px;}
+	p.clrbutton {text-align:center;color-index:7;}
+	.databutton {width:120px;height:35px;}
+	p.databutton {text-align:center;color-index:0;line-height:30px;}
+	.header {left:0px; top:0px; width:960px; height:56px;}
+	.footer {left:0px; top:505px; width:960px; height:35px;}
+	#status	{left:30px;top:80px;width:400px;height:24px;background-color-index:6;}
+	p.clocktext{font-size:16px;color-index:110;grayscale-color-index:45 201;}
+]]></style>
+
+<script><![CDATA[
+var gRecomend=false;
+
+function getElementById(id){return document.getElementById(id);}
+function showElem(id){getElementById(id).normalStyle.visibility="visible";}
+function hideElem(id){getElementById(id).normalStyle.visibility="hidden";}
+function isVis(id){
+	if(getElementById(id)==null) return false;
+	if(getElementById(id).normalStyle.visibility=="visible")return true;
+	return false;
+}
+
+function onload(){
+}
+
+function setText(id,str){getElementById(id).firstChild.data=String(str);}
+function lockScreen(){browser.lockScreen();}
+function unlockScreen(){browser.unlockScreen();}
+
+function DataButtonHandler(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("mihiraki.bml");
+}
+
+function launchkakudai(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("news_sc.bml");
+}
+
+function menufocus(){
+	var target = document.currentEvent.target;
+	browser.playRomSound("romsound://9");
+	target.nextSibling.normalStyle.visibility = "visible";
+	target.focusStyle.colorIndex = "1";
+}
+
+function menuclick(){
+	browser.playRomSound("romsound://7");
+	var target = document.currentEvent.target;
+	var key_id = target.id;
+	
+	if(key_id == "simen1"){
+		browser.launchDocument("test1.bml");
+	}
+ 	
+	else if(key_id == "simen2"){
+		browser.launchDocument("test2.bml");
+	}
+	
+	else if(key_id == "simen3"){
+		browser.launchDocument("test3.bml");
+	}
+	
+	else if(key_id == "simen4"){
+		browser.launchDocument("test4.bml");
+	}
+	
+	else if(key_id == "simen5"){
+		browser.launchDocument("test5.bml");
+	}
+	
+	else if(key_id == "simen6"){
+		browser.launchDocument("test6.bml");
+	} 
+}
+
+
+
+// ポータルTOPに戻る
+function launchTop(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("startup_demo.bml");
+}
+
+// 画面の更新
+function launchKousin(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("test1.bml");
+}
+
+// 紙面サムネイルを表示
+function launchThumb(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("simenthumb2.bml");
+}
+
+// スライドショーへ
+function launchSlideshow(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("slideshow.bml");
+}
+
+
+function blur(){
+	var target = document.currentEvent.target;
+	target.nextSibling.normalStyle.visibility = "hidden";
+}
+
+]]></script>
+
+<bevent>
+	<beitem id="be0" type="DataButtonPressed" onoccur="DataButtonHandler();" subscribe="subscribe"/>
+</bevent>
+
+</head>
+<body style="background-color-index:7;">
+<!-- ヘッダ -->
+<!--
+<div class="header">
+	<object type="image/jpeg" data="images/head_meshA.jpg" style="width:960px; height:112px"/></div>
+-->
+
+
+
+
+
+
+
+<!-- メインコンテンツ -->
+
+
+<!-- タイトル -->
+
+
+<div class="head">
+
+	<object id="head" type="image/jpeg" data="images/shashinkan_header.jpg" style="nav-index:200;top:0px; left:0px; width:960px; height:56px"onclick="menuclick();"/>
+
+</div>
+
+
+<!-- サムネイル -->
+
+
+<div class="line1">
+
+	<object id="simen1" type="image/jpeg" data="miyagi_sample/resize/1.jpg" 
+		style="nav-index:4; nav-left:3; nav-right:5; left:5px; top:0px; width:150px; height:90px;" onfocus="menufocus();" onblur="blur();" onclick="menuclick()"/>
+	<object id="simen1" type="image/jpeg" data="miyagi_sample/resize/1-b.jpg" 
+		style="nav-index:4; nav-left:3; nav-right:5; left:5px; top:0px; width:150px; height:90px; visibility:hidden"/>
+
+	<object id="simen2" type="image/jpeg" data="miyagi_sample/resize/2.jpg" 
+		style="nav-index:5; nav-left:4; nav-right:0; left:160px; top:0px; width:150px; height:90px;"onfocus="menufocus();" onblur="blur();" onclick="menuclick()"/>
+	<object id="simen2" type="image/jpeg" data="miyagi_sample/resize/2-b.jpg" 
+		style="nav-index:5; nav-left:4; nav-right:0; left:160px; top:0px; width:150px; height:90px; visibility:hidden"/>
+
+	<object id="simen3" type="image/jpeg" data="miyagi_sample/resize/3.jpg" 
+		style="nav-index:0; nav-left:5; nav-right:1; left:315px; top:0px; width:150px; height:90px;"onfocus="menufocus();" onblur="blur();" onclick="menuclick()"/>
+	<object id="simen3" type="image/jpeg" data="miyagi_sample/resize/3-b.jpg" 
+		style="nav-index:0; nav-left:5; nav-right:1; left:315px; top:0px; width:150px; height:90px; visibility:hidden"/>
+	
+	<object id="simen4" type="image/jpeg" data="miyagi_sample/resize/4.jpg" 
+		style="nav-index:1; nav-left:0; nav-right:2; left:470px; top:0px; width:150px; height:90px;"onfocus="menufocus();" onblur="blur();" onclick="menuclick()"/>
+	<object id="simen4" type="image/jpeg" data="miyagi_sample/resize/4-b.jpg" 
+		style="nav-index:1; nav-left:0; nav-right:2; left:470px; top:0px; width:150px; height:90px; visibility:hidden"/>
+
+	<object id="simen5" type="image/jpeg" data="miyagi_sample/resize/5.jpg" 
+		style="nav-index:2; nav-left:1; nav-right:3; left:625px; top:0px; width:150px; height:90px;"onfocus="menufocus();" onblur="blur();" onclick="menuclick()"/>
+	<object id="simen5" type="image/jpeg" data="miyagi_sample/resize/5-b.jpg" 
+		style="nav-index:2; nav-left:1; nav-right:3; left:625px; top:0px; width:150px; height:90px; visibility:hidden"/>
+
+	<object id="simen6" type="image/jpeg" data="miyagi_sample/resize/6.jpg" 
+		style="nav-index:3; nav-left:2; nav-right:4; left:780px; top:0px; width:150px; height:90px;"onfocus="menufocus();" onblur="blur();" onclick="menuclick()"/>
+	<object id="simen6" type="image/jpeg" data="miyagi_sample/resize/6-b.jpg" 
+		style="nav-index:3; nav-left:2; nav-right:4; left:780px; top:0px; width:150px; height:90px; visibility:hidden"/>
+
+
+</div>
+
+
+
+<!-- 選択写真ディスプレイ -->
+
+
+<div class="display">
+	<object id="k_simen1" type="image/jpeg" data="miyagi_sample/main/3.jpg" 
+		style="left:196px; top:0px; width:710px; height:320px;"onfocus="menufocus();"/>
+
+
+</div>
+
+
+<!-- フッター -->
+
+<div class="foot">
+	<object id="footer" type="image/jpeg" data="images/shashinkan_footer.jpg" 
+		style="left:0px; top:0px; width:960px; height:35px;"onfocus="menufocus();"/>
+
+
+</div>
+
+
+
+	<p style="left:800px; top:86px; width:150px; height:16px; font-size:16px;color-index:24;background-color-index:0; text-align:center; font-weight:bold;">test3.bml</p>
+
+	
+
+
+<!-- ボタン-->
+<div style="left:400px; top:505px; width:800px; height:35px">
+	<p class="clrbutton" style="top:10px;left:200px;font-size:18px; text-align:center; color-index:4;"
+	onfocus="focus();" onblur="blur();" onclick="launchTop();" accesskey="B">青：トップ</p>
+	<p class="clrbutton" style="top:10px;left:360px;font-size:18px; text-align:center; color-index:1;"
+	onfocus="focus();" onblur="blur();" onclick="launchSlideshow();" accesskey="R">赤：ｽﾗｲﾄﾞｼｮｰ</p>
+</div>
+
+</body>
+</bml>

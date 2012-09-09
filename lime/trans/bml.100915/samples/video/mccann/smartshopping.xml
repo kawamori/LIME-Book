@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+
+<title>I-S.Mart - NEW GUI</title>
+<style><![CDATA[
+	body{
+		background-color-index:0;
+		resolution:960x540;
+		display-aspect-ratio:16v9;
+		used-key-list:basic data-button numeric-tuning;
+		clut:url(./css/ismart.clt);
+	}
+]]></style>
+
+<link rel="stylesheet" type="text/css" href="./css/common1.css" />
+
+<script src="./scripts/shopping.ecm" />
+<script src="./scripts/common.ecm" />
+<bevent>
+	<beitem id="DataButtonPressed" type="DataButtonPressed"
+		subscribe="subscribe"
+		onoccur="dataButtonPressed();" />
+	<beitem id="MediaStopped" type="MediaStopped" object_id="video"
+					onoccur="VideoStop();" />
+</bevent>
+</head>
+
+<body id="body" onload="playVideo();" style="background-color-index:8;"> 
+	<div id="base_box">
+	<div id="base_boxKey" onkeydown="layer_0_press();"></div>
+		<object id="bg" type="image/jpeg"
+			data="./media/bg.jpg" />
+			
+		<object id="logo" type="image/jpeg"
+			data="" />
+					
+		<object id="back_icon" type="image/X-arib-png"
+			data="" />
+			
+		<object id="navi" type="image/jpeg"
+			data="" />
+			
+		<object id="icon" type="image/jpeg"
+			data="" />
+		
+		<p id="clock"><![CDATA[]]></p>
+		
+		<object id="video" type="application/X-arib-contentPlayControl"
+			data="" streamstatus="play" />
+			
+		<div id="pop_up">
+			<object id="pop_background" type="image/jpeg" 
+				data="./media/prompt_15.jpg" />
+			<p id="pop_up_text"><![CDATA[Pepper]]></p>
+			<p id="pop_up_msg"><![CDATA[]]></p>
+		</div>
+		<div id="pop_upKey" onkeydown="pop_up_press();"></div>
+		
+		<div id="legends">
+			<object id="legend_img" type="image/jpeg"
+				data="" />
+			<!--	
+			<object id="blue_img" class="legend_img" type="image/jpeg"
+				data="./media/btn_blue.jpg" />
+			<object id="red_img" class="legend_img" type="image/jpeg"
+				data="./media/btn_red.jpg" />
+			<object id="green_img" class="legend_img" type="image/jpeg"
+				data="./media/btn_green.jpg" />
+			<object id="yellow_img" class="legend_img" type="image/jpeg"
+				data="./media/btn_yellow.jpg" />
+			
+			<p id="blue_legend"><![CDATA[]]></p>	
+			<p id="red_legend"><![CDATA[]]></p>	
+			<p id="green_legend"><![CDATA[]]></p>	
+			<p id="yellow_legend"><![CDATA[]]></p>
+			-->
+
+		</div>
+		
+		<p id="clock"><![CDATA[]]></p>
+		<p id="main_text"><![CDATA[]]></p>
+			
+		
+		<div id="menu">
+			<object id="menu_box" type="image/jpeg"
+				data="./media/menu.jpg" />
+				
+			<p id="menu_1"><![CDATA[]]></p>
+			<p id="menu_2"><![CDATA[]]></p>
+			<p id="menu_3"><![CDATA[]]></p>
+			<p id="menu_4"><![CDATA[]]></p>
+		</div>
+		
+		<object id="graph_box" type="image/jpeg"
+			data="./media/graphs_06.jpg" />
+
+		</div>
+	
+	<!-- START OF LAYER 1, SHOPPING -->
+	<div id="layer_1">
+	<div id="layer_1Key" onkeydown="layer_1_press();"></div>
+		<object id="product_box" type="image/jpeg"
+			data="./media/promo.jpg" />
+		
+		
+		<div id="product_1">
+			<div id="product_selected1" />
+			<object id="product_img_1" class="product_img" type="image/jpeg"
+				data="" />
+			
+			<p id="product_name_1" class="product_name"><![CDATA[]]></p>
+			<p id="product_price_1" class="product_price"><![CDATA[]]></p>
+			<p id="product_offer_1" class="product_offer"><![CDATA[]]></p>
+		</div>
+		
+		<div id="product_2">
+			<div id="product_selected2" />
+			<object id="product_img_2" class="product_img" type="image/jpeg"
+				data="" />
+			
+			<p id="product_name_2" class="product_name"><![CDATA[]]></p>
+			<p id="product_price_2" class="product_price"><![CDATA[]]></p>
+			<p id="product_offer_2" class="product_offer"><![CDATA[]]></p>
+		</div>
+		
+		<div id="product_3">
+			<div id="product_selected3" />
+			<object id="product_img_3" class="product_img" type="image/jpeg"
+				data="" />
+			
+			<p id="product_name_3" class="product_name"><![CDATA[]]></p>
+			<p id="product_price_3" class="product_price"><![CDATA[]]></p>
+			<p id="product_offer_3" class="product_offer"><![CDATA[]]></p>
+		</div>
+		
+		<div id="buttons_layer">
+			<object id="product_btn_up" class="btn_up" type="image/jpeg"
+				data="./media/buttons/upOFF.jpg" />
+			<object id="product_btn_down" class="btn_down" type="image/jpeg"
+				data="./media/buttons/downOFF.jpg" />
+		</div>		
+	</div>
+	<!-- END OF LAYER 1 -->
+	
+	
+	<!-- START OF LAYER 2 -->
+	<div id="layer_2">
+	<div id="layer_2Key" onkeydown="layer_2_press();"></div>
+		<object id="cart_box" type="image/jpeg"
+			data="./media/list.jpg" />
+		
+		<div id="buttons_layer">
+			<object id="cart_btn_up" class="btn_up" type="image/jpeg"
+				data="./media/buttons/upOFF.jpg" />
+			<object id="cart_btn_down" class="btn_down" type="image/jpeg"
+				data="./media/buttons/downOFF.jpg" />
+		</div>
+		<!--
+		<p id="cart_title_name"><![CDATA[ITEM NAME]]></p>
+		<p id="cart_title_price"><![CDATA[PRICE]]></p>
+		<p id="cart_title_qty"><![CDATA[QUANTITY]]></p>
+		-->
+		<div id="cart_1">
+			<object id="cart_img_1" class="cart_img" type="image/jpeg"
+				data="" />
+
+			<p id="cart_name_1" class="cart_name"><![CDATA[]]></p>
+			<p id="cart_price_1" class="cart_price"><![CDATA[]]></p>
+			<p id="cart_qty_1" class="cart_qty"><![CDATA[]]></p>
+			<object id="cart_btn_remove_1" class="cart_btn_remove" type="image/jpeg"
+				data="./media/btn_remove.jpg" />
+		</div>
+		
+		<div id="cart_2">
+			<object id="cart_img_2" class="cart_img" type="image/jpeg"
+				data="" />
+
+			<p id="cart_name_2" class="cart_name"><![CDATA[]]></p>
+			<p id="cart_price_2" class="cart_price"><![CDATA[]]></p>
+			<p id="cart_qty_2" class="cart_qty"><![CDATA[]]></p>
+			<object id="cart_btn_remove_2" class="cart_btn_remove" type="image/jpeg"
+				data="./media/btn_remove.jpg" />
+		</div>
+		
+		<div id="cart_3">
+			<object id="cart_img_3" class="cart_img" type="image/jpeg"
+				data="" />
+
+			<p id="cart_name_3" class="cart_name"><![CDATA[]]></p>
+			<p id="cart_price_3" class="cart_price"><![CDATA[]]></p>
+			<p id="cart_qty_3" class="cart_qty"><![CDATA[]]></p>
+			<object id="cart_btn_remove_3" class="cart_btn_remove" type="image/jpeg"
+				data="./media/btn_remove.jpg" />
+		</div>
+	
+		<div id="cart_4">
+			<object id="cart_img_4" class="cart_img" type="image/jpeg"
+				data="" />
+
+			<p id="cart_name_4" class="cart_name"><![CDATA[]]></p>
+			<p id="cart_price_4" class="cart_price"><![CDATA[]]></p>
+			<p id="cart_qty_4" class="cart_qty"><![CDATA[]]></p>
+			<object id="cart_btn_remove_4" class="cart_btn_remove" type="image/jpeg"
+				data="./media/btn_remove.jpg" />
+		</div>
+		
+		<p id="cart_total_price"><![CDATA[]]></p>
+	</div>
+	<!-- END OF LAYER 2 -->
+	
+	
+	<!-- START OF LAYER 3 -->
+	<div id="layer_3">
+	<div id="layer_3Key" onkeydown="layer_3_press();"></div>
+		<object id="location_box" type="image/jpeg"
+			data="./media/location.jpg" />	
+		<object id="map_box" type="image/jpeg"
+			data="./media/map_box.jpg" />
+			
+		
+			
+		<object id="list_box" type="image/jpeg"
+			data="" />
+		
+		<div id="location_1">
+			<p id="location_name_1" class="location_name"><![CDATA[]]></p>
+		</div>
+		
+ 		<div id="location_2">		
+			<p id="location_name_2" class="location_name"><![CDATA[]]></p>
+		</div>
+		
+		<div id="location_3">			
+			<p id="location_name_3" class="location_name"><![CDATA[]]></p>
+		</div> 
+		<object id="map" type="image/jpeg"
+			data="./media/google_map.jpg" />
+		<!--
+		<div id="buttons_layer3">
+			<object id="map_btn_up" class="btn_up" type="image/jpeg"
+				data="./media/buttons/upOFF.jpg" />
+			<object id="map_btn_down" class="btn_down" type="image/jpeg"
+				data="./media/buttons/downOFF.jpg" />
+		</div>-->
+	</div>
+	<!-- END OF LAYER 3 -->
+
+	<div id="postal_code">
+		<object id="input_box" type="image/jpeg"
+			data="./media/input.jpg" />
+			
+		<p id="input_text"><![CDATA[]]></p>
+		<p id="input_error"><![CDATA[]]></p>
+	</div>
+	<div id="postal_codeKey" onkeydown="inputPostal();"></div>
+	
+	<!-- START OF LAYER 4 -->
+	<div id="layer_4">
+		<div id="layer_4Key" onkeydown="layer_4_press();"></div>
+
+		<object id="recipe_box" type="image/jpeg"
+			data="./media/recipe.jpg" />
+
+		<div id="buttons_layer">
+			<object id="recipe_btn_up" class="btn_up" type="image/jpeg"
+				data="./media/buttons/upOFF.jpg" />
+			<object id="recipe_btn_down" class="btn_down" type="image/jpeg"
+				data="./media/buttons/downOFF.jpg" />
+		</div>
+		
+		<div id="recipe_1">
+			<object id="recipe_ratings_1" class="recipe_img_ratings" type="image/jpeg"
+				data="" />
+			<object id="recipe_img_1" class="recipe_img" type="image/jpeg"
+				data="" />
+			
+			<p id="recipe_name_1" class="recipe_name"><![CDATA[]]></p>
+		</div>
+		
+		<div id="recipe_2">
+			<object id="recipe_ratings_2" class="recipe_img_ratings" type="image/jpeg"
+				data="" />
+			
+			<object id="recipe_img_2" class="recipe_img" type="image/jpeg"
+				data="" />
+		
+			<p id="recipe_name_2" class="recipe_name"><![CDATA[]]></p>
+		</div>
+		
+		<div id="recipe_3">
+			<object id="recipe_ratings_3" class="recipe_img_ratings" type="image/jpeg"
+				data="" />
+			
+			<object id="recipe_img_3" class="recipe_img" type="image/jpeg"
+				data="" />
+
+			<p id="recipe_name_3" class="recipe_name"><![CDATA[]]></p>
+		</div>
+		
+		<div id="recipe_4">
+			<object id="recipe_ratings_4" class="recipe_img_ratings" type="image/jpeg"
+				data="" />
+			
+			<object id="recipe_img_4" class="recipe_img" type="image/jpeg"
+				data="" />
+				
+			<p id="recipe_name_4" class="recipe_name"><![CDATA[]]></p>
+		</div>
+		
+		<div id="recipe_5">
+			<object id="recipe_ratings_5" class="recipe_img_ratings" type="image/jpeg"
+				data="" />
+			
+			<object id="recipe_img_5" class="recipe_img" type="image/jpeg"
+				data="" />
+			
+			<p id="recipe_name_5" class="recipe_name"><![CDATA[]]></p>
+		</div>
+	</div>
+	<!-- END OF LAYER 4 -->
+	
+	<!-- START OF LAYER 5, RECIPES DIRECTION -->
+	<div id="layer_5">
+	<div id="layer_5Key" onkeydown="layer_5_press();"></div>
+
+		<div id="recipe_detail">
+			<object id="recipe_detail_ratings" class="recipe_img_ratings" type="image/jpeg"
+				data="" />
+			
+			<object id="recipe_detail_img" class="recipe_img" type="image/jpeg"
+				data="" />
+				
+			<p id="recipe_detail_name" class="recipe_name"><![CDATA[]]></p>
+			<p id="recipe_detail_ingredient" class="recipe_ingredient"><![CDATA[]]></p>
+			<p id="recipe_detail_method" class="recipe_directions"><![CDATA[]]></p>
+			<p id="recipe_nutritional_title"><![CDATA[Nutritional Values:]]></p>
+			<p id="recipe_detail_nutritional" class="recipe_nutritional"><![CDATA[]]></p>
+		</div>
+	</div>
+	<!-- END OF LAYER 5, RECIPES DIRECTION-->
+	
+	<div id="loading">
+		<object id="now_loading" type="image/jpeg"
+			data="./media/loading.jpg" />
+	</div>
+	<div id="main_loading">
+		<object id="now_loading1" type="image/jpeg"
+			data="./media/main_loader.jpg" />
+	</div>
+	<p id="notify_1"><![CDATA[]]></p>
+	<p id="notify_2"><![CDATA[]]></p>
+</body>
+</bml>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<!--
+============================================================
+Copyright (C)2009, NTT Inc. All rights reserved.
+============================================================
+-->
+<bml>
+<head>
+<title>DTV PORTAL(VOD)</title>
+<style><![CDATA[
+  body {
+    background-color-index:0;
+    resolution:960x540;
+    display-aspect-ratio:16v9;
+    used-key-list:basic data-button;
+    clut:url(images/default.clt);
+  }
+  p.title {
+    font-size:20px;
+    color-index:7;
+    grayscale-color-index:171 167;
+    text-align:center;
+  }
+  p.list {
+    font-size:20px;
+    color-index:163;
+    grayscale-color-index:160 154;
+  }
+  p.flip {
+    font-size:16px;
+    color-index:7;
+    grayscale-color-index:171 167;
+    text-align:right;
+  }
+  p.debug {
+    font-size:16px;
+    color-index:7;
+    grayscale-color-index:171 167;
+    text-align:center;
+  }
+]]></style>
+<script src='../scripts/common.ecm'/>
+<script src='../scripts/list.ecm'/>
+<script src='../scripts/detail.ecm'/>
+<script><![CDATA[
+//--------------------------------------------------------------
+function onunload(){}
+function onload(){
+  getElementById('body').normalStyle.usedKeyList = 'basic data-button';
+  setFocus('default');
+
+  browser.lockScreen(); {
+    gParams.listObj   = new VodList();
+    gParams.detailObj = new VodDetail();
+
+    var arg = parseArguments(browser.getActiveDocument());
+    if (arg.crid) {
+      gParams.crid = arg.crid;
+      gParams.detailObj.activate();
+    } else {
+      gParams.listObj.activate();
+    };
+  }; browser.unlockScreen();
+}
+
+]]></script>
+</head>
+//--------------------------------------------------------------
+<body id="body" onload="onload();" onunload="onunload();">
+
+<div id="basePane" style="top:0px;width:960px;height:540px;visibility:hidden;">
+	<object id="img_base" type="image/jpeg" data="images/bg.jpg" style="width:960px;height:540px;"/>
+
+	<div style="left:100px;top:18px;width:760px;height:20px;">
+		<p id="txt_title" class="title" style="width:760px;height:20px;"><![CDATA[]]></p>
+	</div>
+</div>
+
+//--------------------------------------------------------------
+<div id="list" style="top:62px;width:960px;height:450px;visibility:hidden;">
+	<object id="img_listBg0" type="image/jpeg" data="images/list/btn_list01.jpg" style="left:100px;top: 86px;width:474px;height:30px;visibility:hidden;"/>
+	<object id="img_listBg1" type="image/jpeg" data="images/list/btn_list02.jpg" style="left:100px;top:116px;width:474px;height:30px;visibility:hidden;"/>
+	<object id="img_listBg2" type="image/jpeg" data="images/list/btn_list03.jpg" style="left:100px;top:146px;width:474px;height:30px;visibility:hidden;"/>
+	<object id="img_listBg3" type="image/jpeg" data="images/list/btn_list04.jpg" style="left:100px;top:176px;width:474px;height:30px;visibility:hidden;"/>
+	<object id="img_listBg4" type="image/jpeg" data="images/list/btn_list05.jpg" style="left:100px;top:206px;width:474px;height:30px;visibility:hidden;"/>
+	<object id="img_listBg5" type="image/jpeg" data="images/list/btn_list06.jpg" style="left:100px;top:236px;width:474px;height:30px;visibility:hidden;"/>
+	<object id="img_listBg6" type="image/jpeg" data="images/list/btn_list07.jpg" style="left:100px;top:266px;width:474px;height:30px;visibility:hidden;"/>
+	<object id="img_listBg7" type="image/jpeg" data="images/list/btn_list08.jpg" style="left:100px;top:296px;width:474px;height:30px;visibility:hidden;"/>
+	<object id="img_listBg8" type="image/jpeg" data="images/list/btn_list09.jpg" style="left:100px;top:326px;width:474px;height:30px;visibility:hidden;"/>
+
+	<object id="btn_listFocus" type="image/jpeg" data="images/list/btn_listFocus-focus.jpg" style="left:100px;top:86px;width:474px;height:30px;visibility:hidden;" onkeydown="onListKeyDown();"/>
+
+	<p id="txt_list0" class="list" style="left:127px;top: 91px;width:440px;height:20px;"><![CDATA[aaa]]></p>
+	<p id="txt_list1" class="list" style="left:127px;top:121px;width:440px;height:20px;"><![CDATA[bbb]]></p>
+	<p id="txt_list2" class="list" style="left:127px;top:151px;width:440px;height:20px;"><![CDATA[]]></p>
+	<p id="txt_list3" class="list" style="left:127px;top:181px;width:440px;height:20px;"><![CDATA[]]></p>
+	<p id="txt_list4" class="list" style="left:127px;top:211px;width:440px;height:20px;"><![CDATA[]]></p>
+	<p id="txt_list5" class="list" style="left:127px;top:241px;width:440px;height:20px;"><![CDATA[]]></p>
+	<p id="txt_list6" class="list" style="left:127px;top:271px;width:440px;height:20px;"><![CDATA[]]></p>
+	<p id="txt_list7" class="list" style="left:127px;top:301px;width:440px;height:20px;"><![CDATA[]]></p>
+	<p id="txt_list8" class="list" style="left:127px;top:331px;width:440px;height:20px;"><![CDATA[]]></p>
+
+	<object id="csr_left"  type="image/jpeg" data="images/list/csr_left.jpg"  style="left: 72px;top:213px;width:30px;height:21px;visibility:hidden;"/>
+	<object id="csr_right" type="image/jpeg" data="images/list/csr_right.jpg" style="left:577px;top:213px;width:30px;height:21px;visibility:hidden;"/>
+
+	<object id="lbl_listMaxNum"  type="image/jpeg" data="images/list/lbl_listNum.jpg" style="left:124px;top:370px;width:44px;height:14px;visibility:hidden;"/>
+	<object id="lbl_pageDisplay" type="image/jpeg" data="images/list/lbl_pageNum.jpg" style="left:290px;top:369px;width:67px;height:18px;visibility:hidden;"/>
+	<p id="txt_listMaxNum"  style="font-size:16px;color-index:173;grayscale-color-index:15 160;text-align:center;left:168px;top:369px;width:112px;height:16px;"><![CDATA[]]></p>
+	<p id="txt_pageDisplay" style="font-size:16px;color-index:173;grayscale-color-index:15 160;text-align:center;left:345px;top:369px;width: 56px;height:16px;"><![CDATA[]]></p>
+
+	<object id="img_thmbMiddle" type="image/jpeg" data="images/list/noimage.jpg" style="left:636px;top:91px;width:240px;height:135px;visibility:hidden;"/>
+
+	<p id="txt_synopsisShort"  style="font-size:20px;line-height:24px;color-index:173;grayscale-color-index:15 160;left:621px;top:233px;width:264px;height:118px;"                 ><![CDATA[ld_text0]]></p>
+	<p id="txt_copyrightShort" style="font-size:16px;line-height:16px;color-index:173;grayscale-color-index:15 160;left:482px;top:364px;width:400px;height: 32px;text-align:right;"><![CDATA[ld_text2]]></p>
+
+</div>
+
+//--------------------------------------------------------------
+<div id="detail" style="top:62px;width:960px;height:406px;visibility:hidden;">
+	<object id="btn_play" type="image/jpeg" data="images/detail/btn_play.jpg" style="left:70px;top: 90px;width:153px;height:53px;visibility:hidden;" onkeydown="onDetailKeyDown();"/>
+	<object id="btn_flip" type="image/jpeg" data="images/detail/btn_flip.jpg" style="left:71px;top:145px;width:120px;height:32px;visibility:hidden;" onkeydown="onDetailKeyDown();"/>
+	<p id="txt_flip" class="flip" style="left:126px;top:151px;width:48px;height:16px;"><![CDATA[]]></p>
+
+	<p id="txt_synopsisLong"  style="font-size:20px;line-height:24px;color-index:173;grayscale-color-index:15 160;left: 75px;top:180px;width:320px;height:168px;"                 ><![CDATA[]]></p>
+	<p id="txt_copyrightLong" style="font-size:16px;line-height:16px;color-index:173;grayscale-color-index:15 160;left:280px;top:364px;width:600px;height: 32px;text-align:right;"><![CDATA[]]></p>
+
+	<object id="img_thmbLarge" type="image/jpeg" data="images/detail/noimage.jpg" style="left:405px;top:85px;width:480px;height:270px;visibility:hidden;"/>
+</div>
+
+
+//--------------------------------------------------------------
+<div id="shortcut" style="left:677px;top:471px;width:286px;height:36px;visibility:visible;">
+	<object id="btn_back" type="image/jpeg" data="images/btn_back.jpg" style="left:96px;width:116px;height:37px;visibility:hidden;" onkeydown="onShortcutKeyDown();"/>
+</div>
+     
+//--------------------------------------------------------------
+<div id="default" style="width:2px;height:2px;nav-index:0;" onkeydown="dummyKey();"/>
+<div id="loading" style="left:290px;top:233px;width:380px;height:74px;">
+	<object type="image/jpeg" data="images/load.jpg" style="width:380px;height:74px;"/>
+</div>
+
+
+<div id="debug" style="left:0px;top:495px;width:960px;height:60px;visibility:visible;">
+  <p id="txt_debug" class="debug" style="text-align:left;left:10px;top:10px;width:940px;height:60px;"><![CDATA[]]></p>
+</div>
+</body>
+</bml>
