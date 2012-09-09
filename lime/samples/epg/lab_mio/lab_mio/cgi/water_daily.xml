@@ -1,0 +1,14 @@
+<ns:getDailyMainUsageResponse xmlns:ns="http://water.starhomeWS">
+<ns:return>
+<sh:DailyMainUsage xmlns:sh="http://starhome.sg/waterusage/feeds">
+	<sh:Usage sh:Id="9-Dec" sh:Value="14" /> 
+	<sh:Usage sh:Id="10-Dec" sh:Value="10" /> 
+	<sh:Usage sh:Id="11-Dec" sh:Value="20" /> 
+	<sh:Usage sh:Id="12-Dec" sh:Value="0" /> 
+	<sh:Usage sh:Id="13-Dec" sh:Value="0" /> 
+	<sh:Usage sh:Id="14-Dec" sh:Value="83" /> 
+	<sh:Usage sh:Id="15-Dec" sh:Value="83" /> 
+</sh:DailyMainUsage>
+</ns:return>
+</ns:getDailyMainUsageResponse>
+

@@ -1,0 +1,13 @@
+<ns:getYrlyMainUsageResponse xmlns:ns="http://water.starhomeWS">
+<ns:return>
+<sh:YrlyMainUsage xmlns:sh="http://starhome.sg/waterusage/feeds">
+	<sh:Usage sh:Id="2005" sh:Value="0" /> 
+	<sh:Usage sh:Id="2006" sh:Value="0" /> 
+	<sh:Usage sh:Id="2007" sh:Value="0" /> 
+	<sh:Usage sh:Id="2008" sh:Value="0" /> 
+	<sh:Usage sh:Id="2009" sh:Value="2423" /> 
+</sh:YrlyMainUsage>
+</ns:return>
+</ns:getYrlyMainUsageResponse>
+
+

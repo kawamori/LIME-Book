@@ -21,7 +21,7 @@
 		urlList[0] = "ecg-sample/bml/startup.bml";
 		urlList[1] = "simple-epg/startup.bml";
 		urlList[2] = "miyagi/kahoku.bml";
-		urlList[3] = "";
+		urlList[3] = "lab_mio/lab_mio/bml/startup.bml";
 		urlList[4] = "";
 		urlList[5] = "";
 		urlList[6] = "";
@@ -66,7 +66,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">Kahoku News</p>
 		
 		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
-		onclick="jump();"></p>
+		onclick="jump();">Mio TV-like</p>
 		
 		
 		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
