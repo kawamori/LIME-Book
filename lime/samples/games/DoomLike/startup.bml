@@ -880,9 +880,7 @@ function createMaze(w, h){
 	<p id="alien0" class="alien">ви</p>
 	<p id="alien1" class="alien">ви</p>
 </div>
-<div style="left:450px;top:380px;width:168px;height:164px;">
-<object type="image/X-arib-png" data="doom-gun.png" style="left:0;top:0;width:168px;height:164px;"/>
-</div>
+
 </body>
 </bml>
 
