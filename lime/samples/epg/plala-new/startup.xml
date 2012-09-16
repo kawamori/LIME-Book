@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="EUC-JP" ?>
-<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
 <title>DTV PORTAL(VOD)</title>
 <style><![CDATA[
   body {
+	clut:url(images/clut.clt);
 	background-color-index:0;
 	resolution:960x540;
 	display-aspect-ratio:16v9;
 	used-key-list:basic data-button;
-	clut:url(images/clut.clt);
   }
   #backgroundPane {
 	top:	0px;

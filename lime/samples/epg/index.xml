@@ -22,7 +22,7 @@
 		urlList[1] = "simple-epg/startup.bml";
 		urlList[2] = "miyagi/kahoku.bml";
 		urlList[3] = "lab_mio/lab_mio/bml/startup.bml";
-		urlList[4] = "plala-new/startup.bml";
+		urlList[4] = "plala-new/startup.xml";
 		urlList[5] = "";
 		urlList[6] = "";
 		urlList[7] = "";
