@@ -139,7 +139,7 @@ div { border-color-index: 7;}
 </div><!-- end of dl-->
 <p id="pp" style="top:355px;left:30px;width:490px;height:80px;background-color-index:7;">
 		 This is an emulation of W3C Acid Test1 by LIME-CSS of ITU-T H.762.
-		  The original test can be found  <a href="http://kawamori.github.com/LIME-Book/lime/trans/bml.100915/bml_acid/list.html">here</a>.
+		  The original test can be found  <a href="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-mobile-ts/penguin_700k.mp4&tid=0123456789&protocol=hls.m3u8">here</a>.
 		  All implementations of conformant LIME-CSS agents should be able to render the document elements above. </p>
 </body>
 </bml>
