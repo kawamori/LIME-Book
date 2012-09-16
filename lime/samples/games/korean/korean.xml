@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Running Arabic</title>
+
+<style><![CDATA[
+       body {background-color-index:0;}
+	#result	{font-size:24px;background-color-index:2;color-index:7;top:10px;left:30px;width:300px;height:24px;}
+]]></style>
+
+<script src='../scripts/mycommon.ecm.js'/>
+<script><![CDATA[
+
+//document.body.clientWidth
+
+var textLength =  1260;
+var clientWidth = 960;
+
+
+   // var x=-1 * textLength; // initial position of the text
+    var x= textLength;
+    var dx=10; // 
+
+    function move()
+    {
+
+        setTimeout("move()",100);
+        var text=document.getElementById("text");
+        x-=dx;
+
+        text.normalStyle.left=x;
+
+      //  if (x+10 <= clientWidth - textLength )
+      if (x +3 <= (-1 * textLength))
+            x=1260;
+
+    }
+    
+    function goback(){ browser.launchDocument("../top.xml", "cut");	}
+]]></script>
+</head>
+<body onload="move();">
+
+
+	<div id="stream" style="left:300px; top:180px; width:600px; height:330px;">
+		<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/world_out.mp4&protocol=http_tts" streamstatus="play" style="left:0px; top:0px;width:600px; height:330px;" />
+	</div>
+	
+	
+<div style="left:10px; top:0px; width:494px;height:528px;">
+<object id="text" type="image/jpeg" data="Haeundae.jpg" style="left:0px;top:0;width:494px;height:332px;"/>
+</div>
+ 
+<!--
+<div style="left:700px;top:0;width:202px;height:150px;background-color-index:8;">
+<object type="image/X-arib-png" data="dubai-title.png" style="left:0px;top:0;width:202px;height:150px;"/>
+</div>
+-->
+
+
+<div style="left:0px; top:300px; width:960px; height:40px;">
+<object   id="text"  type="image/X-arib-png" data="haeundae1.png" style="left:0;top:0;width:1262px;height:34px;"/>
+</div>
+
+<!--<p id="result"><![CDATA[]]></p>-->
+<p style="top:470px;left:850px;height:36px;width:60px;background-color-index:4;color-index:7;" accesskey="B" onclick="goback();">Back</p>
+</body>
+</bml>
