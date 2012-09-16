@@ -228,7 +228,7 @@ if (missiley < 0){missiley=99;}
    patno=patno+1;
    if (patno >= 3) {patno = 1;}
 
-//face aria
+//face area
 
      for (var addline = 1; addline < 5; addline++){
      mestotal[addline]=totalblank;
@@ -365,6 +365,6 @@ inplay=0;
 
 <p id="display" style="top:100;left:750"><![CDATA[]]></p>
 
-<p style="top:470px;left:850px;height:36px;width:60px;background-color-index:4;color-index:7;" accesskey="B" onclick="goback();">Back</p>
+<p style="top:470px;left:850px;height:36px;width:60px;background-color-index:3;color-index:7;" accesskey="Y" onclick="goback();">Back</p>
 </body>
 </bml>
