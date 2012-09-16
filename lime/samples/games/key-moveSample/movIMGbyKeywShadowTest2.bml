@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<!--
+============================================================
+Copyright (C)2011, NTT Inc. All rights reserved.
+============================================================
+-->
+<bml>
+<head>
+
+
+<title>moving image with shadow</title>
+<style><![CDATA[
+
+body     {background-color-index:7}
+
+#bgimg { position:absolute;font-size:12px;
+         left:50px;top:50px;
+         width:288px;height:144px;
+         clip:rect(0, 288, 144, 0) ;
+        color-index:3;}
+
+#shadow{ position:absolute; left:22px;top:34px
+ }
+
+div             {width:70px; height:70px;}
+object          {width:40px; height:40px;left:0px; top:0px; }
+#display	{font-size:20px;background-color-index:16;color-index:7;top:0px;left:30px;width:50px;height:40px;}
+]]>
+</style>
+<script src='scripts/mycommon.ecm'/>
+<script><![CDATA[
+
+  function movIMG(ky){
+    if(ky=='1'){moveByLAYER('me',0,-15);}//up
+    if(ky=='4'){moveByLAYER('me',15,0); }//right
+    if(ky=='3'){moveByLAYER('me',-15,0);}//left
+    if(ky=='2'){moveByLAYER('me',0,15); }//down
+  }
+
+
+//------------------------------------------------------------
+  //--obtaining the key code
+  function key_Press(){
+
+    var e = document.currentEvent;
+       var key =e.keyCode;
+    //action to be taken with the key
+    movIMG(key);
+  }
+
+
+/*/////////////// End of Processing of Keys */
+//--Moving 
+/*///////////////////////// function for relative movement
+========================================================
+
+Syntax:
+ moveByLAYER('layer',x-pixel,y-pixel) 
+Sample:   moveByLAYER('test0',0,-15)
+ Support http://game.gr.jp/js/
+=======================================================*/
+
+  function moveByLAYER(idName,offsetx,offsety){
+
+    if(document.getElementById){
+      var oj = document.getElementById(idName).normalStyle;
+      oj.left = ( parseInt(oj.left) + offsetx ) + 'px';
+      oj.top  = ( parseInt(oj.top)  + offsety ) + 'px';
+    }
+  }
+
+]]></script>
+</head>
+<body>
+
+
+<div style="top:0px;left:0px;width:960px;height:540px;">
+       <object type="image/X-arib-png" data="images/bg-map1.png" style="top:0px;left:0px;width:960px;height:540px;"/>
+</div>
+
+<div style="top:100px;left:120px;" id="me">
+  <object type="image/X-arib-png" data="images/me0.png"/>
+      <div id="shadow" >
+       <object type="image/X-arib-png" data="images/shadow0.png" style="top:0;left:0;width:32px;height:40px;"/>
+    </div>
+</div>
+
+<p id="btn" style="top:0px;left:0px;height:20px;width:50px;nav-index:0;" onkeydown="key_Press();"></p>
+
+<!--<p id="display"><![CDATA[]]></p>-->
+
+</body>
+</bml>
+
