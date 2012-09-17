@@ -45,7 +45,7 @@ function jump(){
 
 
 
-function goback(){ browser.launchDocument("../startup.bml", "cut");	}
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 		]]></script>
 
@@ -75,16 +75,16 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
 		onclick="jump();">Psy16:910KB</p>
    <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
-		onclick="jump();">Fist:149KB</p>
+		onclick="jump();">Fist13:149KB</p>
 		
 		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
-		onclick="jump();">Curve:601KB</p>
+		onclick="jump();">Curve17:601KB</p>
 		
 				 <p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
-		onclick="jump();">Finger:749KB</p>
+		onclick="jump();">Finger14:522KB</p>
 				
 				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
-		onclick="jump();">Soyoen:405KB</p>
+		onclick="jump();">Soyoen15:449KB</p>
 		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
 		onclick="jump();"></p>
 
