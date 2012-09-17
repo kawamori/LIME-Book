@@ -48,11 +48,11 @@ var clientWidth = 960;
 		<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/earth_out.mp4&protocol=http_tts" streamstatus="play" style="left:0px; top:0px;width:375px; height:206px;" />
 	</div>
 	
-	
+<!--	
 <div style="left:460px; top:0px; width:494px;height:528px;">
 <object id="text" type="image/jpeg" data="Haeundae.jpg" style="left:0px;top:0;width:494px;height:332px;"/>
 </div>
- 
+ -->
  
  <div style="left:0px; top:0px; width:960px; height:540px">
 <object type="image/X-arib-mng" data="images/psy6.mng" streamstatus="play" style="left:0;top:0;width:500px;height:212px;"/>
