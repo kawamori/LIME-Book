@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>template for BS</title>
+
+<style><![CDATA[
+	body{
+		clut:url(dance.clt);
+		background-color-index:7;
+	}
+]]></style>
+
+</head>
+<body>
+<div style="left:0px; top:0px; width:960px; height:540px">
+<object type="image/X-arib-mng" data="dance.mng"  streamstatus="play" style="left:0;top:0;width:480px;height:270px;"/>
+
+</div>
+</body>
+</bml>
+

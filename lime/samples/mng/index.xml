@@ -29,7 +29,7 @@
 		urlList[8] = "girls/hyomin-fingers.bml";
 		urlList[9] = "girls/soyoen.bml";
 		urlList[10] = "retro/whatislove.bml";
-		urlList[11] = "";
+		urlList[11] = "retro/dance.bml";
 		urlList[12] = "";
 		
 
@@ -89,7 +89,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 		onclick="jump();">What is Love? 5:108KB</p>
 
 		<p id="11" class="button" style="top:480px;nav-index:11;nav-up:10;nav-down:12;"
-		onclick="jump();"></p>
+		onclick="jump();">Dance</p>
 		<p id="12" class="button" style="top:510px;nav-index:12;nav-up:11;nav-down:12;"
 		onclick="jump();"></p>
 	
