@@ -58,7 +58,7 @@ var clientWidth = 960;
 
 
 <div style="left:0px; top:300px; width:960px; height:40px;">
-<object   id="text"  type="image/X-arib-png" data="haeundae1.png" style="left:0;top:0;width:936px;height:34px;"/>
+<object id="text" type="image/X-arib-png" data="arabic-line-test.png" style="top:0;width:936px;height:40px;background-color-index:8;"/>
 </div>
 
 <!--<p id="result"><![CDATA[]]></p>-->
