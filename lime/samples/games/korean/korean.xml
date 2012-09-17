@@ -55,7 +55,7 @@ var clientWidth = 960;
  
  
  <div style="left:0px; top:0px; width:960px; height:540px">
-<object type="image/X-arib-mng" data="images/psy-gs.mng" streamstatus="play" style="left:0;top:0;width:500px;height:212px;"/>
+<object type="image/X-arib-mng" data="images/psy6.mng" streamstatus="play" style="left:0;top:0;width:500px;height:212px;"/>
 
 
 </div>
