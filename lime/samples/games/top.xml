@@ -92,7 +92,7 @@ function kc() {
     }
     if (id=="19") {
         browser.playRomSound("romsound://7");
-        browser.launchDcoument("actiongame_e/startup.bml");
+        browser.launchDcoument("korean/korean.xml");
     }
     if (id=="20") {
         browser.playRomSound("romsound://7");
@@ -362,7 +362,7 @@ function onload() {
     <p id="name16" class="pfInfo" style="left:0px;top:162px;width:420px;height:25px;">07　 DoomLike</p>
     <p id="name17" class="pfInfo" style="left:0px;top:189px;width:420px;height:25px;">08　 Arabic Marquee</p>
     <p id="name18" class="pfInfo" style="left:0px;top:216px;width:420px;height:25px;">09　 Key move Sample</p>
-    <p id="name19" class="pfInfo" style="left:0px;top:243px;width:420px;height:25px;">10　</p>
+    <p id="name19" class="pfInfo" style="left:0px;top:243px;width:420px;height:25px;">10　Korean Sample</p>
     <p id="name20" class="pfInfo" style="left:0px;top:270px;width:420px;height:25px;">11　</p>
     <p id="name21" class="pfInfo" style="left:0px;top:297px;width:420px;height:25px;">12　</p>
 </div>
