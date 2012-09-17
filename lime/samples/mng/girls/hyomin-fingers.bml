@@ -13,7 +13,7 @@
 
 <script ><![CDATA[
 
-function goback(){ browser.launchDocument("../startup.bml", "cut");	}
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 		]]></script>
 
