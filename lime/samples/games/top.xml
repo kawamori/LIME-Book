@@ -67,7 +67,7 @@ function kc() {
 
     if (id=="13") {
         browser.playRomSound("romsound://7");
-        browser.launchDocument("korean/marquee-graphics.xml");
+        browser.launchDocument("korean/korean.xml");
     }
 
     if (id=="14") {
