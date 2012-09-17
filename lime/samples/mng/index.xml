@@ -20,7 +20,7 @@
 		var urlList = new Array();
 		urlList[0] = "psy/psy1.bml";
 		urlList[1] = "psy/psy5.bml";
-		urlList[2] = "psy/psy6.bml;
+		urlList[2] = "psy/psy6.bml";
 		urlList[3] = "psy/psy8.bml";
 		urlList[4] = "psy/psy12.bml";
 		urlList[5] = "";
