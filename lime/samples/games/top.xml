@@ -67,7 +67,7 @@ function kc() {
 
     if (id=="13") {
         browser.playRomSound("romsound://7");
-        browser.launchDocument("smokeship-3.bml");
+        browser.launchDocument("korean/korean.xml");
     }
 
     if (id=="14") {
@@ -92,7 +92,7 @@ function kc() {
     }
     if (id=="19") {
         browser.playRomSound("romsound://7");
-        browser.launchDcoument("korean/korean.xml");
+        browser.launchDcoument("");
     }
     if (id=="20") {
         browser.playRomSound("romsound://7");
@@ -356,13 +356,13 @@ function onload() {
     <p id="name10" class="pfInfo" style="left:0px;top:0px;  width:420px;height:25px;">01　 reversi-w-eng.bml</p>
     <p id="name11" class="pfInfo" style="left:0px;top:27px; width:420px;height:25px;">02　 facegame.bml</p>
     <p id="name12" class="pfInfo" style="left:0px;top:54px; width:420px;height:25px;">03　 AAtiger-test2-c.bml</p>
-    <p id="name13" class="pfInfo" style="left:0px;top:81px; width:420px;height:25px;">04　 smokeship-3.bml</p>
+    <p id="name13" class="pfInfo" style="left:0px;top:81px; width:420px;height:25px;">04　 Korean Sample</p>
     <p id="name14" class="pfInfo" style="left:0px;top:108px;width:420px;height:25px;">05　 Maze </p>
     <p id="name15" class="pfInfo" style="left:0px;top:135px;width:420px;height:25px;">06　 Action Game</p>
     <p id="name16" class="pfInfo" style="left:0px;top:162px;width:420px;height:25px;">07　 DoomLike</p>
     <p id="name17" class="pfInfo" style="left:0px;top:189px;width:420px;height:25px;">08　 Arabic Marquee</p>
     <p id="name18" class="pfInfo" style="left:0px;top:216px;width:420px;height:25px;">09　 Key move Sample</p>
-    <p id="name19" class="pfInfo" style="left:0px;top:243px;width:420px;height:25px;">10　Korean Sample</p>
+    <p id="name19" class="pfInfo" style="left:0px;top:243px;width:420px;height:25px;">10　 </p>
     <p id="name20" class="pfInfo" style="left:0px;top:270px;width:420px;height:25px;">11　</p>
     <p id="name21" class="pfInfo" style="left:0px;top:297px;width:420px;height:25px;">12　</p>
 </div>
