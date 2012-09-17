@@ -14,7 +14,7 @@
 
 //document.body.clientWidth
 
-var textLength =  960;
+var textLength =  930;
 var clientWidth = 960;
 
 
@@ -33,7 +33,7 @@ var clientWidth = 960;
 
       //  if (x+10 <= clientWidth - textLength )
       if (x +3 <= (-1 * textLength))
-            x=960;
+            x=930;
 
     }
     
@@ -60,7 +60,7 @@ var clientWidth = 960;
 
 
 <div style="left:0px; top:300px; width:960px; height:40px;">
-<object   id="text"  type="image/X-arib-png" data="haeundae1.png" style="left:0;top:0;width:960px;height:34px;"/>
+<object   id="text"  type="image/X-arib-png" data="haeundae1.png" style="left:0;top:0;width:930px;height:34px;"/>
 </div>
 
 <!--<p id="result"><![CDATA[]]></p>-->
