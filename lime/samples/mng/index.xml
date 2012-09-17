@@ -24,10 +24,10 @@
 		urlList[3] = "psy/psy8.bml";
 		urlList[4] = "psy/psy12.bml";
 		urlList[5] = "psy/psy16.bml";
-		urlList[6] = "";
-		urlList[7] = "";
-		urlList[8] = "";
-		urlList[9] = "";
+		urlList[6] = "girls/fist.bml";
+		urlList[7] = "girls/hyomin-curve.bml";
+		urlList[8] = "girls/hyomin-fingers.bml";
+		urlList[9] = "girls/soyoen.bml";
 		urlList[10] = "";
 		urlList[11] = "";
 		urlList[12] = "";
@@ -75,16 +75,16 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
 		onclick="jump();">Psy16:910KB</p>
    <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
-		onclick="jump();"></p>
+		onclick="jump();">Fist:149KB</p>
 		
 		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
-		onclick="jump();"></p>
+		onclick="jump();">Curve:601KB</p>
 		
 				 <p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
-		onclick="jump();"></p>
+		onclick="jump();">Finger:749KB</p>
 				
 				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
-		onclick="jump();"></p>
+		onclick="jump();">Soyoen:405KB</p>
 		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
 		onclick="jump();"></p>
 
