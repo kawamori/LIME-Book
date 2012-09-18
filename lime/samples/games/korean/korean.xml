@@ -70,6 +70,6 @@ var clientWidth = 960;
 <object   id="text"  type="image/X-arib-png" data="haeundae1.png" style="left:0;top:0px;width:910px;height:34px;"/>
 </div>
 <!--<p id="result"><![CDATA[]]></p>-->
-<p style="top:470px;left:850px;height:36px;width:60px;background-color-index:3;color-index:7;" accesskey="Y" onclick="goback();">Back</p>
+<p style="top:0px;left:850px;height:36px;width:60px;background-color-index:3;color-index:7;" accesskey="Y" onclick="goback();">Back</p>
 </body>
 </bml>
