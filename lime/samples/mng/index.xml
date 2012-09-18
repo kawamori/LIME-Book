@@ -54,43 +54,41 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		
 <p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ Some MNG tests ]]></p>
 		
-			
-		
-        <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
+        <p id="0" class="button" style="top:50px;nav-index:0;nav-down:1"
 		onclick="jump();">Psy1:57.2 KB</p>
 
-		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
+		<p id="1" class="button" style="top:80px;nav-index:1;nav-down:2;nav-up:0;"
 		onclick="jump();">Psy5:285 KB </p>
 		
-		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
+		<p id="2" class="button" style="top:110px;nav-index:2;nav-up:1;nav-down:3;"
 		onclick="jump();">Psy6:342 KB</p>
 		
-		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
+		<p id="3" class="button" style="top:140px;nav-index:3;nav-up:2;nav-down:4;"
 		onclick="jump();">Psy8:455KB</p>
 		
 		
-		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
+		<p id="4" class="button" style="top:170px;nav-index:4;nav-up:3;nav-down:5;"
 		onclick="jump();">Psy12:682KB</p>
 
-	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
+	<p id="5" class="button" style="top:200px;nav-index:5;nav-up:4;nav-down:6;"
 		onclick="jump();">Psy16:910KB</p>
-   <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
+   <p id="6" class="button" style="top:230px;nav-index:6;nav-up:5;nav-down:7;"
 		onclick="jump();">Fist13:149KB</p>
 		
-		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
+		 <p id="7" class="button" style="top:260px;nav-index:7;nav-up:6;nav-down:8;"
 		onclick="jump();">Curve17:601KB</p>
 		
-				 <p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
+				 <p id="8" class="button" style="top:290px;nav-index:8;nav-up:7;nav-down:9;"
 		onclick="jump();">Finger14:522KB</p>
 				
-				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
-		onclick="jump();">Soyoen15:449KB</p>
-		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
+				 <p id="9" class="button" style="top:320px;nav-index:9;nav-up:8;nav-down:10;"
+		onclick="jump();">Soyoen8:224KB</p>
+		<p id="10" class="button" style="top:350px;nav-index:10;nav-up:9;nav-down:11;"
 		onclick="jump();">What is Love? 5:108KB</p>
 
-		<p id="11" class="button" style="top:480px;nav-index:11;nav-up:10;nav-down:12;"
+		<p id="11" class="button" style="top:380px;nav-index:11;nav-up:10;nav-down:12;"
 		onclick="jump();">Dance</p>
-		<p id="12" class="button" style="top:510px;nav-index:12;nav-up:11;nav-down:12;"
+		<p id="12" class="button" style="top:410px;nav-index:12;nav-up:11;nav-down:12;"
 		onclick="jump();"></p>
 	
 
