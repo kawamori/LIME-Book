@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title/>
+<style><![CDATA[
+	*	{font-size:20px;}
+	#count	{left:110px;width:40px;height:20px;
+		border-style:solid;border-width:2px;}
+	#popup	{left:30px;top:30px;width:104px;height:116px;visibility:hidden;
+		background-color-index:10;}
+	#status	{top:30px;width:400px;height:20px;
+		color-index:7;background-color-index:16;}
+	.button	{width:100px;height:20px;text-align:center;
+		border-style:solid;border-width:2px;}
+	:focus	{background-color-index:3;}
+]]></style>
+
+<script><![CDATA[
+
+function popupMenu(){
+	var obj = document.getElementById("popup");
+	obj.normalStyle.visibility = "visible";
+	obj.firstChild.focus();
+}
+
+function popupSelected(){
+	var str = document.currentEvent.target.firstChild.data;
+	var obj = document.getElementById("popup");
+	obj.normalStyle.visibility = "hidden";
+
+	obj = document.getElementById("type");
+	obj.firstChild.data = str;
+	obj.focus();
+}
+
+function writeNvRam(){
+	var type  = document.getElementById("type").firstChild.data;
+	var count = document.getElementById("count").value;
+	var data  = new Array(type, parseInt(count));
+	var r = browser.writePersistentArray("nvram://~/2","S:1V,I:2B",data);
+
+	if( r != null ){
+		print("nvramにデータを書き込みました。");
+	}else{
+		print("nvramへの書き込みに失敗しました。");
+	}
+}
+
+function readNvRam(){
+	var r = browser.readPersistentArray("nvram://~/2","S:1V,I:2B");
+	if( r != null ){
+		print("種類:"+r[0]+" "+r[1]+"本");
+	}else{
+		print("nvramからの読込みに失敗しました。");
+	}
+}
+
+function print(msg){
+	document.getElementById("status").firstChild.data = msg;
+}
+]]></script>
+
+</head>
+<body style="background-color-index:7;used-key-list:basic numeric-tuning;">
+<div style="top:30px;left:30px;width:420px;height:150px;">
+	<p class="button" id="type" onclick="popupMenu();"
+		style="nav-index:0;nav-left:3;nav-right:1;"><![CDATA[Burbon]]></p>
+	<input id="count" value="20" maxlength="2"
+		style="nav-index:1;nav-left:0;nav-right:2;text-align:center;"/>
+
+	<p class="button" onclick="writeNvRam();"
+		style="left:180px;nav-index:2;nav-left:1;nav-right:3;">write</p>
+	<p class="button" onclick="readNvRam();"
+		style="left:300px;nav-index:3;nav-left:2;nav-right:0;">read</p>
+	<p id="status"><![CDATA[]]></p>
+</div>
+
+<div id="popup">
+	<p class="button" onclick="popupSelected();"
+		style="top:0px;nav-index:10;nav-down:11;nav-up:13;">Burbon</p>
+	<p class="button" onclick="popupSelected();"
+		style="top:30px;nav-index:11;nav-down:12;nav-up:10;">Whiskey</p>
+	<p class="button" onclick="popupSelected();"
+		style="top:60px;nav-index:12;nav-down:13;nav-up:11;">Wine</p>
+	<p class="button" onclick="popupSelected();"
+		style="top:90px;nav-index:13;nav-down:10;nav-up:12;">Vodka</p>
+</div>
+</body>
+</bml>
