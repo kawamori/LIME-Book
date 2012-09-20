@@ -27,7 +27,7 @@ function BGMrp(){
 
 function goback(){ browser.launchDocument("li-kashing.xml", "cut");	}
 
-function gonext(){ browser.launchDocument("startup.xml", "cut");	}
+function gonext(){ browser.launchDocument("gates.xml", "cut");	}
 
 ]]></script>
 </head>
