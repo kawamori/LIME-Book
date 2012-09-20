@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head  xmlns="http://www.w3.org/1999/xhtml">
+<title>Rich men</title>
+
+<style><![CDATA[
+
+
+]]></style>
+
+<script><![CDATA[
+function myload(){
+	GE("bgm").streamStatus="play";
+
+	browser.setInterval("BGMrp();",31000,0);
+
+}
+
+function GE(id){
+	return document.getElementById(id);
+}
+function BGMrp(){
+	GE("bgm").streamStatus="stop";
+	GE("bgm").streamStatus="play";
+}
+
+function goback(){ browser.launchDocument("s-jobs.xml", "cut");	}
+
+function gonext(){ browser.launchDocument("startup.xml", "cut");	}
+
+]]></script>
+</head>
+<body  xmlns="http://www.w3.org/1999/xhtml" onload="myload();">
+<p> </p>
+<div>
+	<object id="bgm" data="media/gates.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
+</div>
+
+<div style="left:0px; top:100px; width:960px; height:440px">
+  <object type="image/jpeg" data="media/gates.jpg" style="left:60px;top:10px;width:384px;height:310px;"/>
+</div>
+<div style="left:0px; top:50px; width:960px; height:440px">
+<object type="image/jpeg" data="media/gates-text.jpg" style="left:500px;top:0px;width:320px;height:270px;"/>
+</div>
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+<p style="top:470px;left:900px;height:36px;width:64px;background-color-index:3;" accesskey="Y" onclick="gonext();">Next </p>
+
+</body>
+</bml>
+
