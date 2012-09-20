@@ -36,9 +36,11 @@ function alert(str){
 
 function main(){
 
-alert("Check Parental Control Password");
+
 
 browser.checkParentalCtrlPassword();
+
+//alert("Check Parental Control Password");
 
 }
 
