@@ -38,8 +38,13 @@ function main(){
 
 
 
-browser.checkParentalCtrlPassword();
-
+ var ret = browser.checkParentalCtrlPassword();
+	if( ret != null ){
+		alert("parental age level is set ")+ret;
+	}else{
+		alert("error: Parental is not set"+ ret);;
+	}
+	
 //alert("Check Parental Control Password");
 
 }
