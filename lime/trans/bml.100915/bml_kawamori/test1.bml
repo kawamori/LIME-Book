@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title></title>
+<style><![CDATA[
+p	{text-align:center;}
+a	{font-weight:bold;}
+a:focus	{background-color-index:3;}
+a:blur	{background-color-index:7;}
+
+]]></style>
+</head>
+<body>
+<p style="left:250px;top:100px;width:350px;height:270px;background-color-index:7;"><br/>
+This is 
+<a  href="50x.html" style="left:300px;top:200px;nav-index:0;nav-up:0;nav-down:1;"><![CDATA[Link  1]]></a> of 5.<br/><br/>
+This is 
+<a  style="left:300px;top:250px;nav-index:1;nav-up:0;nav-down:2;"  href="50x.html" ><![CDATA[Link  2]]></a> of 5.<br/><br/>
+This is 
+<a  style="left:300px;top:300px;nav-index:2;nav-up:1;nav-down:3;"><![CDATA[Link  3]]></a> of 5.<br/><br/>
+This is 
+<a  style="left:300px;top:350px;nav-index:3;nav-up:2;nav-down:0;"><![CDATA[Link  4]]></a> of 5.<br/><br/>
+This is 
+<a  href="50x.html"  style="left:300px;top:400px;"><![CDATA[Link  5]]></a> of 5.<br/><br/>
+</p>
+</body>
+</bml>
