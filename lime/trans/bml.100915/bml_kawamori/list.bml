@@ -55,11 +55,11 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 <p id="display" style="top:20px;left:50px;width:350px;height:400px;"><![CDATA[ Sample LIME code ]]></p>
 		
                 <p class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();"><a  id="0" href='http://goo.gl/b0p2f' style="left:300px;top:200px;nav-index:0;nav-up:0;nav-down:1;">Penguin</a></p>
+		onclick="jump();"><a  id="0" href='http://goo.gl/b0p2f' style="left:300px;top:200px;">Penguin</a></p>
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();"><a  href='http://goo.gl/W6a8v' style="left:300px;top:200px;nav-index:1;nav-up:0;nav-down:2;">Monkey</a></p>
+		onclick="jump();"><a  href='http://goo.gl/W6a8v' style="left:300px;top:200px">Monkey</a></p>
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
-		onclick="jump();"><a  href='http://goo.gl/1vo3D' style="left:300px;top:200px;nav-index:2;nav-up:1;nav-down:3;">Whitebear</a></p>
+		onclick="jump();"><a  href='http://goo.gl/1vo3D' style="left:300px;top:200px">Whitebear</a></p>
 		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
 		onclick="jump();"></p>
 		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
