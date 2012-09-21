@@ -57,21 +57,21 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
                 <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
 		onclick="jump();"><a  href='http://goo.gl/b0p2f' style="left:300px;top:200px;nav-index:0;nav-up:0;nav-down:1;">Penguin</a></p>
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();">Video Test</p>
+		onclick="jump();"><a  href='http://goo.gl/W6a8v' style="left:300px;top:200px;nav-index:1;nav-up:0;nav-down:2;">Monkey</a></p>
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
-		onclick="jump();">EPG Sample</p>
+		onclick="jump();"><a  href='http://goo.gl/1vo3D' style="left:300px;top:200px;nav-index:2;nav-up:1;nav-down:3;">Whitebear</a></p>
 		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
-		onclick="jump();">system test</p>
+		onclick="jump();"></p>
 		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
-		onclick="jump();">Game-like</p>
+		onclick="jump();"></p>
         	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
-		onclick="jump();">JPEG</p>
+		onclick="jump();"></p>
                 <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
-		onclick="jump();">Rich Men (Chinese text)</p>
+		onclick="jump();"></p>
 		<p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
-		onclick="jump();"> Ateneo Welcome </p>
+		onclick="jump();"></p>
 		<p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
-		onclick="jump();">MNG</p>
+		onclick="jump();"></p>
 		<p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
 		onclick="jump();"></p>
 		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
