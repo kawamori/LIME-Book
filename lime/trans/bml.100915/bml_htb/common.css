@@ -1,0 +1,43 @@
+/*body { used-key-list:basic data-button; clut:url(common.clt); background-image:url("./parts/backimg_0.jpg"); }*/
+body { used-key-list:basic data-button; clut:url(common.clt); }
+.all    { top:0px;left:0px;width:960px;height:540px; }
+
+#backimg { left:0px;top:0px;width:960px;height:540px; }
+#mainBase { left:0px;top:0px;width:960px;height:540px; }
+
+#photoShadow { left:304px;top:61px;width:358px;height:238px;visibility:hidden; }
+
+object.photoS { top:125px;width:160px;height:102px; }
+object.photoM { top:99px;left:363px;width:234px;height:154px; }
+object.photoL { top:61px;left:305px;width:350px;height:230px; }
+#photo_S_0 { left:-110px;visibility:hidden; }
+#photo_S_1 { left:60px;visibility:hidden; }
+#photo_S_2 { left:230px;visibility:hidden; }
+#photo_S_3 { left:400px;visibility:hidden; }
+#photo_S_4 { left:570px;visibility:hidden; }
+#photo_S_5 { left:740px;visibility:hidden; }
+#photo_S_6 { left:910px;visibility:hidden; }
+#photo_M { visibility:hidden; }
+#photo_L { visibility:hidden; }
+#vodBtn { left:282px;top:52px;width:153px;height:53px;visibility:hidden; }
+
+#leftBtn { left:265px;top:261px;width:22px;height:24px;visibility:hidden; }
+#rightBtn { left:673px;top:261px;width:22px;height:24px;visibility:hidden; }
+
+#title { left:284px;top:301px;width:560px;height:27px;font-size:16px;line-height:27px;color-index:215;grayscale-color-index:222 223; }
+#text { left:285px;top:345px;width:480px;height:140px;font-size:16px;line-height:20px;color-index:0;grayscale-color-index:220 221; }
+
+
+#upBtn { left:756px;top:343px;width:16px;height:10px;visibility:hidden; }
+#downBtn { left:756px;top:477px;width:16px;height:10px;visibility:hidden; }
+#barBase { left:762px;top:355px;width:5px;height:120px;visibility:hidden; }
+#bar { left:761px;top:355px;width:7px;height:57px;visibility:hidden; }
+
+#profilePhoto { left:794px;top:342px;width:135px;height:118px; }
+#profile { left:785px;top:460px;width:153px;height:24px;font-size:16px;line-height:24px;color-index:0;grayscale-color-index:218 219;text-align:center; }
+
+#location0 { left:25px;top:312px;width:192px;height:34px;font-size:16px;line-height:17px;color-index:214;grayscale-color-index:216 217; }
+#location1 { left:25px;top:312px;width:192px;height:34px;font-size:16px;line-height:34px;color-index:214;grayscale-color-index:216 217; }
+#mapPoint { left:176px;top:356px;width:13px;height:19px;visibility:hidden; }
+
+#cbtnBase { left:824px;top:500px;width:136px;height:21px; }
