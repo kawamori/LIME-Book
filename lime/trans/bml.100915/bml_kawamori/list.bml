@@ -54,8 +54,8 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 		
 <p id="display" style="top:20px;left:50px;width:350px;height:400px;"><![CDATA[ Sample LIME code ]]></p>
 		
-                <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();"><a  href='http://goo.gl/b0p2f' style="left:300px;top:200px;nav-index:0;nav-up:0;nav-down:1;">Penguin</a></p>
+                <p class="button" style="top:150px;nav-index:0;nav-down:1"
+		onclick="jump();"><a  id="0" href='http://goo.gl/b0p2f' style="left:300px;top:200px;nav-index:0;nav-up:0;nav-down:1;">Penguin</a></p>
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
 		onclick="jump();"><a  href='http://goo.gl/W6a8v' style="left:300px;top:200px;nav-index:1;nav-up:0;nav-down:2;">Monkey</a></p>
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
@@ -82,10 +82,6 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 		onclick="jump();"></p>
 	
 
-
-<div style="left:188px; top:150px; width:32px;height:15px;">
-<object type="image/X-arib-png" data="images/graphic_new_transparent3.png" style="left:0;top:0;width:32px;height:15px;"/>
-</div>
 
 <p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
 
