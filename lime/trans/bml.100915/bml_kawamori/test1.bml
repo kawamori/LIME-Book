@@ -15,7 +15,7 @@ a:blur	{background-color-index:7;}
 <body>
 <p style="left:250px;top:100px;width:350px;height:270px;background-color-index:7;"><br/>
 This is 
-<a  href="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-mobile-ts/penguin_700k.mp4&tid=0123456789&protocol=hls.m3u8" style="left:300px;top:200px;nav-index:0;nav-up:0;nav-down:1;"><![CDATA[Link  1]]></a> of 5.<br/><br/>
+<a  href="50x.html" style="left:300px;top:200px;nav-index:0;nav-up:0;nav-down:1;"><![CDATA[Link  1]]></a> of 5.<br/><br/>
 This is 
 <a  style="left:300px;top:250px;nav-index:1;nav-up:0;nav-down:2;"  href="50x.html" ><![CDATA[Link  2]]></a> of 5.<br/><br/>
 This is 
