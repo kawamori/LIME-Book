@@ -7,7 +7,7 @@
 	<title>Test Sites</title>
 	<style>
 		<![CDATA[
-                        body { }
+                        body { background-image: url("images/chiloncastle.jpg");}
 			p {height:16px;color-index:15;grayscale-color-index:15 15}
 			
 			p:focus{background-color-index:80;color-index:7;}
