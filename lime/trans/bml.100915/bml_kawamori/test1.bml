@@ -14,12 +14,10 @@ a:blur	{background-color-index:7;}
 </head>
 <body>
 <p style="left:250px;top:100px;width:350px;height:270px;background-color-index:7;"><br/>
-This is 
-<a  href='http://goo.gl/b0p2f' style="left:300px;top:200px;nav-index:0;nav-up:0;nav-down:1;"><![CDATA[Link  1]]></a> of 5.<br/><br/>
-This is 
-<a  style="left:300px;top:250px;nav-index:1;nav-up:0;nav-down:2;"  href="http://goo.gl/qa8Xl" ><![CDATA[Link  2]]></a> of 5.<br/><br/>
-This is 
-<a  style="left:300px;top:300px;nav-index:2;nav-up:1;nav-down:3;"><![CDATA[Link  3]]></a> of 5.<br/><br/>
+
+<a  href='http://goo.gl/b0p2f' style="left:300px;top:200px;nav-index:0;nav-up:0;nav-down:1;"><![CDATA[iOS Penguin]]></a><br/><br/>
+<a  style="left:300px;top:250px;nav-index:1;nav-up:0;nav-down:2;"  href="http://goo.gl/W6a8v" ><![CDATA[Monkey]]></a><br/><br/>
+<a  style="left:300px;top:300px;nav-index:2;nav-up:1;nav-down:3;" href="http://goo.gl/1vo3D"><![CDATA[White bear]]></a><br/><br/>
 This is 
 <a  style="left:300px;top:350px;nav-index:3;nav-up:2;nav-down:0;"><![CDATA[Link  4]]></a> of 5.<br/><br/>
 This is 
