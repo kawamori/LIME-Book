@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="EUC-JP" ?>
 <?bml bml-version="100.0" ?>
-<bml>
-<head  xmlns="http://www.w3.org/1999/xhtml">
+<bml  xmlns="http://www.w3.org/1999/xhtml">
+<head>
 <title>Rich men</title>
 
 <style><![CDATA[
@@ -31,7 +31,7 @@ function gonext(){ browser.launchDocument("startup.xml", "cut");	}
 
 ]]></script>
 </head>
-<body  xmlns="http://www.w3.org/1999/xhtml" onload="myload();">
+<body onload="myload();">
 <p> </p>
 <div>
 	<object id="bgm" data="media/s-jobs.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
@@ -40,8 +40,8 @@ function gonext(){ browser.launchDocument("startup.xml", "cut");	}
 <div style="left:0px; top:100px; width:960px; height:440px">
   <object type="image/jpeg" data="media/s-jobs.jpg" style="left:60px;top:10px;width:346px;height:308px;"/>
 </div>
-<div style="left:0px; top:50px; width:960px; height:440px">
-<object type="image/jpeg" data="media/s-jobs-text.jpg" style="left:500px;top:0px;width:294px;height:404px;"/>
+<div style="position:absolute;left:500px; top:50px; width:460px; height:440px">
+<object type="image/jpeg" data="media/s-jobs-text.jpg" style="left:0px;top:0px;width:294px;height:404px;"/>
 </div>
 <p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
 
