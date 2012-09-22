@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<!--
+
+-->
+
+<bml>
+<head>
+<title></title>
+<style><![CDATA[
+
+body {
+		background-image:url(images/grid-bg.jpg);
+	}
+p {width:50px;
+	height:50px;
+	border-style:solid;
+	border-width:1px;
+	border-top-color-index:30;
+	border-left-color-index:30;
+	border-bottom-color-index:30;
+	border-right-color-index:30;
+	font-size: 16px;}
+
+
+#display	{ font-size:20px;background-color-index:16;color-index:7;top:30px;left:330px;width:600px;height:480px;}
+#alert	{ font-size:20px;background-color-index:12;color-index:7;top:130px;left:330px;width:280px;height:280px;}
+
+]]>
+</style>
+
+
+<script><![CDATA[ 
+
+
+
+]]></script>
+
+</head>
+
+<body>
+
+
+<p  style="width:70px;height:100px;color-index:1">color grid</p>
+
+<div style="left:80px;top:80px;width:800px;height:400px;">
+
+<p  id="0" style="background-color-index:0;left:0px;top:0px;" />
+<p  id="1" style="background-color-index:1;left:50px;top:0px;" />
+<p  id="2" style="background-color-index:2;left:100px;top:0px;" />
+<p  id="3" style="background-color-index:3;left:150px;top:0px;" />
+<p  id="4" style="background-color-index:4;left:200px;top:0px;" />
+<p  id="5" style="background-color-index:5;left:250px;top:0px;" />
+<p  id="6" style="background-color-index:6;left:300px;top:0px;" />
+<p  id="7" style="background-color-index:7;left:350px;top:0px;" />
+<p  id="8" style="background-color-index:8;left:400px;top:0px;" />
+<p  id="9" style="background-color-index:9;left:450px;top:0px;" />
+<p  id="10" style="background-color-index:10;left:500px;top:0px;" />
+<p  id="11" style="background-color-index:11;left:550px;top:0px;" />
+<p  id="12" style="background-color-index:12;left:600px;top:0px;" />
+<p  id="13" style="background-color-index:13;left:650px;top:0px;" />
+<p  id="14" style="background-color-index:14;left:700px;top:0px;" />
+<p  id="15" style="background-color-index:15;left:750px;top:0px;" />
+
+<p  id="16" style="background-color-index:16;left:0px;top:50px;" />
+<p  id="17" style="background-color-index:17;left:50px;top:50px;" />
+<p  id="18" style="background-color-index:18;left:100px;top:50px;" />
+<p  id="19" style="background-color-index:19;left:150px;top:50px;" />
+<p  id="20" style="background-color-index:20;left:200px;top:50px;" />
+<p  id="21" style="background-color-index:21;left:250px;top:50px;" />
+<p  id="22" style="background-color-index:22;left:300px;top:50px;" />
+<p  id="23" style="background-color-index:23;left:350px;top:50px;" />
+<p  id="24" style="background-color-index:24;left:400px;top:50px;" />
+<p  id="25" style="background-color-index:25;left:450px;top:50px;" />
+<p  id="26" style="background-color-index:26;left:500px;top:50px;" />
+<p  id="27" style="background-color-index:27;left:550px;top:50px;" />
+<p  id="28" style="background-color-index:28;left:600px;top:50px;" />
+<p  id="29" style="background-color-index:29;left:650px;top:50px;" />
+<p  id="30" style="background-color-index:30;left:700px;top:50px;" />
+<p  id="31" style="background-color-index:31;left:750px;top:50px;" />
+
+<p  id="32" style="background-color-index:32;left:0px;top:100px;" />
+<p  id="33" style="background-color-index:33;left:50px;top:100px;" />
+<p  id="34" style="background-color-index:34;left:100px;top:100px;" />
+<p  id="35" style="background-color-index:35;left:150px;top:100px;" />
+<p  id="36" style="background-color-index:36;left:200px;top:100px;" />
+<p  id="37" style="background-color-index:37;left:250px;top:100px;" />
+<p  id="38" style="background-color-index:38;left:300px;top:100px;" />
+<p  id="39" style="background-color-index:39;left:350px;top:100px;" />
+<p  id="40" style="background-color-index:40;left:400px;top:100px;" />
+<p  id="41" style="background-color-index:41;left:450px;top:100px;" />
+<p  id="42" style="background-color-index:42;left:500px;top:100px;" />
+<p  id="43" style="background-color-index:43;left:550px;top:100px;" />
+<p  id="44" style="background-color-index:44;left:600px;top:100px;" />
+<p  id="45" style="background-color-index:45;left:650px;top:100px;" />
+<p  id="46" style="background-color-index:46;left:700px;top:100px;" />
+<p  id="47" style="background-color-index:47;left:750px;top:100px;" />
+
+
+<p  id="48" style="background-color-index:48;left:0px;top:150px;" />
+<p  id="49" style="background-color-index:49;left:50px;top:150px;" />
+<p  id="50" style="background-color-index:50;left:100px;top:150px;" />
+<p  id="51" style="background-color-index:51;left:150px;top:150px;" />
+<p  id="52" style="background-color-index:52;left:200px;top:150px;" />
+<p  id="53" style="background-color-index:53;left:250px;top:150px;" />
+<p  id="54" style="background-color-index:54;left:300px;top:150px;" />
+<p  id="55" style="background-color-index:55;left:350px;top:150px;" />
+<p  id="56" style="background-color-index:56;left:400px;top:150px;" />
+<p  id="57" style="background-color-index:57;left:450px;top:150px;" />
+<p  id="58" style="background-color-index:58;left:500px;top:150px;" />
+<p  id="59" style="background-color-index:59;left:550px;top:150px;" />
+<p  id="60" style="background-color-index:60;left:600px;top:150px;" />
+<p  id="61" style="background-color-index:61;left:650px;top:150px;" />
+<p  id="62" style="background-color-index:62;left:700px;top:150px;" />
+<p  id="63" style="background-color-index:63;left:750px;top:150px;" />
+
+
+<p  id="64" style="background-color-index:64;left:0px;top:200px;" />
+<p  id="65" style="background-color-index:65;left:50px;top:200px;" />
+<p  id="66" style="background-color-index:66;left:100px;top:200px;" />
+<p  id="67" style="background-color-index:67;left:150px;top:200px;" />
+<p  id="68" style="background-color-index:68;left:200px;top:200px;" />
+<p  id="69" style="background-color-index:69;left:250px;top:200px;" />
+<p  id="70" style="background-color-index:70;left:300px;top:200px;" />
+<p  id="71" style="background-color-index:71;left:350px;top:200px;" />
+<p  id="72" style="background-color-index:72;left:400px;top:200px;" />
+<p  id="73" style="background-color-index:73;left:450px;top:200px;" />
+<p  id="74" style="background-color-index:74;left:500px;top:200px;" />
+<p  id="75" style="background-color-index:75;left:550px;top:200px;" />
+<p  id="76" style="background-color-index:76;left:600px;top:200px;" />
+<p  id="77" style="background-color-index:77;left:650px;top:200px;" />
+<p  id="78" style="background-color-index:78;left:700px;top:200px;" />
+<p  id="79" style="background-color-index:79;left:750px;top:200px;" />
+
+<p  id="80" style="background-color-index:80;left:0px;top:250px;" />
+<p  id="81" style="background-color-index:81;left:50px;top:250px;" />
+<p  id="82" style="background-color-index:82;left:100px;top:250px;" />
+<p  id="83" style="background-color-index:83;left:150px;top:250px;" />
+<p  id="84" style="background-color-index:84;left:200px;top:250px;" />
+<p  id="85" style="background-color-index:85;left:250px;top:250px;" />
+<p  id="86" style="background-color-index:86;left:300px;top:250px;" />
+<p  id="87" style="background-color-index:87;left:350px;top:250px;" />
+<p  id="88" style="background-color-index:88;left:400px;top:250px;" />
+<p  id="89" style="background-color-index:89;left:450px;top:250px;" />
+<p  id="90" style="background-color-index:90;left:500px;top:250px;" />
+<p  id="91" style="background-color-index:91;left:550px;top:250px;" />
+<p  id="92" style="background-color-index:92;left:600px;top:250px;" />
+<p  id="93" style="background-color-index:93;left:650px;top:250px;" />
+<p  id="94" style="background-color-index:94;left:700px;top:250px;" />
+<p  id="95" style="background-color-index:95;left:750px;top:250px;" />
+
+<p  id="96" style="background-color-index:96;left:0px;top:300px;" />
+<p  id="97" style="background-color-index:97;left:50px;top:300px;" />
+<p  id="98" style="background-color-index:98;left:100px;top:300px;" />
+<p  id="99" style="background-color-index:99;left:150px;top:300px;" />
+<p  id="100" style="background-color-index:100;left:200px;top:300px;" />
+<p  id="101" style="background-color-index:101;left:250px;top:300px;" />
+<p  id="102" style="background-color-index:102;left:300px;top:300px;" />
+<p  id="103" style="background-color-index:103;left:350px;top:300px;" />
+<p  id="104" style="background-color-index:104;left:400px;top:300px;" />
+<p  id="105" style="background-color-index:105;left:450px;top:300px;" />
+<p  id="106" style="background-color-index:106;left:500px;top:300px;" />
+<p  id="107" style="background-color-index:107;left:550px;top:300px;" />
+<p  id="108" style="background-color-index:108;left:600px;top:300px;" />
+<p  id="109" style="background-color-index:109;left:650px;top:300px;" />
+<p  id="110" style="background-color-index:110;left:700px;top:300px;" />
+<p  id="111" style="background-color-index:111;left:750px;top:300px;" />
+
+
+<p  id="112" style="background-color-index:112;left:0px;top:350px;" />
+<p  id="113" style="background-color-index:113;left:50px;top:350px;" />
+<p  id="114" style="background-color-index:114;left:100px;top:350px;" />
+<p  id="115" style="background-color-index:115;left:150px;top:350px;" />
+<p  id="116" style="background-color-index:116;left:200px;top:350px;" />
+<p  id="117" style="background-color-index:117;left:250px;top:350px;" />
+<p  id="118" style="background-color-index:118;left:300px;top:350px;" />
+<p  id="119" style="background-color-index:119;left:350px;top:350px;" />
+<p  id="120" style="background-color-index:120;left:400px;top:350px;" />
+<p  id="121" style="background-color-index:121;left:450px;top:350px;" />
+<p  id="122" style="background-color-index:122;left:500px;top:350px;" />
+<p  id="123" style="background-color-index:123;left:550px;top:350px;" />
+<p  id="124" style="background-color-index:124;left:600px;top:350px;" />
+<p  id="125" style="background-color-index:125;left:650px;top:350px;" />
+<p  id="126" style="background-color-index:126;left:700px;top:350px;" />
+<p  id="127" style="background-color-index:127;left:750px;top:350px;" />
+</div>
+
+<!--
+<div style="left:0px; top:0px;left:0;top:0;width:317px;height:161px">
+<object type="image/jpeg" data="images/color-samples.jpg" style="left:0;top:0;width:317px;height:161px;"/>
+
+</div>
+-->
+
+<!--
+<p id="navi" style="top:180px;left:200px;color-index:0;background-color-index:15;">Play</p>
+-->
+
+
+<!--
+<p id="display" style="top:80px;left:550px;"><![CDATA[]]></p>
+<p id="alert" style="top:300px;left:10px;"><![CDATA[]]></p>-->
+</body>
+</bml>
