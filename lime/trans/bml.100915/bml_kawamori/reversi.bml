@@ -303,7 +303,7 @@ function comgo()
 	
 
 <p onclick="Revert();" id="p00" class="no" style="left:0px;top:0px;nav-index: 0; nav-down: 10; nav-up:0;nav-right: 1;nav-left:0;"><![CDATA[¡ü]]></p>	
-<p onclick="Revert();" id="p10" class="no" style="left:0px;top:50px;nav-index:10; nav-down: 20; nav-up:0; nav-right: 11;nav-left:10;" >¡ü</p>
+<p onclick="Revert();" id="p10" class="no" style="left:0px;top:50px;nav-index:10; nav-down: 20; nav-up:0; nav-right: 11;nav-left:10;" ><a href="javascript:Revert();">¡ü</a></p>
 <p onclick="Revert();" id="p20" class="no" style="left:0px;top:100px;nav-index:20; nav-down: 30; nav-up:10; nav-right: 21;nav-left:20;">¡ü</p>
 <p onclick="Revert();" id="p30" class="no" style="left:0px;top:150px;nav-index:30; nav-down: 40; nav-up:20; nav-right: 31;nav-left:30;">¡ü</p>
 <p onclick="Revert();" id="p40" class="no" style="left:0px;top:200px;nav-index:40; nav-down: 50; nav-up:30; nav-right: 41;nav-left:40;">¡ü</p>
