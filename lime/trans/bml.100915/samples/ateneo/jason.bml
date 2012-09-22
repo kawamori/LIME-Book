@@ -9,7 +9,7 @@
 <style><![CDATA[
 	body{
 	
-		background-color-index:0;
+		background-color-index:7;
 	}
 
 #heart {color-index:1;}
