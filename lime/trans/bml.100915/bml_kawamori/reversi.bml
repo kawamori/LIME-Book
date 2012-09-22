@@ -30,7 +30,7 @@ p.no 	{color-index:21;}
 p.bl {color-index:0;}
 p.wh {color-index:7;}
 p.cell	{width:50px;height:50px;background-color-index:18;}
-
+a {color-index:8;}
 #display	{ font-size:20px;background-color-index:16;color-index:7;top:30px;left:330px;width:600px;height:480px;}
 
 
