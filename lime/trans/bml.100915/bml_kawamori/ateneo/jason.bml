@@ -9,7 +9,7 @@
 <style><![CDATA[
 	body{
 	
-		background-color-index:7;
+		background-color-index:0;
 	}
 
 #heart {color-index:1;}
@@ -45,6 +45,28 @@
 
 ]]>
 </p>
+
+<p id-"fleur-de-lis" style="left:600px; top:100px; width:960px; height:300px;color-index:4;font-size:16px"><![CDATA[
+                      8
+                    .d8b.
+                _.d8888888b._
+              .88888888888888b.
+             d88888888888888888b
+             8888888888888888888
+             Y88888888888888888P
+               Y8888888888888P
+            _..._  Y88888P _..._
+          .d88888b. Y888P .d88888b.
+         d888888888b 888 d88888888b
+         888P  `Y8888888888P  Y888
+          b8b    Y88888888P    d8Y
+                #############  
+                  dP d8b Yb
+              Ob=dP d888b Yb=dO
+                   O88888O 
+                            
+                                      
+]]></p>
 
 
  <p  style="left:340px; top:0px; width:400px; height:200px;color-index:7;font-size:36px"><![CDATA[
