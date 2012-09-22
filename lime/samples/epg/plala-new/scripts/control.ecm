@@ -62,7 +62,7 @@ function hideMenuFunc() {
   bunner.normalStyle.width = '657px';
   bunner.normalStyle.left  = '220px';
 
-  gMenu.timerID = browser.setInterval("_hideMenuImpl();", 100, 0);
+  gMenu.timerID = browser.setInterval("_hideMenuImpl();", 500, 0);
 }
 
 function _hideMenuImpl() {
