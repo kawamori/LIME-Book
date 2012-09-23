@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!-- This is a sample page -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>LIME Sample Entry Page</title>
+<style>
+body {background-color-index:7}
+ #title {font-size:36px;top:10px;left:10px;width:500px;height:50px}
+ .link {font-size:24px; top:150px;left:100px;width:300px;height:30px}
+</style>
+</head>
+<body>
+
+<p id="title"> Welcome to LIME Sample page</p> <br/>
+
+<br/>
+
+<p class="link">
+<a class="link" href="http://kawamori.github.com/LIME-Book/lime/trans/bml.100915/index.xhtml">Translated LIME samples</a><br/>
+</p>
+
+
+</body>
+</bml>
