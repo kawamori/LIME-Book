@@ -15,7 +15,7 @@ body { 	resolution:960x540;
 	display-aspect-ratio:16v9;
 	background-color-index:7; 
 	clut:url(images/default.clt); 
-	background-image:url(images/1.jpg);
+	background-image:url(images/washi.jpg);
 }
 
 
@@ -29,7 +29,7 @@ function SG(g,d)
 {
 	if (g == 0){
 		if (d){
-			setData("s10", "paris.jpg");
+			setData("s10", "joumyouji.jpg");
 			getStyle("video").width = (parseInt(getStyle("stream").width,10) * 5 / 8) + "px";getStyle("video").height = (parseInt(getStyle("stream").height,10) * 5 / 8) + "px";setVisible("video");
 			hide("s21");
 			hide("s22");
@@ -37,7 +37,7 @@ function SG(g,d)
 			getStyle("s8").top = "365px";
 			getStyle("s8").height = "150px";
 			getStyle("s9").top = "370px";
-		setText("s9", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+		setText("s9", "鎌倉と浄明寺○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○");
 
 		getStyle("s9").height = "140px";
 		}
@@ -54,7 +54,7 @@ function SG(g,d)
 		}
 	} else if (g == 4){
 		if (d){
-			setData("s10", "swan.jpg");
+			setData("s10", "daibutsu.jpg");
 			getStyle("video").width = (parseInt(getStyle("stream").width,10) * 3 / 8) + "px";getStyle("video").height = (parseInt(getStyle("stream").height,10) * 3 / 8) + "px";setVisible("video");
 			setVisible("s21");
 			setVisible("s22");
@@ -62,7 +62,7 @@ function SG(g,d)
 			getStyle("s8").top = "224px";
 			getStyle("s8").height = "300px";
 			getStyle("s9").top = "253px";
-			setText("s9", "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+			setText("s9", "鎌倉は、日本国神奈川県、三浦半島西側の付け根に位置する市です。1192年に、源頼朝によって鎌倉幕府が置かれた都市であり、日本の政治において最も重要な位置のひとつを占めていました。 現在の鎌倉は中世の鎌倉とは断絶した地割りですが、古社寺や史跡、文化財が多く残り、観光を主な産業として、今なお繁栄しています。");
 			getStyle("s9").height = "280px";
 		}
 	} else if (g == 5){
@@ -269,13 +269,13 @@ function launchURL(u)//launchURL
 	<div id="mono" style="width:960px; height:540px;" onkeyup="keyUp();" onkeydown="keyDown();">
 		<object id="s4" style="left:637px; top:9px; width:299px; height:102px;" data="roundText_title.png" type="image/X-arib-png"/> <!-- title -->
 	<!-- Use graphics for title, rather than text -->	
-		<!-- <p id="s5" style="background-color-index:8; grayscale-color-index:18 17; left:640px; top:21px; width:288px; height:60px; line-height:30px;"><![CDATA[ Lorem Ipsum Dolor      - sit amet consectetur -]]></p>-->
+		<!-- <p id="s5" style="background-color-index:8; grayscale-color-index:18 17; left:640px; top:21px; width:288px; height:60px; line-height:30px;"><![CDATA[ 鎌倉市浄明寺町内会     - sit amet consectetur -]]></p>-->
 		<object id="s5" style="left:658px; top:36px; width:288px; height:60px;"  data="text_t.png" type="image/X-arib-png"><![CDATA[]]></object>
 				
 		<object id="s8" style="left:20px; top:365px; width:600px; height:150px;" data="textFrameRect.png" type="image/X-arib-png"/> <!-- Text frame -->
 				
 		<p id="s9" style="background-color-index:8; grayscale-color-index:18 17; left:36px; top:370px; width:576px; height:140px; line-height:28px;"><![CDATA[]]></p>
-		<object id="s10" style="left:628px; top:282px; width:320px; height:240px;" data="paris.jpg" type="image/jpeg"/>
+		<object id="s10" style="left:628px; top:282px; width:320px; height:240px;" data="joumyouji.jpg" type="image/jpeg"/>
 
 		<!-- buttons --> 
 		<object id="s11" style="left:660px; top:110px; width:223px; height:40px;" data="button_focus_1.png" type="image/X-arib-png"/> 
@@ -290,10 +290,9 @@ function launchURL(u)//launchURL
 		<p id="s22" style="background-color-index:8; grayscale-color-index:18 17; text-align:center; font-size:20px; left:395px; top:28px; width:200px; height:180px; visibility:hidden;">
 		<![CDATA[    
 		
-		Ipsum   
-		Dolor Sit    
-		Consectetur
-	   Adipisicing
+		鎌倉と浄明寺
+　　　　　　　　　　の
+　　　　　　　　　　歩み
 	    
 	    ]]></p>
 	</div>
@@ -301,7 +300,7 @@ function launchURL(u)//launchURL
 <!-- 
 Video tag: URL to the manifest file of the video file is to be put here.
 -->
-		<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/world_out.mp4&protocol=http_tts" streamstatus="play" style="left:20px; top:17px;width:600px; height:337px;" />
+		<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts" streamstatus="play" style="left:20px; top:17px;width:600px; height:337px;" />
 	</div>
 	
 	
