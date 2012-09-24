@@ -50,7 +50,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 </head>
 <body>
 		
-<p id="display" style="top:20px;left:10px;width:350px;height:400px;"><![CDATA[ ¾ôÌÀ»û ]]></p>
+<p id="display" style="top:20px;left:10px;width:350px;height:400px;"><![CDATA[ ³ùÁÒ»Ô¾ôÌÀ»ûÄ®Æâ²ñ¤Î¥Ú¡¼¥¸ ]]></p>
 		
         <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
 		onclick="jump();">¥Ë¥å¡¼¥¹</p>
