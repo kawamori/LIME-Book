@@ -7,10 +7,10 @@
 	<style>
 		<![CDATA[
                         body {   background-image: url("buddha.jpg");}
-			p {height:16px;color-index:0;grayscale-color-index:15 15}
+			p {height:16px;color-index:15;grayscale-color-index:15 15}
 			
 			p:focus{background-color-index:80;color-index:7;}
-			.button {top:180px;left:221px;width:230px;height:28px;}
+			.button {top:180px;left:221px;width:429px;height:28px;}
 			
 		]]>
 	</style>
@@ -43,7 +43,7 @@ var base = "";
 		browser.launchDocument(base + url);
 }
 	
-function goback(){ browser.launchDocument("../startup.bml", "cut");	}
+function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lime-iptv-portal/bml/startup.bml", "cut");	}
 
 		]]></script>
 
@@ -56,7 +56,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">ニュース</p>
 
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();">ビデオ</p>
+		onclick="jump();">ビデオ Test</p>
 		
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
 		onclick="jump();">情報</p>
@@ -97,10 +97,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 <object type="image/X-arib-png" data="images/graphic_new_transparent3.png" style="left:0;top:0;width:32px;height:15px;"/>
 </div>
 
-
-<div style="left:870px; top:490px;width:34px;height:34px;" >
-<object type="image/X-arib-png" data="return-button.png" style="left:0;top:0;width:34px;height:34px;" accesskey="Y" onclick="goback();"/>
-</div>
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
 
 </body>
 </bml>

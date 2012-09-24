@@ -2,7 +2,7 @@
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
-<title>Sample LIME content 1 </title>
+<title>Sample LIME content for Joumyouji</title>
 <meta>Develped based on the Template startup.bml version 1.00 by Art Developers Corporation
 Template startup.bml version 1.00 (Copyright 2008 by Art Developers Corporation)
 Sample LIME content, (Copyright 2010, NTT)
@@ -37,7 +37,7 @@ function SG(g,d)
 			getStyle("s8").top = "365px";
 			getStyle("s8").height = "150px";
 			getStyle("s9").top = "370px";
-		setText("s9", "³ùÁÒ¤È¾ôÌÀ»û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û");
+		setText("s9", "³ùÁÒ¤È¾ôÌÀ»û; ¾ôÌ¯»û¤Ï£±£±£¸£¹Ç¯¡¢Â­ÍøµÁ·ó¡Ê¤è¤·¤«¤Í¡Ë¤Ë¤è¤êÁðÁÏ¤µ¤ì¡¢Åö»þ¤Ï¡Ö¶Ë³Ú»û¡×¤È¤¤¤¦¿¿¸À½¡¤Î¤ª»û¤Ç¤¢¤Ã¤¿¡£¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û¡û");
 
 		getStyle("s9").height = "140px";
 		}
@@ -270,7 +270,7 @@ function launchURL(u)//launchURL
 		<object id="s4" style="left:637px; top:9px; width:299px; height:102px;" data="roundText_title.png" type="image/X-arib-png"/> <!-- title -->
 	<!-- Use graphics for title, rather than text -->	
 		<!-- <p id="s5" style="background-color-index:8; grayscale-color-index:18 17; left:640px; top:21px; width:288px; height:60px; line-height:30px;"><![CDATA[ ³ùÁÒ»Ô¾ôÌÀ»ûÄ®Æâ²ñ     - sit amet consectetur -]]></p>-->
-		<object id="s5" style="left:658px; top:36px; width:288px; height:60px;"  data="text_t.png" type="image/X-arib-png"><![CDATA[]]></object>
+		<object id="s5" style="left:668px; top:28px; width:145px; height:64px;"  data="kamakura-kanji0.png" type="image/X-arib-png"><![CDATA[]]></object>
 				
 		<object id="s8" style="left:20px; top:365px; width:600px; height:150px;" data="textFrameRect.png" type="image/X-arib-png"/> <!-- Text frame -->
 				
