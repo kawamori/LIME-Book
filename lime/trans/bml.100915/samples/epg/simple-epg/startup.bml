@@ -14,7 +14,7 @@ Sample LIME content, (Copyright 2010, NTT)
 
 body { 	resolution:960x540;
 	display-aspect-ratio:16v9;
-	background-color-index:7; 
+	background-color-index:62; 
 	clut:url(images/default.clt); 
 	background-image:url(1.jpg);
 }
