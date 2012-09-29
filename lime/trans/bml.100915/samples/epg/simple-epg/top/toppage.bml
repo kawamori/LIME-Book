@@ -7,7 +7,7 @@
 <style><![CDATA[
 	body{
 		clut:url(../images/default.clt);
-		background-color-index:0;
+		background-color-index:60;
 	}
 	.button	{top:35px;height:54px;}
 	.button:focus	{background-color-index:65;}
