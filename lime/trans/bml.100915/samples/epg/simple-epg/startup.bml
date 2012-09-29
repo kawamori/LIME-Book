@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="EUC-JP" ?>
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
@@ -301,7 +302,7 @@ function launchURL(u)//launchURL
 <!-- 
 Video tag: URL to the manifest file of the video file is to be put here.
 -->
-		<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/world_out.mp4&protocol=http_tts" streamstatus="play" style="left:20px; top:17px;width:600px; height:337px;" />
+		<object id="video" type="application/X-arib-contentPlayControl" data="http://goo.gl/b0p2f" streamstatus="play" style="left:20px; top:17px;width:600px; height:337px;" />
 	</div>
 	
 	
