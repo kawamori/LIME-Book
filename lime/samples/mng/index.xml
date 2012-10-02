@@ -89,7 +89,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		<p id="11" class="button" style="top:380px;nav-index:11;nav-up:10;nav-down:12;"
 		onclick="jump();">Dance</p>
 		<p id="12" class="button" style="top:410px;nav-index:12;nav-up:11;nav-down:12;"
-		onclick="jump();">Nicole Kidman smiles</p>
+		onclick="jump();">Nicole Kidman smiles 8:486KB</p>
 	
 
 
