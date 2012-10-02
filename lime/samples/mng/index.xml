@@ -30,7 +30,7 @@
 		urlList[9] = "girls/soyoen.bml";
 		urlList[10] = "retro/whatislove.bml";
 		urlList[11] = "retro/dance.bml";
-		urlList[12] = "";
+		urlList[12] = "retro/kidman.bml";
 		
 
 //var base = "http://localhost/";
@@ -89,7 +89,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		<p id="11" class="button" style="top:380px;nav-index:11;nav-up:10;nav-down:12;"
 		onclick="jump();">Dance</p>
 		<p id="12" class="button" style="top:410px;nav-index:12;nav-up:11;nav-down:12;"
-		onclick="jump();"></p>
+		onclick="jump();">Nicole Kidman smiles</p>
 	
 
 
