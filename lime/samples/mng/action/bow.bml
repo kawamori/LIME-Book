@@ -12,13 +12,19 @@
 		background-color-index:7;
 	}
 ]]></style>
+<script ><![CDATA[
 
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
+
+		]]></script>
 </head>
 <body>
 <div style="left:0px; top:0px; width:960px; height:540px">
 <object type="image/X-arib-mng" data="bow.mng" style="left:0;top:0;width:260px;height:410px;"  streamstatus="play"/>
 
 </div>
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
 </body>
 </bml>
 
