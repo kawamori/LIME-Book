@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="EUC-JP" ?>
 <!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "bml_100_0_iptv.dtd">
-<?bml bml-version="100.0" ?>
+<?bml bml-version="100.0"?>
 <bml>
 <head>
 	<title>Finger Spelling System for IPTV<title/>
