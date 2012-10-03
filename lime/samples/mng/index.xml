@@ -9,7 +9,7 @@
 			p {height:16px;color-index:7;grayscale-color-index:15 15}
 			
 			p:focus{background-color-index:1}
-			.button {top:180px;left:250px;width:250px;height:28px;}
+			.button {top:180px;left:250px;width:450px;height:28px;}
 			.bgm {
 		width:300px; height:300px; top:10px; left:10px;
 	}
@@ -58,7 +58,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">Psy</p>
 
 		<p id="1" class="button" style="top:80px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();">Betty Page</p>
+		onclick="jump();">Betty Page:13 393KB</p>
 		
 		<p id="2" class="button" style="top:110px;nav-index:2;nav-up:1;nav-down:3;"
 		onclick="jump();">Bow</p>
