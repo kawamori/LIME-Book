@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "bml_100_0_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+	<title>Finger Spelling System for IPTV<title/>
+	<style>
+		<![CDATA[
+			p {color-index:7;text-align:center;}
+		]]>
+	</style>
+	
+	<style>
+		<![CDATA[
+			p {height:16px;color-index:7;grayscale-color-index:15 15}
+			
+			p:focus{background-color-index:1}
+			.button {top:180px;left:221px;width:629px;height:28px;}
+			
+		]]>
+	</style>
+	<script ><![CDATA[
+
+		function goback(){ 
+			browser.launchDocument("startup.bml", "cut");	
+		}
+		
+		function gonext(){ 
+			browser.launchDocument("instruction3.bml", "cut");	
+		}
+
+
+		]]>
+	</script>
+</head>
+
+<body>
+	<div style="width:960px;height:580px">
+		<object id="num1_button" class="num_button" data="media/instruction/2.jpg" type="image/jpeg" style="width:488px;height:349px;top:30px;left:200px"/>
+		<p style="width:450px;height:200px;top:400px;left:200px">2.Use Arrow Button to choose alphabet and use Enter Button to select</p>
+		
+		<p style="width:200px;height:100px;top:500px;left:30px;color-index:7;background-color-index:4" accesskey="B" onclick="goback();">Back to Program</p>
+		<p style="width:100px;height:100px;top:500px;left:820px;color-index:7;background-color-index:1" accesskey="R" onclick="gonext();">Next</p>
+	</div>
+
+	
+</body>

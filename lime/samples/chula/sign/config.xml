@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?> 
+<widget id="123" width="960" height="580" version="1">
+  <Name>Thai Sign Language</Name> 
+  <Description>Display Animation of Thai Sign Language</Description> 
+  <Author href="" email="thananop.k@gmail.com">Thananop Kobchaisawat</Author> 
+  <License>Department of Electrical Engineering , Faculty of Engineering , Chulalongkorn University</License> 
+  <Language>English,Thai</Language> 
+  <Icon src="media/thai.jpg" /> 
+  <Content src="startup.bml" type="application/x-lime" /> 
+  <Tag>sign language,thai sign language,thai sign<Tag/> 
+</Widget>
