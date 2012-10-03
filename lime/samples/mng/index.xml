@@ -18,12 +18,12 @@
 	<script ><![CDATA[
 
 		var urlList = new Array();
-		urlList[0] = "psy/psy1.bml";
-		urlList[1] = "psy/psy5.bml";
-		urlList[2] = "psy/psy6.bml";
-		urlList[3] = "psy/psy8.bml";
-		urlList[4] = "psy/psy12.bml";
-		urlList[5] = "psy/psy16.bml";
+		urlList[0] = "psy/index.xml";
+		urlList[1] = "retro/betty.bml";
+		urlList[2] = "action/bow.bml";
+		urlList[3] = "action/kick.bml";
+		urlList[4] = "";
+		urlList[5] = "";
 		urlList[6] = "girls/fist.bml";
 		urlList[7] = "girls/hyomin-curve.bml";
 		urlList[8] = "girls/hyomin-fingers.bml";
@@ -55,23 +55,23 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 <p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ Some MNG tests ]]></p>
 		
         <p id="0" class="button" style="top:50px;nav-index:0;nav-down:1"
-		onclick="jump();">Psy1:57.2 KB</p>
+		onclick="jump();">Psy</p>
 
 		<p id="1" class="button" style="top:80px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();">Psy5:285 KB </p>
+		onclick="jump();">Betty Page</p>
 		
 		<p id="2" class="button" style="top:110px;nav-index:2;nav-up:1;nav-down:3;"
-		onclick="jump();">Psy6:342 KB</p>
+		onclick="jump();">Bow</p>
 		
 		<p id="3" class="button" style="top:140px;nav-index:3;nav-up:2;nav-down:4;"
-		onclick="jump();">Psy8:455KB</p>
+		onclick="jump();">Kick</p>
 		
 		
 		<p id="4" class="button" style="top:170px;nav-index:4;nav-up:3;nav-down:5;"
-		onclick="jump();">Psy12:682KB</p>
+		onclick="jump();"></p>
 
 	<p id="5" class="button" style="top:200px;nav-index:5;nav-up:4;nav-down:6;"
-		onclick="jump();">Psy16:910KB</p>
+		onclick="jump();"></p>
    <p id="6" class="button" style="top:230px;nav-index:6;nav-up:5;nav-down:7;"
 		onclick="jump();">Fist13:149KB</p>
 		

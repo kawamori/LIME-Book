@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA"
+	"http://www.arib.or.jp/B24/DTD/bml_1_1.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Bow</title>
+
+<style><![CDATA[
+	body{
+		clut:url(bow.clt);
+		background-color-index:7;
+	}
+]]></style>
+
+</head>
+<body>
+<div style="left:0px; top:0px; width:960px; height:540px">
+<object type="image/X-arib-mng" data="bow.mng" style="left:0;top:0;width:260px;height:410px;"  streamstatus="play"/>
+
+</div>
+</body>
+</bml>
+
