@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>MNG: Muybridge-horse-ride</title>
+
+<style><![CDATA[
+	body{
+		background-color-index:7;
+		clut:url(horseride.clt);
+	}
+]]></style>
+<script>
+<![CDATA[
+
+var b = document.getElementById("bod");
+b.clut="url(horseride.clt)";
+
+
+]]>
+</script>
+</head>
+<body id="bod">
+<div style="left:0px; top:0px; width:960px; height:540px">
+<object type="image/X-arib-mng" data="Muybridge-horse-ride.mng" style="left:150px;top:150px;width:184px;height:135px;" streamstatus="play"/>
+
+</div>
+</body>
+</bml>
+

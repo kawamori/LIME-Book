@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+	<title>MNG Tests</title>
+	<style>
+		<![CDATA[
+			p {height:16px;color-index:7;grayscale-color-index:15 15}
+			
+			p:focus{background-color-index:1}
+			.button {top:180px;left:250px;width:450px;height:28px;}
+			.bgm {
+		width:300px; height:300px; top:10px; left:10px;
+	}
+		]]>
+	</style>
+	<script ><![CDATA[
+
+		var urlList = new Array();
+		urlList[0] = "horse-ride.xml";
+		urlList[1] = "betty.bml";
+		urlList[2] = "";
+		urlList[3] = "";
+		urlList[4] = "";
+		urlList[5] = "";
+		urlList[6] = "";
+		urlList[7] = "";
+		urlList[8] = "";
+		urlList[9] = "";
+		urlList[10] = "whatislove.bml";
+		urlList[11] = "dance.bml";
+		urlList[12] = "kidman.bml";
+		
+
+//var base = "http://localhost/";
+//var base = "http://127.0.0.1/";
+var base = "";
+
+function jump(){
+	var url = urlList[document.currentEvent.target.id]
+	
+		browser.launchDocument(base + url);
+}
+
+
+
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
+
+		]]></script>
+
+</head>
+<body>
+		
+<p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ Some MNG tests ]]></p>
+		
+        <p id="0" class="button" style="top:50px;nav-index:0;nav-down:1"
+		onclick="jump();">Horse</p>
+
+		<p id="1" class="button" style="top:80px;nav-index:1;nav-down:2;nav-up:0;"
+		onclick="jump();">Betty Page:13 393KB</p>
+		
+		<p id="2" class="button" style="top:110px;nav-index:2;nav-up:1;nav-down:3;"
+		onclick="jump();"></p>
+		
+		<p id="3" class="button" style="top:140px;nav-index:3;nav-up:2;nav-down:4;"
+		onclick="jump();"></p>
+		
+		
+		<p id="4" class="button" style="top:170px;nav-index:4;nav-up:3;nav-down:5;"
+		onclick="jump();"></p>
+
+	<p id="5" class="button" style="top:200px;nav-index:5;nav-up:4;nav-down:6;"
+		onclick="jump();">  </p>
+   <p id="6" class="button" style="top:230px;nav-index:6;nav-up:5;nav-down:7;"
+		onclick="jump();"></p>
+		
+		 <p id="7" class="button" style="top:260px;nav-index:7;nav-up:6;nav-down:8;"
+		onclick="jump();"></p>
+		
+				 <p id="8" class="button" style="top:290px;nav-index:8;nav-up:7;nav-down:9;"
+		onclick="jump();"></p>
+				
+				 <p id="9" class="button" style="top:320px;nav-index:9;nav-up:8;nav-down:10;"
+		onclick="jump();"></p>
+		<p id="10" class="button" style="top:350px;nav-index:10;nav-up:9;nav-down:11;"
+		onclick="jump();">What is Love? 5:108KB</p>
+
+		<p id="11" class="button" style="top:380px;nav-index:11;nav-up:10;nav-down:12;"
+		onclick="jump();">Dance</p>
+		<p id="12" class="button" style="top:410px;nav-index:12;nav-up:11;nav-down:12;"
+		onclick="jump();">Nicole Kidman smiles 8:486KB</p>
+	
+
+
+
+
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+</body>
+</bml>
+
+
