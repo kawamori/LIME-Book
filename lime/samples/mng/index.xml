@@ -22,7 +22,7 @@
 		urlList[1] = "retro/betty.bml";
 		urlList[2] = "action/bow.bml";
 		urlList[3] = "action/kick.bml";
-		urlList[4] = "chula/index.xml";
+		urlList[4] = "action/car.bml";
 		urlList[5] = "";
 		urlList[6] = "girls/fist.bml";
 		urlList[7] = "girls/hyomin-curve.bml";
@@ -68,7 +68,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		
 		
 		<p id="4" class="button" style="top:170px;nav-index:4;nav-up:3;nav-down:5;"
-		onclick="jump();">Chula Sign Language</p>
+		onclick="jump();">Car</p>
 
 	<p id="5" class="button" style="top:200px;nav-index:5;nav-up:4;nav-down:6;"
 		onclick="jump();">  </p>

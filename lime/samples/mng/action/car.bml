@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>MNG Test</title>
+<style><![CDATA[
+	body {
+		clut:url(car.clt);
+		background-color-index:0;
+	}
+	.chick {
+		width:500px; height:500px; top:50px; left:50px;
+	}
+]]></style>
+
+</head>
+
+<body>
+<div style="width:960px;height:540px;">
+
+	<object class="chick" data="car.mng" type="image/X-arib-mng" streamstatus="play"/>
+</div>
+</body>
+</bml>
