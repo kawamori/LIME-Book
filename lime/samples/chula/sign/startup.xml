@@ -3,7 +3,7 @@
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
-	<title>Finger Spelling System for IPTV<title/>
+	<title>Finger Spelling System for IPTV</title>
 	<style>
 		<![CDATA[
 			body{background-image:url('media/bg.jpg');}
@@ -274,7 +274,7 @@
 
 </head>
 
-<body onload="load()";>
+<body onload="load();">
 	
 	
 	<div id="small_frame1" style="width:192px;height:220px;top:25px;" onkeydown="small_frame_keypress();" >
