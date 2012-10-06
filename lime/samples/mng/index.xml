@@ -19,7 +19,7 @@
 
 		var urlList = new Array();
 		urlList[0] = "psy/index.xml";
-		urlList[1] = "retro/betty.bml";
+		urlList[1] = "retro/index.xml";
 		urlList[2] = "action/bow.bml";
 		urlList[3] = "action/kick.bml";
 		urlList[4] = "action/car.bml";
@@ -28,9 +28,9 @@
 		urlList[7] = "girls/hyomin-curve.bml";
 		urlList[8] = "girls/hyomin-fingers.bml";
 		urlList[9] = "girls/soyoen.bml";
-		urlList[10] = "retro/whatislove.bml";
-		urlList[11] = "retro/dance.bml";
-		urlList[12] = "retro/kidman.bml";
+		urlList[10] = "";
+		urlList[11] = "";
+		urlList[12] = "";
 		
 
 //var base = "http://localhost/";
