@@ -1,5 +1,3 @@
-
-	
 	var cur_selected_num;
 	var cur_selected_alphabet;
 	var cur_selected_sign;
@@ -33,12 +31,13 @@
 						Array("","s","s","h","a","h","","","","","","","",""),
 						Array("","a","i","ii","ue","uee","u","uu","au","","","","",""));
 	var cur_display=new Array(Array(0,0,0,0,0,0));
+	
 	function load(){
 		document.getElementById("num").focus();
-		cur_selected_num=1;
-		cur_selected_alphabet=1;
-		cur_selected_sign=1;
-		cur_selected_small_frame=1;
+		cur_selected_num = 1;
+		cur_selected_alphabet = 1;
+		cur_selected_sign = 1;
+		cur_selected_small_frame = 1;
 	}
 	function num_keypress(){
 	
@@ -47,8 +46,8 @@
 			var num_button_element_id="num"+cur_selected_num.toString()+"_button";
 			document.getElementById(num_button_element_id).data="media/button"+cur_selected_num.toString()+"_up.jpg";
 			if(keycode==1) { /*Up*/
-				if(cur_selected_num==0)
-					cur_selected_num=10;
+				if(cur_selected_num == 0)
+					cur_selected_num = 10;
 				else
 					cur_selected_num--;
 			}
@@ -60,7 +59,7 @@
 			}
 			if(keycode==4) { /* Right */
 				if(cur_selected_num<7 && cur_selected_num!=0)
-					cur_selected_num=cur_selected_num+4;
+					cur_selected_num = cur_selected_num+4;
 				else if(cur_selected_num==7)
 					cur_selected_num=0;
 				else if(cur_selected_num==0)
@@ -68,9 +67,9 @@
 			}
 			if(keycode==3) { /* left */
 				if(cur_selected_num>4)
-					cur_selected_num=cur_selected_num-4;
+					cur_selected_num = cur_selected_num-4;
 				else if(cur_selected_num==0)
-					cur_selected_num=7;
+					cur_selected_num = 7;
 				
 			}
 			var num_button_element_id="num"+cur_selected_num.toString()+"_button";
@@ -95,7 +94,7 @@
 		if(keycode==18){
 			clear_alphabet_button();
 			num_alphabet=0;
-			for (i=1;i<=13;i++){
+			for (i = 1;i<= 13;i++){
 				if(alphabet_table[cur_selected_num][i]!=0){
 					num_alphabet++;
 					document.getElementById("alpha"+i.toString()+"_button").data="media/"+alphabet_table[cur_selected_num][i].toString()+"_up.jpg";
@@ -104,9 +103,9 @@
 				}
 			}
 
-			cur_selected_alphabet=1;
-			document.getElementById("pronunce_button").data="media/"+alphabet_table[cur_selected_num][1].toString()+"_up.jpg";
-		    document.getElementById("pronunce_text").firstChild.data=pronunciation_table[cur_selected_num][1];
+			cur_selected_alphabet = 1;
+			document.getElementById("pronunce_button").data = "media/"+alphabet_table[cur_selected_num][1].toString()+"_up.jpg";
+		    document.getElementById("pronunce_text").firstChild.data = pronunciation_table[cur_selected_num][1];
 			document.getElementById("alphabet").focus();
 			
 		}
@@ -130,22 +129,22 @@
 					cur_selected_alphabet--;
 			}
 			if(keycode==2) { /* Down */
-				if(cur_selected_alphabet==num_alphabet)
-					cur_selected_alphabet=num_alphabet;
-				else
-					cur_selected_alphabet++;
+				if(cur_selected_alphabet == num_alphabet){
+					cur_selected_alphabet = num_alphabet;}
+				else{
+					cur_selected_alphabet++;}
 			}
 			if(keycode==4) { /* right*/ 
-				if(cur_selected_alphabet+4==13)
-					cur_selected_alphabet=cur_selected_alphabet;
-				else if(cur_selected_alphabet+4<=num_alphabet)
-					cur_selected_alphabet=cur_selected_alphabet+4;
+				if(cur_selected_alphabet+4==13){
+					cur_selected_alphabet = cur_selected_alphabet;}
+				else if(cur_selected_alphabet+4<= num_alphabet){
+					cur_selected_alphabet = cur_selected_alphabet+4;}
 			}	
 			if(keycode==3) { /* left */
-				if(cur_selected_alphabet==13)
-					cur_selected_alphabet=13;
-				else if(cur_selected_alphabet-4>0)
-					cur_selected_alphabet=cur_selected_alphabet-4;
+				if(cur_selected_alphabet==13){
+					cur_selected_alphabet=13;}
+				else if(cur_selected_alphabet-4>0){
+					cur_selected_alphabet = cur_selected_alphabet-4;}
 			}
 			var alphabet_button_element_id="alpha"+cur_selected_alphabet.toString()+"_button";
 			document.getElementById(alphabet_button_element_id).data="media/"+alphabet_table[cur_selected_num][cur_selected_alphabet].toString()+"_pressed.jpg";
@@ -183,8 +182,8 @@
 		if(keycode==22){ /* Red Key : Go to Instruction Page */
 			browser.launchDocument("instruction.bml", "cut");	
 		}
-		if(keycode==19)
-			del_alphabet();
+		if(keycode==19){
+			del_alphabet();}
 	}
 	function small_frame_keypress(){
 		var keycode=document.currentEvent.keyCode;
@@ -247,7 +246,7 @@
 	}
 	
 	function clear_alphabet_button(){
-		for (i=1;i<=13;i++){
+		for (i = 1;i<= 13;i++){
 			document.getElementById("alpha"+i.toString()+"_button").data="";
 		}
 		document.getElementById("pronunce_text").firstChild.data="";
