@@ -17,19 +17,10 @@
 		]]>
 	</style>
 	
-<script src='scripts/foo.ecm'/>
+<script src='scripts/sgin.ecm.js'/>
 
 	<script><![CDATA[
-	var cur_selected_num;
-	var cur_selected_alphabet;
-	var cur_selected_sign;
-	var temp;
-	var num_alphabet;
-	var cur_selected_small_frame;
-		var alphabet_table;
-		var pronunciation_table;
-		var cur_display=;
-		
+
 	
 		
 	]]></script>
