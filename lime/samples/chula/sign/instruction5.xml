@@ -19,7 +19,7 @@
 </head>
 
 <body>
-	<div style="width:960px;height:580px">
+	<div style="width:960px;height:540px">
 		<object id="num1_button" class="num_button" data="media/instruction/5.jpg" type="image/jpeg" style="width:488px;height:349px;top:30px;left:200px"/>
 		<p style="width:500px;height:140px;top:400px;left:200px">5.Using arrow button to select which sign animation do you want to zoom. Then press Enter button, the bigger animation will appear</p>
 		<p style="width:200px;height:40px;top:500px;left:30px;color-index:7;background-color-index:4" accesskey="B" onclick="goback();">Back to Program</p>
