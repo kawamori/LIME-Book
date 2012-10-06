@@ -8,7 +8,7 @@
 		var pronunciation_table new Array();
 		var cur_display new Array();
 		
-	 alphabet_table=new Array(
+	 alphabet_table= Array(
 						Array(0,45,46,47,48,49,50,51,52,0,0,0,0,0),
 						Array(0,1,2,3,4,5,0,0,0,0,0,0,0,0),
 						Array(0,6,7,8,9,0,0,0,0,0,0,0,0,0),
@@ -21,7 +21,7 @@
 						Array(0,40,41,42,43,44,0,0,0,0,0,0,0,0),
 						Array(0,53,54,55,56,57,58,59,60,61,62,63,64,65));
 	
-	pronunciation_table=new Array(
+	pronunciation_table= Array(
 						Array("","ee","aee","oo","ay","ay","a","aa","am","","","","",""),
 						Array("","k","kh","kh","kh","kh","","","","","","","",""),
 						Array("","kh","ng","c","ch","","","","","","","","",""),
@@ -34,7 +34,7 @@
 						Array("","s","s","h","a","h","","","","","","","",""),
 						Array("","a","i","ii","ue","uee","u","uu","au","","","","",""));
 	
-	cur_display=new Array(Array(0,0,0,0,0,0));
+	cur_display= Array(Array(0,0,0,0,0,0));
 	
 	function load(){	}
 	
