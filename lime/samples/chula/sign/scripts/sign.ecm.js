@@ -89,7 +89,7 @@
 		
 		}
 		if(keycode==22){ /* Red Key : Go to Instruction Page */
-			browser.launchDocument("instruction.bml", "cut");	
+			browser.launchDocument("instruction.xml", "cut");	
 		}
 		
 		
