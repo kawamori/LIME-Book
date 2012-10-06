@@ -24,7 +24,7 @@ p {color-index:2;}
 <script>
 <![CDATA[
 
-function goback(){ browser.launchDocument("top.bml", "cut");	}
+function goback(){ browser.launchDocument("top.xml", "cut");	}
 
 var     max_pics=16;	/* <---- set this value to the total number of pictures in film */
 
