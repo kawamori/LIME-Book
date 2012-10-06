@@ -13,7 +13,7 @@
 			.signchar {width:45px;height:45px;top:170px;left:70px;}
 			#large_frame:focus{left:280px;}
 			#large_frame:blur{left:-400px;}
-			div:focus{background-color-index:15;}
+			:focus{background-color-index:15;}
 		]]>
 	</style>
 	
