@@ -25,7 +25,7 @@
 		urlList[4] = "games/top.xml";
 		urlList[5] = "jpegtest/index.xml";
 		urlList[6] = "text/richmen/startup.xml";
-		urlList[7] = "chula/sign/startup.bml";
+		urlList[7] = "chula/sign/startup.xml";
 		urlList[8] = "mng/index.xml";
 		urlList[9] = "hybrid/index.xml";
 		urlList[10] = "kamakura/simple-epg/startup.bml";
