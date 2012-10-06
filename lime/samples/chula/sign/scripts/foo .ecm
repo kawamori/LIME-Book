@@ -4,9 +4,9 @@
 	var temp;
 	var num_alphabet;
 	var cur_selected_small_frame;
-		var alphabet_table=new Array();
-		var pronunciation_table=new Array();
-		var cur_display= new Array();
+		var alphabet_table;
+		var pronunciation_table;
+		var cur_display=;
 		
 
 
