@@ -62,7 +62,7 @@ function kc() {
 
     if (id=="12") {
         browser.playRomSound("romsound://7");
-        browser.launchDocument("AAtiger-test2-c.bml");
+        browser.launchDocument("AAtiger-test2-c.xml");
     }
 
     if (id=="13") {
