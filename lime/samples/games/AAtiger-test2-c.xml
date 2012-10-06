@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="EUC-JP" ?>
-<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
 <?bml bml-version="100.0" ?>
 
 <bml>
@@ -27,7 +26,7 @@ p {color-index:2;}
 
 function goback(){ browser.launchDocument("top.bml", "cut");	}
 
-var     max_pics=16;	// <---- set this value to the total number of pictures in film
+var     max_pics=16;	/* <---- set this value to the total number of pictures in film */
 
 
 /* **** animation runtime module ****/ 
@@ -39,7 +38,7 @@ var prev;
 
 
 function load(){
-//alert("onload");
+/*alert("onload");*/
     position=1;
 	forward();
 }
@@ -52,10 +51,10 @@ function restartShow() {
         
 function forward() {
 myid = "t"+position;
-//prev = "t"+ (position -1);
+/*prev = "t"+ (position -1);*/
 prev = "t" + ((position <= 1) ? max_pics : (position -1));    
 
-//printd("forward\n");
+
 
     if (position < max_pics) {
             position++;
@@ -63,7 +62,6 @@ prev = "t" + ((position <= 1) ? max_pics : (position -1));
         position = 1;
     }
 
-//printlnd("position is "+position);
  
  printd("myid="+myid);
  printd("previous id is "+prev);
@@ -74,7 +72,6 @@ var viz1=document.getElementById(myid).normalStyle;
 var viz2 =document.getElementById(prev).normalStyle;
 	viz2.visibility = 'hidden';
 
-// printlnd("test");
 printd(myid+viz1+":"+prev+viz2);
     
     timer = setTimeout("forward()", 100);
