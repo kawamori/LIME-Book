@@ -5,15 +5,8 @@
 <title>Finger Spelling System for IPTV</title>
 <style>
 <![CDATA[
-p {color-index:7;text-align:center;}
-]]>
-</style>
-
-<style>
-<![CDATA[
-p {height:16px;color-index:7;grayscale-color-index:15 15}
-
-p:focus{background-color-index:1}
+p {color-index:7;text-align:center;height:16px;color-index:7;grayscale-color-index:15 15;}
+p:focus{background-color-index:1;}
 .button {top:180px;left:221px;width:629px;height:28px;}
 
 ]]>
@@ -27,8 +20,6 @@ browser.launchDocument("startup.xml", "cut");
 function gonext(){ 
 browser.launchDocument("instruction2.xml", "cut");
 }
-
-
 ]]>
 </script>
 </head>
