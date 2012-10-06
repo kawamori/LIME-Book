@@ -36,13 +36,7 @@
 	
 	cur_display=new Array(Array(0,0,0,0,0,0));
 	
-	function load(){
-		document.getElementById("num").focus();
-		cur_selected_num = 1;
-		cur_selected_alphabet = 1;
-		cur_selected_sign = 1;
-		cur_selected_small_frame = 1;
-	}
+	function load(){	}
 	
 	function num_keypress(){	}
 	
