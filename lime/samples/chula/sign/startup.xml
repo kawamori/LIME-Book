@@ -17,7 +17,7 @@
 		]]>
 	</style>
 	
-<script src='scripts/foo.ecm'>
+<script src='scripts/foo.ecm'/>
 
 	<script><![CDATA[
 	var cur_selected_num;
@@ -29,6 +29,8 @@
 		var alphabet_table;
 		var pronunciation_table;
 		var cur_display=;
+		
+	
 		
 	]]></script>
 
