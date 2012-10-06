@@ -5,7 +5,7 @@
 	<title>Finger Spelling System for IPTV</title>
 	<style>
 		<![CDATA[
-			body{background-image:url('media/bg.jpg');}
+			body{background-image:url("media/bg.jpg");}
 			p {color-index:1;text-align:center;}
 			.num_button {width:116px;height:48px}
 			.alphabet_button {width:45px;height:45px}
