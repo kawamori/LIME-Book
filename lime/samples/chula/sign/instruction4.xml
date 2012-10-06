@@ -2,36 +2,33 @@
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
-	<title>Finger Spelling System for IPTV</title>
-	<style>
-		<![CDATA[
-			p {color-index:7;text-align:center;}
-		]]>
-	</style>
-	
-	<script ><![CDATA[
+<title>Finger Spelling System for IPTV</title>
+<style>
+<![CDATA[
+p {color-index:7;text-align:center;}
+]]>
+</style>
 
-		function goback(){ 
-			browser.launchDocument("startup.xml", "cut");	
-		}
-		
-		function gonext(){ 
-			browser.launchDocument("instruction5.xml", "cut");	
-		}
+<script ><![CDATA[
+
+function goback(){ 
+browser.launchDocument("startup.xml", "cut");
+}
+
+function gonext(){ 
+browser.launchDocument("instruction5.xml", "cut");
+}
 
 
-		]]>
-	</script>
+]]>
+</script>
 </head>
 
 <body>
-	<div style="width:960px;height:540px;">
-		<object id="num1_button" class="num_button" data="media/instruction/4.jpg" type="image/jpeg" style="width:488px;height:349px;top:30px;left:200px;"/>
-		<p style="width:500px;height:140px;top:400px;left:200px;">4.If you want to view bigger animation, you must swith to play mode by press Yellow Button</p>
-		
-		<p style="width:200px;height:40px;top:500px;left:30px;color-index:7;background-color-index:4;" accesskey="B" onclick="goback();">Back to Program</p>
-		<p style="width:100px;height:40px;top:500px;left:820px;color-index:7;background-color-index:1;" accesskey="R" onclick="gonext();">Next</p>
-	</div>
+<div style="width:960px;height:540px;">
+<object id="num1_button" class="num_button" data="media/instruction/4.jpg" type="image/jpeg" style="width:488px;height:349px;top:30px;left:200px;"/>
+<p style="width:500px;height:140px;top:400px;left:200px;">4.If you want to view bigger animation, you must swith to play mode by press Yellow Button</p>
 
-	
-</body>
+<p style="width:200px;height:40px;top:500px;left:30px;color-index:7;background-color-index:4;" accesskey="B" onclick="goback();">Back to Program</p>
+<p style="width:100px;height:40px;top:500px;left:820px;color-index:7;background-color-index:1;" accesskey="R" onclick="gonext();">Next</p>
+</div></body>
