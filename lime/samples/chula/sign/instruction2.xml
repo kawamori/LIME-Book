@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "bml_100_0_iptv.dtd">
+<?xml version="1.0" encoding="EUC-JP" ?>
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
 	<title>Finger Spelling System for IPTV</title>
 	<style>
 		<![CDATA[
-			p {color-index:7;text-align:center;height:16px;color-index:7;grayscale-color-index:15 15}
-			
-			p:focus{background-color-index:1}
+			p {color-index:7;text-align:center;height:16px;color-index:7;grayscale-color-index:15 15;}			p:focus{background-color-index:1;}
 			.button {top:180px;left:221px;width:629px;height:28px;}
 			
 		]]>

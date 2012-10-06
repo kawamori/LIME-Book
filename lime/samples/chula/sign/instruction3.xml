@@ -6,9 +6,9 @@
 	<title>Finger Spelling System for IPTV</title>
 	<style>
 		<![CDATA[
-			p {color-index:7;text-align:center; height:16px;color-index:7;grayscale-color-index:15 15}
+			p {color-index:7;text-align:center; height:16px;color-index:7;grayscale-color-index:15 15;}
 			
-			p:focus{background-color-index:1}
+			p:focus{background-color-index:1;}
 			.button {top:180px;left:221px;width:629px;height:28px;}
 			
 		]]>
@@ -37,5 +37,4 @@
 		<p style="width:100px;height:40px;top:500px;left:820px;color-index:7;background-color-index:1" accesskey="R" onclick="gonext();">Next</p>
 	</div>
 
-	
 </body>
