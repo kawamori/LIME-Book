@@ -4,9 +4,9 @@
 	var temp;
 	var num_alphabet;
 	var cur_selected_small_frame;
-		var alphabet_table;
-		var pronunciation_table;
-		var cur_display;
+		var alphabet_table=new Array();
+		var pronunciation_table new Array();
+		var cur_display new Array();
 		
 	 alphabet_table=new Array(
 						Array(0,45,46,47,48,49,50,51,52,0,0,0,0,0),
