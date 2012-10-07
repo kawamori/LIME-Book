@@ -6,13 +6,14 @@
 <head>
 <title>Rich men: Li Kashing</title>
 
-<style>//<![CDATA[
+<style><!--<![CDATA[-->
 
 body {background-color-index:0;}
 
-//]]></style>
+<!--]]>-->
+</style>
 
-<script>//<![CDATA[
+<script><![CDATA[
 function myload(){
 	GE("bgm").streamStatus="play";
 
@@ -33,7 +34,8 @@ function goback(){ browser.launchDocument("startup.xml", "cut");	}
 function gonext(){ browser.launchDocument("s-jobs.xml", "cut");	}
 
 
-//]]></script>
+]]>
+</script>
 </head>
 <body style="background-color:black;" onload="myload();">
 <p> </p>
