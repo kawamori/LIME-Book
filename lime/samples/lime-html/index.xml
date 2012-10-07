@@ -8,10 +8,10 @@
 <style><!--<![CDATA[ -->
 
 body {}
- #title {font-size:36px;top:10px;left:10px;width:500px;height:50px;color-index:7;color:white;}
+ #title {position:absolute;z-index: 2;font-size:36px;top:10px;left:10px;width:500px;height:50px;color-index:7;color:white;}
  
- .link1 {font-size:24px; width:300px;height:30px}
- .link2 {font-size:24px; width:300px;height:30px;}
+ .link1 {font-size:24px;position:absolute;width:300px;height:30px;z-index:3;}
+ .link2 {font-size:24px; position:absolute;width:300px;height:30px;z-index:4;}
  :focus {color-index:1;}
  :blur {color-index:7}
  
@@ -20,7 +20,7 @@ body {}
 
 </head>
 <body>
-<div style="position:absolute;left:0px; top:0px; width:960px; height:540px">
+<div style="position:absolute;left:0px; top:0px; width:960px;height:540px;z-index:1;">
 <object type="image/jpeg" data="http://kawamori.github.com/LIME-Book/lime/samples/images/wallpaper_LQ.jpg" style="top:0;left:0;width:960px;height:540px"/>
 </div>
 
