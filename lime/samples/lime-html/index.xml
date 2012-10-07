@@ -1,31 +1,38 @@
-<?xml version="1.0" encoding="EUC-JP" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <?bml bml-version="100.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <title>LIME as HTML</title>
 
-<style>//<![CDATA[
+<style><![CDATA[
 
-body {background-color:black;  background-image: url("wallpaper_LQ.jpg");}
- #title {font-size:36px;top:10px;left:10px;width:500px;height:50px}
- .link {font-size:24px; width:300px;height:30px}
-//]]></style>
+body {background-image: url("wallpaper_LQ.jpg");}
+ #title {font-size:36px;color-index:7;top:10px;left:10px;width:500px;height:50px}
+ 
+ .link1 {font-size:24px; width:300px;height:30px}
+ .link2 {font-size:24px; width:300px;height:30px;}
+ :focus {color-index:1;}
+ :blur {color-index:7}
+ 
+]]></style>
 
 </head>
 <body>
 
+<p id="title">Sample LIME-HTML files </p>
 
 
-<p class="link" style="top:150px;left:100px;">
-<a class="link" href="http://kawamori.github.com/LIME-Book/lime/samples/lime-html/richmen/li-kashing.xml">Richman: Li-Kashing</a><br/>
+
+
+
+<p class="link1" style="top:150px;left:100px;nav-index:0;nav-down:1;">
+<a class="link1" href="http://kawamori.github.com/LIME-Book/lime/samples/lime-html/richmen/li-kashing.xml">Richman: Li-Kashing</a><br/>
 </p> <br/>
 
-
-<p class="link"  style="top:200px;left:100px;">
-<a class="link" href="welcome.xml">Ateneo</a><br/>
+<p class="link2" style="top:200px;left:100px;nav-index:1;nav-up:0;">
+<a class="link2" href="welcome.xml">Ateneo</a><br/>
 </p> <br/>
-
 
 </body>
 
