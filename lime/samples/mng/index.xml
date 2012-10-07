@@ -58,7 +58,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">Psy</p>
 
 		<p id="1" class="button" style="top:80px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();">Betty Page:13 393KB</p>
+		onclick="jump();">Retro</p>
 		
 		<p id="2" class="button" style="top:110px;nav-index:2;nav-up:1;nav-down:3;"
 		onclick="jump();">Bow</p>
