@@ -26,7 +26,7 @@ body {}
 
 <p id="title">Sample LIME-HTML files </p>
 
-<p class="link1" style="top:200px;left:100px;">
+<p class="link1" style="top:150px;left:100px;">
 <a class="link1"  style="top:0px;left:0px;nav-index:0;nav-down:1;" href="http://kawamori.github.com/LIME-Book/lime/samples/lime-html/richmen/li-kashing.xml">Richman: Li-Kashing</a><br/>
 </p> <br/>
 
