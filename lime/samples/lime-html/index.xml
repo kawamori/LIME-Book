@@ -26,12 +26,12 @@ body {}
 
 <p id="title">Sample LIME-HTML files </p>
 
-<p class="link1" style="top:150px;left:100px;nav-index:0;nav-down:1;">
-<a class="link1" href="http://kawamori.github.com/LIME-Book/lime/samples/lime-html/richmen/li-kashing.xml">Richman: Li-Kashing</a><br/>
+<p class="link1">
+<a class="link1"  style="top:150px;left:100px;nav-index:0;nav-down:1;" href="http://kawamori.github.com/LIME-Book/lime/samples/lime-html/richmen/li-kashing.xml">Richman: Li-Kashing</a><br/>
 </p> <br/>
 
-<p class="link2" style="top:200px;left:100px;nav-index:1;nav-up:0;">
-<a class="link2" href="welcome.xml">Ateneo</a><br/>
+<p class="link2">
+<a class="link2" style="top:200px;left:100px;nav-index:1;nav-up:0;" href="welcome.xml">Ateneo</a><br/>
 </p> <br/>
 
 </body>
