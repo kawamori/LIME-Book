@@ -18,8 +18,8 @@
 	<script ><![CDATA[
 
 		var urlList = new Array();
-		urlList[0] = "bml_kawamori/list.bml";
-		urlList[1] = "";
+		urlList[0] = "trans/bml.100915/bml_kawamori/list.bml";
+		urlList[1] = "index.html";
 		urlList[2] = "";
 		urlList[3] = "";
 		urlList[4] = "";
@@ -35,7 +35,7 @@
 
 //var base = "http://localhost/";
 //var base = "http://127.0.0.1/";
-var base = "http://kawamori.github.com/LIME-Book/lime/trans/bml.100915/";
+var base = "http://kawamori.github.com/LIME-Book/lime/";
 
 function jump(){
 	var url = urlList[document.currentEvent.target.id]
@@ -60,7 +60,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">Hybrid Test: iOS</p>
 
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();"></p>
+		onclick="jump();">LIME-HTML</p>
 		
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
 		onclick="jump();"></p>

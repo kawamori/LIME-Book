@@ -5,13 +5,12 @@
 <head>
 <title>LIME as HTML</title>
 
-<style><![CDATA[
+<style>//<![CDATA[
 
 body {background-color:black;  background-image: url("wallpaper_LQ.jpg");}
  #title {font-size:36px;top:10px;left:10px;width:500px;height:50px}
  .link {font-size:24px; width:300px;height:30px}
-
-]]></style>
+//]]></style>
 
 </head>
 <body>
