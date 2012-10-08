@@ -6,7 +6,8 @@
 <title>VOD Main Page</title>
 
 <style><!--<![CDATA[-->
-	body{		background-image: url("images/wallpaper_LQ.jpg");	}
+
+	body{		background-image: url("http://kawamori.github.com/LIME-Book/lime/samples/images/wallpaper_LQ.jpg");	}
 
 div:focus	{background-color-index:1;}
 div:blur	{background-color-index:0;}
@@ -16,6 +17,7 @@ left:152px;
 width:830px;
 height:500px;
 background-color-index:8;
+z-index:2;
 }
 
 .v1g {position:absolute;width:90px;height:86px;
@@ -64,6 +66,13 @@ if(name==1){
 	]]></script>
 </head>
 <body>
+
+<!--
+
+<div style="position:absolute;left:0px; top:0px; width:960px;height:540px;z-index:0;">
+<object type="image/jpeg" data="images/wallpaper_LQ.jpg" style="top:0;left:0;width:960px;height:540px"/>
+</div>
+-->
 <!--
 <div style="left:0px; top:20px; width:960px; height:540px;background-color-index:8;">
 <object type="image/jpeg" data="img/title.jpg" style="left:230px;top:0px;width:512px;height:39px;"/>
@@ -75,12 +84,12 @@ if(name==1){
 
 <!-- ====================================  first row ================================ -->
 
-<div id="1" class='v2g' style="left:0px;top:0px;nav-index:0;nav-right:1;nav-left:2;nav-up:7;nav-down:3" onclick="launch();">
-<a href="lime/menu_ho.html"><object  class='img2' type="image/png" data="img/m_ho.png" style=""></object></a>
+<div id="1" class='v2g' style="left:0px;top:0px;nav-index:0;nav-right:1;nav-left:2;nav-up:7;nav-down:3;z-index:3;" onclick="launch();">
+<a href="lime/menu_ho.html"><object  class='img2' type="image/png" data="img/m_ho.png" style="z-index:3;"></object></a>
 </div>
 
-<div  id="2" class='v2g' style="left:264px;top:0px;nav-index:1;nav-right:2;nav-left:0;nav-up:9;nav-down:4" onclick="launch();">
-<a href="lime/menu_ho.html"><object class="img2" type="image/png" data="img/m_yo.png" style=""/></a>
+<div  id="2" class='v2g' style="left:264px;top:0px;nav-index:1;nav-right:2;nav-left:0;nav-up:9;nav-down:4;z-index:3;" onclick="launch();">
+<a href="lime/menu_ho.html"><object class="img2" type="image/png" data="img/m_yo.png" style="z-index:3;"/></a>
 </div>
 
 <div  id="3" class='v1g' style="left:536px;top:0px;nav-index:2;nav-right:0;nav-left:1;nav-up:11;nav-down:6" onclick="launch();">

@@ -8,8 +8,9 @@
 <style><!--<![CDATA[ -->
 
 body {}
- #title {position:absolute;z-index: 2;font-size:36px;top:10px;left:10px;width:500px;height:50px;color-index:7;color:white;}
+ #title {position:absolute;z-index: 1;font-size:36px;top:10px;left:10px;width:500px;height:50px;color-index:7;color:white;}
  
+  .link0 {font-size:24px;position:absolute;width:300px;height:30px;z-index:2;}
  .link1 {font-size:24px;position:absolute;width:300px;height:30px;z-index:3;}
  .link2 {font-size:24px; position:absolute;width:300px;height:30px;z-index:4;}
  :focus {color-index:1;}
@@ -20,18 +21,23 @@ body {}
 
 </head>
 <body>
-<div style="position:absolute;left:0px; top:0px; width:960px;height:540px;z-index:1;">
+<div style="position:absolute;left:0px; top:0px; width:960px;height:540px;z-index:0;">
 <object type="image/jpeg" data="http://kawamori.github.com/LIME-Book/lime/samples/images/wallpaper_LQ.jpg" style="top:0;left:0;width:960px;height:540px"/>
 </div>
 
 <p id="title">Sample LIME-HTML files </p>
 
+
+<p class="link0" style="top:100px;left:100px;">
+<a class="link0" style="top:0px;left:0px;nav-index:0;nav-down:1;" href="hello2.html">Hello World in LIME</a><br/>
+</p> <br/>
+
 <p class="link1" style="top:150px;left:100px;">
-<a class="link1"  style="top:0px;left:0px;nav-index:0;nav-down:1;" href="http://kawamori.github.com/LIME-Book/lime/samples/lime-html/richmen/li-kashing.xml">Richman: Li-Kashing</a><br/>
+<a class="link1"  style="top:0px;left:0px;nav-index:1;nav-down:2;nav-up:0;" href="http://kawamori.github.com/LIME-Book/lime/samples/lime-html/richmen/li-kashing.xml">Richman: Li-Kashing</a><br/>
 </p> <br/>
 
 <p class="link2" style="top:200px;left:100px;">
-<a class="link2" style="top:0px;left:0px;nav-index:1;nav-up:0;" href="welcome.xml">Ateneo</a><br/>
+<a class="link2" style="top:0px;left:0px;nav-index:2;nav-up:1;" href="welcome.xml">Ateneo</a><br/>
 </p> <br/>
 
 </body>
