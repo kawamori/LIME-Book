@@ -7,9 +7,11 @@
 <title>LIME Sample Entry Page</title>
 <style>
 body {background-color-index:7; background-image: url("small-lime.JPG");}
- #title {font-size:36px;top:10px;left:10px;width:500px;height:50px}
- .link1 {font-size:24px; top:150px;left:100px;width:400px;height:30px}
- .link2 {font-size:24px; top:200px;left:100px;width:400px;height:30px}
+ #title {font-size:36px;position:absolute; top:10px;left:10px;width:500px;height:50px}
+ #text  {font-size:16px;font-weight:bold;position:absolute;  top:70px;left:100px;width:800px;height:130px}
+ .link1 {font-size:24px;position:absolute;  top:180px;left:100px;width:450px;height:30px}
+ .link2 {font-size:24px; position:absolute; top:230px;left:100px;width:450px;height:30px}
+  .link3 {font-size:24px;position:absolute; top:280px;left:100px;width:400px;height:30px}
  :focus {color-index:4;}
 </style>
 </head>
@@ -19,13 +21,33 @@ body {background-color-index:7; background-image: url("small-lime.JPG");}
 
 <br/>
 
+<p id="text">
+This page gives links to various content made with LIME (ITU-T .762),"Lightweight Interactive Multimedia Environment", a multimedia environment for 
+Smart TV, IPTV, DTV, etc. These links show that LIME is a version of HTML. Well, XHTML to be precise.
+In fact, this page is written in LIME, with enough details filled in so that it can be interpreted as HTML. 
+You can right-click and open the source to see it for yourself. 
+There is a discussion group LIME-List "lime-list@googlegroups.com".
+
+If you have any questions, please contact Eric Brechemier "lime@eric.brechemier.name".
+
+Enloy!
+
+</p>
+
 <p class="link1">
-<a class="link1" style="nav-index:0;nav-down:1;" href="http://kawamori.github.com/LIME-Book/lime/trans/bml.100915/index.xhtml">Translated LIME samples</a><br/>
+<a class="link1" style="nav-index:0;nav-down:1;" href="http://kawamori.github.com/LIME-Book/lime/trans/bml.100915/index.xhtml">Translated LIME samples <span style="font-size:16px;">(for Safari)</span></a><br/>
 </p> <br/>
 <br/>
 <p class="link2">
-<a class="link2"  style="nav-index:1;nav-up:0;" href="http://kawamori.github.com/LIME-Book/lime/samples/lime-html/index.xml">Simple LIME content as HTML</a><br/>
+<a class="link2"  style="nav-index:1;nav-up:0;nav-down:2;" href="http://kawamori.github.com/LIME-Book/lime/samples/lime-html/index.xml">Simple LIME content as HTML</a><br/>
 </p> <br/>
+
+<p class="link3">
+<a class="link3"  style="nav-index:2;nav-up:1;" href="http://kawamori.github.com/LIME-Book/lime/trans/mobile/html-test/index.html">Animation GIF and MNG tests</a><br/>
+</p> <br/>
+
+
+
 
 
 
