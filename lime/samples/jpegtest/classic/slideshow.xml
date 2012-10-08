@@ -143,10 +143,11 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 <p id="text" style="top:0px;left:500px;width:440px;height:480px;color-index:7;background-color-index:8;"><![CDATA[classical art]]></p>
 </div>
 
+<!--
 <p id="blue" class="button" style="left:10px; background-color-index:4;" onclick="startShow();" accesskey="B">Start</p>
 <p id="red" class="button" style="left:110px;background-color-index:1;"	onclick="onunload();" accesskey="R">Stop</p>
 <p id="green" class="button" style="left:210px;background-color-index:2;" onclick="restartShow();" accesskey="G">Restart</p>
-
+-->
 <p id="yellow" class="button" style="left:810px;background-color-index:3;" onclick="goback();" accesskey="Y">Back</p>
 
 </body>
