@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
+<!-- This is a sample page -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <?bml bml-version="100.0" ?>
 <bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -22,11 +22,6 @@ body {background-color-index:7; background-image: url("bg-image2.jpg");}
 <br/>
 
 
-<p class="link1"> <a class="link1" href="gif-index.html">GIF Animation</a><br/>
-</p> <br/>
-<br/>
-
-
 <p class="link2">
 <a class="link2"  style="nav-index:1;nav-down:2;nav-up:0;" href="mng-index.html">MNG file</a><br/>
 </p> <br/>
@@ -36,6 +31,11 @@ body {background-color-index:7; background-image: url("bg-image2.jpg");}
 <a class="link3"  style="nav-index:2;nav-up:1;" href="cmng-index.html">cMNG file</a><br/>
 </p> <br/>
 
+
+
+<p class="link1"> <a class="link1" href="gif-index.html">GIF Animation</a><br/>
+</p> <br/>
+<br/>
 
 
 </body>
