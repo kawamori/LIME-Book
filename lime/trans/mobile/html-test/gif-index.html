@@ -1,20 +1,26 @@
-<html>
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?bml bml-version="100.0" ?>
+<bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <title>Movie GIF Test</title>
 
-<style>//<![CDATA[
+<style><![CDATA[
+body {background-color-index:7;}
+ #title {font-size:36px;position:absolute;top:10px;left:10px;width:600px;height:50px}
+.image {position:absolute;left:400px;top:100px;width:180px;height:150px;}
 
-//]]>
+]]>
 </style>
 
 </head>
 <body>
 
-<p style="position:absolute;top:10px;left:10px;">This a sample movie GIF file</p>
+<p id="title">This a sample movie GIF file</p>
 
-<div id="image" style="position:absolute;top:100px;left:100px;">
-<object type="image/gif" data="64.gif"/>
+<div class="image" >
+<object class="image" style="position:absolute;top:0px;left:0px;" type="image/gif" data="64.gif"/>
 </div>
 
 </body>
-</html>
+</bml>

@@ -5,18 +5,21 @@
 <head>
 <title>MNG Test</title>
 
-<style>//<![CDATA[
-.image {position:absolute;top:200px;left:100px;width:400px;}
-//]]>
+<style><![CDATA[
+body {background-color-index:7;}
+ #title {font-size:36px;position:absolute;top:10px;left:10px;width:600px;height:50px}
+.image {position:absolute;left:400px;top:100px;width:180px;height:150px;}
+
+]]>
 </style>
 
 </head>
 <body>
 
-<p style="position:absolute;top:10px;left:10px;">This a sample MNG file</p>
+<p id="title">This a sample MNG file</p>
 
-<div class="image" style="position:absolute;top:100px;left:100px;">
-<object class="image" type="image/mng" data="usflag-d64.mng"/>
+<div class="image">
+<object  style="position:absolute;top:0px;left:0px;" class="image" type="image/mng" data="usflag-d64.mng"/>
 </div>
 
 </body>
