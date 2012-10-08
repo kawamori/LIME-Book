@@ -1,0 +1,26 @@
+sort-list.pl 
+paris-louvre-mona-lisa.jpg 
+gustav-klimt-the-kiss.jpg 
+rene_magritte-la_trahison_des_images-1300px.jpg 
+rene-magritte-the-tempest-20dec06-7500142.jpg 
+Rene-Magritte-Quote-fine-art-12294482-1280-800.jpg 
+magritte-latentationdelimpossible.jpg 
+magritte-22.jpg 
+rene-magritte-5.jpg 
+Magritte_PresenceOfMind1960.jpg 
+The Human Condition.jpg 
+ReneMagritte-LaMagieNoire(1935).png 
+Magritte-The_Two_Mysteries-1966-1.jpg 
+magritte-26.jpg 
+magritte-60867760.jpg 
+Oedipus and the Sphinx Gustave Moreau.jpg 
+slideshow.html 
+Magritte-The Voice Of Blood.jpg 
+morreau-the-apparition.jpg 
+RENE_magritte-M1.jpg 
+magritte-the-mysteries-of-the-horizon.jpg 
+courbet-the-origin-of-the-world.jpg 
+magritte-artbook.jpg 
+#outlist.txt# 
+original 
+outlist.txt 
