@@ -1,20 +1,39 @@
-<html>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- This is a sample page -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?bml bml-version="100.0" ?>
+<bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Movie GIF Test</title>
-
-<style>//<![CDATA[
-.image {position:absolute;top:200px;left:100px;width:400px;}
-//]]>
+<title>LIME Animation Test Page</title>
+<style>
+body {background-color-index:7; background-image: url("small-lime.JPG");}
+ #title {font-size:36px;position:absolute;top:10px;left:10px;width:600px;height:50px}
+ .link1 {font-size:24px;position:absolute; top:100px;left:100px;width:400px;height:30px}
+ .link2 {font-size:24px;position:absolute; top:150px;left:100px;width:400px;height:30px}
+  .link3 {font-size:24px;position:absolute; top:200px;left:100px;width:400px;height:30px}
+ :focus {color-index:4;}
 </style>
-
 </head>
 <body>
 
-<p style="position:absolute;top:10px;left:10px;">This a sample movie GIF file</p>
+<p id="title"> LIME Animation Test page</p> <br/>
 
-<div id="image">
-<object type="image/gif" data="64.gif"/>
-</div>
+<br/>
+
+<p class="link1">
+<a class="link1" style="nav-index:0;nav-down:1;" href="gif-index.html">GIF Animation</a><br/>
+</p> <br/>
+<br/>
+<p class="link2">
+<a class="link2"  style="nav-index:1;nav-down:2;nav-up:0;" href="mng-index.html">MNG file</a><br/>
+</p> <br/>
+
+
+<p class="link3">
+<a class="link3"  style="nav-index:2;nav-up:1;" href="cmng-index.html">cMNG file</a><br/>
+</p> <br/>
+
+
 
 </body>
-</html>
+</bml>

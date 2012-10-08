@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?bml bml-version="100.0" ?>
+<bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>cMNG Test</title>
+
+<style><![CDATA[
+body {background-color-index:7;	clut:url(thai-sl.clt);}
+ #title {font-size:36px;position:absolute;top:10px;left:10px;width:600px;height:50px}
+.image {left:400px;top:100px;width:180px;height:150px;}
+]]>
+</style>
+
+</head>
+<body>
+
+<p id="title">This a sample cMNG file</p>
+
+<div class="image">
+<object  class="image" data="thai-sl.mng" type="image/X-arib-mng" streamstatus="play"/>
+</div>
+
+</body>
+</bml>

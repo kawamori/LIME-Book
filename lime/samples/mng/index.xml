@@ -23,7 +23,7 @@
 		urlList[2] = "action/bow.bml";
 		urlList[3] = "action/kick.bml";
 		urlList[4] = "action/car.bml";
-		urlList[5] = "";
+		urlList[5] = "chula/index.xml";
 		urlList[6] = "girls/fist.bml";
 		urlList[7] = "girls/hyomin-curve.bml";
 		urlList[8] = "girls/hyomin-fingers.bml";
@@ -69,9 +69,9 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		
 		<p id="4" class="button" style="top:170px;nav-index:4;nav-up:3;nav-down:5;"
 		onclick="jump();">Car</p>
-
 	<p id="5" class="button" style="top:200px;nav-index:5;nav-up:4;nav-down:6;"
-		onclick="jump();">  </p>
+		onclick="jump();">Chula  </p>
+		
    <p id="6" class="button" style="top:230px;nav-index:6;nav-up:5;nav-down:7;"
 		onclick="jump();">Fist13:149KB</p>
 		
