@@ -9,7 +9,7 @@
 			p {height:16px;color-index:7;grayscale-color-index:15 15}
 			
 			p:focus{background-color-index:1}
-			.button {top:180px;left:250px;width:250px;height:28px;}
+			.button {top:180px;left:250px;width:350px;height:28px;}
 			.bgm {
 		width:300px; height:300px; top:10px; left:10px;
 	}
