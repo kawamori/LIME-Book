@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC
+  "-//IPTVF CDN:2008//DTD BML Document for IPTV//JA"
+  "http://www.iptvforum.jp/CDN/DTD/bml_100_0_iptv.dtd">
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<style><![CDATA[
+	body{
+		background-color-index:7;
+	}
+
+
+]]></style>
+
+<script><![CDATA[
+	
+function goback(){ browser.launchDocument("menu_ho.bml", "cut");	}
+
+function pressView(){
+	browser.launchIPTVContent("http://portal.miyagi.flets-east.jp:8080/test/servlet/mkmeta?cid=20111215082958774miyagi1&roll=off", 'lime/menu_ho.bml', 0);
+
+}
+
+]]></script>
+
+</head>
+
+<body>
+
+  <p class="button" style="top:200px;left:100px;height:60px;width:120px;color-index:7;background-color-index:1" accesskey="R" onclick="goback();"/>
+  <p class="button" style="top:200px;left:300px;height:60px;width:180px;;color-index:7;background-color-index:4" accesskey="B" onclick="pressView();"/>
+
+
+</body>
+</bml>
