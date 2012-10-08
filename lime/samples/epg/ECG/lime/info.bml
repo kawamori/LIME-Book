@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC   "-//IPTVF CDN:2008//DTD BML Document for IPTV//JA"   "http://www.iptvforum.jp/CDN/DTD/bml_100_0_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Information</title>
+
+<style><![CDATA[
+
+body {
+background-color-index:7;
+}
+
+.vender_top {
+width:960px;
+height:78px;
+top:0;
+left:0;
+}
+.inner {
+top:100px;
+width:830px;
+height:500px;
+background-color-index:3;
+}
+.v1g {
+width:164px;
+height:164px;
+background-color-index:2;
+}
+.img {
+width:160px;
+height:160px;
+}
+]]></style>
+
+<script ><![CDATA[
+
+function goback(){browser.lockScreen();
+ browser.launchDocument("../top.bml", "cut");
+browser.unlockScreen();
+
+}
+
+	]]></script>
+</head>
+
+<body>
+
+<div style="left:0px; top:0px; width:960px; height:540px">
+     <object type="image/jpeg" data="../img/underconstruction.jpg" style="left:50px;top:50px;width:200px;height:200px;"/>
+
+       <div class='v_back' style="top:470px;left:17px;height:64px;width:128px;background-color-index:1;">
+                 <object class="button" style="top:2px;left:2px;height:60px;width:120px;" type="image/X-arib-png" data="../img/b_back.png" accesskey="R" onclick="goback();"/>
+          </div>
+</div>
+
+</body>
+</bml>
