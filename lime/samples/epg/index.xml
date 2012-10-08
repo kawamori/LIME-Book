@@ -23,7 +23,7 @@
 		urlList[2] = "miyagi/kahoku.bml";
 		urlList[3] = "lab_mio/lab_mio/bml/startup.bml";
 		urlList[4] = "plala-new/startup.xml";
-		urlList[5] = "hotelVOD/top.xml";
+		urlList[5] = "hotelVOD/top.bml";
 		urlList[6] = "";
 		urlList[7] = "";
 		urlList[8] = "";
