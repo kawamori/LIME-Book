@@ -1,74 +1,112 @@
 <?xml version="1.0" encoding="EUC-JP" ?>
-<!DOCTYPE bml PUBLIC
-  "-//IPTVF CDN:2008//DTD BML Document for IPTV//JA"
-  "http://www.iptvforum.jp/CDN/DTD/bml_100_0_iptv.dtd">
 <?bml bml-version="100.0" ?>
 
 <bml>
 <head>
+<title>Like-button Test</title>
 <style><![CDATA[
-	body{
-		clut:url(img/default.clt);
-		background-color-index:0;
-	}
+  body {
+    background-color-index:7;
+    resolution:960x540;
+    display-aspect-ratio:16v9;
+  }
+  p.title {
+    font-size:20px;
+    color-index:15;
+    grayscale-color-index:171 167;
+    text-align:center;
+  }
 
-.in_one {
-	width:910px;
-	padding:20px;
-	background-color:#ffffff;
-	overflow:hidden;
+    	.button	{top:510px;height:24px;width:85px;text-align:center; }
+    	
+#buttons
+{
+	left:0px;
+	top:0px;
+	width:960px;
+	height:540px;
 }
-
+#display	{ font-size:20px;background-color-index:80;color-index:7;
+		top:30px;left:30px;width:520px;height:40px;}
+		
 ]]></style>
+	<script ><![CDATA[
 
-<script><![CDATA[
-	
-function goback(){ browser.launchDocument("menu_ho.bml", "cut");	}
+alert("==============================start======================\n");
 
-function pressView(){
-/*	var vodUri = "m10040.ast";
-	if (vodUri == '') return;*/
-	browser.launchIPTVContent("m10065.ast", './menu_ho.bml', 0);
-//browser.launchDocument("menu_ho.bml", "cut");
+
+var tm;
+var timerID;
+var ct;
+var drmID;
+
+
+
+
+function myload(){
+
+alert("\nmyload");
+
+tm = 0;
+timerID = NaN;
+ct=0;
+
+//startTimer();
+
+var did =browser.getDRMID("marlin_iptv_es");
+
+	if( did != null ){
+			drmID=did;
+		}else{
+			drmID="fixed client";
+		}
 }
 
-]]></script>
 
+
+function sendLike(){
+
+ct++;
+
+var ret="Like-button pushed "+ct+" times by "+drmID;
+	 alert(ret);}
+
+
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data = str + "\r";
+}
+
+
+	
+function goback(){ browser.launchDocument("../video.xml", "cut");	}
+function refresh(){ browser.reloadActiveDocument();}
+		]]></script>
 </head>
+<body id="body" onload="myload();">
 
-<body>
+<div id="basePane" style="top:0px;width:960px;height:540px;visibility:visible;">
 
-	<div class='vender_top'>
-
+	<div style="top:0px;left:0px;width:960px;height:540px;visibility:visible;">
+		<object id="vod" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/earth_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
 	</div>
-
-	<div class='inner' style="top:20px;left:20px;height:440px;width:910px;background-color-index:7;">
-
-<div  style="top:10px;left:420px;height:440px;width:489px;background-color-index:7;">
-<p style="top:0;left:0;width:120px;height:24px;color-index:1;">ストーリー</p>
-<p style="top:30px;left:0px;height:440px;width:480px;font-size:18px;color-index:0">
-Beauty 太極拳      カルチャー   健康・体操
-17世紀フランス、○○○にあこがれを抱きパリにやってきた○○○（ローガン・○○○）は、気が強く向こう見ずな性格が功を奏したか、あることがきっかけで○○○の仲間入りを果たすことに。その後、フランス国王側近の裏切りで奪われた王妃の首飾りを取り返すため、イギリスへ向かうことになるが、彼の前には事件の鍵を握る○○○ガム公爵（オーランド・○○○）と正体不明の美女○○○（ミラ・ジョヴォ○○○）が立ちはだかる。
-作品情報幾度も映像化や舞台化がされているアレクサンドル・○○○の冒険活劇「○○○」を、『○○○ハザード』シリーズの○○○・W・S・アンダーソン監督が映画化したアクション・エンターテインメント。無鉄砲な主人公を『○○○・ジャクソンと○○○の神々』の○○○・ラーマンが演じるほか、行く手を阻むバッキン○○○公爵を初の悪役となる○○○・ブルーム、謎の美女○○○をミラ・○○○ヴィッチがなまめかしく好演。8台の3Dカメラを駆使して撮り上げた驚異の映像美でよみがえる「○○○」の世界に酔いしれたい。
-<br/>監督○○○・W・S・○○○ダーソン
-<br/>出演ローガン・○○○、ミラ・○○○ヴィッチ、○○○・ブルーム、○○○・ヴァルツ
-<br/>
-2011年11月／配給：○○○／上映時間：1時間51分</p>
-
 </div>
+	
+	<div style="top:500px;left:18px; width:78px;height:35px;">
+<object id="likeb" type="image/X-arib-png" data="images/fb-like.png" style="left:0;top:0;width:78px;height:35px;visibility:;"  accesskey="B" onclick="sendLike();"/>
+</div>
+
 <!--
-<div class='in_left'>
-	<object type="image/jpeg" data='wave.jpg' style="top:0;left:0;width:480px;height:360px" />
-</div>-->
+	
+	<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:3;" accesskey="Y" onclick="goback();">Back </p>
+	
+	-->
+<div style="left:870px; top:490px;width:34px;height:34px;" >
+<object type="image/X-arib-png" data="images/return-button.png" style="left:0;top:0;width:34px;height:34px;" accesskey="Y" onclick="goback();"/>
 </div>
-<!-- buttons  -->
 
-       <div class='v_back' style="top:470px;left:17px;height:64px;width:128px;background-color-index:1;">
-                 <object class="button" style="top:2px;left:2px;height:60px;width:120px;" type="image/X-arib-png" data="../img/b_back.png" accesskey="R" onclick="goback();"/>
-          </div>
-	<div class='v_play' style="top:470px;left:717px;height:66px;width:186px;background-color-index:4;">
-           <object class="button" style="top:2px;left:2px;height:60px;width:180px;" type="image/X-arib-png" data="../img/b_play.png"  accesskey="B" onclick="pressView();"/></div>
+<p id="p01" class="button" style="left:250px;color-index:7;background-color-index:1;" onclick="refresh();"  accesskey="R">Reload</p>
 
-
+<p id="display" style=""><![CDATA[]]></p>
 </body>
 </bml>
