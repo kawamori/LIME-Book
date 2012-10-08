@@ -6,12 +6,14 @@
 <head>
 <title>LIME Sample Entry Page</title>
 <style>
-body {background-color-index:7; background-image: url("small-lime.JPG");}
+body {background-color-index:7; background-image: url("bg-image2.jpg");}
  #title {font-size:36px;position:absolute; top:10px;left:10px;width:500px;height:50px}
- #text  {font-size:20px;font-weight:bold;position:absolute;  top:70px;left:100px;width:800px;height:130px}
- .link1 {font-size:24px;position:absolute;  top:200px;left:100px;width:450px;height:30px}
- .link2 {font-size:24px; position:absolute; top:230px;left:100px;width:450px;height:30px}
-  .link3 {font-size:24px;position:absolute; top:260px;left:100px;width:400px;height:30px}
+ #text  {font-size:20px;position:absolute;  top:70px;left:100px;width:780px;height:130px}
+ #em {font-weight:bold;}
+ .link1 {font-size:24px;position:absolute;  top:150px;left:100px;width:450px;height:30px}
+ .link2 {font-size:24px; position:absolute; top:180px;left:100px;width:450px;height:30px}
+  .link3 {font-size:24px;position:absolute; top:210px;left:100px;width:400px;height:30px}
+  .image {position:absolute; top:210px;left:450px;width:70px;height:74px}
  :focus {color-index:4;}
 </style>
 </head>
@@ -22,10 +24,9 @@ body {background-color-index:7; background-image: url("small-lime.JPG");}
 <br/>
 
 <p id="text">
-This page gives links to various content made with LIME (ITU-T H.762),"Lightweight Interactive Multimedia Environment", a multimedia environment for 
-Smart TV, IPTV, DTV, etc. These links show that LIME is a version of HTML. Well, XHTML to be precise.
-In fact, this page is written in LIME, with enough details filled in so that it can be interpreted as HTML. 
-You can right-click and open the source to see it for yourself. 
+This page gives links to samples of<span id="em"> LIME (ITU-T H.762),"Lightweight Interactive Multimedia Environment"</span>, a multimedia environment for 
+Smart TV, IPTV, DTV, etc. Here you can see LIME is a simple version of HTML.
+
 Enloy!
 
 </p>
@@ -41,10 +42,15 @@ Enloy!
 <p class="link3">
 <a class="link3"  style="nav-index:2;nav-up:1;" href="http://kawamori.github.com/LIME-Book/lime/trans/mobile/html-test/index.html">Animation GIF and MNG tests</a><br/>
 </p> <br/>
+<!--
+<div class="image">
+<object class="image" type="image/jpeg" data="small-lime.JPG" style="top:0px;left:0px;"/>
+</div>
 
-
-
-
+ Well, XHTML to be precise.
+In fact, this page is written in LIME, with enough details filled in so that it can be interpreted as HTML. 
+You can right-click and open the source to see it for yourself. 
+-->
 
 
 </body>
