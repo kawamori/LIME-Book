@@ -29,7 +29,7 @@
 		urlList[8] = "mng/index.xml";
 		urlList[9] = "hybrid/index.xml";
 		urlList[10] = "kamakura/simple-epg/startup.bml";
-		urlList[11] = "";
+		urlList[11] = "test.html";
 		urlList[12] = "";
 		
 
@@ -86,7 +86,7 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 		onclick="jump();">Kamakura</p>
 
 		<p id="11" class="button" style="top:480px;nav-index:11;nav-up:10;nav-down:12;"
-		onclick="jump();"></p>
+		onclick="jump();">Graphics test</p>
 		<p id="12" class="button" style="top:510px;nav-index:12;nav-up:11;nav-down:12;"
 		onclick="jump();"></p>
 	
