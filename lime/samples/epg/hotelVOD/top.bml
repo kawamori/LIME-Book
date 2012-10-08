@@ -10,11 +10,11 @@
 
 <style><![CDATA[
 	body{
-		clut:url(img/default.clt);
-		background-color-index:0;
+		background-image: url("images/wallpaper_LQ.jpg");
+	
 	}
 
-div:focus	{background-color-index:7;}
+div:focus	{background-color-index:1;}
 div:blur	{background-color-index:0;}
 
 .inner {
@@ -25,29 +25,17 @@ height:500px;
 background-color-index:8;
 }
 
-.v1g {
-width:124px;
-height:124px;
+.v1g {width:90px;height:86px;
 background-color-index:8;
 }
 
-.v2g {
-width:252px;
-height:124px;
+.v2g {width:90px;height:86px;
 background-color-index:8;
 }
 
-.img {
-width:120px;
-height:120px;
-left:2px;top:2px;
-}
+.img {width:88px;height:84px;left:1px;top:1px;}
 
-.img2 {
-width:246px;
-height:120px;
-left:2px;top:2px;
-}
+.img2 {width:88px;height:84px;left:1px;top:1px;}
 
 
 ]]></style>
@@ -82,12 +70,12 @@ if(name==1){
 	]]></script>
 </head>
 <body>
-
-<div style="left:0px; top:20px; width:960px; height:540px">
-<!--<object type="image/jpeg" data="img/title.jpg" style="left:230px;top:0px;width:512px;height:39px;"/>
-<object type="image/jpeg" data="img/title.jpg" style="left:230px;top:0px;width:512px;height:39px;"/>-->
+<!--
+<div style="left:0px; top:20px; width:960px; height:540px;background-color-index:8;">
+<object type="image/jpeg" data="img/title.jpg" style="left:230px;top:0px;width:512px;height:39px;"/>
+<object type="image/jpeg" data="img/title.jpg" style="left:230px;top:0px;width:512px;height:39px;"/>
 <object type="image/X-arib-png" data="img/title11.png" style="left:152px;top:0px;width:656px;height:50px;"/>
-
+-->
 
 <div class='inner'>
 
@@ -146,9 +134,11 @@ if(name==1){
 <object  class='img' type="image/X-arib-png" data="img/m_hp.png" style=""/>
 </div>
 
-</div>
-
 
 </div>
+
+<!--
+</div>
+-->
 </body>
 </bml>
