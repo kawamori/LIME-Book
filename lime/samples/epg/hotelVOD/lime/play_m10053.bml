@@ -79,7 +79,7 @@ function alert(str){
 
 
 	
-function goback(){ browser.launchDocument("../video.xml", "cut");	}
+function goback(){ browser.launchDocument("../top.bml", "cut");	}
 function refresh(){ browser.reloadActiveDocument();}
 		]]></script>
 </head>
@@ -88,7 +88,7 @@ function refresh(){ browser.reloadActiveDocument();}
 <div id="basePane" style="top:0px;width:960px;height:540px;visibility:visible;">
 
 	<div style="top:0px;left:0px;width:960px;height:540px;visibility:visible;">
-		<object id="vod" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/earth_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
+		<object id="vod" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/japan_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
 	</div>
 </div>
 	
@@ -102,7 +102,7 @@ function refresh(){ browser.reloadActiveDocument();}
 	
 	-->
 <div style="left:870px; top:490px;width:34px;height:34px;" >
-<object type="image/X-arib-png" data="images/return-button.png" style="left:0;top:0;width:34px;height:34px;" accesskey="Y" onclick="goback();"/>
+<object type="image/X-arib-png" data="../images/return-button.png" style="left:0;top:0;width:34px;height:34px;" accesskey="Y" onclick="goback();"/>
 </div>
 
 <p id="p01" class="button" style="left:250px;color-index:7;background-color-index:1;" onclick="refresh();"  accesskey="R">Reload</p>
