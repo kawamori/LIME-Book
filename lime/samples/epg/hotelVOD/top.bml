@@ -58,7 +58,7 @@ function launch(){
 if(name==1){
      browser.launchDocument("lime/menu_ho.bml", "cut");
   }else if(name==2){
-     browser.launchDocument("lime/dnp/mainmenu.bml", "cut");
+     browser.launchDocument("lime/info.bml", "cut");
 }else if(name==3){
      browser.launchDocument("lime/info.bml", "cut");
 }else if(name==14){
