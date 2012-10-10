@@ -6,8 +6,13 @@
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
-<title>jQuery を使って コンテンツ切替表示 を実装する</title>
+<title>jQuery Test</title>
 <link rel="stylesheet" type="text/css" href="_css/import.css" media="all" />
+<style>
+p {color:#FFFF00;}
+.h1 {font-size:36px;font-weight:bold;}
+.h2 {font-size:24px;font-weight:bold;}
+</style>
 <script type="text/javascript" charset="utf-8" src="_js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="_js/jquery_ticker.js"></script>
 
@@ -16,19 +21,19 @@
 <body class="noscript">
 
 <div id="header">
-<h1>■■ Travel Exporter</h1>
+<p class="h1">■■ Travel Exporter</p>
 <!-- #header --></div>
 
 <div id="container">
 
 <div id="navi">
-<ul>
+<div class="ul">
 <li class="onCounter">News</li>
-<li class="offCounter">information</li>
-<li class="offCounter">会社案内</li>
-<li class="offCounter">採用情報</li>
-<li class="offCounter">お問い合わせ</li>
-</ul>
+<li class="offCounter">Information</li>
+<li class="offCounter">Company</li>
+<li class="offCounter">Recruite</li>
+<li class="offCounter">Inquiry</li>
+</div>
 <!-- #navi --></div>
 
 <div id="ticker">
@@ -36,7 +41,8 @@
 <li style="display: list-item;">
 <div>
 <noscript>このページはJavaScriptを使用しています。JavaScriptが無効になっているため、正しく表示することができません。</noscript>
-<h2>News</h2>
+<p class="h2">News</p>
+<!--
 <dl>
 <dt>2009.05.03</dt>
 <dd>お問い合わせ update</dd>
@@ -51,31 +57,31 @@
 <dt>2009.05.01</dt>
 <dd>Travel Exporter site open!</dd>
 </dl>
-
+-->
 </div>
 </li>
 <li style="display: none;">
 <div>
-<h2>information</h2>
-<p>Travel Exporterは旅行代理店です。みなさまにすばらしい思い出を提案いたします。Travel Exporterは旅行代理店です。みなさまにすばらしい思い出を提案いたします。Travel Exporterは旅行代理店です。みなさまにすばらしい思い出を提案いたします。Travel Exporterは旅行代理店です。みなさまにすばらしい思い出を提案いたします。Travel Exporterは旅行代理店です。みなさまにすばらしい思い出を提案いたします。Travel Exporterは旅行代理店です。みなさまにすばらしい思い出を提案いたします。</p>
+<p class="h2">Information</p>
+<p>ultrices molestie faucibus. Suspendisse sapien justo, bibendum vel convallis eu, pulvinar eget ipsum. Mauris molestie nunc aliquam quam interdum cursus venenatis vel odio. In hac habitasse platea dictumst. Cras eu velit in arcu mattis pulvinar. Pellentesque aliquet sodales massa sed rutrum. Vestibulum fringilla facilisis neque in scelerisque. Etiam feugiat quam et justo adipiscing aliquam. Aliquam malesuada interdum est fringilla posuere. Nullam vel malesuada ipsum. Mauris felis tellus, malesuada vitae rutrum scelerisque, hendrerit non nibh. Sed justo purus, interdum ut hendrerit vitae, mattis ut dolor. Sed neque neque, viverra vel iaculis sed, porta ut elit.</p>
 </div>
 </li>
 <li style="display: none;">
 <div>
-<h2>会社案内</h2>
-<p>会社案内会社案内会社案内会社案内会社案内会社案内会社案内会社案内会社案内会社案内会社案内会社案内</p>
+<p class="h2">Company</p>
+<p>ultrices molestie faucibus. Suspendisse sapien justo, bibendum vel convallis eu, pulvinar eget ipsum. Mauris molestie nunc aliquam quam interdum cursus venenatis vel odio. In hac habitasse platea dictumst. Cras eu velit in arcu mattis pulvinar. Pellentesque aliquet sodales massa sed rutrum. Vestibulum fringilla facilisis neque in scelerisque. Etiam feugiat quam et justo adipiscing aliquam. Aliquam malesuada interdum est fringilla posuere. Nullam vel malesuada ipsum. Mauris felis tellus, malesuada vitae rutrum scelerisque, hendrerit non nibh. Sed justo purus, interdum ut hendrerit vitae, mattis ut dolor. Sed neque neque, viverra vel iaculis sed, porta ut elit.</p>
 </div>
 </li>
 <li style="display: none;">
 <div>
-<h2>採用情報</h2>
-<p>採用情報採用情報採用情報採用情報採用情報採用情報採用情報採用情報採用情報採用情報採用情報採用情報</p>
+<p class="h2">Recruit</p>
+<p>ultrices molestie faucibus. Suspendisse sapien justo, bibendum vel convallis eu, pulvinar eget ipsum. Mauris molestie nunc aliquam quam interdum cursus venenatis vel odio. In hac habitasse platea dictumst. Cras eu velit in arcu mattis pulvinar. Pellentesque aliquet sodales massa sed rutrum. Vestibulum fringilla facilisis neque in scelerisque. Etiam feugiat quam et justo adipiscing aliquam. Aliquam malesuada interdum est fringilla posuere. Nullam vel malesuada ipsum. Mauris felis tellus, malesuada vitae rutrum scelerisque, hendrerit non nibh. Sed justo purus, interdum ut hendrerit vitae, mattis ut dolor. Sed neque neque, viverra vel iaculis sed, porta ut elit.</p>
 </div>
 </li>
 <li style="display: none;">
 <div>
-<h2>お問い合わせ</h2>
-<p>お問い合わせお問い合わせお問い合わせお問い合わせお問い合わせお問い合わせお問い合わせお問い合わせ</p>
+<p class="h2">Inquiry</p>
+<p>ultrices molestie faucibus. Suspendisse sapien justo, bibendum vel convallis eu, pulvinar eget ipsum. Mauris molestie nunc aliquam quam interdum cursus venenatis vel odio. In hac habitasse platea dictumst. Cras eu velit in arcu mattis pulvinar. Pellentesque aliquet sodales massa sed rutrum. Vestibulum fringilla facilisis neque in scelerisque. Etiam feugiat quam et justo adipiscing aliquam. Aliquam malesuada interdum est fringilla posuere. Nullam vel malesuada ipsum. Mauris felis tellus, malesuada vitae rutrum scelerisque, hendrerit non nibh. Sed justo purus, interdum ut hendrerit vitae, mattis ut dolor. Sed neque neque, viverra vel iaculis sed, porta ut elit.</p>
 </div>
 </li>
 </ul>
@@ -84,7 +90,7 @@
 <!-- #container --></div>
 
 <div id="footer">
-<address>Copyright &copy; Travel Exporter Inc. All rights reserved.</address>
+<p id="address">Copyright &copy; Travel Exporter Inc. All rights reserved.</p>
 <!-- #footer --></div>
 
 </body>
