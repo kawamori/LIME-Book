@@ -4,6 +4,7 @@
 <bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
  <head>
   <title>Welcome to LIME world</title>
+  <link  href="css/base.css" rel="stylesheet"/>
   <style>
    <![CDATA[
     .base{background-color-index: 0;
