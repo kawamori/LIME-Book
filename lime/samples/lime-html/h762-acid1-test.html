@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?bml bml-version="100.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title> Emulation of W3C CSS Acid Test 1by ITU-T H.762 (LIME)</title>
+<link  href="css/base.css" rel="stylesheet"/>
+<style>
+
+body	{background-color-index:4;background-color: blue;}
+
+.dl {
+margin: 0;
+border-width: 5px;
+border-style: solid;
+border-color-index: 0;
+border-color: black;
+padding: 5px;
+}
+
+.dt { 
+background-color-index:9;
+background-color:#aa0000;
+margin: 0; 
+width: 50px; 
+height: 28px;
+border-width: 5px;
+border-style: solid;
+border-color-index: 0;
+border-color:black;
+color-index:7;
+color:white
+text-align:center;
+}
+
+.dd {
+text-align:right;
+margin: 0;
+border-width: 10px;
+border-style: solid;
+border-color-index: 0;
+border-color: black;
+padding: 5px;
+width: 34px;
+height: 27px;
+}
+
+.ul {
+margin: 0;
+border-width: 10px;
+border-style: solid;
+border-color-index: 0;
+border-color: black;
+padding: 0;
+}
+
+.li {
+color-index:0;
+color:black;
+margin: 0;
+border-width: 5px;
+border-style: solid;
+border-color-index:0;
+border-color: black;
+padding: 1px;
+background-color-index:60;
+background-color:#ffaa55;}
+#bar {
+background-color-index:0;
+background-color:black;
+color-index:7;
+color:white;
+width: 41px;
+border-width: 5px;
+border-style: solid;
+border-color-index:0;
+border-color:black;
+margin: 0;}
+#baz {
+margin: 0;
+border-width: 5px;
+border-style: solid;
+border-color-index:0;
+border-color:black;
+padding: 5px;
+width: 10px;
+height: 10px;
+background-color-index:0;
+background-color:black;
+color-index:7;
+color:white;
+}
+
+.form { 
+margin: 0;
+display: inline;
+}
+.blockquote {
+margin: 0;
+border-width: 5px;
+border-style: solid;
+border-color-index:0;
+border-color:black;
+padding: 1px;
+width: 5px;
+height: 9px;
+float: left;
+background-color-index:0;
+background-color:black;
+color-index: 0;
+color: black;
+}
+.input{color-index:7;
+color:white;}
+.address {
+font-style: normal;
+background-color-index:60;
+background-color:#ffaa55;
+}
+.h1 {
+background-color-index:0;
+background-color:black;
+color-index:7;
+color:white;
+float: left;
+margin: 0;
+border-width: 5px;
+border-style: solid;
+border-color-index:0;
+border-color:black;
+padding: 1px;
+width: 10px;
+height: 10px;
+font-weight: normal;
+font-size: 16px;
+}
+p	{font-size:16px;}
+a {color-index:4;}
+div { border-color-index:7;
+ border-color: white;
+}
+
+</style>
+
+</head>
+<body>
+<div class="dl" style="width:510px;height:410px;left:20px;top:20px;background-color-index:7;background-color:white;">
+	<p class="dt" style="width:75px;height:310px;left:5px;top:5px;">toggle</p>
+	<div class="dd" style="width:380px;height:300px;left:100px;top:5px;">
+	<!--	<div class="ul" style="width:400px;height:300px;left:0px;top:0px;"> -->
+			<p class="li" style="width:75px;height:113px;left:5px;top:10px;">the way</p>
+			<div class="li" id="bar" style="width:160px;height:100px;left:100px;top:10px;">
+				<p class="input" style="width:160px;height:100px;left:0px;top:0px;">the world ends</p>
+				<div class="form" style="width:160px;height:80px;left:0px;top:20px;">
+								<p class="input" style="width:160px;height:50px;left:0px;top:10px;">	 bang 
+								 <input type="radio" id="foo" maxlength="1" value="*" style="width:60px;height:30px;left:70px;top:0px;nav-index:0;nav-down:1;"/></p>
+								<p class="input" style="width:160px;height:80px;left:0px;top:50px;">	 whimper 
+								<input type="radio" name="foo2" value="+" maxlength="1"  style="width:60px;height:30px;left:70px;top:0px;nav-index:1;nav-up:0;"/></p>
+				</div><!-- end of form -->
+			</div>
+			<p class="li" style="width:75px;height:113px;left:280px;top:10px;">I grow old</p>
+ 			<p class="li" id="baz" style="width:120px;height:120px;left:5px;top:140px;">pluot?</p>
+	<!--	</div>  end of ul-->
+		<div class="blockquote" style="width:60px;height:140px;left:160px;top:140px;">
+			<p class="address" style="width:50px;height:120px;left:0px;top:5px;">bar maids</p>
+		</div> <!-- end blockquote -->
+		<p  class="h1" style="width:120px;height:120px;left:240px;top:140px;">sing to me, erbarme dich</p>
+	</div><!-- end of dd-->
+</div><!-- end of dl-->
+<p style="top:355px;left:30px;width:490px;height:80px;background-color-index:7;">
+		 This is an emulation of W3C Acid Test1 by LIME-CSS of ITU-T H.762.
+		  The original test can be found  <a href="http://www.w3.org/Style/CSS/Test/CSS1/current/test5526c.htm">here</a>.
+		  All implementations of conformant LIME-CSS agents should be able to render the document elements above. </p>
+</body>
+</bml>

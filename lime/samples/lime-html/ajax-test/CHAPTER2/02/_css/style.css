@@ -1,0 +1,68 @@
+@charset "UTF-8";
+/**
+ * JavaScript/Ajax Samples
+ * @module style
+ */
+
+/* header
+ ---------------------------------------- */
+#header h1 {
+	font-size: 150%;
+	font-weight: bolder;
+}
+
+/* container
+ ---------------------------------------- */
+#container {
+	background: #fff url('../_images/image.png') no-repeat;
+}
+
+#navi {
+	border: 1px solid #ccc;
+}
+
+#navi li {
+	border-bottom: 1px solid #ccc;
+	color: #fff;
+	line-height: 2.5em;
+	text-indent: 1em;
+	text-decoration: none;
+}
+
+#ticker {
+	border: 1px solid #ccc;
+}
+
+#ticker li {
+	color: #fff;
+}
+
+#ticker h2 {
+	font-size: 120%;
+	font-weight: bolder;
+	border-bottom: 1px solid #ccc;
+}
+
+#ticker dl {
+	line-height: 2.5em;
+}
+
+#ticker p {
+	line-height: 1.5em;
+}
+
+/* footer
+ ---------------------------------------- */
+#footer {
+	font-size: 80%;
+}
+
+/* class
+ ---------------------------------------- */
+.onCounter {
+	background-color: #ff4500;
+}
+
+.offCounter {
+	background-color: #999
+}

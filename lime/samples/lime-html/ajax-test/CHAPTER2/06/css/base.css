@@ -1,0 +1,268 @@
+@charset "UTF-8";
+/* [javascript/Ajax Samples]
+ * Summary: basic style
+ * Modified: 2009-06-03
+ */
+
+/* body / container
+----------------------------------------*/
+body {
+	background: #FFF;
+	color: #333;
+	font-family: Arial, Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic", Osaka, "ＭＳ Ｐゴシック", sans-serif;
+	text-align: center;
+	font-size: 12px;
+}
+* html body {font-size: 76%;}
+*:first-child+html body {font-size: 76%;}
+
+/* container */
+#container {
+	position: relative;
+	width: 100%; min-height: 100%; height: 100%;
+}
+	html>body #container { height: auto; }
+
+/* header
+----------------------------------------*/
+#header {
+	width: 100%;
+	background: url(../images/line_header.gif) repeat-x 0 108px;
+}
+#header-inner {
+	position: relative;
+	width: 780px; height: 160px;
+	margin: 0 auto;
+	background: url(../images/bg_header.jpg) no-repeat 0 100%;
+	text-align: left;
+}
+
+	/* site id
+	----------------------------------------*/
+#siteid { }
+
+	/* global-nav
+	----------------------------------------*/
+ul#global-nav {
+	width: 760px;
+	height: 42px;
+	overflow: hidden;
+	margin: 0 auto 0 12px;
+}
+ul#global-nav li {
+	float: left;
+	width: 148px;
+	margin-right: 3px;
+}
+ul#global-nav li a {
+	display: block;
+	height: 42px;
+	overflow: hidden;
+}
+
+.txtgnav ul#global-nav li a {
+	background-image: url(../images/gnav_all.gif);
+	background-repeat: no-repeat;
+	text-indent: -9999px;
+}
+.txtgnav ul#global-nav li.home a { background-position: 0 0; }
+.txtgnav ul#global-nav li.products a { background-position: -151px 0; }
+.txtgnav ul#global-nav li.gallery a { background-position: -302px 0; }
+.txtgnav ul#global-nav li.contact a { background-position: -453px 0; }
+.txtgnav ul#global-nav li.about a { background-position: -604px 0; }
+
+.txtgnav ul#global-nav li.home a.cr,
+.txtgnav ul#global-nav li.home a.cr:visited { background-position: 0 -42px; }
+.txtgnav ul#global-nav li.products a.cr,
+.txtgnav ul#global-nav li.products a.cr:visited { background-position: -151px -42px; }
+.txtgnav ul#global-nav li.gallery a.cr,
+.txtgnav ul#global-nav li.gallery a.cr:visited { background-position: -302px -42px; }
+.txtgnav ul#global-nav li.contact a.cr,
+.txtgnav ul#global-nav li.contact a.cr:visited { background-position: -453px -42px; }
+.txtgnav ul#global-nav li.about a.cr,
+.txtgnav ul#global-nav li.about a.cr:visited { background-position: -604px -42px; }
+
+.txtgnav ul#global-nav li.home a:hover { background-position: 0 -84px; }
+.txtgnav ul#global-nav li.products a:hover { background-position: -151px -84px; }
+.txtgnav ul#global-nav li.gallery a:hover { background-position: -302px -84px; }
+.txtgnav ul#global-nav li.contact a:hover { background-position: -453px -84px; }
+.txtgnav ul#global-nav li.about a:hover { background-position: -604px -84px; }
+
+/* content
+----------------------------------------*/
+#content {
+	clear: both;
+	width: 780px;
+	overflow: hidden;
+	margin: 0 auto 20px;
+	padding-top: 40px;
+	background: url(../images/bg_sidebar.gif) repeat-y 100% 0;
+	text-align: left;
+}
+
+/* container */
+#alpha {
+	float: left;
+	width: 422px;
+	margin-right: 15px;
+}
+#beta {
+	float: left;
+	width: 165px;
+}
+#gamma {
+	float: right;
+	width: 163px;
+}
+
+/* topic-path */
+p#topic-path {
+	position: relative;
+	z-index: 2;
+	padding: 20px 10px 20px;
+	background-color: #FFF;
+}
+
+	/* entry
+	----------------------------------------*/
+div.entry {
+	position: relative;
+	width: 100%;
+	line-height: 1.3;
+}
+div.entry h2 {
+	min-height: 30px; height: 30px;
+	margin: 0 0 10px 58px;
+	padding: 6px 0;
+	font-size: 133%;
+	font-weight: bold;
+}
+	html>body div.entry h2 { height: auto; }
+p.entry-date {
+	position: absolute;
+	top: 0; left: 0;
+	width: 51px; height: 32px;
+	padding-top: 3px;
+	background: url(../images/entrydate.gif) no-repeat 0 0;
+	color: #FFF;
+	font-size: 14px;
+	line-height: 1.1;
+	text-align: center;
+}
+p.entry-date span.year {
+	display: block;
+	font-size: 12px;
+}
+div.entry p {
+	margin-bottom: 20px;
+}
+
+	/* widget in "beta" container
+	----------------------------------------*/
+#beta div.widget {}
+#beta div.widget h3 {
+	margin: 0 0 10px;
+	font-size: 133%;
+	font-weight: bold;	
+}
+#beta div.widget a,
+#beta div.widget a:visited {
+	color: #333;
+	text-decoration: none;
+}
+#beta div.widget a:hover,
+#beta div.widget a:active {
+	text-decoration: underline;
+}
+
+/* Mini Photo Gallery */
+#mini-photo-gallery h3 { padding-top: 10px; }
+#mini-photo-gallery li {
+	position: relative;
+	min-height: 60px; height: 60px;
+	margin-bottom: 15px;
+	padding: 0 0 0 65px;
+}
+#mini-photo-gallery a {
+	position: absolute;
+	top: 0; left: 0;
+	width: 60px;
+	overflow: hidden;
+}
+#mini-photo-gallery span.published {
+	display: block;
+	color: #666;
+	font-size: 10px;
+}
+	/* widget in "gamma" container
+	----------------------------------------*/
+#gamma div.widget {}
+#gamma div.widget h3 {
+	font-size: 133%;
+	font-weight: bold;	
+}
+
+/* calendar */
+#calendar { padding-bottom: 30px; }
+#calendar h3 { padding: 10px; }
+#calendar ul { line-height: 1.5; }
+#calendar li { margin-left: 5px; }
+#calendar a,
+#calendar a:visited {
+	display: block;
+	width: 100%;
+	background: url(../images/bg_calendar_day.gif) no-repeat 0 50%;
+	color: #333;
+	text-decoration: none;
+}
+#calendar a:hover,
+#calendar a:active {
+	background: url(../images/bg_calendar_day.gif) no-repeat 100% 50%;
+}
+#calendar li.sun,
+#calendar li.sun a,
+#calendar li.sun a:visited { color: #F33; }
+
+/* footer
+----------------------------------------*/
+#footer {
+	clear: both;
+	width: 100%;
+	background: url(../images/line_header.gif) repeat-x 0 24px;
+}
+#footer-inner {
+	width: 780px; height: 100px;
+	margin: 0 auto;
+	background: url(../images/bg_footer_in.jpg) no-repeat 0 0;
+	text-align: left;
+}
+
+	/* address
+	----------------------------------------*/
+#footer address {
+	padding: 36px 10px 10px;
+	color: #FFF;
+	line-height: 1.25;
+	text-align: center;
+}
+
+/*----------------------------------------
+ common modules
+----------------------------------------*/
+/* [.pagetop] module
+----------------------------------------*/
+p.pagetop {
+	clear: both;
+	margin: 0 18px 6px;
+	line-height: 1.25;
+	text-align: right;
+}
+p.pagetop a:link,
+p.pagetop a:visited {
+	color: #339;
+	text-decoration: none;
+}
+p.pagetop a:hover,
+p.pagetop a:focus,
+p.pagetop a:active { text-decoration: underline; }
+

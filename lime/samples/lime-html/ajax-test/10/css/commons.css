@@ -1,0 +1,96 @@
+@charset "UTF-8";
+@import url("reset.css");
+
+/* CSS Document */
+/* ------------------------ contests ------------------------ */
+#contentsBOX {
+  width:796px;
+  min-height:100%;
+  height:auto !important;
+  height:100%;
+  padding:0 36px;
+  margin:0 auto;
+  position:relative;
+  background-image:url(../image/back.gif);
+  background-repeat:repeat-y;
+}
+
+/* ------------------------ title ---------------------------- */
+#headerBOX {
+  width:796px;
+}
+
+/* ------------------------ main ---------------------------- */
+#mainBOX {
+  width:766px;
+  font-size:80%;
+  line-height:130%;
+  min-height:500px;
+  text-align:left;
+  padding:75px 15px 10px 15px;
+  background-image:url(../image/mainback.jpg);
+  background-repeat:no-repeat;
+  background-color:#76a77d;
+}
+
+/* ------------------------ wbox ---------------------------- */
+.wbox {
+  width:575px;
+  color:#ffffff;
+  margin:0 0 5px 0;
+}
+
+.wboxTOP {
+  width:575px;
+  height:4px;
+  background-image:url(../image/w_top.gif);
+  background-repeat:no-repeat;
+  font-size:0;
+  line-height:0;
+}
+
+.wboxMAIN {
+  width:555px;
+  padding:10px;
+  display:inline-block;
+  background-color:#373737;
+}
+.wboxMAIN:after {
+  content:"";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden;
+}
+
+.wboxMAIN img.thumb {
+  padding:0;
+  margin:0 12px 0 12px;
+  float:left;
+}
+
+.wboxMAIN p.btn {
+  padding:0;
+  margin:70px 0 0 440px;
+}
+
+.wboxBOTTOM {
+  width:575px;
+  height:4px;
+  background-image:url(../image/w_bottom.gif);
+  background-repeat:no-repeat;
+  font-size:0;
+  line-height:0;
+}
+
+/* ------------------------ footer ---------------------------- */
+#footerBOX {
+  width:776px;
+  height:12px;
+  margin:0 auto;
+  padding:8px 10px;
+  font-size:70%;
+  color:#000000;
+  text-align:right;
+  background-color:#76a77d;
+}

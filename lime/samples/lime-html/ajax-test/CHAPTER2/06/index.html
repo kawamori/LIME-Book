@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?bml bml-version="100.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<bml xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>Customizing Lightbox jQuery plugin FancyBox </title>
+<link rel="stylesheet" type="text/css" href="css/import.css" media="all" />
+<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox.css" media="screen" />
+<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox_ie6.css" media="screen" /><![endif]-->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.easing.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.fancybox-1.2.1.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+	$("#mini-photo-gallery a").fancybox( {
+		zoomOpacity: true,
+		zoomSpeedIn: 500,
+		zoomSpeedOut: 500,
+		zoomSpeedChange: 500,
+		hideOnContentClick: false
+	} );
+});
+//]]>
+</script>
+</head>
+<body>
+<div id="container">
+<div id="header">
+<div id="header-inner">
+	<h1 id="siteid"><a href="./" name="pagetop" id="pagetop"><img src="images/siteid.jpg" alt="JavaScript/Ajax Samples" width="780" height="108" /></a></h1>
+	<ul id="global-nav">
+		<li><a href="#"><img src="images/gnav_home.gif" alt="Home" width="148" height="42" /></a></li>
+		<li><a href="#"><img src="images/gnav_products.gif" alt="Products" width="148" height="42" /></a></li>
+		<li><a href="#"><img src="images/gnav_gallery.gif" alt="Gallery" width="148" height="42" /></a></li>
+		<li><a href="#"><img src="images/gnav_contact.gif" alt="Contact" width="148" height="42" /></a></li>
+		<li><a href="#"><img src="images/gnav_about.gif" alt="About" width="148" height="42" /></a></li>
+	</ul>
+<!--/#header-inner-->
+</div>
+<!--/#header-->
+</div>
+
+<div id="content">
+	<div id="alpha">
+		<div class="entry">
+			<h2>Dummy Entry</h2>
+			<p class="entry-date">01 Jul <span class="year">2009</span></p>
+			<div class="entry-content">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ullamcorper odio in enim fermentum sit amet gravida nisi viverra. Integer vel nisl massa. Vestibulum ultrices molestie faucibus. Suspendisse sapien justo, bibendum vel convallis eu, pulvinar eget ipsum. Mauris molestie nunc aliquam quam interdum cursus venenatis vel odio. In hac habitasse platea dictumst. Cras eu velit in arcu mattis pulvinar. Pellentesque aliquet sodales massa sed rutrum. Vestibulum fringilla facilisis neque in scelerisque. Etiam feugiat quam et justo adipiscing aliquam. Aliquam malesuada interdum est fringilla posuere. Nullam vel malesuada ipsum. Mauris felis tellus, malesuada vitae rutrum scelerisque, hendrerit non nibh. Sed justo purus, interdum ut hendrerit vitae, mattis ut dolor. Sed neque neque, viverra vel iaculis sed, porta ut elit.</p>
+<p>Quisque tincidunt sollicitudin ipsum, euismod gravida erat commodo feugiat. Ut mauris nisi, blandit convallis convallis nec, lacinia vel dolor. Etiam pharetra, risus quis varius iaculis, erat dui ornare dolor, sit amet vehicula felis lorem et metus. Etiam congue urna in enim tincidunt sagittis. Proin aliquet placerat massa et auctor. Integer bibendum scelerisque magna ut consectetur. Praesent tincidunt molestie facilisis. Quisque mattis facilisis augue, a posuere ipsum fringilla quis. Morbi lacus velit, molestie vel faucibus at, accumsan ac nisl. Suspendisse auctor faucibus leo, at congue nisl blandit et. Sed semper, elit vitae interdum cursus, dolor mi malesuada nulla, sed feugiat eros arcu a leo. Ut quam tellus, imperdiet a posuere non, egestas aliquet elit. Nam malesuada, quam ac laoreet hendrerit, augue dolor congue dolor, vel fermentum eros urna in leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce eu diam nec urna lacinia semper sed eu enim. Vivamus ut orci diam, ac fermentum arcu.</p>
+<p>Sed sit amet odio at orci pellentesque pharetra vitae et lacus. Pellentesque at eros nunc. Mauris feugiat vehicula placerat. Vivamus ipsum lorem, sollicitudin non luctus in, auctor ac massa. Donec condimentum lectus in libero pretium eget faucibus lorem eleifend. Fusce luctus mi mauris, sit amet sollicitudin ligula. Vivamus tincidunt condimentum metus, sed vestibulum leo lobortis sed. Suspendisse vulputate urna eget tellus interdum dictum. Praesent laoreet odio quis urna ullamcorper posuere. Duis dapibus sollicitudin quam. Proin eleifend risus in odio accumsan at luctus tellus sagittis. </p>
+			</div>
+		</div>
+	<!--/#alpha-->
+	</div>
+	
+	<div id="beta">
+		<div class="widget" id="mini-photo-gallery">
+			<h3>Mini Photo Gallery</h3>
+			<ul>
+				<li><a href="images/pct_06.jpg" rel="Section" title="Alleys"><img src="images/thumb_06.jpg" alt="" /></a> Ut commodo nunc sed sem <span class="published">22 Jul 2008</span></li>
+				<li><a href="images/pct_05.jpg" rel="Section" title="View from Harbor"><img src="images/thumb_05.jpg" alt="" /></a> Integer vel ipsum ipsum, sed <span class="published">17 Jul 2008</span></li>
+				<li><a href="images/pct_04.jpg" rel="Section" title="Rain out"><img src="images/thumb_04.jpg" alt="" /></a> Phasellus a metus neque, ac <span class="published">14 Jul 2008</span></li>
+				<li><a href="images/pct_03.jpg" rel="Section" title="Riverside"><img src="images/thumb_03.jpg" alt="" /></a> Class aptent taciti sociosqu ad <span class="published">07 Jul 2008</span></li>
+				<li><a href="images/pct_02.jpg" rel="Section" title="Riverside（2）"><img src="images/thumb_02.jpg" alt="" /></a> Donec vehicula elementum augue at <span class="published">05 Jul 2008</span></li>
+				<li><a href="images/pct_01.jpg" rel="Section" title="S（1）"><img src="images/thumb_01.jpg" alt="" /></a> Cum sociis natoque penatibus <span class="published">02 Jul 2008</span></li>
+			</ul>
+		</div>		
+	<!--/#beta-->
+	</div>
+	
+	<div id="gamma">
+		<div class="widget" id="calendar">
+			<h3>July 2009</h3>
+			<ul>
+<li><a href="#">01</a></li>
+<li>02</li>
+<li>03</li>
+<li>04</li>
+<li class="sun"><a href="#">05</a></li>
+<li>06</li>
+<li><a href="#">07</a></li>
+<li>08</li>
+<li>09</li>
+<li>10</li>
+<li>11</li>
+<li class="sun">12</li>
+<li>13</li>
+<li><a href="#">14</a></li>
+<li>15</li>
+<li>16</li>
+<li><a href="#">17</a></li>
+<li>18</li>
+<li class="sun">19</li>
+<li class="sun">20</li>
+<li>21</li>
+<li><a href="#">22</a></li>
+<li>23</li>
+<li>24</li>
+<li>25</li>
+<li class="sun">26</li>
+<li>27</li>
+<li>28</li>
+<li>29</li>
+<li>30</li>
+<li>31</li>
+			</ul>
+		</div>
+	<!--/#gamma-->
+	</div>
+	
+<!--/#content-->
+</div>
+<div id="footer">
+<div id="footer-inner">
+	<address>Copyright &copy; JavaScript/Ajax Samples.</address>
+<!--/#footer-inner-->
+</div>
+<!--/#footer-->
+</div>
+<!--/#container-->
+</div>
+</body>
+</bml>

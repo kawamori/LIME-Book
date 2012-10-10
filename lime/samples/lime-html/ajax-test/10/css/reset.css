@@ -1,0 +1,136 @@
+@charset "UTF-8";
+/* RESET CSS Document */
+
+/* ----------- tag reset ---------------- */
+html {
+  height:100%;
+}
+
+body {
+  height:100%;
+  font-family:sans-serif; /* == safari & firefox == */
+  *font-family:"MS PGothic"; /* == ie6 & 7 == */
+  background-color:#ffffff;
+  margin:0;
+  padding:0;
+  text-align:center;
+}
+
+img {
+  border:0;
+}
+
+h1,h2,h3,h4,h5,h6,p,li,ul,div,form,hr,br,dt,dl,dd {
+  padding:0;
+  margin:0;
+}
+
+/* --------- a text color set ---------------- */
+a {
+  text-decoration: none;
+  color:#333333;
+  background-repeat:no-repeat;
+}
+
+a:link {
+  color: #333333;
+  text-decoration: none;
+}
+
+a:active {
+  color: #333333;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #333333;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #333333;
+}
+
+/* --------- text a none set ---------------- */
+a span {
+  position:absolute;
+  width:0;
+  height:0;
+  overflow:hidden;
+}
+
+h2 span,h1 span,h4 span,h5 span,h6 span {
+  position:absolute;
+  width:0;
+  height:0;
+  overflow:hidden;
+}
+
+/* --------- h1-6 set ---------------- */
+h1,h2,h3,h4,h5,h6 {
+  background-repeat:no-repeat;
+}
+
+h2 {
+  padding:0 0 3px 0;
+  margin:0 0 1em 0;
+  font-size:120%;
+  border-bottom:2px dotted #ffffff;
+}
+
+h3 {
+  padding:0 0 3px 0;
+  margin:0 0 1em 0;
+  font-size:100%;
+}
+
+/* --------- news list mark set ---------------- */
+.listmark {
+  /* background-image:url(../image/listmark.gif); */
+  background-position:0 1px;
+  background-repeat:no-repeat;
+  padding:0 0 0 14px;
+  font-size:70%;
+  float:left;
+}
+
+.liststr {
+  padding:0 0 0 7.5em;
+  font-size:70%;
+}
+
+/* --------- list mark [KOME] set ---------------- */
+.kome {
+  float:left;
+}
+
+.komestr {
+  padding: 0 0 0 1em;
+}
+
+/* --------- list mark [(1)] set ---------------- */
+.nmark {
+  float:left;
+}
+
+.nstr {
+  padding: 0 0 0 2em;
+}
+
+/* --------- color set ---------------- */
+.new {
+  color: #FF0000;
+}
+
+/* --------- iframe set ---------------- */
+iframe {
+  border:1px solid #999999;
+  margin:0 0 10px 0;
+}
+
+/* --------- table set ---------------- */
+table {
+  margin:0 0 1em 0;
+  width:100%;
+}

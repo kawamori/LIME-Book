@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+/* SprySlidingPanels.css - version 0.1 - Spry Pre-Release 1.6.1 */
+
+/* Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. */
+
+.SlidingPanels {
+	position: relative;
+	width: 100%;
+	height: 400px;
+	padding: 0px;
+	border: none;
+}
+
+.SlidingPanelsContentGroup {
+	position: relative;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+
+
+.SlidingPanelsContent {
+	width: 100%;
+	height: 400px;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+
+.SlidingPanelsAnimating * {
+	overflow: hidden !important;
+}
+
+.SlidingPanelsCurrentPanel {
+}
+
+.SlidingPanelsFocused {
+}

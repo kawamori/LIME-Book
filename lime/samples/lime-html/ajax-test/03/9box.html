@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?bml bml-version="100.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>9box</title>
+<style>
+.h2 {font-size:16px;}
+</style>
+<script type="text/javascript">
+<!--
+var pageWidth;
+var pageHeight;
+
+var myTargetC;
+var myTargetR;
+var myTargetM;
+var myTargetB;
+var speed=8;
+
+function config() {
+	if(document.all){
+     	pageWidth = document.documentElement.clientWidth;
+		pageHeight = document.documentElement.clientHeight;
+    } else {
+		pageWidth = window.innerWidth;
+		pageHeight = window.innerHeight;
+	}
+	
+	myTargetC = pageWidth/3;
+	myTargetR = pageWidth/3*2;
+	myTargetM = pageHeight/3;
+	myTargetB = pageHeight/3*2;
+	
+	document.getElementById('mybox1').style.width = (pageWidth-100)+"px";
+	document.getElementById('mybox1').style.height = (pageHeight-100)+"px";
+	document.getElementById('mybox2').style.width = (pageWidth-100)+"px";
+	document.getElementById('mybox2').style.height = (pageHeight-100)+"px";
+	document.getElementById('mybox3').style.width = (pageWidth-100)+"px";
+	document.getElementById('mybox3').style.height = (pageHeight-100)+"px";
+	document.getElementById('mybox4').style.width = (pageWidth-100)+"px";
+	document.getElementById('mybox4').style.height = (pageHeight-100)+"px";
+	document.getElementById('mybox5').style.width = (pageWidth-100)+"px";
+	document.getElementById('mybox5').style.height = (pageHeight-100)+"px";
+	document.getElementById('mybox6').style.width = (pageWidth-100)+"px";
+	document.getElementById('mybox6').style.height = (pageHeight-100)+"px";
+	document.getElementById('mybox7').style.width = (pageWidth-100)+"px";
+	document.getElementById('mybox7').style.height = (pageHeight-100)+"px";
+	document.getElementById('mybox8').style.width = (pageWidth-100)+"px";
+	document.getElementById('mybox8').style.height = (pageHeight-100)+"px";
+	document.getElementById('mybox9').style.width = (pageWidth-100)+"px";
+	document.getElementById('mybox9').style.height = (pageHeight-100)+"px";
+}
+function myboxCmove() {
+	var myPos = eval(document.getElementById('mybox2').style.left.replace("px", ""));
+	myPos += (myTargetC-myPos)/speed;
+	document.getElementById('mybox2').style.left = myPos+"px";;
+	document.getElementById('mybox5').style.left = myPos+"px";
+	document.getElementById('mybox8').style.left = myPos+"px";
+    setTimeout("myboxCmove()",10);
+}
+function myboxRmove() {
+	var myPos = eval(document.getElementById('mybox3').style.left.replace("px", ""));
+	myPos += (myTargetR-myPos)/speed;
+	document.getElementById('mybox3').style.left = myPos+"px";
+	document.getElementById('mybox6').style.left = myPos+"px";
+	document.getElementById('mybox9').style.left = myPos+"px";
+    setTimeout("myboxRmove()",10);
+}
+function myboxMmove() {
+	var myPos = eval(document.getElementById('mybox4').style.top.replace("px", ""));
+	myPos += (myTargetM-myPos)/speed;
+	document.getElementById('mybox4').style.top = myPos+"px";
+	document.getElementById('mybox5').style.top = myPos+"px";
+	document.getElementById('mybox6').style.top = myPos+"px";
+    setTimeout("myboxMmove()",10);
+}
+function myboxBmove() {
+	var myPos = eval(document.getElementById('mybox7').style.top.replace("px", ""));
+	myPos += (myTargetB-myPos)/speed;
+	document.getElementById('mybox7').style.top = myPos+"px";
+	document.getElementById('mybox8').style.top = myPos+"px";
+	document.getElementById('mybox9').style.top = myPos+"px";
+    setTimeout("myboxBmove()",10);
+}
+function setTarget1() {
+	myTargetC = pageWidth-100;
+	myTargetR = pageWidth-50;
+	myTargetM = pageHeight-100;
+	myTargetB = pageHeight-50;
+}
+function setTarget2() {
+	myTargetC = 50;
+	myTargetR = pageWidth-50;
+	myTargetM = pageHeight-100;
+	myTargetB = pageHeight-50;
+}
+function setTarget3() {
+	myTargetC = 50;
+	myTargetR = 100;
+	myTargetM = pageHeight-100;
+	myTargetB = pageHeight-50;
+}
+function setTarget4() {
+	myTargetC = pageWidth-100;
+	myTargetR = pageWidth-50;
+	myTargetM = 50;
+	myTargetB = pageHeight-50;
+}
+function setTarget5() {
+	myTargetC = 50;
+	myTargetR = pageWidth-50;
+	myTargetM = 50;
+	myTargetB = pageHeight-50;
+}
+function setTarget6() {
+	myTargetC = 50;
+	myTargetR = 100;
+	myTargetM = 50;
+	myTargetB = pageHeight-50;
+}
+function setTarget7() {
+	myTargetC = pageWidth-100;
+	myTargetR = pageWidth-50;
+	myTargetM = 50;
+	myTargetB = 100;
+}
+function setTarget8() {
+	myTargetC = 50;
+	myTargetR = pageWidth-50;
+	myTargetM = 50;
+	myTargetB = 100;
+}
+function setTarget9() {
+	myTargetC = 50;
+	myTargetR = 100;
+	myTargetM = 50;
+	myTargetB = 100;
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+body {
+	color: #FFFFFF;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+.box {
+	position:absolute;
+	width:250px;
+	height:200px;
+	overflow: hidden;
+}
+#mybox1 {
+	background-color:#FF9900;
+}
+#mybox2 {
+	background-color:#BBEE55;
+	color: #006600;
+}
+#mybox3 {
+	background-color:#AAEEFF;
+	color: #003399;
+}
+#mybox4 {
+	background-color:#FFBBDD;
+	color: #CC0000;
+}
+#mybox5 {
+	background-color:#FFFFFF;
+	background-image: url(images/title.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#mybox6 {
+	background-color:#FFFF66;
+	color: #FF6600;
+}
+#mybox7 {
+	background-color:#4455CC;
+}
+#mybox8 {
+	background-color:#CC99FF;
+	color: #003399;
+}
+#mybox9 {
+	background-color:#FF3333;
+}
+h2 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 24px;
+	padding-left: 20px;
+}
+ul {
+	margin-left: 30px;
+}
+-->
+</style>
+</head>
+<body onload="config();myboxCmove();myboxRmove();myboxMmove();myboxBmove()" onresize="config()">
+<div id="mybox1" class="box" style="top: 0px; left: 0px;" onmouseover="setTarget1()">
+<p class="h2">PRODUCT</p>
+<ul>
+<li>クリエイティブツール</li>
+<li>サーバー関連ソフトウエア</li>
+<li>エンターテイメントコンテンツ</li>
+</ul>
+</div>
+<div id="mybox2" class="box" style="top: 0px; left: 250px;" onmouseover="setTarget2()">
+<p class="h2">SERVICE</p>
+<ul>
+<li>ネット関連サービス</li>
+<li>商品プランイング</li>
+<li>マーケティングリサーチ</li>
+</ul>
+</div>
+<div id="mybox3" class="box" style="top: 0px; left: 500px;" onmouseover="setTarget3()">
+<p class="h2">USER SUPPORT</p>
+<ul>
+<li>よくあるお問い合わせ</li>
+<li>ダウンロード</li>
+<li>カタログ・資料</li>
+</ul>
+</div>
+<div id="mybox4" class="box" style="top: 200px; left: 0px;" onmouseover="setTarget4()">
+<p class="h2">RECRUIT</p>
+<ul>
+<li>募集要項</li>
+<li>当社の仕事</li>
+<li>来期のスケジュール</li>
+</ul>
+</div>
+<div id="mybox5" class="box" style="top: 200px; left: 250px;" onmouseover="setTarget5()"></div>
+<div id="mybox6" class="box" style="top: 200px; left: 500px;" onmouseover="setTarget6()">
+<p class="h2">CORPORATE</p>
+<ul>
+<li>会社概要</li>
+<li>沿革</li>
+<li>組織</li>
+</ul>
+</div>
+<div id="mybox7" class="box" style="top: 400px; left: 0px;" onmouseover="setTarget7()">
+<p class="h2">BLOG</p>
+<ul>
+<li>社長ブログ</li>
+<li>開発者ブログ</li>
+<li>ユーザーサポートブログ</li>
+</ul>
+</div>
+<div id="mybox8" class="box" style="top: 400px; left: 250px;" onmouseover="setTarget8()">
+<p class="h2">MAP</p>
+<ul>
+<li>本社・営業部</li>
+<li>札幌支社</li>
+<li>沖縄支社</li>
+</ul>
+</div>
+<div id="mybox9" class="box" style="top: 400px; left: 500px;" onmouseover="setTarget9()">
+<p class="h2">CONTACT</p>
+<ul>
+<li>商品に関するお問い合わせ</li>
+<li>報道関連のお問い合わせ</li>
+<li>その他のお問い合わせ</li>
+</ul>
+</div>
+</body>
+</bml>

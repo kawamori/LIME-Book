@@ -1,0 +1,59 @@
+@charset "UTF-8";
+/* for IE6 Only */
+
+* html div#fancy_overlay {
+	position: absolute;
+	height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
+
+div#fancy_close {
+	background: url('fancy_closebox.png') top left no-repeat;
+}
+
+span#fancy_left_ico {
+	background: transparent url('fancy_left.png') no-repeat;
+}
+
+span#fancy_right_ico {
+	background: transparent url('fancy_right.png') no-repeat;
+}
+
+div.fancy_bg_n {
+	background: transparent url('fancy_shadow_n.png') repeat-x;
+}
+
+div.fancy_bg_ne {
+	background: transparent url('fancy_shadow_ne.png') no-repeat;
+}
+
+div.fancy_bg_e {
+	background: transparent url('fancy_shadow_e.png') repeat-y;
+}
+
+div.fancy_bg_se {
+	background: transparent url('fancy_shadow_se.png') no-repeat;
+}
+
+div.fancy_bg_s {
+	background: transparent url('fancy_shadow_s.png') repeat-x;
+}
+
+div.fancy_bg_sw {
+	background: transparent url('fancy_shadow_sw.png') no-repeat;
+}
+
+div.fancy_bg_w {
+	background: transparent url('fancy_shadow_w.png') repeat-y;
+}
+
+div.fancy_bg_nw {
+	background: transparent url('fancy_shadow_nw.png') no-repeat;
+}
+
+td#fancy_title_left {
+	background: transparent url('fancy_title_left.png') repeat-x;
+}
+
+td#fancy_title_right {
+	background: transparent url('fancy_title_right.png') repeat-x;
+}

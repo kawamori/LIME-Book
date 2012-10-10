@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?bml bml-version="100.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<bml xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Gourmet Diary</title>
+<script type="text/javascript" src="spry/widgets/slidingpanels/SprySlidingPanels.js"></script>
+<link href="spry/widgets/slidingpanels/SprySlidingPanels.css" rel="stylesheet" type="text/css" />
+<link href="sample1.css" rel="stylesheet" type="text/css" />
+
+<link href="spry/widgets/tabbedpanels/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="spry/widgets/tabbedpanels/SpryTabbedPanels.js"></script>
+</head>
+
+<body>
+<h1><img src="images/h1.gif" width="413" height="23" alt="グルメ日記" /></h1>
+
+<div class="TabbedPanels" id="tabSlideWrap" style="display: none">
+<ul class="TabbedPanelsTabGroup">
+<li class="TabbedPanelsTab" tabindex="0"><img src="images/tab01.gif" width="152" height="30" alt="スライドショー" /></li>
+<li class="TabbedPanelsTab" tabindex="0"><img src="images/tab02.gif" width="92" height="30" alt="説明" /></li>
+</ul>
+<div class="TabbedPanelsContentGroup">
+<div class="TabbedPanelsContent boxSlide01">
+
+<!-- スライド1 -->
+<div id="slidePicture" class="SlidingPanels">
+<div class="SlidingPanelsContentGroup">
+<div id="panelPic1" class="SlidingPanelsContent">
+<img src="images/image1.jpg" width="640" height="424" alt="写真1" /></div>
+<div id="panelPic2" class="SlidingPanelsContent">
+<img src="images/image2.jpg" width="640" height="424" alt="写真2" /></div>
+<div id="panelPic3" class="SlidingPanelsContent">
+<img src="images/image3.jpg" width="640" height="425" alt="写真3" /></div>
+<div id="panelPic4" class="SlidingPanelsContent">
+<img src="images/image4.jpg" width="640" height="480" alt="写真4" /></div>
+</div>
+</div>
+
+<div class="slideBtn">
+<a href="javascript:void(0)" onclick="spPic.showFirstPanel(); return false;"><img src="images/btn01.gif" width="31" height="20" alt="最初へ" /></a>
+<a href="javascript:void(0)" onclick="spPic.showPreviousPanel(); return false;"><img src="images/btn02.gif" width="81" height="20" alt="前の写真へ" /></a>
+<a href="javascript:void(0)" onclick="spPic.showNextPanel(); return false;"><img src="images/btn03.gif" width="81" height="20" alt="次の写真へ" /></a>
+<a href="javascript:void(0)" onclick="spPic.showLastPanel(); return false;"><img src="images/btn04.gif" width="31" height="20" alt="最後へ" /></a>
+</div>
+<!-- /スライド1 -->
+
+</div>
+<div class="TabbedPanelsContent boxSlide02">
+
+<!-- スライド2 -->
+<div id="slideExplain" class="SlidingPanels">
+<div class="SlidingPanelsContentGroup">
+<div id="panelExp1" class="SlidingPanelsContent">
+<h2>5月 3日</h2>
+<p>ゴールデンウィークに鹿児島へ旅行に行ってきました！<br />
+羽田から飛行機で 2時間弱。意外にかかりませんね。<br />
+久しぶりの海は気持ちいい～！</p>
+</div>
+<div id="panelExp2" class="SlidingPanelsContent">
+<h2>5月 4日</h2>
+<p>散々観光で歩き回ってややグッタリ気味。<br />
+そんな体にカツを入れるべく、トンカツを食しました。タクシーの運転手さんに聞いた地元の方々に人気のお店。衣の揚げ具合もバッチリで、とても美味しゅうございました。</p>
+</div>
+<div id="panelExp3" class="SlidingPanelsContent">
+<h2>5月 5日</h2>
+<p>疲れた体にトンカツが効いたか、起きたら胃もたれがヒドかったです（笑）。<br />
+こんなときはサッパリした和食！　素朴な味を存分に楽しめました。これで650円はリーズナブルですね！</p>
+</div>
+<div id="panelExp4" class="SlidingPanelsContent">
+<h2>5月 6日</h2>
+<p>旅の最後はゴージャスにイタリアン！<br />
+といっても東京へ帰ってきてから、地元の駅前で食べました（笑）いつ食べても美味しくて安心できます。あ～、やっぱり家が一番！？</p>
+</div>
+</div>
+</div>
+<ul class="step clearfix">
+<li><a href="javascript:void(0)" onclick="spExp.showPanel('panelExp1'); return false;">page1</a></li>
+<li><a href="javascript:void(0)" onclick="spExp.showPanel('panelExp2'); return false;">page2</a></li>
+<li><a href="javascript:void(0)" onclick="spExp.showPanel('panelExp3'); return false;">page3</a></li>
+<li><a href="javascript:void(0)" onclick="spExp.showPanel('panelExp4'); return false;">page4</a></li>
+</ul>
+<!-- /スライド2 -->
+
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+var spPic = new Spry.Widget.SlidingPanels("slidePicture");
+var spExp = new Spry.Widget.SlidingPanels("slideExplain");
+var tabSlide = new Spry.Widget.TabbedPanels("tabSlideWrap");
+
+document.getElementById('tabSlideWrap').style.display = 'block';
+</script>
+</body>
+</bml>

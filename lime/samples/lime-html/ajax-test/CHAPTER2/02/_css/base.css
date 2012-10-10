@@ -1,0 +1,29 @@
+@charset "UTF-8";
+/**
+ * JavaScript/Ajax Samples
+ * @module base
+ */
+
+/* base
+ ---------------------------------------- */
+html {
+	background-color: #999;
+}
+
+body {
+	font-family: Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic", Osaka, "ＭＳ Ｐゴシック", sans-serif;
+	font-size: 95%;
+}
+
+/* header
+ ---------------------------------------- */
+
+
+/* container
+ ---------------------------------------- */
+#container {
+	border: 1px solid #000;
+}
+
+/* footer
+ ---------------------------------------- */

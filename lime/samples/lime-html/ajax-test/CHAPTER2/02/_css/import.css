@@ -1,0 +1,17 @@
+@charset "UTF-8";
+/**
+ * JavaScript/Ajax Samples
+ * @module import
+ */
+
+/* reset css */
+@import url('reset-min.css');
+
+/* base css */
+@import url('base.css');
+
+/* grids css */
+@import url('grids.css');
+
+/* style css */
+@import url('style.css');

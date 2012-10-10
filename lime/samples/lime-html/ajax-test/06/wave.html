@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?bml bml-version="100.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>wave</title>
+
+<style type="text/css">
+<!--
+body {
+	background-color: #000000;
+}
+.box {
+	height: 50px;
+	width: 500px;
+	position: absolute;
+
+}
+#boxA {
+//	background-color: #CC0000;
+	background-image: url(images/picA.jpg);
+	top: 50px;
+}
+#boxB {
+//	background-color: #FFCC00;
+	background-image: url(images/picB.jpg);
+	top: 100px;
+}
+#boxC {
+//	background-color: #33CC00;
+	background-image: url(images/picC.jpg);
+	top: 150px;
+}
+#boxD {
+//	background-color: #3366CC;
+	background-image: url(images/picD.jpg);
+	top: 200px;
+}
+#boxE {
+//	background-color: #FF9900;
+	background-image: url(images/picE.jpg);
+	top: 250px;
+}
+#boxF {
+//	background-color:#FF6699;
+	background-image: url(images/picF.jpg);
+	top: 300px;
+}
+#boxG {
+//	background-color:#FFFF33;
+	background-image: url(images/picG.jpg);
+	top: 350px;
+}
+#boxH {
+//	background-color:#000099;
+	background-image: url(images/picH.jpg);
+	top: 400px;
+}
+#title {
+	top: 450px;
+	position: absolute;
+	left: 200px;
+}
+-->
+</style>
+<script>
+<!--
+var motionCenter = 200;
+var accel = 0.995;
+
+function moveBox(moveObj) {
+	var myR = document.getElementById(moveObj).r;
+	var myAngle = document.getElementById(moveObj).angle;
+	
+	var myLeft = myR * Math.cos(myAngle / 180 * Math.PI) + motionCenter;
+	document.getElementById(moveObj).style.left = myLeft + "px";
+	document.getElementById(moveObj).angle += document.getElementById(moveObj).speed;
+	document.getElementById(moveObj).r *= accel;
+	
+	var comText = 'moveBox(\"' + moveObj + '\")';
+	setTimeout(comText,10);
+}
+function config(){
+	objList = new Array('boxA','boxB','boxC','boxD','boxE','boxF','boxG','boxH');
+	
+	for (var i=0; i<objList.length; i++) {
+		e = document.getElementById(objList[i]);
+		e.r = 200;
+		e.angle = 90;
+		e.speed = (Math.random() * 6) - 3;
+		moveBox(objList[i]);
+	}
+}
+//-->
+</script>
+</head>
+
+<body onload="config()">
+<div id="boxA" class="box" style="left: 200px" onmouseover="document.getElementById('boxA').r=200"></div>
+<div id="boxB" class="box" style="left: 200px" onmouseover="document.getElementById('boxB').r=200"></div>
+<div id="boxC" class="box" style="left: 200px" onmouseover="document.getElementById('boxC').r=200"></div>
+<div id="boxD" class="box" style="left: 200px" onmouseover="document.getElementById('boxD').r=200"></div>
+<div id="boxE" class="box" style="left: 200px" onmouseover="document.getElementById('boxE').r=200"></div>
+<div id="boxF" class="box" style="left: 200px" onmouseover="document.getElementById('boxF').r=200"></div>
+<div id="boxG" class="box" style="left: 200px" onmouseover="document.getElementById('boxG').r=200"></div>
+<div id="boxH" class="box" style="left: 200px" onmouseover="document.getElementById('boxH').r=200"></div>
+<div id="title" style="width:500px;height:60px;" ><object  style="top:0px;left:0px;width:500px;height:60px;" type="image/jpeg" data="images/title.jpg" alt="Studio Shark" /></div>
+</body>
+</bml>
