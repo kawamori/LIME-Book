@@ -44,12 +44,12 @@ body {}
 </p> <br/>
 
 <p class="link3" style="top:250px;left:100px;">
-<a class="link3" style="top:0px;left:0px;nav-index:3;nav-up:2;" href="welcome.xml">Ateneo</a><br/>
+<a class="link3" style="top:0px;left:0px;nav-index:3;nav-up:2;nav-down:4;" href="welcome.xml">Ateneo</a><br/>
 </p> <br/>
 
 
 <p class="link3" style="top:300px;left:100px;">
-<a class="link3" style="top:0px;left:0px;nav-index:3;nav-up:2;" href="ajax-test/06/wave.html">AJAX-like (for PC)</a><br/>
+<a class="link3" style="top:0px;left:0px;nav-index:4;nav-up:3;" href="ajax-test/06/wave.html">AJAX-like (for PC)</a><br/>
 </p> <br/>
 
 </body>
