@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA" "http://www.arib.or.jp/B24/DTD/bml_1_1.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+  <head>
+    <title>字幕のようなものを出す</title>
+    <style>
+      <![CDATA[
+	.base{width:960px;height:540px;background-color-index:4;}
+	body{resolution:960x540;display-aspect-ratio:16v9;}
+	#Vstream{top:80px; left:80px; width:800px; height:450px;}
+	#text1{width:400px; height:33px; top:120px; left: 950px;
+	color-index:7; font-size: 32px; }
+	#text2{width:400px; height:33px; top:170px; left: 950px;
+	color-index:7; font-size: 32px; }
+	#text3{width:400px; height:33px; top:210px; left: 950px;
+	color-index:7; font-size: 32px; }
+	#text4{width:400px; height:33px; top:280px; left: 950px;
+	color-index:7; font-size: 32px; }
+	#text5{width:400px; height:33px; top:400px; left: 200px;
+	color-index:7; font-size: 32px; }
+	#text6{width:400px; height:33px; top:450px; left: 200px;
+	color-index:7; font-size: 32px; }
+	#button1 { width:320px; height:30px; left:30px; top:20px;
+	nav-index:0; color-index:0; background-color-index:7; }
+      ]]>
+    </style>
+    <script>
+      <![CDATA[
+	       var timerId = null;
+	       var objArray = null;
+
+	       function objHandler() {
+	         if(objArray == null) {
+		   return;
+		 }
+		 for(i=1;i<objArray.length;i++) {
+		   var obj = objArray[i];
+		   if(obj.pos < -200) {
+		     obj.pos = 960;
+		   }
+		   else {
+		     obj.pos -= obj.decrease;
+		   }
+		   var elem = document.getElementById(obj.name);
+		   elem.normalStyle.left = obj.pos.toString() + "px";
+		 }
+	       }
+
+	       function timerHandler() {
+	         objHandler();
+		 timerId = browser.setInterval("timerHandler()", 50, 1);
+	       }
+
+	       function createObj(name, initpos, decrease) {
+	         var obj = new Object();
+		 obj.name = name;
+		 obj.pos = initpos;
+		 obj.decrease = decrease;
+		 return obj;
+	       }
+
+	       function onLoad() {
+	       	 objArray = new Array();
+		 objArray[1] = createObj("text1", 1200, 12);
+		 objArray[2] = createObj("text2", 950, 12);
+		 objArray[3] = createObj("text3", 1300, 15);
+		 objArray[4] = createObj("text4", 1000, 10);
+		 objArray[5] = createObj("text5", 1000, 16);
+		 objArray[6] = createObj("text6", 1000, 8);
+	         timerId = browser.setInterval("timerHandler()", 50, 1);
+	       }
+
+	       function onUnload() {
+	         browser.clearTimeout(timerId);
+	       }
+
+	       function onButtonPressed() {
+		 //document.getElementById("text1").firstChild.data = "差し替えられた文字列";
+	         browser.quitDocument();
+	       }
+      ]]>
+    </script>
+  </head>
+  <body id="body" onload="onLoad()" onunload="unUnload()">
+    <div class="base">
+    	<object id="video" type="application/X-arib-contentPlayControl" data="" style="left:5px;top:55px;width:624px;height:351px;visibility:hidden;" streamstatus="stop" />
+      <!--<object id="Vstream" type="video/X-arib-mpeg2" data="arib://-1.-1.-1/-1" remain="remain"/>
+      <object id="Astream" type="audio/X-arib-mpeg2-aac" data="arib://-1.-1.-1/-1" remain="remain" streamstatus="play"/>-->
+      <p id="text1">文字列と文字列と文字列</p>
+      <p id="text2">眠いーーーーーーー寝たいーーーー</p>
+      <p id="text3">何かキターーーーーーー</p>
+      <p id="text4">いろいろ誤魔化して表示してます orz</p>
+      <p id="text5">まだ撮影してないとか間に合うのか</p>
+      <p id="text6">という感じのテストです</p>
+      <!-- 24pxで79文字ぐらい -->
+      <p id="button1" onkeydown="onButtonPressed();">
+	<![CDATA[決定ボタンを押すと戻って欲しい]]>
+      </p>
+    </div>
+  </body>
+</bml>
