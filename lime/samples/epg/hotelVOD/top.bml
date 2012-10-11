@@ -11,10 +11,10 @@
 <style><![CDATA[
 	body{
 		background-image: url("images/wallpaper_LQ.jpg");
-	
+	background-color-index:4;
 	}
 
-div:focus	{background-color-index:1;}
+div:focus	{background-color-index:4;}
 div:blur	{background-color-index:0;}
 
 .inner {
