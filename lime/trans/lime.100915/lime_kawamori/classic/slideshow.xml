@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Slideshow</title>
+<style><![CDATA[
+  body {
+    resolution:960x540;
+    display-aspect-ratio:16v9;
+ 	 }
+	p {background-color-index:2;}
+	#text {background-color-index:0;font-size:16px;}
+	.button	{top:490px;height:24px;width:85px;text-align:center; border-style:solid;border-width:2px;}
+]]></style>
+
+<script><![CDATA[
+var timer
+var position;
+var preLoad;
+
+function onload(){
+    position=0;
+    	preLoad = new Array(22);
+    	
+
+
+	GE("bgm").streamStatus="play";
+	browser.setInterval("BGMrp();",33800,0);
+
+    	
+preLoad[0] = "paris-louvre-mona-lisa.jpg";
+preLoad[1] = "titian_venus_urbino.jpg";
+preLoad[2] = "gustav-klimt-the-kiss.jpg";
+preLoad[3] = "rene_magritte-la_trahison_des_images-1300px.jpg";
+preLoad[4] = "rene-magritte-the-tempest-20dec06-7500142.jpg";
+preLoad[5] = "Rene-Magritte-Quote-fine-art-12294482-1280-800.jpg";
+preLoad[6] = "magritte-latentationdelimpossible.jpg";
+preLoad[7] = "LeChateauDesPyrenees.jpg";
+preLoad[8] = "rene-magritte-5.jpg";
+preLoad[9] = "Magritte_PresenceOfMind1960.jpg";
+preLoad[10] = "TheHumanCondition.jpg";
+preLoad[11] = "Rene_Magritte-LaMagieNoire.jpg";
+preLoad[12] = "Magritte-The_Two_Mysteries-1966-1.jpg ";
+preLoad[13] = "magritte-26.jpg ";
+preLoad[14] = "magritte-60867760.jpg ";
+preLoad[15] = "Oedipus and the Sphinx Gustave Moreau.jpg";
+preLoad[16] = "Magritte-The Voice Of Blood.jpg";
+preLoad[17] = "morreau-the-apparition.jpg";
+preLoad[18] = "RENE_magritte-M1.jpg";
+preLoad[19] = "magritte-the-mysteries-of-the-horizon.jpg";
+preLoad[20] = "the-false-mirror-1928.jpg";
+preLoad[21] = "magritte-artbook.jpg";
+
+
+/*
+for (var i=0 ; i<21; i++) {
+   	 preLoad[i] = "images/pic" + i + ".JPG";
+}*/
+
+caption = new Array(22);
+
+caption[0]="";
+caption[1]="";
+caption[2]="";
+caption[3]="";
+caption[4]="";
+caption[5]="";
+caption[6]="";
+caption[7]="";
+caption[8]="";
+caption[9]="";
+caption[10]="";
+caption[11]="";
+caption[12]="";
+caption[13]="";
+caption[14]="";
+caption[15]="";
+caption[16]="";
+caption[17]="";
+caption[18]="";
+caption[19]="";
+caption[20]="";
+caption[21]="";
+
+startShow();
+}
+
+function startShow() {
+        timer = setTimeout("forward()", 10000);
+}
+
+function restartShow() {
+    browser.clearTimer(timer);
+    startShow();
+}
+        
+function forward() {
+    if (position < 21) {
+            position++;
+    } else {
+        position = 0;
+    }
+
+    $("img").data = preLoad[position];
+    $("text").firstChild.data= caption[position];
+    timer = setTimeout("forward()", 10000);
+}
+
+function onunload(){
+	browser.clearTimer(timer);
+}
+
+function $(id) {
+		return document.getElementById(id);
+	}
+
+function setTimeout(code,delay){
+         return   browser.setInterval(code,delay,1);
+        }
+
+function GE(id){
+	return document.getElementById(id);
+}
+function BGMrp(){
+	GE("bgm").streamStatus="stop";
+	GE("bgm").streamStatus="play";
+}
+
+
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
+]]></script>
+</head>
+
+<body onload="onload();">
+
+<div>
+	<object id="bgm" data="audio/oceanwavescrushing.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
+</div>
+
+
+<div id="imageBox" style="top:0px;left:5px;width:955px;height:540px;">
+<object id="img" style="top:0px;left:0px;width:950px;height:540px" data="paris-louvre-mona-lisa.jpg" type="image/jpeg"/>
+<p id="text" style="top:0px;left:500px;width:440px;height:480px;color-index:7;background-color-index:8;"><![CDATA[classical art]]></p>
+</div>
+
+<!--
+<p id="blue" class="button" style="left:10px; background-color-index:4;" onclick="startShow();" accesskey="B">Start</p>
+<p id="red" class="button" style="left:110px;background-color-index:1;"	onclick="onunload();" accesskey="R">Stop</p>
+<p id="green" class="button" style="left:210px;background-color-index:2;" onclick="restartShow();" accesskey="G">Restart</p>
+-->
+<p id="yellow" class="button" style="left:810px;background-color-index:3;" onclick="goback();" accesskey="Y">Back</p>
+
+</body>
+</bml>
