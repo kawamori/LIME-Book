@@ -3,7 +3,7 @@
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
-<title>Slideshow</title>
+<title>Western Art Slideshow</title>
 <style><![CDATA[
   body {
     resolution:960x540;
@@ -138,10 +138,10 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 	<object id="bgm" data="audio/oceanwavescrushing.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
 </div>
 
-
 <div id="imageBox" style="top:0px;left:5px;width:955px;height:540px;">
-<object id="img" style="top:0px;left:0px;width:950px;height:540px" data="paris-louvre-mona-lisa.jpg" type="image/jpeg"/>
 <p id="text" style="top:0px;left:500px;width:440px;height:480px;color-index:7;background-color-index:8;"><![CDATA[classical art]]></p>
+<object id="img" style="top:0px;left:0px;width:950px;height:540px" data="paris-louvre-mona-lisa.jpg" type="image/jpeg"/>
+
 </div>
 
 <!--
