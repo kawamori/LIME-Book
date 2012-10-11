@@ -1,0 +1,4207 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<!--
+============================================================
+Copyright (C)2009, NTT Plala Inc. All rights reserved.
+Copyright(C) Nippon Telegraph and Telephone Corporation 2010
+============================================================
+-->
+<bml>
+<head>
+<title>PLALA DTV PORTAL Karaoke</title>
+<style><![CDATA[
+body{background-color-index:0;resolution:960x540;display-aspect-ratio:16v9;used-key-list:basic data-button;clut:url(images/dtvbml.clt);}
+p.clocktext{font-size:16px;width:16px;height:16px;color-index:7;grayscale-color-index:171 162;}
+p.temaIconSub{font-size:16px;color-index:7;grayscale-color-index:171 162;}
+p.btlist{height:16px;font-size:16px;color-index:163;grayscale-color-index:160 154;}
+p.pbtn{font-size:20px;color-index:7;grayscale-color-index:171 167;text-align:center;}
+.btn{width:156px;height:36px;}
+]]></style>
+<script src="../scripts/plalakaraoke.ecm"/>
+<script src="../scripts/common_karaoke.ecm"/>
+<script><![CDATA[
+var gLisenceMsg="\r\n\r\nライセンスが切れています。\r\n\r\n状態番号："+"82"+"059";
+var gFullScrJpg="karaoke_jpg/";
+var gSpeedUpTimerId=NaN;
+var gSideKey=true;
+var gUpDownKey=true;
+var gScreenState=0;
+var gReturnState=false;
+var gSciByQueue=false; // 予約リストからきたかの判別
+var gGenreCheng=false;
+var gTitleSide=false;//タイトルによる横移動中か
+var gSPage=-1;
+var gDetailMassTimer=NaN;
+var gUserKey=new Array(); // 初期状態
+var gUserKeySetCnt=new Array();
+gUserKey[0]="special-1";
+gUserKeySetCnt[0]=1;
+var gInterruptContents=null; // 割り込み曲
+var gFullWindow=false; // 全画面か
+var gIsQueue=false; // 予約リストの有無
+var gPlayMovie=false; // 再生中
+var gFullScrTimer=NaN;//全画面再生Dボタン消去タイマ
+var gFullCodeTimer=NaN;//全画面曲番号消去タイマ
+var gFullCodeWord=null; //全画面曲番号
+var gFullInfo=false; //全画面曲情報ON/OFF
+var gWindInfo=false; //L字画面曲情報ON/OFF
+var gBuyObj=null;
+var gBuyterm=new Array();
+var gBuyIdx=0;
+var gBuyPin="";
+var gBuyResultConfirm=null;
+var gBuyShowIdx=new Array();
+var gKaraokeQueue=null;
+var gSwkeyBord=new SoftWareKeyBord();
+var gPObj=null;
+var gChgRsvFlg=false;
+var gColFlg=0;//青:1 赤:2 緑:4 黄:8 ビット判定
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//   戻る動作
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function setSubList(obj){
+	if(gState.rootReturnData.list!=null&&gState.rootReturnData.list.crid==obj.crid) return;
+	gState.subReturnData.list=new RData();
+	gState.subReturnData.list.state=obj.state;
+	gState.subReturnData.list.crid=obj.crid;
+	gState.subReturnData.list.displayType=obj.displayType;
+	if(obj.sort=="") gState.subReturnData.list.sort=null;
+	else gState.subReturnData.list.sort=obj.sort;
+	gState.subReturnData.list.page=obj.nowPage;
+	gState.subReturnData.list.idx=obj.idx;
+	gState.subReturnData.list.age=gState.age;
+}
+function setRootList(obj){
+	gState.rootReturnData.list = new RData();
+	gState.rootReturnData.list.state=obj.state;
+	gState.rootReturnData.list.crid=obj.crid;
+	gState.rootReturnData.list.displayType=obj.displayType;
+	if(obj.sort=="") gState.rootReturnData.list.sort=null;
+	else gState.rootReturnData.list.sort=obj.sort;
+	gState.rootReturnData.list.page=obj.nowPage;
+	gState.rootReturnData.list.idx=obj.idx;
+	gState.rootReturnData.list.age=gState.age;
+}
+
+function setReturnData(nowState,nextState){
+	if(nowState==0) return;
+	if(nowState==1&&nextState==1) return;
+
+	if(nowState==1&&nextState!=1){ // ジャンル系
+		var genreId=gState.upbox.mlist[gState.upbox.mIdx].genre;
+		gState.rootReturnData = new returnData();
+		gState.rootReturnData.detail=new RooTRData();
+		gState.rootReturnData.detail.state=nowState;
+		gState.rootReturnData.detail.crid1=genreId;
+		if(gState.downbox!=null) setRootList(gState.downbox);
+
+
+		if(genreId==0||genreId==1||genreId==2||genreId==3||genreId==8){
+			gState.rootReturnData.detail.crid2=gState.upbox.slist[gState.upbox.sIdx].genre;
+		}else if(genreId==4||genreId==9){
+			// 予約リスト・利用履歴のため保存なし
+		}else if(genreId==5||genreId==6||genreId==7){
+			gState.rootReturnData.detail.crid2=gState.upbox.word;
+		}
+	}
+	// sub
+	if(nextState==3){
+//		if(gState.subReturnData.detail!=null||gState.subReturnData.list!=null) gState.rootReturnData.list=null;
+		if(gState.upbox!=null&&gState.upbox.listObj!=null){
+			gState.subReturnData=new returnData();
+			clearSubReturnOnQuery();
+			setSubList(gState.upbox.listObj);
+		}
+		return;
+	}
+	if(nowState==2||nowState==3||nowState==4){ // 特集紹介/曲紹介/歌手紹介
+		if(gState.subReturnData.detail!=null||gState.subReturnData.list!=null) gState.rootReturnData.list=null;
+		clearSubReturnOnQuery();
+		gState.subReturnData=new returnData();
+		if(gState.upbox!=null&&gState.upbox.listObj!=null){
+			setSubList(gState.upbox.listObj);
+		}
+		if(gState.downbox!=null&&(nowState==3)){
+			gState.subReturnData.detail=new RData();
+			gState.subReturnData.detail.state=gState.downbox.state;
+			gState.subReturnData.detail.crid=gState.downbox.crid;
+			gState.subReturnData.detail.displayType=gState.downbox.displayType;
+			gState.subReturnData.detail.age=gState.age;
+		}
+	}
+}
+// GenreIDによるdownboxの復元
+function createReutnrGenreDownBox(data,id){
+	var downbox=new kList();
+	var crid=gState.rootReturnData.detail.crid2;
+	if(id==0){downbox.init(1,searchKaraokePickUpGIT,crid,null,null,id);
+	}else if(id==1){downbox.init(0,searchKaraokeNewArrival,crid,data.sort,null,id);
+	}else if(id==2){downbox.init(0,searchKaraokeRanking,crid,null,null,id);
+	}else if(id==3){downbox.init(0,searchKaraokeGenre,crid,data.sort,null,id);
+	}else if(id==4){
+		downbox.init(3,getKaraokeReservationList,null,null,null,id);
+	}else if(id==5){
+		if(data.crid!=null) downbox.init(2,searchKaraokeArtistList,crid,null,null,id);
+		else downbox.init(5,null,null,null,null,-1);
+	}else if(id==6){
+		if(data.crid!=null) downbox.init(0,searchKaraokeByTitle,crid,null,null,id);
+		else downbox.init(6,null,null,null,null,-1);
+	}else if(id==7){
+		if(data.crid!=null){
+			if(crid.length==4) downbox.init(0,searchKaraokeIdList,crid,null,null,7);
+			else{
+				var str="\r\n";
+				if(crid.length>=1) str+="\r\n■左ボタンで１文字削除";
+				if(crid.length>=4) str+="\r\n■決定ボタンで検索開始";//
+				downbox.hidden();
+				downbox.init(4,null,null,null,null,7);
+				downbox.addComent(str);
+			}
+		}else downbox.init(4,null,null,null,null,7);
+	}else if(id==8){downbox.init(0,searchKaraokeGeneration,crid,data.sort,null,id);
+	}else if(id==9){downbox.init(0,getKaraokeHistory,null,null,null,id);
+	}
+	downbox.crid=data.crid;
+	downbox.nowPage=data.page;
+	downbox.state=data.state;
+	if(downbox.load()==-1) return -1;
+	if(!downbox.addIdx(data.idx,false,false)){
+		if(!downbox.addIdx(data.idx,true,false)){downbox.idx=0;}
+	}
+	return downbox;
+}
+//
+// dataのデータを元にdownboxを作成する
+//
+function createDownBox(data){
+	var downbox=null;
+	var state = data.state;
+	if(state==1){
+		var genreId=Number(gState.rootReturnData.detail.crid1);
+
+		downbox = createReutnrGenreDownBox(data,genreId);
+
+	}else if(state==2){ // 特集紹介
+		// リストオブジェ生成
+		if(data.crid=="") return null; // 復元できない！
+		var info=getDetail(data.crid,"karaoke_series");
+
+		downbox=new kList();
+		downbox.init(0,searchKaraokeMemberOf,info.crid,info.sort,null,-1);
+		downbox.crid=info.crid;
+		downbox.sort=info.sort;
+		downbox.nowPage=data.page;
+		if(downbox.load()==-1) return -1;
+		downbox.idx=data.idx;
+		downbox.state=state;
+	}else if(state==3){ // 曲紹介
+		downbox=new kDetail();
+		var info=getDetail(data.crid,data.displayType);
+		if(info==null) return -1;
+		downbox.init(info);
+		downbox.state=state;
+	}else if(state==4){ // 歌手紹介
+		if(data.crid=="") return null; // 復元できない！
+		var info=new KaraokeContentInformation ("",null,new BasicDescription(data.crid,"","","","","",0,0,"","",""),null,null,null,"", null,new KaraokeInformation(data.crid,"","","",""));
+		// リストオブジェ生成
+		downbox=new kList();
+		downbox.init(0,searchKaraokeByArtist,info.karaokeInformation.artistName,null,null,-1);
+		downbox.crid=info.karaokeInformation.artistName;
+		downbox.nowPage=data.page;
+		if(!downbox.load()==-1) return -1;
+		downbox.idx=data.idx;
+		downbox.state=state;
+	}
+	return downbox;
+}
+//
+// objのデータをgState.downboxにし、obj.stateから gState.upboxを作成、
+// listObjをgState.upbox.listObjに代入して画面描画する
+//
+function showByObj(obj,listObj){
+	var state=obj.state;
+	if(!gFOff){
+		unlockScreen();
+		keyOff();
+		lockScreen();
+	}
+	if(state==1){
+		showReturnGenre(obj);
+	}else if(state==2){ // 特集紹介
+		showReturnPickUpList(obj,listObj);
+	}else if(state==3){ // 曲紹介
+		showReturnDetail(obj,listObj);
+	}else if(state==4){ // 歌手紹介
+		showReturnArtistList(obj,listObj);
+	}
+}
+function showReturnDetail(obj,listObj){
+	showTema(3);
+	if(obj.info==null||obj.info=="undefine") return; // 復元できない！
+	var info=getDetail(obj.info.crid,obj.info.displayType);
+	if(info==null) return; // err
+	// 上部オブジェ生成
+	gState.upbox=new UpBox();
+	gState.upbox.init(1,6,info,listObj);
+	gState.upbox.show();
+
+	// リストオブジェ生成
+	gState.downbox=obj;
+	if(gState.downbox.show()){
+		gState.downbox.showSynopis();// 詳細文言表示
+		gPlaySound=false;
+		defaultFocus2();
+	}
+}
+function showReturnGenre(obj){
+	var mlist=getMainGenreList();
+	showTema(1);
+	// 上部オブジェ生成
+	gState.upbox=new UpBox();
+	gState.upbox.init(0,0,mlist,null);
+	gState.upbox.setmIdx(Number(obj.genreId));
+	if(Number(obj.genreId)==5||Number(obj.genreId)==6||Number(obj.genreId)==7)
+		gState.upbox.word=gState.rootReturnData.detail.crid2;
+	if(!gState.upbox.load()) return;
+	gState.upbox.setsIdx(obj.value1); // ジャンル系のサブジャンル用
+	gState.upbox.show();
+
+	// リストオブジェ生成
+	gState.downbox=obj;
+
+	gState.rootReturnData = new returnData();
+	gState.subReturnData=new returnData();
+
+	if(gState.downbox.show()){
+		gPlaySound=false;
+		defaultFocus2();
+	}
+}
+function showReturnPickUpList(obj,listObj){
+	if(obj.crid=="") return; // 復元できない！
+	var info=getDetail(obj.crid,"karaoke_series");
+	if(info==null) return; // err
+	showTema(2);
+	// 上部オブジェ生成
+	gState.upbox=new UpBox();
+	gState.upbox.init(1,5,info,listObj);
+	gState.upbox.show();
+
+	// リストオブジェ生成
+	gState.downbox=obj;
+	if(gState.downbox.show()){
+		gPlaySound=false;
+		defaultFocus2();
+	}
+}
+function showReturnArtistList(obj,listObj){
+	if(obj.crid=="") return; // 復元できない！
+	var info=new KaraokeContentInformation ("",null,new BasicDescription(obj.crid,"","","","","",0,0,"","",""),null,null,null,"", null,new KaraokeInformation(obj.crid,"","","",""));
+	showTema(4);
+	// 上部オブジェ生成
+	gState.upbox=new UpBox();
+	gState.upbox.init(1,1,info,listObj);
+	gState.upbox.artist=true;
+	gState.upbox.show();
+
+	// リストオブジェ生成
+	gState.downbox=obj;
+	if(gState.downbox.show()){
+		gPlaySound=false;
+		defaultFocus2();
+	}
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+if(gState.param_crid!=""&&gState.param_displayType=="karaoke_root"){
+	sceneJpg("genreID",Number(gState.param_crid)); // メニューからの指定
+}else if(gState.param_crid!=""&&gState.param_displayType=="karaoke_series"){
+	sceneJpg("ScreenState",1);
+}else{ // デフォルト
+	sceneJpg("genreID",0);
+}
+
+
+function onload(){
+	gState.bmltype=9;
+	gState.fromTop=true; // 戻り先をホームでなくすため
+	if(!gState.init())return;
+	clockStart();
+
+	lockScreen();
+	hideElem("loading2");
+	if(gState.return_timing=="return"){
+		createByQuery();
+	}else if(gState.param_crid!=""){
+		gPlaySound=false;
+		showByContentInformation(gState.param_crid,gState.param_displayType,true);
+	}else{
+		gPlaySound=false;
+		showGenre(0);
+	}
+
+	unlockScreen();
+	gState.param_crid="";
+	gState.param_displayType="";
+
+}
+function getMainGenreList(){
+/* ジャンルIDと画面が一致していれば順番は変更可能
+ *
+ * 画面       ジャンルID
+ * 特集       0
+ * 新譜       1
+ * ランキング 2 (停止中です)
+ * ジャンル   3
+ * 予約リスト 4
+ * 歌手検索   5
+ * 曲検索     6
+ * 曲番号検索 7
+ * 年代       8 STEP2.5より実装
+ * 履歴       9 STEP2.5より実装
+ */
+	clearReturnOnQuery();
+	var mlist=new Array();
+	mlist[0]=new GenreInformation("特集",0,null,null);
+	mlist[1]=new GenreInformation("新譜",1,null,null);
+	mlist[2]=new GenreInformation("ランキング",2,null,null);
+	mlist[3]=new GenreInformation("ジャンル",3,null,null);
+	mlist[4]=new GenreInformation("年別",8,null,null);
+	mlist[5]=new GenreInformation("予約リスト",4,null,null);
+	mlist[6]=new GenreInformation("履歴リスト",9,null,null);
+	mlist[7]=new GenreInformation("歌手検索",5,null,null);
+	mlist[8]=new GenreInformation("曲検索",6,null,null);
+	mlist[9]=new GenreInformation("曲番号入力",7,null,null);
+	return mlist;
+}
+
+
+function showGenre(genreId){
+	var mlist=getMainGenreList();
+	showTema(1);
+
+	// 上部オブジェ生成
+	gState.upbox=new UpBox();
+	gState.upbox.init(0,0,mlist,null);
+	gState.upbox.setmIdx(Number(genreId));
+	gState.upbox.load();
+	if(genreId==1)gState.upbox.setInitSubGenreByM();
+	gState.upbox.show();
+
+	// リストオブジェ生成
+	var upData=gState.upbox.get();
+	if(upData==null)return;
+	createGenreDownBox(upData,genreId);
+	if(gState.downbox.load()==-1) return;
+	if(gState.downbox.show()){
+		defaultFocus();
+	}
+
+	gState.rootReturnData = new returnData();
+	gState.subReturnData=new returnData();
+
+}
+// GenreIDによるdownboxの初期表示
+function createGenreDownBox(upData,id){
+	gState.downbox=new kList();
+
+	if(id==0){gState.downbox.init(1,searchKaraokePickUpGIT,upData.id,null,null,id);
+	}else if(id==1){gState.downbox.init(0,searchKaraokeNewArrival,upData.id,upData.sort,null,id);
+	}else if(id==2){gState.downbox.init(0,searchKaraokeRanking,upData.id,null,null,id);
+	}else if(id==3){gState.downbox.init(0,searchKaraokeGenre,upData.id,upData.sort,null,id);
+	}else if(id==4){gState.downbox.init(3,getKaraokeReservationList,null,null,null,id);
+	}else if(id==5){gState.downbox.init(5,null,null,null,null,id);
+	}else if(id==6){gState.downbox.init(6,null,null,null,null,id);
+	}else if(id==7){gState.downbox.init(4,null,null,null,null,id);
+	}else if(id==8){gState.downbox.init(0,searchKaraokeGeneration,upData.id,upData.sort,null,id);
+	}else if(id==9){gState.downbox.init(0,getKaraokeHistory,null,null,null,id);
+	}
+	gState.downbox.sort=upData.sort;
+	gState.downbox.crid=upData.crid;
+}
+/*
+ * karaoke_artist_results  // カラオケ歌手検索結果
+ * karaoke_song_results    // カラオケ曲検索結果
+ * karaoke_program         // 曲紹介型
+ * karaoke_series          // カラオケ曲リスト型
+
+ * karaoke_top // カラオケ特集？(深津さんメールより)
+
+ * karaoke_root // カラオケ画面指定で遷移してきた際の識別子(BML内部でのみ有効)
+ */
+function showByContentInformation(crid,displayType,flg){
+	if(gSciByQueue)displayType="karaoke_program";
+	if(	displayType=="karaoke_program"||displayType=="karaoke_series"||displayType=="karaoke_top"||displayType=="karaoke_root"){
+	}else{
+		launchByContentInformation(crid,displayType);
+		return;
+	}
+	gSciByQueue=false;
+	var info=null;
+	if(!gFOff){
+		unlockScreen();
+		keyOff();
+		lockScreen();
+	}
+	if(displayType=="karaoke_program"||displayType=="karaoke_series") info=getDetail(crid,displayType);
+	if((displayType=="karaoke_program"||displayType=="karaoke_series")&&info==null) return;
+
+	if(displayType=="karaoke_root"){
+		gPlaySound=false;
+		showGenre(crid);
+	}else if(displayType=="karaoke_program"){ // 曲紹介
+		showDetail(info,flg);
+	}else if(displayType=="karaoke_top"){ // 特集
+	}else if(displayType=="karaoke_series"){ // 特集
+		showPickUpList(info,flg);
+	}else{
+		launchByContentInformation(info.crid,info.displayType);	// 他画面遷移
+	}
+}
+
+function showPickUpList(info,flg){
+	showTema(2);
+	var list=null;
+
+	if(flg){
+		if(gState.downbox!=null&&gState.downbox.objtype!="kdetail") list=gState.downbox;
+	}else list=gState.upbox.listObj;
+	// 上部オブジェ生成
+	gState.upbox=new UpBox();
+	gState.upbox.init(1,5,info,list);
+	gState.upbox.show();
+
+	// リストオブジェ生成
+	var upData=gState.upbox.get();
+	if(upData==null)return;
+	gState.downbox=new kList();
+	gState.downbox.init(0,searchKaraokeMemberOf,upData.id,upData.sort,null,-1);
+	gState.downbox.crid=info.crid;
+	gState.downbox.sort=upData.sort;
+	if(gState.downbox.load()==-1) return;
+	if(gState.downbox.show()){
+		defaultFocus();
+	}
+}
+
+function showArtistList(info,flg){
+	// infoの中身はtitle(表示用) artistName（検索用）しかない可能性あり
+	// 画面表示
+	if(!gFOff){
+		unlockScreen();
+		keyOff();
+		lockScreen();
+	}
+	showTema(4);
+
+	var list=null;
+	if(flg){
+		if(gState.downbox!=null&&gState.downbox.objtype!="kdetail") list=gState.downbox;
+	}else list=gState.upbox.listObj;
+	// 上部オブジェ生成
+	gState.upbox=new UpBox();
+	gState.upbox.init(1,1,info,list);
+	gState.upbox.artist=true;
+	gState.upbox.show();
+
+	// リストオブジェ生成
+	gState.downbox=new kList();
+	gState.downbox.init(0,searchKaraokeByArtist,info.karaokeInformation.artistName,null,null,-1);
+	gState.downbox.crid=info.karaokeInformation.artistName;
+	if(gState.downbox.load()==-1) return;
+	if(gState.downbox.show()){
+		defaultFocus();
+	}
+}
+function showDetail(info,flg){
+	showTema(3);
+	var list=null;
+	if(flg){
+		if(gState.downbox!=null&&gState.downbox.objtype!="kdetail") list=gState.downbox;
+	}else list=gState.upbox.listObj;
+	// 上部オブジェ生成
+	gState.upbox=new UpBox();
+	gState.upbox.init(1,6,info,list);
+	gState.upbox.show();
+
+	gState.downbox=new kDetail();
+	gState.downbox.init(info);
+	if(gState.downbox.load()==-1) return;
+	if(gState.downbox.show()){
+		gState.downbox.showSynopis();// 詳細文言表示
+		defaultFocus2();
+	}
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function UpBox(){
+	this.objtype="upbox";
+	this.mtype=0;// 0: ジャンル 1:タイトル
+	this.stype=0; // 0: ジャンル 1:タイトル(表示なし) 2:ボタン(再生) 3:入力欄(文字) 4:入力欄(数字) 5:ボタン(遷移) 6:表示なし(曲紹介のみ指定) 7:表示なし(履歴リスト)
+	this.focusState=""; // "m":メイン "s":サブ "":フォーカスが当たっていない
+
+	this.mlist=null;
+	this.mIdx=0;
+
+	this.slist=null;
+	this.sIdx=0;
+
+	this.word="";
+	this.artist=false;
+
+	this.info=null;
+	this.listObj=null; // 上位リスト
+
+	this.isfocus=UB_isFocus;
+	this.focus=UB_focus;
+
+	this.init=UB_init;
+	this.load=UB_load; // subのロード(mainはinitにて作成する)
+	this.show=UB_show;
+	this.sshow=UB_sshow;
+	this.hidden=UB_hidden;
+	this.shidden=UB_shidden;
+	this.get=UB_get;
+
+	this.showTitle=UB_showTitle;
+	this.showsGenre=UB_showsGenre;
+	this.showBtn=UB_showBtn;
+
+	this.showTitleCsr=UB_showTitleCsr;
+	this.hideTitleCsr=UB_hideTitleCsr;
+	this.showFocus=UB_showFocus;
+	this.showBlur=UB_showBlur;
+
+	this.setInitSubGenreByM=UB_setISGBM;
+
+	this.addmIdx=UB_addmIdx;
+	this.addsIdx=UB_addsIdx;
+	this.setmIdx=UB_setmIdx;
+	this.setsIdx=UB_setsIdx;
+
+	this.click=UB_click;	// 決定
+	this.numclick=UB_numclick; // 数字
+	this.retrunClick=UB_retrunClick; // 戻る
+
+	this.searchWord=UB_searchWord;
+	this.backId=UB_backId;
+
+	this.sideKey=UB_sideKey;
+	this.titleChg=UB_titleChg;
+}
+function UB_backId(){
+	if(this.focusState!="s"||this.stype!=4) return false;
+	if(this.word.length>0){
+		this.word=this.word.substring(0,this.word.length-1);
+		setText("codet",padding2("−−−−−",numUpper(this.word)).toUpperCase());
+		var str="\r\n";
+		if(this.word.length>=1) str+="\r\n■左ボタンで１文字削除";
+		if(this.word.length>=4) str+="\r\n■決定ボタンで検索開始";//
+		gState.downbox.hidden();
+		gState.downbox.init(4,null,null,null,null,7);
+		if(!gState.downbox.show()){
+			return false;
+		}
+		gState.downbox.addComent(str);
+		return true;
+	}
+	return false;
+}
+function UB_retrunClick(){
+	if(this.focusState=="s"&&this.stype==4){
+		// 数字が1文字でも入力されていれば削除
+		return this.backId();
+	}else{
+		ub_blur();
+		returnFunc();
+		return false;
+	}
+	return false;
+}
+function UB_numclick(num){
+	if(num!=-1&(this.focusState!="s"||this.stype!=4)) return false;
+	if(num!=-1){
+		var id=this.word+String(num);
+		if(id.length>5)return;
+		this.word=id;
+		playSound(7);
+		setText("codet",padding2("−−−−−",numUpper(this.word)).toUpperCase());
+	}
+	var str="\r\n";
+	if(this.word.length>=1) str+="\r\n■左ボタンで１文字削除";
+	if(this.word.length>=4) str+="\r\n■決定ボタンで検索開始";//
+	gState.downbox.hidden();
+	gState.downbox.init(4,null,null,null,null,7);
+	if(!gState.downbox.show()){
+		return false;
+	}
+	gState.downbox.addComent(str);
+}
+function UB_searchWord(word){
+	this.word=word;
+	// 入力文字を元に検索開始
+	var func=null,type=0;
+	if(this.mlist[this.mIdx].genre==5)     { func=searchKaraokeArtistList;type=2;}
+	else if(this.mlist[this.mIdx].genre==6){ func=searchKaraokeByTitle;type=0;}
+
+	if(!gFOff){
+		unlockScreen();
+		keyOff();
+		lockScreen();
+	}
+
+	gState.downbox.hidden();
+	gState.downbox.init(type,func,word,null,null,this.mlist[this.mIdx].genre);
+	if(gState.downbox.load()==-1) return false;
+	// ロード成功
+	if(gState.downbox.totalCount==0){ //検索結果0件の時はエラー表示
+		if(this.mlist[this.mIdx].genre==5)      gState.downbox.init(8,null,null,null,null,this.mlist[this.mIdx].genre);
+		else if(this.mlist[this.mIdx].genre==6) gState.downbox.init(7,null,null,null,null,this.mlist[this.mIdx].genre);
+	}
+	if(!gState.downbox.show()){
+		return false;
+	}
+	return true;
+
+}
+function UB_addmIdx(num){
+	if(this.focusState=="s"||this.mtype!=0||(this.mlist==null&&this.mlist.length<=1)) return false;
+	this.word=""; // メインジャンル切り替えで初期化する値
+	this.mIdx += num;
+	this.sIdx=0;
+	if(this.mIdx<0) this.mIdx+=this.mlist.length;
+	else if(this.mlist.length<=this.mIdx)this.mIdx-=this.mlist.length;
+	// メインエリアの更新
+	this.showsGenre("m");
+	// サブエリア非表示
+	this.shidden();
+
+	genre_chengshow();
+	return true;
+}
+function UB_setmIdx(id){
+	var i;
+	var flg=false;
+	if(this.mtype!=0||(this.mlist==null&&this.mlist.length<=1)) return false;
+	this.word=""; // メインジャンル切り替えで初期化する値
+	if(this.mlist!=null){
+		for(i=0;i<this.mlist.length;i++){
+			if(this.mlist[i].genre==id){
+				this.mIdx=i;flg=true;
+			}
+		}
+	}
+	if(flg) sceneJpg("genreID",id); // ジャンルによる静止画出しわけ処理
+	return flg;
+}
+function UB_addsIdx(num){
+	if(this.focusState=="m"||this.stype!=0||this.slist==null||this.slist.length<=1) return false;
+	this.sIdx += num;
+	if(this.sIdx<0) this.sIdx+=this.slist.length;
+	else if(this.slist.length<=this.sIdx)this.sIdx-=this.slist.length;
+	// サブエリアの更新
+	this.showsGenre("s");
+
+	genre_chengshow();
+	return true;
+}
+function UB_setsIdx(id){
+	var i;
+	var flg=false;
+	if(this.stype!=0||this.slist==null||this.slist.length<=1) return false;
+	if(this.slist!=null){
+		for(i=0;i<this.slist.length;i++){
+			if(this.slist[i].genre==id){
+				this.sIdx=i;flg=true;
+			}
+		}
+	}
+	return flg;
+}
+function genre_chengshow(){
+	if(!isNaN(gSpeedUpTimerId)){
+		browser.clearTimer(gSpeedUpTimerId);
+		gSpeedUpTimerId=NaN;
+	}
+	if(!isVis("loading2")){
+		showElem("loading2");
+		if(gState.downbox!=null) gState.downbox.hidden();
+	}
+	gUpDownKey=false;
+	gGenreCheng=true;
+	gSpeedUpTimerId = browser.setInterval("genrecheng();",1000,1);
+}
+function genrecheng(){
+	if(isNaN(gSpeedUpTimerId))return;
+	else{
+		browser.clearTimer(gSpeedUpTimerId);
+		gSpeedUpTimerId=NaN;
+	}
+	lockScreen();
+
+	gGenreCheng=false;
+	if(gState.downbox==null) return;
+	if(gState.upbox!=null){
+		var genreId=gState.upbox.mlist[gState.upbox.mIdx].genre;
+		if(gState.upbox.focusState=="m"){
+			sceneJpg("genreID",genreId); // ジャンルによる静止画出しわけ処理
+			gState.upbox.load();
+			if(genreId==1)gState.upbox.setInitSubGenreByM();
+			gState.upbox.sshow();
+		}
+		var upData=gState.upbox.get();
+		if(upData==null)return;
+		createGenreDownBox(upData,genreId);
+		if(gState.downbox.load()==-1) return ;
+		if(!gState.downbox.show()){
+			return;
+		}
+	}
+	hideElem("loading2");
+	unlockScreen();
+	gUpDownKey=true;// 縦方向の動きを制限
+}
+function UB_get(){
+	if(this.stype==0&&this.slist!=null && this.slist.length>0) return new UpGetData( this.slist[this.sIdx].genre, this.slist[this.sIdx].sort,null);
+	else if(this.stype==1) return null;// 歌手紹介
+	else if(this.stype==2) return new UpGetData(null,null,null);//予約リスト
+	else if(this.stype==3) return new UpGetData(this.word,null,null);//歌手or曲
+	else if(this.stype==4) return new UpGetData(this.word,null,null);// ID検索
+	else if(this.stype==5) return new UpGetData(this.info.crid,this.info.sort,null);// 特集一覧
+	else if(this.stype==6) return null;//曲紹介
+	else if(this.stype==7) return new UpGetData(null,null,null);//履歴リスト
+	return null;
+}
+function UB_setISGBM(){
+	var i;
+	if(this.stype==0&&this.slist!=null&&this.slist.length>0){
+		for(i=0;i<this.slist.length;i++){
+			var tmp=String(this.slist[i].genre).split(".");
+			var now=new Date();
+			if(Number(tmp[tmp.length-1])==(now.getMonth()+1)){
+				this.sIdx=i;
+				return;
+			}
+		}
+	}
+}
+/*
+ここで設定した mtype, stype は初期表示に使用(※ジャンルなどでは動的にstypeが変わる)
+  mtype  0                1
+  value1 ジャンルリスト   ContentsInformation
+  value2 null             listObj
+
+*/
+function UB_init(mtype,stype,value1,value2){
+	this.mtype=mtype;
+	this.stype=stype;
+	this.focusState="";
+
+	// メインタイプによる初期化処理
+	if(mtype==0){
+		this.mlist=value1;
+		this.slist=null;
+		this.mIdx=0;
+		this.sIdx=0;
+		this.word="";
+		this.artist=false;
+	}else if(mtype==1){
+		this.info=value1;
+		this.listObj=value2;
+	}
+	// サブタイプによる初期化処理
+}
+//
+// サブジャンル以外では情報の再取得は行われない?
+//
+function UB_load(){
+	if(this.mtype==0&&this.mlist!=null&&this.mIdx<this.mlist.length&&0<=this.mIdx){
+		var id=this.mlist[this.mIdx].genre;
+		var func=null;
+		if(id==0) {this.stype=0;func=getGenresForKaraokePickUp;
+		}else if(id==1){this.stype=0;func=getGenresForKaraokeNewArrival;
+		}else if(id==2){this.stype=0;func=getGenresForKaraokeRanking;
+		}else if(id==3){this.stype=0;func=getGenresForKaraokeGenre;
+		}else if(id==4){this.stype=2;
+		}else if(id==5){this.stype=3;
+		}else if(id==6){this.stype=3;
+		}else if(id==7){this.stype=4;
+		}else if(id==8){this.stype=0;func=getGenresForKaraokeGeneration;
+		}else if(id==9){this.stype=7;
+		}
+		// サブエリアの情報更新
+		if(this.stype==0&&func!=null){
+			this.slist=getGenres(func);
+			if(this.slist==null) return false;
+			return true;
+		}
+		return true;
+	}
+	return false;
+}
+function UB_hidden(){
+	ub_blur();
+	hideElem("bg_tm");
+	hideElem("bg_gm");
+	hideElem("csrm0");
+	hideElem("csrm1");
+	hideElem("csrm2");
+	hideElem("csrm3");
+	setText("ctgmt0","");
+	setText("ctgmt1","");
+	setText("ctgmt2","");
+	setText("titlem","");
+	this.shidden();
+}
+function UB_shidden(){
+	hideElem("bg_ts");
+	hideElem("bg_gs");
+	hideElem("csrs0");
+	hideElem("csrs1");
+	hideElem("bt_ko_start");
+	hideElem("bt_ko_input");
+	hideElem("bt_ko_kcode");
+	hideElem("bt_ko_feature");
+	if((this.stype==4)&&(this.focusState=="s")) delUserKey("numeric-tuning");
+	setText("ctgst0","");
+	setText("ctgst1","");
+	setText("ctgst2","");
+	setText("codet","");
+	setText("titles","");
+}
+function UB_show(){
+	if(this.mtype==0) this.showsGenre("m");
+	else if(this.mtype==1) this.showTitle("m");
+
+	this.sshow();
+
+	showElem("upbox");
+}
+function UB_sshow(){
+	if(this.stype==0) this.showsGenre("s");
+	else if(this.stype==1) this.showTitle("s");
+	else if(this.stype==2) this.showBtn();
+	else if(this.stype==3) this.showBtn();
+	else if(this.stype==4) this.showBtn();
+	else if(this.stype==5) this.showBtn();
+}
+function UB_showBtn(){
+	if(this.stype==2){
+		if(this.stype==2&&(!gPlayMovie)&&(gIsQueue)) setImg("bt_ko_start","images/bt_ko_start.png");
+		else setImg("bt_ko_start","images/bt_ko_start-g.png");
+		showElem("bt_ko_start");
+	}else if(this.stype==3){
+		showElem("bt_ko_input");
+	}else if(this.stype==4){
+		showElem("bt_ko_kcode");
+		if(this.word!="") setText("codet",padding2("−−−−−",numUpper(this.word)).toUpperCase());
+		else setText("codet","−−−−−");
+	}else if(this.stype==5){
+		showElem("bt_ko_feature");
+	}
+}
+function UB_showTitleCsr(type){
+	if(this.listObj==null||this.listObj.list==null||(this.listObj.list.length<=1&&this.listObj.maxPage==1)||this.listObj.maxPage==0) return false;
+	if(type!="m") return; // メインタイトル以外は矢印が出ないため
+	showElem("csr"+type+"2");
+	showElem("csr"+type+"3");
+}
+function UB_hideTitleCsr(type){
+	if(type!="m") return; // メインタイトル以外は矢印が出ないため
+	hideElem("csr"+type+"2");
+	hideElem("csr"+type+"3");
+}
+function UB_showTitle(type){
+	if(type!="m") return;
+	showElem("bg_t"+type);
+	if(this.artist) setText("title"+type,convOverText(this.info.karaokeInformation.artistName,24));
+	else setText("title"+type,convOverText(this.info.basicDescription.title,24));
+}
+function UB_showsGenre(type){
+	var list=this.mlist;
+	var i,idx;
+	var nowIdx=this.mIdx;
+	if(type=="s"){
+		list=this.slist;
+		nowIdx=this.sIdx;
+	}
+	if(type=="m"&&this.mtype==0){
+		if(this.mlist[this.mIdx].genre==4){gColFlg|=4;showElem("guide_g01");}
+		else{gColFlg&=(15-4);hideElem("guide_g01");}
+		if(this.mlist[this.mIdx].genre==9){gColFlg|=2;showElem("guide_r01");}
+		else{gColFlg&=(15-2);hideElem("guide_r01");}
+	}
+
+	if(list==null) return false;
+	if(list.length<=0){
+		showElem("bg_t"+type);
+		hideElem("bg_g"+type);
+		for(i=0;i<3;i++){setText("ctg"+type+"t"+i,"");}
+	}else if(list.length<=2){
+		hideElem("bg_t"+type);
+		showElem("bg_g"+type);
+		for(i=0;i<3;i++){
+			idx = nowIdx+i-1;
+			if(idx<0 || list.length<=idx){
+				setText("ctg"+type+"t"+i,"");
+			}else{
+				if(i==1) setText("ctg"+type+"t"+i,convOverText(list[idx].title,10));
+				else setText("ctg"+type+"t"+i,convOverText(list[idx].title,4));
+			}
+		}
+	}else{
+		hideElem("bg_t"+type);
+		showElem("bg_g"+type);
+		for(i=0;i<3;i++){
+			idx = nowIdx+i-1;
+			if(idx<0) idx+=list.length;
+			else if(list.length<=idx)idx-=list.length;
+			if(i==1) setText("ctg"+type+"t"+i,convOverText(list[idx].title,10));
+			else setText("ctg"+type+"t"+i,convOverText(list[idx].title,4));
+		}
+	}
+	// 矢印
+	if(this.focusState==type){
+		if(getElementById("ctg"+type+"t0").firstChild.data!=""){
+			showElem("csr"+type+"0");
+		}else{
+			hideElem("csr"+type+"0");
+		}
+		if(getElementById("ctg"+type+"t2").firstChild.data!=""){
+			showElem("csr"+type+"1");
+		}else{
+			hideElem("csr"+type+"1");
+		}
+	}
+	return true;
+}
+function UB_isFocus(){
+	if(this.stype==6) return false; // 曲紹介用 特別
+	if(this.mtype==0&&this.mlist!=null&&this.mlist.length>1) return true;
+	else if(this.mtype==1&&this.listObj!=null&&this.listObj.totalCount>1&&this.listObj.listType!=3) return true; // 上部リストが予約リストだとフォーカス不可
+
+	if(this.stype==0&&this.slist!=null&&this.slist.length>1) return true;
+	else if(this.stype==2&&(!gPlayMovie)&&(gIsQueue)) return true;
+	else if(this.stype==3||this.stype==4||this.stype==5) return true;
+	return false;
+}
+
+function UB_focus(code){
+	if(!this.isfocus()) return false;
+	var type="m";
+	if(code==1){
+		if(this.focusState==""){
+			if(this.stype==0&&isVis("bg_g"+type)&&this.slist!=null&&this.slist.length>1) type="s";
+			else if(this.stype==2&&(!gPlayMovie)&&(gIsQueue)) type="s";
+			else if(this.stype==3||this.stype==4||this.stype==5) type="s";
+			else if(this.mtype==1&&this.listObj!=null&&this.listObj.totalCount>1&&this.listObj.listType!=3) type="m";
+			else if(this.mtype==0&&this.mlist!=null&&this.mlist.length>1)  type="m";
+			else return false;
+		}else if(this.focusState=="s"){
+			if(this.mtype==1&&this.listObj!=null&&this.listObj.totalCount>1&&this.listObj.listType!=3) type="m";
+			else if(this.mtype==0&&this.mlist!=null&&this.mlist.length>1)  type="m";
+			else return false;
+		}else return false;
+	}else if(code==2||code==-1){
+		if(this.focusState==""){
+			if(this.mtype==0&&this.mlist!=null&&this.mlist.length>1)  type="m";
+			else if(this.mtype==1&&this.listObj!=null&&this.listObj.totalCount>1&&this.listObj.listType!=3) type="m";
+			else if(this.stype==0&&isVis("bg_g"+type)&&this.slist!=null&&this.slist.length>1) type="s";
+			else if(this.stype==2&&(!gPlayMovie)&&(gIsQueue)) type="s";
+			else if(this.stype==3||this.stype==4||this.stype==5) type="s";
+			else return false;
+		}else if(this.focusState=="m"){
+			if(this.stype==0&&isVis("bg_g"+type)&&this.slist!=null&&this.slist.length>1) type="s";
+			else if(this.stype==2&&(!gPlayMovie)&&(gIsQueue)) type="s";
+			else if(this.stype==3||this.stype==4||this.stype==5) type="s";
+			else return false;
+		}else return false;
+	}
+	this.showFocus(type);
+	this.showBlur((type=="m")?"s":"m");
+	this.focusState=type;
+	return true;
+}
+function UB_showFocus(type){
+	if((this.mtype==0&&type=="m")||(this.stype==0&&type=="s")){
+		if(type=="s") setImg("bg_g"+type,"images/bg_ctg11-f.png");
+		else if(type=="m") setImg("bg_g"+type,"images/bg_ctg10-f.png");
+		if(getElementById("ctg"+type+"t0").firstChild.data!=""){
+			showElem("csr"+type+"0");
+		}
+		if(getElementById("ctg"+type+"t2").firstChild.data!=""){
+			showElem("csr"+type+"1");
+		}
+		setTxtCol("ctg"+type+"t0","7","171 167");
+		setTxtCol("ctg"+type+"t1","0","189 191");
+		setTxtCol("ctg"+type+"t2","7","171 167");
+		setFcs("bg_g"+type);
+	}else if((this.mtype==1&&type=="m")||(this.stype==1&&type=="s")){
+		if(type=="s") setImg("bg_t"+type,"images/bg_ctg09-f.png");
+		else if(type=="m") setImg("bg_t"+type,"images/bg_ctg08-f.png");
+		this.showTitleCsr(type);
+		//ティッカースタート(特集タイトルの時のみ)
+		if(type=="m"&&getTextCount(this.info.basicDescription.title)>24){
+			hideElem("titlem");
+			setTicker("titlet",2000,300,5,"　",this.info.basicDescription.title,24,true);
+		}
+		setTxtCol("title"+type,"0","189 191");
+		setFcs("bg_t"+type);
+	}else if(this.stype==2){
+		setImg("bt_ko_start","images/bt_ko_start-f.png");
+		setFcs("bt_ko_start");
+	}else if(this.stype==3){
+		setImg("bt_ko_input","images/bt_ko_input-f.png");
+		setFcs("bt_ko_input");
+	}else if(this.stype==4){
+		setImg("bt_ko_kcode","images/bt_ko_kcode-f.png");
+		setFcs("bt_ko_kcode");
+		// 数字入力を受け付ける
+		setUserKey("numeric-tuning");
+		if(gState.downbox.listType==4) this.numclick(-1); // コメント部の読み込み直しをするため
+	}else if(this.stype==5){
+		setImg("bt_ko_feature","images/bt_ko_feature-f.png");
+		setFcs("bt_ko_feature");
+	}
+
+}
+function UB_showBlur(type){
+	if((this.mtype==0&&type=="m")||(this.stype==0&&type=="s")){
+		if(type=="s") setImg("bg_g"+type,"images/bg_ctg11.png");
+		else if(type=="m") setImg("bg_g"+type,"images/bg_ctg10.png");
+		hideElem("csr"+type+"0");
+		hideElem("csr"+type+"1");
+		setTxtCol("ctg"+type+"t0","173","170 162");
+		setTxtCol("ctg"+type+"t1","138","154 162");
+		setTxtCol("ctg"+type+"t2","173","170 162");
+	}else if((this.mtype==1&&type=="m")||(this.stype==1&&type=="s")){
+		if(type=="s") setImg("bg_t"+type,"images/bg_ctg09.png");
+		else if(type=="m") setImg("bg_t"+type,"images/bg_ctg08.png");
+		setTxtCol("title"+type,"7","170 160");
+		//ティッカーストップ(特集タイトルの時のみ)
+		if(type=="m"&&getTextCount(this.info.basicDescription.title)>24){
+			gTicker.stop();
+			setText("titlet","");
+			showElem("titlem");
+		}
+		this.hideTitleCsr(type);
+	}else if(this.stype==2&&type=="s"){
+		if(this.stype==2&&(!gPlayMovie)&&(gIsQueue)) setImg("bt_ko_start","images/bt_ko_start.png");
+		else setImg("bt_ko_start","images/bt_ko_start-g.png");
+	}else if(this.stype==3&&type=="s"){
+		setImg("bt_ko_input","images/bt_ko_input.png");
+	}else if(this.stype==4&&type=="s"){
+		setImg("bt_ko_kcode","images/bt_ko_kcode.png");
+		// 数字入力を受け付けないようにする
+		if(this.focusState=="s") delUserKey("numeric-tuning");
+		if(gState.downbox.listType==4)gState.downbox.show(); // コメント部の読み込み直し
+	}else if(this.stype==5&&type=="s"){
+		setImg("bt_ko_feature","images/bt_ko_feature.png");
+	}
+}
+function UB_click(){
+	if(this.focusState=="m"&&this.mtype==0){ // メインジャンル
+		if(this.focus(2)) return true;
+		else if(gState.downbox!=null&&gState.downbox.focus(-1)){ ub_blur(); return true;}
+		else { ub_blur();gPlaySound=false; scFocus();return true;}
+	}else if(this.focusState=="m"&&this.mtype==1){ // メインタイトル
+		/*
+		if(this.focus(2)) return true;
+		else if(gState.downbox!=null&&gState.downbox.focus(-1)){ ub_blur(); return true;}
+		else { ub_blur();gPlaySound=false; scFocus();return true;}
+		*/
+	}else if(this.focusState=="s"){
+		if(this.stype==0){
+			if(gState.downbox!=null&&gState.downbox.focus(-1)){ ub_blur(); return true; }
+		} // サブジャンル
+		else if(this.stype==1){}
+		else if(this.stype==2){ // 予約リスト再生
+			// 予約リストを取得する
+			var list=getQueue(getKaraokeQueue,null);
+			// 予約曲があるか
+			if(list!=null&&list.totalCount!=0){
+				if(list.contentList.length>=1){
+					if(list.contentList[0].contentDetail!=null&&list.contentList[0].contentDetail.activeLicense!=null&&
+						list.contentList[0].contentDetail.activeLicense.programUrl!=""){
+						// 再生開始
+						playSound(7);
+						if(!gPlayMovie&&getElementById("Video").streamStatus=="stop"){
+							PlayVideo(list.contentList[0]);
+							ub_blur();
+							if(gState.downbox.isfocus()){gState.downbox.focus(2);}
+							else scFocus();
+						}
+						return false;
+					}else{
+						// 購入ライセンスが切れ
+						showPopup(new Array("閉じる"),goNowScreen,"エラー",gLisenceMsg,"");
+					}
+				}
+			}
+			return true;
+		}
+		else if(this.stype==3){this.focusState=""; this.showBlur("s");kbShow(this.word); return true;}
+		else if(this.stype==4){
+			// ID検索
+			if(this.word.length==4){ // 4桁検索
+				if(!gFOff){
+					unlockScreen();
+					keyOff();
+					lockScreen();
+				}
+				gState.downbox.hidden();
+				gState.downbox.init(0,searchKaraokeIdList,this.word,null,null,7);
+				if(gState.downbox.load()==0){
+					// ロード成功
+					if(gState.downbox.totalCount==0){ //検索結果0件の時はエラー表示
+						gState.downbox.init(7,null,null,null,null,7);
+					}
+				}
+				if(gState.downbox.show()){
+					if(gState.downbox.isfocus()){ub_blur();gState.downbox.focus(2);}
+				}
+				return true;
+			}else if(this.word.length==5){ // 5桁検索
+				if(!gFOff){
+					unlockScreen();
+					keyOff();
+					lockScreen();
+				}
+				var pObj = getList(searchKaraokeIdDetail,this.word,null,null);
+				if(pObj!=null){
+					if(pObj.totalCount==0){ //検索結果0件の時はエラー表示
+						gState.downbox.init(7,null,null,null,null,7);
+						if(gState.downbox.show()) return true;
+						return false;
+					}
+					// 検索成功
+					gPlaySound=false;
+					showByContentInformation(pObj.contentList[0].crid,pObj.contentList[0].displayType,true);
+					return true;
+				}
+			}
+		}else if(this.stype==5){
+			// 特集一覧へ遷移
+			gPlaySound=false;
+			showGenre(0);
+			return true;
+		}
+	}
+	return false;
+}
+function UB_titleChg(code){
+	if(this.focusState=="s"||this.mtype!=1) return false; // メインタイトル以外は矢印が出ないため
+	if(this.listObj==null||this.listObj.list==null||(this.listObj.list.length<=1&&this.listObj.maxPage==1)||this.listObj.maxPage==0) return false;
+
+	var addNum=(code==3)?-1:1;
+	var flg=(code!=3);
+	playSound(9);
+	if(!gFOff){
+		unlockScreen();
+		keyOff();
+		lockScreen();
+	}
+	gTitleSide=true;
+	// listObjのIndex更新
+	var listObj=this.listObj;
+	if(!listObj.addIdx(listObj.idx+addNum,flg,false)){ // リスト上移動できない
+		// listObjのページ切り替えが発生するか
+		if(listObj.maxPage>1){
+			if(gSPage==listObj.nowPage) {gSPage=-1;return;}
+			if(gSPage==-1) gSPage=listObj.nowPage;
+			if(!listObj.chgPage(addNum,false)) return false;
+		}
+
+		if(code==3)listObj.addIdx(listObj.list.length-1,false,false);
+		else listObj.addIdx(0,true,false);
+		if(!listObj.focusflg[listObj.idx]){gPlaySound=false; return this.titleChg(code);}
+	}
+	var obj=listObj.get();
+	gReturnState=true;
+	gPlaySound=false;
+	setChngTitle();
+	if(this.listObj.listType==3) gSciByQueue=true;
+	if(this.listObj.listType==2) showArtistList(obj,false);
+	else showByContentInformation(obj.crid,obj.displayType,false);
+	gTitleSide=false;
+	gSPage=-1;
+	return true;
+}
+function setChngTitle(){
+	if(gState.upbox.listObj.state==1){
+		if(gState.rootReturnData&&gState.rootReturnData.list){
+			gState.rootReturnData.list.page=gState.upbox.listObj.nowPage;
+			gState.rootReturnData.list.idx=gState.upbox.listObj.idx;
+		}
+	}
+}
+function UB_sideKey(code){
+	if(code==3){
+		if(this.addmIdx(-1)){
+			return true;
+		}else if(this.addsIdx(-1)){
+			return true;
+		}else if(this.backId()){
+			playSound(7);
+			gPlaySound=false;
+			return true;
+		}else if(this.titleChg(code)){
+		}
+	}else if(code==4){
+		if(this.addmIdx(1)){
+			return true;
+		}else if(this.addsIdx(1)){
+			return true;
+		}else if(this.titleChg(code)){
+		}
+	}
+	return false;
+}
+function ub_blur(){
+	if(gState.upbox==null) return;
+	gState.upbox.showBlur("m");gState.upbox.showBlur("s");
+	gState.upbox.focusState="";
+}
+function ugkey(){
+	var code=document.currentEvent.keyCode;
+	var id=document.currentEvent.target.id;
+	lockScreen();
+	if(code==1){
+		if(!gUpDownKey) {unlockScreen();return;}
+		if(gState.upbox!=null&&gState.upbox.focus(code)) playSound(9);
+		else{
+			ub_blur();
+			scFocus();
+		}
+	}else if(code==2){
+		if(!gUpDownKey) {unlockScreen();return;}
+		if(gState.upbox!=null&&gState.upbox.focus(code)) playSound(9);
+		else if(gState.downbox!=null&&gState.downbox.isfocus()){
+			ub_blur();
+			gState.downbox.focus(code);
+			playSound(9);
+		}
+		else{
+			ub_blur();
+			scFocus();
+		}
+	}else if(code==3){
+		if(!gSideKey) {unlockScreen();return;}
+		if(gState.upbox!=null){
+			if(gState.upbox.sideKey(code)) playSound(9);
+		}
+	}else if(code==4){
+		if(!gSideKey) {unlockScreen();return;}
+		if(gState.upbox!=null){
+			if(gState.upbox.sideKey(code)) playSound(9);
+		}
+	}else if( (code >= 5) && (code <= 14) ){//数字キー
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		var num = (code-5);
+		if(gState.upbox!=null&&gState.upbox.numclick(num)){playSound(7);}
+		else if(gState.downbox!=null&&(0<=gState.downbox.listType&&gState.downbox.listType<=3)&&(code-5)<=gState.downbox.list.length&&code>5){ub_blur();gState.downbox.numClick(code);}
+
+	}else if(21<=code && code<=24){// 色ボタン
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		colorKey(code);
+	}else if(code==18){
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		if(gState.upbox!=null&&gState.upbox.click()){playSound(7);}
+	}else if(code==19){
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		if(gState.upbox!=null&&gState.upbox.retrunClick()){playSound(7);}
+	}
+	unlockScreen();
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// リスト作成
+//  listyType 0:曲名+歌手名 1:タイトルのみ 2:歌手名のみ 3:曲名+歌手名(予約リスト) 4:固定文言１ 5:固定文言2 6:固定文言3 7:固定エラー文言1 8:固定エラー文言2
+//
+// init() 出必要な引数 value1〜value3,func,listType
+//
+// linType	func						value1	value2	value3	genreId
+// 	0		searchKaraokeNewArrival		genre	sort	null	1
+// 	0		searchKaraokeGenre			genre	sort	null	3
+// 	0		searchKaraokeMemberOf		crid	sort	null	-1
+// 	0		searchKaraokeRanking		genre	null	null	2
+// 	0		searchKaraokeByArtist		artist	null	null	-1
+// 	0		searchKaraokeByTitle		title	null	null	6
+// 	0		searchKaraokeIdList			id		null	null	7
+// 	1		searchKaraokePickUpGIT		genre	null	null	0
+// 	2		searchKaraokeArtistList		artist	null	null	5
+// 	3		getKaraokeReservationList	drmid	key		null	4
+//	0		searchKaraokeGeneration		genre	sort	null	8
+//	0		getKaraokeHistory			null	null	null	9
+//	5		null						null	null	null	-1
+//	6		null						null	null	null	-1
+//	7		null						null	null	null	-1
+//	8		null						null	null	null	-1
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function kList(){
+	this.objtype="klist";
+
+	this.listType=0;
+	this.func=null;
+	this.value1=null;
+	this.value2=null;
+	this.value3=null;
+	this.unit=9;
+	this.totalCount =0;
+	this.list=new Array();
+	this.nowPage=0;
+	this.maxPage=0;
+	this.idx=0;
+	this.onfocus=false;
+	this.state=gScreenState;
+	this.genreId=-1;
+	this.crid="";
+	this.displayType="";
+	this.sort="";
+	this.focusflg=new Array(false,false,false,false,false,false,false,false);
+	this.isSetNumUserKey=false;
+
+	this.sort_keyflg=null; // ダミー
+	this.colorClick=dummy_colorClick;
+
+	this.init=KL_init;
+	this.load=KL_load;
+	this.focus=KL_focus;
+	this.isfocus=KL_isfocus;
+	this.show=KL_show;
+	this.hidden=KL_hidden;
+	this.addIdx=KL_addIdx;
+	this.setIdx=KL_setIdx;
+	this.movefocus=KL_movefocus;
+	this.chgPage=KL_chgPage;
+	this.numClick=KL_numClick;
+	this.get=KL_get;
+
+	this.addComent=KL_addComent;
+}
+function KL_get(){
+	if(0>this.listType||this.listType>3) return null;
+	if(this.list==null||this.list.length==0) return null;
+	return this.list[this.idx];
+}
+function KL_numClick(code){
+	var num = (code-5)-1;
+	if(!this.setIdx(num)) return false;
+	this.movefocus();
+	this.focus(-1);
+	playSound(7);
+	unlockScreen();
+	browser.sleep(300);
+	lockScreen();
+	var obj=this.get();
+	if(obj==null) return false;
+	var gid=00;
+	var cd=65;
+	if(gState.upbox.mlist!=null) gid=gState.upbox.mlist[gState.upbox.mIdx].genre;
+	else cd=71;
+	if(gid!=4&&gid!=5&&!interimCheck(obj.period.displayStart,obj.period.displayEnd)){
+		kl_blur();
+		if(gid==1)cd=64;
+		else if(gid==2)cd=67;
+		else if(gid==3)cd=69;
+		else if(gid==4)cd=81;
+		else if(gid==5)cd=70;
+		else if(gid==6)cd=72;
+		else if(gid==7)cd=73;
+		showPopup(new Array("閉じる"),klkeep,"エラー","\r\n提供期間外のためご利用いただけません。\r\n\r\n状態番号：390"+cd,"");
+		unlockScreen();
+		return;
+	}
+	gPlaySound=false;
+	if(this.listType==3) gSciByQueue=true;
+	if(this.listType==2) showArtistList(obj,true);
+	else showByContentInformation(obj.crid,obj.displayType,true);
+	return true;
+}
+function KL_chgPage(num,flg){
+	if(0<=this.listType&&this.listType<3){
+		if(this.maxPage<=1) return false;
+		this.nowPage+=num;
+		if(this.nowPage<0) this.nowPage=this.maxPage-1;
+		if(this.maxPage<=this.nowPage) this.nowPage=0;
+
+		if(flg){
+			showElem("loading2");
+			var page=(this.nowPage+1)+"/"+(this.maxPage);
+			if(this.maxPage==0)page="0/1";
+			showElem("value02");
+			setText("paget",page);
+
+			if(!isNaN(gSpeedUpTimerId)){
+				browser.clearTimer(gSpeedUpTimerId);
+				gSpeedUpTimerId=NaN;
+			}
+			gUpDownKey=false;
+			gSpeedUpTimerId = browser.setInterval("klchgPage();",1000,1);
+			return true;
+		}else{
+			if(this.load()!=-1) return true;
+		}
+	}
+	return false;
+}
+function klchgPage(){
+	if(isNaN(gSpeedUpTimerId))return;
+	else{
+		browser.clearTimer(gSpeedUpTimerId);
+		gSpeedUpTimerId=NaN;
+	}
+	if(gState.downbox==null) return;
+	if(gState.downbox.objtype!="klist") return;
+	lockScreen();
+
+	if(gState.downbox.load()==0){
+		if(gState.downbox.show()){
+			if(!gState.downbox.isfocus()){
+				if(gState.upbox.isfocus()){gState.upbox.focus(-1); playSound(9);}
+				else scFocus();
+			}
+		}
+	}else{
+		gState.downbox.hidden(); // エラーになったため消して初期化する
+		gState.downbox.totalCount=0;
+		gState.downbox.list=new Array();
+		gState.downbox.nowPage=0;
+		gState.downbox.maxPage=0;
+		gState.downbox.idx=0;
+	}
+	hideElem("loading2");
+	gUpDownKey=true;// 縦方向の動きを解放
+	unlockScreen();
+}
+function KL_setIdx(num){
+	if(0<=this.listType&&this.listType<=3){
+		if(num>=this.list.length ) return false;
+		if(num<0) return false;
+		this.idx=num;
+		return true;
+	}
+	return false;
+}
+function KL_addIdx(idx,puls,flg){
+	var i;
+	if(0<=this.listType&&this.listType<=3){
+		if(this.list==null||this.list.length==0) return false;
+		if(puls){
+			if(flg){
+				for(i=idx;i<this.focusflg.length;i++)return this.setIdx(i);
+			}else{
+				for(i=idx;i<this.focusflg.length;i++){if(this.focusflg[i])return this.setIdx(i);}
+			}
+		}else{
+			if(flg){
+				for(i=idx;i>=0;i--)return this.setIdx(i);
+			}else{
+				for(i=idx;i>=0;i--){if(this.focusflg[i])return this.setIdx(i);}
+			}
+		}
+		return false;
+	}
+	return false;
+}
+function kl_blur(){
+	var i;
+	if(gState.downbox==null) return;
+	if(gState.downbox.list==null) return;
+	gState.downbox.onfocus=false;
+	hideElem("bt_klist");
+	// フォント色変更
+	for(i=0;i<gState.downbox.unit;i++){
+		if(i<gState.downbox.list.length){
+			if(gState.downbox.focusflg[i]){
+				setTxtCol("bt_klist0"+i+"t1","174","171 166");
+				setTxtCol("bt_klist0"+i+"t2","174","171 166");
+				setTxtCol("bt_klist0"+i+"t3","174","171 166");
+			}else{
+				setTxtCol("bt_klist0"+i+"t1","163","160 154");
+				setTxtCol("bt_klist0"+i+"t2","163","160 154");
+				setTxtCol("bt_klist0"+i+"t3","163","160 154");
+			}
+		}
+	}
+	gColFlg&=(15-8);
+	hideElem("guide_y01");
+	hideElem("csr_left01");
+	hideElem("csr_right01");
+}
+function KL_movefocus(){
+	if(!this.isfocus()){ // フォーカスが当たらない時
+		hideElem("bt_klist");
+		kl_blur();
+		return;
+	}
+	if(0>this.listType&&this.listType>3) return; // 固定文言
+
+	var top=0+(this.idx*30);
+	var i;
+	getElementById("bt_klist").normalStyle.top = top+"px";
+
+	// ページ切り替え矢印
+	if(this.listType!=3){
+		if(this.onfocus){
+			if(this.maxPage>1){
+				showElem("csr_left01");
+				showElem("csr_right01");
+			}else{
+				hideElem("csr_left01");
+				hideElem("csr_right01");
+			}
+		}else{
+			hideElem("csr_left01");
+			hideElem("csr_right01");
+		}
+	}else{
+		hideElem("csr_left01");
+		hideElem("csr_right01");
+	}
+	// フォント色変更
+	for(i=0;i<this.unit;i++){
+		if(i<this.list.length){
+			if(this.idx==i&&this.onfocus){
+				if(this.listType==1||this.listType==2){
+					setTxtCol("bt_klist0"+i+"t1","174","171 166");
+					setTxtCol("bt_klist0"+i+"t2","174","171 166");
+					setTxtCol("bt_klist0"+i+"t3","0","189 191");
+				}else{
+					setTxtCol("bt_klist0"+i+"t1","0","189 191");
+					setTxtCol("bt_klist0"+i+"t2","0","189 191");
+					setTxtCol("bt_klist0"+i+"t3","174","171 166");
+				}
+			}else{
+				if(this.focusflg[i]){
+					setTxtCol("bt_klist0"+i+"t1","174","171 166");
+					setTxtCol("bt_klist0"+i+"t2","174","171 166");
+					setTxtCol("bt_klist0"+i+"t3","174","171 166");
+				}else{
+					setTxtCol("bt_klist0"+i+"t1","163","160 154");
+					setTxtCol("bt_klist0"+i+"t2","163","160 154");
+					setTxtCol("bt_klist0"+i+"t3","163","160 154");
+				}
+			}
+		}
+	}
+}
+function KL_isfocus(){
+	if(0<=this.listType&&this.listType<=3){
+		if(this.list==null || this.list.length<=0) return false;
+		return true;
+	}
+	return false;
+}
+function KL_focus(code){
+	if(!this.isfocus()) return false;
+	if(0<=this.listType&&this.listType<=3){
+		if(code==2)this.addIdx(0,true,true);
+		else if(code==1)this.addIdx(this.list.length-1,false,true);
+		if(!this.setIdx(this.idx))this.addIdx(0,true,true);
+
+		this.onfocus=true;
+		this.movefocus();
+		showElem("bt_klist");
+		setFcs("bt_klist");
+		if(this.listType==3){gColFlg|=8;showElem("guide_y01");}
+		return true;
+	}
+	return false;
+}
+function KL_init(listType,func,value1,value2,value3,genreId){
+	this.listType=listType;
+	this.func=func;
+	this.value1=value1;
+	this.value2=value2;
+	this.value3=value3;
+	this.genreId=genreId;
+
+	this.focusflg=new Array(false,false,false,false,false,false,false,false);
+	this.totalCount=0;
+	this.list=new Array();
+	this.nowPage=0;
+	this.maxPage=0;
+	this.idx=0;
+	this.crid="";
+	this.sort=value2;
+	this.state=gScreenState;
+}
+function KL_load(){
+	var retList=null;
+	if(this.listType>=4&&this.listType<=8) return -2;
+	else if(this.listType==3){
+		retList=getQueue(this.func,this.nowPage);
+//		for(var i=0;i<retList.contentList.length;i++){
+//			retList.contentList[i].displayType="";
+//		}
+	}
+	else retList=getList(this.func,this.value1,this.value2,this.nowPage);
+
+	if(retList==null){
+		retList=new PageInformation(0,new Array());
+		return -1;
+	}
+	this.totalCount=retList.totalCount;
+	this.list=retList.contentList;
+
+	// 最大ページ数を算出
+	var max=this.maxPage;
+	this.maxPage = (this.totalCount%this.unit)?(this.totalCount/this.unit)+1:(this.totalCount/this.unit);
+	if(isNaN(this.maxPage)) this.maxPage=0;
+
+	// 過去に取得した最大ページ数が現在と違う時は、0ページ扱いで再取得を行う
+	if((max!=0)&&(max!=this.maxPage)&&this.nowPage!=0){
+		this.nowPage=0;this.idx=0;
+		return this.load();
+	}
+	this.focusflg=new Array();
+	for(var i=0;i<this.list.length;i++){
+		if(this.list[i].period) this.focusflg[i]=interimCheck(this.list[i].period.displayStart,this.list[i].period.displayEnd);
+		else this.focusflg[i]=true;
+	}
+	// ページ更新等でリストの総数が変化したときのフォーカス制御
+	if(this.idx>=this.list.length)this.addIdx(this.list.length-1,false,false);
+	if(!this.focusflg[this.idx]){
+		if(!this.addIdx(this.idx,false,false)){
+			if(!this.addIdx(this.idx,true,false)){this.idx=0;}
+		}
+	}
+
+	return 0;
+}
+function KL_addComent(str){
+	if(this.listType!=4) return false;
+	setText("explanation","\r\n\r\nリモコンの数字ボタンで、曲番号を４桁以上入力してください。"+str);
+	return true;
+}
+function KL_show(){
+	showElem("list");
+	if(this.listType==4){
+		setText("explanation","\r\n\r\nリモコンの数字ボタンで、曲番号を４桁以上入力してください。");
+		return true;
+	}else if(this.listType==5){
+		setText("explanation","\r\n\r\n「検索文字を入力」ボタンを押すと入力用キーボードが表示されます。\r\n\r\n検索したい文字を入力後、「検索開始」ボタンで\r\n検索結果が表示されます。");
+		return true;
+	}else if(this.listType==6){
+		setText("explanation","\r\n\r\n「検索文字を入力」ボタンを押すと入力用キーボードが表示されます。\r\n\r\n検索したい文字を入力後、「検索開始」ボタンで\r\n検索結果が表示されます。");
+		return true;
+	}else if(this.listType==7){
+		setText("explanation","\r\n\r\n\r\n\r\n　該当する曲が\r\n　見つかりませんでした。");
+		return true;
+	}else if(this.listType==8){
+		setText("explanation","\r\n\r\n\r\n\r\n　該当する歌手が\r\n　見つかりませんでした。");
+		return true;
+	}
+	var i=0;
+	var img_head="";
+	if(this.listType==1||this.listType==2) img_head="_sp";
+	// リスト描画
+	setImg("bt_klist","images/bt_klist"+img_head+"-f.png"); // フォーカス素材の差し替え
+	if(!this.isSetNumUserKey){
+		if(0<=this.listType&&this.listType<=3){
+			setUserKey("numeric-tuning");
+			this.isSetNumUserKey=true;
+		}
+	}
+	for(i=0;i<this.unit;i++){
+		if(i<this.list.length){
+			if(this.listType==1||this.listType==2){
+				setText("bt_klist0"+i+"t3",this.list[i].basicDescription.title);
+			}else{
+				setText("bt_klist0"+i+"t1",this.list[i].basicDescription.title);
+				setText("bt_klist0"+i+"t2",this.list[i].karaokeInformation.artistName);
+			}
+			if(this.focusflg[i]){
+				setImg("bt_klist0"+i,"images/bt_klist0"+Number(i+1)+img_head+".png");
+				setTxtCol("bt_klist0"+i+"t1","174","171 166");
+				setTxtCol("bt_klist0"+i+"t2","174","171 166");
+				setTxtCol("bt_klist0"+i+"t3","174","171 166");
+			}else{
+				setImg("bt_klist0"+i,"images/bt_klist0"+Number(i+1)+img_head+"-g.png");
+				setTxtCol("bt_klist0"+i+"t1","163","160 154");
+				setTxtCol("bt_klist0"+i+"t2","163","160 154");
+				setTxtCol("bt_klist0"+i+"t3","163","160 154");
+			}
+			showElem("bt_klist0"+i);
+		}else{
+			setText("bt_klist0"+i+"t1","");
+			setText("bt_klist0"+i+"t2","");
+			setText("bt_klist0"+i+"t3","");
+			hideElem("bt_klist0"+i);
+		}
+	}
+	if(this.maxPage!=0){
+		showElem("bg_value");
+		if(this.listType!=3){
+			// ページ数＆総数描画
+			showElem("value02");
+			var page=(this.nowPage+1)+"/"+(this.maxPage);
+			if(this.maxPage==0)page="0/1";
+			setText("paget",page);
+
+			// 複数ページが存在する時
+			if(this.maxPage>1){
+				if(this.nowPage==0)hideElem("page_prv05");
+				else showElem("page_prv05");
+				if(this.nowPage==this.maxPage-1)hideElem("page_nxt05");
+				else showElem("page_nxt05");
+			}else{
+				hideElem("page_prv05");
+				hideElem("page_nxt05");
+			}
+		}
+	}
+	this.movefocus();
+	if(this.listType==3&&gDBErr&&!gFullWindow){
+		if(gState.upbox!=null){
+			gState.upbox.showBlur("m");
+			gState.upbox.showBlur("s");
+			gState.upbox.focusState=(gState.upbox.focusState=="m"||gState.upbox.focusState=="")?"":"m";
+		}
+		showPopup(new Array("閉じる"),goNowScreen,"カラオケ予約エラー","\r\nサーバー障害によりカラオケ予約機能は\r\nご利用いただけません。\r\n\r\n予約済の曲は障害復旧後に表示されます。","");
+		return false;
+	}
+	return true;
+}
+function KL_hidden(){
+	var i=0;
+	for(i=0;i<this.unit;i++){
+		setText("bt_klist0"+i+"t1","");
+		setText("bt_klist0"+i+"t2","");
+		setText("bt_klist0"+i+"t3","");
+		setTxtCol("bt_klist0"+i+"t1","163","160 154");
+		setTxtCol("bt_klist0"+i+"t2","163","160 154");
+		setTxtCol("bt_klist0"+i+"t3","163","160 154");
+		hideElem("bt_klist0"+i);
+	}
+	setText("explanation","");
+	hideElem("bg_value");
+	hideElem("value02");
+	setText("paget","");
+	hideElem("page_prv05");
+	hideElem("page_nxt05");
+	hideElem("list");
+	if(0<=this.listType&&this.listType<=3&&this.isSetNumUserKey==true){
+		this.isSetNumUserKey=false;
+		delUserKey("numeric-tuning");
+	}
+	kl_blur();
+}
+function klkeep(id){
+	if(gState.upbox!=null){
+		gState.upbox.showBlur("m");gState.upbox.showBlur("s");
+		gState.upbox.focusState=(gState.upbox.focusState=="m"||gState.upbox.focusState=="")?"":"m";
+	}
+	kl_blur();
+	gPlaySound=false;
+	gSideKey=true;
+	gUpDownKey=true;
+	if(gState.downbox!=null)defaultFocus2();
+	else defaultFocus();
+}
+function listkey(){
+	var code = document.currentEvent.keyCode;
+	var id = document.currentEvent.target.id;
+	lockScreen();
+	if(code==1){
+		if(!gUpDownKey) {unlockScreen();return;}
+		if(gState.downbox.addIdx(gState.downbox.idx-1,false,true)){
+			playSound(9);
+			gState.downbox.movefocus();
+		}else{
+			if(gState.upbox.isfocus()){
+				kl_blur();
+				gState.upbox.focus(code);
+				playSound(9);
+			}else{
+				kl_blur();
+				scFocus();
+			}
+		}
+	}else if(code==2){
+		if(!gUpDownKey) {unlockScreen();return;}
+		if(gState.downbox.addIdx(gState.downbox.idx+1,true,true)){
+			playSound(9);
+			gState.downbox.movefocus();
+		}else{
+			kl_blur();
+			scFocus();
+		}
+	}else if(code==3){
+		if(!gSideKey) {unlockScreen();return;}
+		if(gState.downbox!=null){if(gState.downbox.chgPage(-1,true))playSound(9);}
+	}else if(code==4){
+		if(!gSideKey) {unlockScreen();return;}
+		if(gState.downbox!=null){if(gState.downbox.chgPage(1,true))playSound(9);}
+	}else if( (code >= 5) && (code <= 14) ){
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		if(gState.downbox!=null) gState.downbox.numClick(code);
+	}else if(code==18){
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		var obj=null;
+		if(gState.downbox!=null) obj=gState.downbox.get();
+		if(obj==null) return;
+		var gid=00;
+		var cd=65;
+		if(gState.upbox.mlist!=null) gid=gState.upbox.mlist[gState.upbox.mIdx].genre;
+		else cd=71;
+		if(gid!=4&&gid!=5&&!interimCheck(obj.period.displayStart,obj.period.displayEnd)){
+			playSound(7);
+			kl_blur();
+			if(gid==1)cd=64;
+			else if(gid==2)cd=67;
+			else if(gid==3)cd=69;
+			else if(gid==4)cd=81;
+			else if(gid==5)cd=70;
+			else if(gid==6)cd=72;
+			else if(gid==7)cd=73;
+			showPopup(new Array("閉じる"),klkeep,"エラー","\r\n提供期間外のためご利用いただけません。\r\n\r\n状態番号：390"+cd,"");
+			unlockScreen();
+			return;
+		}
+		playSound(7);
+		gPlaySound=false;
+		if(gState.downbox.listType==3) gSciByQueue=true;
+		if(gState.downbox.listType==2) showArtistList(obj,true);
+		else showByContentInformation(obj.crid,obj.displayType,true);
+	}else if(21<=code && code<=24){
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		colorKey(code);
+	}else if(code==19){
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		kl_blur();
+		returnFunc();
+	}
+	unlockScreen();
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function kDetail(){
+	this.objtype="kdetail";
+	this.state=gScreenState;
+
+	this.info=null;
+	this.kist = null;
+	this.page = 0;
+	this.maxpage = 0;
+
+	this.focusflg=new Array(false,false,false,false,false,false,false,false);
+	this.btnState=new Array("","","","");
+	this.crid="";
+	this.displayType="";
+	this.sort="";
+
+	this.sort_keyflg=null; // ダミー
+	this.colorClick=dummy_colorClick;
+	this.numClick =dummy_numClick;
+
+	this.init=KD_init;
+	this.load=KD_load;
+	this.isfocus=KD_isfocus;
+	this.focus=KD_focus;
+	this.show=KD_show;
+	this.hidden=KD_hidden;
+	this.showBtn=KD_showBtn;
+
+	this.isActive=KD_isActive;
+
+	this.showSynopis=KD_showSynopis;
+	this.click=KD_click;
+}
+function dummy_numClick(code){}
+function KD_init(info){
+	this.kist = null;
+	this.page = 0;
+	this.maxpage = 0;
+	this.focusflg=new Array(false,false,false,false,false,false,false,false);
+	this.btnState=new Array("","","","");
+	this.crid=info.crid;
+	this.displayType=info.displayType;
+
+	this.state=gScreenState;
+	this.info=info;
+}
+function KD_load(){
+	return 0;
+}
+function KD_isActive(){
+	if(this.info.contentDetail.activeLicense==null) return false;
+	if((dateCheck(this.info.contentDetail.activeLicense.licenseStart)==true||this.info.contentDetail.activeLicense.licenseStart==null) &&
+	   (dateCheck(this.info.contentDetail.activeLicense.licenseEnd)==false||this.info.contentDetail.activeLicense.licenseEnd==null)){
+	   	return true;
+	}
+	return false;
+}
+function KD_show(){
+	// 購入状態の確認(ActiveLisence)
+	var active=this.isActive();
+	// 予約リストの有無を確認
+	var queue=false;
+	var list=getQueue(getKaraokeQueue,null);
+	if(list==null) return false;
+	if(list!=null&&list.totalCount!=0) queue=true;
+	// demo不可
+	var demo=false;
+	if( this.info.contentDetail!=null)
+		demo=(this.info.contentDetail.demoNG==1&&gState.ispid==String(ISPID_DEMO))?true:false;
+	// 配信ステータス
+	var delivery=false;
+	if(this.info.icon!=null&&this.info.icon.delivery!=1)delivery=true;
+	// ボタン表示
+	this.showBtn(active,queue,demo,delivery);
+
+	showElem("detail");
+	gColFlg|=2;
+	showElem("guide_r01");
+	gColFlg|=4;
+	showElem("guide_g01");
+
+	return true;
+}
+function KD_showBtn(active,queue,demo,delivery){
+	var idx=0;
+	if(demo){
+		setImg("detailbtn"+idx,"images/bt_ko_detail01-g.png");
+		setTxtCol("detailbtn"+idx+"t","164","161 151");
+		setText("detailbtn"+idx+"t","デモ不可");
+		this.focusflg[idx]=false;
+		this.btnState[idx]="demo";
+		showElem("detailbtn"+idx);
+		idx++;
+	}else if(delivery){
+		setImg("detailbtn"+idx,"images/bt_ko_detail01-g.png");
+		setTxtCol("detailbtn"+idx+"t","164","161 151");
+		setText("detailbtn"+idx+"t","購入不可");
+		this.focusflg[idx]=false;
+		this.btnState[idx]="nobuy";
+		showElem("detailbtn"+idx);
+		idx++;
+	}else{
+		if(!active){
+			// 購入可能かどうかチェック
+			var flg=false;
+			if(this.info.contentDetail){
+				var term=getPurchaseLicense(this.info.contentDetail);
+				for(var i=0;i<term.length;i++){if(term[i][2])flg=true;}
+				if(flg){
+					setImg("detailbtn"+idx,"images/bt_ko_detail01.png");
+					setTxtCol("detailbtn"+idx+"t","7","171 167");
+					setText("detailbtn"+idx+"t","購入する");
+					this.focusflg[idx]=true;
+					this.btnState[idx]="buy";
+					showElem("detailbtn"+idx);
+					idx++;
+				}
+			}
+			//購入不可
+			if(!flg){
+				setImg("detailbtn"+idx,"images/bt_ko_detail01-g.png");
+				setTxtCol("detailbtn"+idx+"t","164","161 151");
+				setText("detailbtn"+idx+"t","購入不可");
+				this.focusflg[idx]=false;
+				this.btnState[idx]="nobuy";
+				showElem("detailbtn"+idx);
+				idx++;
+			}
+		}else{
+			if(queue){
+				setImg("detailbtn"+idx,"images/bt_ko_detail01.png");
+				setTxtCol("detailbtn"+idx+"t","7","171 167");
+				setText("detailbtn"+idx+"t","予約する");
+				this.focusflg[idx]=true;
+				this.btnState[idx]="queue";
+				showElem("detailbtn"+idx);
+				idx++;
+
+				setImg("detailbtn"+idx,"images/bt_ko_detail01.png");
+				setTxtCol("detailbtn"+idx+"t","7","171 167");
+				setText("detailbtn"+idx+"t","歌う（割り込み）");
+				this.focusflg[idx]=true;
+				this.btnState[idx]="song1";
+				showElem("detailbtn"+idx);
+				idx++;
+
+			}else{
+				setImg("detailbtn"+idx,"images/bt_ko_detail01.png");
+				setTxtCol("detailbtn"+idx+"t","7","171 167");
+				setText("detailbtn"+idx+"t","歌う");
+				this.focusflg[idx]=true;
+				this.btnState[idx]="song2";
+				if(gDBErr)this.btnState[idx]="song1";
+				showElem("detailbtn"+idx);
+				idx++;
+			}
+		}
+	}
+	setImg("detailbtn"+idx,"images/bt_ko_detail01.png");
+	setTxtCol("detailbtn"+idx+"t","7","171 167");
+	setText("detailbtn"+idx+"t","この歌手の他の曲を探す");
+	this.focusflg[idx]=true;
+	this.btnState[idx]="search";
+	showElem("detailbtn"+idx);
+	idx++;
+
+	for(var i=idx;i<3;i++){
+		this.focusflg[i]=false;
+		this.btnState[i]="";
+		hideElem("detailbtn"+i);
+		setText("detailbtn"+i+"t","");
+	}
+}
+
+function KD_hidden(){
+	for(var i=0;i<4;i++){
+		hideElem("detailbtn"+i);
+		setText("detailbtn"+i+"t","");
+	}
+	hideElem("detail");
+	gColFlg&=(15-2);
+	hideElem("guide_r01");
+	gColFlg&=(15-4);
+	hideElem("guide_g01");
+	hideDetailMass();
+}
+function KD_isfocus(){
+	for(var i=0;i<this.focusflg.length;i++){
+		if(this.focusflg[i]) return true;
+	}
+	return false;
+}
+function KD_focus(code){
+	if(!this.isfocus()) return false;
+	var i;
+	if(code==1){
+		for(i=this.focusflg.length-1;0<=i;i--){
+			if(this.focusflg[i]){
+				detail_focus(i);
+				return true;
+			}
+		}
+	}else if(code==2||code==-1){
+		for(i=0;i<this.focusflg.length;i++){
+			if(this.focusflg[i]){
+				detail_focus(i);
+				return true;
+			}
+		}
+	}
+	return false;
+}
+function detail_focus(idx){
+	setTxtCol("detailbtn"+idx+"t","0","189 191");
+	if(idx==3) setImg("detailbtn"+idx,"images/bt_ko_detail02-f.png");
+	else setImg("detailbtn"+idx,"images/bt_ko_detail01-f.png");
+
+	// タイトルの矢印を出す
+	gState.upbox.showTitleCsr("m");
+	setFcs("detailbtn"+idx);
+}
+function detail_blur(idx){
+	var gray="";
+	if(gState.downbox.focusflg[idx]){
+		setTxtCol("detailbtn"+idx+"t","7","171 167");
+		gray="";
+	}else{
+		setTxtCol("detailbtn"+idx+"t","164","161 151");
+		gray="-g";
+	}
+	if(idx==3) setImg("detailbtn"+idx,"images/bt_ko_detail02"+gray+".png");
+	else setImg("detailbtn"+idx,"images/bt_ko_detail01"+gray+".png");
+}
+
+function KD_showSynopis(){
+	if(this.info==null) return false;
+
+	this.kist=getSynopsis(this.info.crid,this.info.displayType,this.page);
+
+	if(this.kist!=null){
+		setText("detailbtn3t",(this.page+1)+"/"+this.kist.totalCount);
+		setText("detail_text",this.kist.synopsis);
+		if(this.kist.totalCount>1){
+			setImg("detailbtn3","images/bt_ko_detail02.png");
+			setTxtCol("detailbtn3t","7","171 167");
+			this.focusflg[3]=true;
+			this.btnState[3]="kist";
+		}else{
+			setImg("detailbtn3","images/bt_ko_detail02.png");
+			setTxtCol("detailbtn3t","7","171 167");
+			this.focusflg[3]=false;
+			this.btnState[3]="kist";
+		}
+		showElem("detailbtn3");
+	}else{
+		setText("detailbtn3t","1/0");
+		setText("detail_text","");
+		setTxtCol("detailbtn3t","164","161 151");
+		setImg("detailbtn3","images/bt_ko_detail02-g.png");
+		this.focusflg[3]=false;
+		this.btnState[3]="kist";
+		showElem("detailbtn3");
+	}
+}
+function KD_click(idx){
+	var state=this.btnState[idx];
+	if(state=="kist"){// 詳細ボタン : kist
+//		if(this.kist!=null){
+			this.page++;
+			if(this.kist==null) this.page=0;
+			else if(this.page>=this.kist.totalCount) this.page=0;
+			this.kist=getSynopsis(this.info.crid,this.info.displayType,this.page);
+			if(this.kist!=null){
+				setText("detailbtn3t",(this.page+1)+"/"+this.kist.totalCount);
+				setText("detail_text",this.kist.synopsis);
+			}
+//		}
+	}else if(state=="search"){// この歌手の他の曲を探すボタン
+		gPlaySound=false;
+		showArtistList(this.info,true);
+	}else if(state=="buy"){// 購入ボタン
+		if(checkUser()==1){
+			trialPop(goNowScreen);
+			return;
+		}
+		detail_blur(idx);
+		gPlaySound=false;
+		showBuyPop(this.info);
+	}else if(state=="queue"||state=="song2"){// 予約するボタン・歌うボタン
+		// 予約追加
+		var ret=addQueue(addLastKaraokeQueue,this.info);
+		// 予約表示
+		if(!showRsv(ret)) return;
+		// 再生中でなければ、再生開始
+		if(!gPlayMovie&&getElementById("Video").streamStatus=="stop"){
+			var list=gKaraokeQueue;
+			if(gDBErr)list=gDBErrQueue;
+			if(list!=null&&list.totalCount!=0&&list.contentList.length>=1){
+				if(list.contentList[0].contentDetail!=null&&list.contentList[0].contentDetail.activeLicense!=null&&
+					list.contentList[0].contentDetail.activeLicense.programUrl!=""){
+					// 再生開始
+					PlayVideo(list.contentList[0]);
+				}else{
+					// 購入ライセンスが切れ
+					stopChgRsv();
+					showPopup(new Array("閉じる"),goNowScreen,"エラー",gLisenceMsg,"");
+					return true;
+				}
+			}else{
+			}
+		}
+	}else if(state=="song1"){// 歌う(割り込み)ボタン
+		if(gPlayMovie&&getElementById("Video").streamStatus=="stop"){
+			showDetailMass("次曲再生準備中です。");
+			return;
+		}
+		if(gPlayMovie||getElementById("Video").streamStatus!="stop"){ // 再生中
+			// 今流れている曲を止める
+			getElementById("Video").streamStatus="stop";
+			// 割り込み曲を設定
+			gInterruptContents=this.info;
+			return;
+		}
+		// 予約追加
+		var ret=addQueue(addFirstKaraokeQueue,this.info);
+		if(ret=="NG") return; // エラー
+		else{
+			if(ret=="FULL"){showDetailMass("予約がいっぱいです。");}
+			// 再生開始
+			gPlaySound=false;
+			var list=getQueue(getKaraokeQueue,null);
+			if(gDBErr)list=gDBErrQueue;
+			gPlaySound=true;
+			if(list!=null&&list.totalCount!=0&&list.contentList.length>=1){
+				if(list.contentList[0].contentDetail!=null&&list.contentList[0].contentDetail.activeLicense!=null&&
+					list.contentList[0].contentDetail.activeLicense.programUrl!=""){
+					// 再生開始
+					PlayVideo(list.contentList[0]);
+				}else{
+					// 購入ライセンスが切れ
+					showPopup(new Array("閉じる"),goNowScreen,"エラー",gLisenceMsg,"");
+				}
+			}else{
+			}
+		}
+	}
+}
+
+function showDetailMass(mas){
+	showElem("detail_message");
+	setText("detail_messaget",mas);
+	if(gWindInfo){
+		hideKaraokInfomationL();
+		gWindInfo=true;
+	}
+	if(!isNaN(gDetailMassTimer)){
+		browser.clearTimer(gDetailMassTimer);
+		gDetailMassTimer=NaN;
+	}
+	gDetailMassTimer=browser.setInterval("hideDetailMass();",3000,1);
+}
+function hideDetailMass(){
+	if(!isNaN(gDetailMassTimer)){
+		browser.clearTimer(gDetailMassTimer);
+		gDetailMassTimer=NaN;
+	}
+	lockScreen();
+	hideElem("detail_message");
+	setText("detail_messaget","");
+	if(gChgRsvFlg){
+		gChgRsvFlg=false;
+		if(!gFullWindow){
+			keyOnKaraoke();
+			sceneInit();
+			gPlaySound=false;
+			showGenre(4);
+			if(gWindInfo)showKaraokInfomationL();
+		}
+	}
+}
+function stopChgRsv(){
+	gChgRsvFlg=false;
+	if(gFOff)keyOnKaraoke();
+}
+function detailkey(){
+	var code = document.currentEvent.keyCode;
+	var id = document.currentEvent.target.id;
+	var idx=Number(id.substring(9,id.length));
+	var i=0;
+	lockScreen();
+	if(code==1){
+		if(!gUpDownKey) {unlockScreen();return;}
+		detail_blur(idx);
+		for(i=idx-1;0<=i;i--){
+			if(gState.downbox.focusflg[i]){
+				playSound(9);
+				detail_focus(i);
+				unlockScreen();
+				return;
+			}
+		}
+		gState.upbox.hideTitleCsr("m");// タイトルの矢印を消す
+		scFocus();
+	}else if(code==2){
+		if(!gUpDownKey) {unlockScreen();return;}
+		detail_blur(idx);
+		for(i=(idx+1);i<4;i++){
+			if(gState.downbox.focusflg[i]){
+				playSound(9);
+				detail_focus(i);
+				unlockScreen();
+				return;
+			}
+		}
+		gState.upbox.hideTitleCsr("m");// タイトルの矢印を消す
+		scFocus();
+	}else if(code==3){
+		if(!gSideKey) {unlockScreen();return;}
+		if(gState.upbox!=null){
+			if(gState.upbox.sideKey(code)) playSound(9);
+		}
+	}else if(code==4){
+		if(!gSideKey) {unlockScreen();return;}
+		if(gState.upbox!=null){
+			if(gState.upbox.sideKey(code)) playSound(9);
+		}
+	}else if(21<=code && code<=24){
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		colorKey(code);
+	}else if(code==18){
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		playSound(7);
+		gState.downbox.click(idx);
+	}else if(code==19){
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		detail_blur(idx);
+		returnFunc();
+	}
+	unlockScreen();
+}
+
+function getPurchaseLicense(detail){
+	var term=new Array();
+	var purchaseLicense=new Array();
+	var j=0;
+
+	if(detail.packPurchaseLicense==null||detail.packPurchaseLicense.length==0) return new Array();
+	// 有効なIDを持っているか
+	for(var i=0,j=0;i<detail.packPurchaseLicense.length;i++){
+		if(!detail.packPurchaseLicense[i])continue;
+		else if(detail.packPurchaseLicense[i].purchaseId==null)continue;
+		else if(detail.packPurchaseLicense[i].purchaseId=="")continue;
+		else {
+			purchaseLicense[j]=detail.packPurchaseLicense[i];
+			j++;
+		}
+	}
+	if(purchaseLicense.length==0) return new Array();
+	// パック販売期間の作成
+	for(i=0;i<5&&i<purchaseLicense.length;i++){
+		term[i]=new Array();
+		term[i][0]=null;//開始
+		term[i][1]=null;//終了
+		term[i][2]=false;//期間内か否か
+		term[i][3]=null;//構造体
+
+		if(purchaseLicense[i].purchaseEnd!=null && purchaseLicense[i].validityIntervalStart != null)
+			if( subDateArr(purchaseLicense[i].purchaseEnd,purchaseLicense[i].validityIntervalStart) > 0)continue;
+		if(purchaseLicense[i].validityIntervalEnd!=null && purchaseLicense[i].purchaseStart != null)
+			if(subDateArr(purchaseLicense[i].validityIntervalEnd,purchaseLicense[i].purchaseStart) > 0)continue;
+
+		var day_a=new Array(2000,1,1,0,0,0);
+		var day_b=new Array(2000,1,1,0,0,0);
+		if(purchaseLicense[i].validityIntervalStart!=null)day_a=purchaseLicense[i].validityIntervalStart;
+		if(purchaseLicense[i].purchaseStart!=null)day_b=purchaseLicense[i].purchaseStart;
+		var day_a_date=createDate(day_a);
+		var day_b_date=createDate(day_b);
+
+		if(day_a_date==null){day_a=new Array(2000,0,1,0,0,0);day_a_date=createDate(day_a);}
+		if(day_b_date==null){day_b=new Array(2000,0,1,0,0,0);day_b_date=createDate(day_b);}
+		if(subDateArr(day_a,day_b) < 0)term[i][0]=day_a;
+		else term[i][0]=day_b;
+		day_a=new Array(2050,1,1,0,0,0);
+		day_b=new Array(2050,1,1,0,0,0);
+
+		if(purchaseLicense[i].validityIntervalEnd!=null)day_a=purchaseLicense[i].validityIntervalEnd;
+		if(purchaseLicense[i].purchaseEnd!=null)day_b=purchaseLicense[i].purchaseEnd;
+		day_a_date=createDate(day_a);
+		day_b_date=createDate(day_b);
+
+		if(day_a_date==null){day_a=new Array(2000,0,1,0,0,0);day_a_date=createDate(day_a);}
+		if(day_b_date==null){day_b=new Array(2000,0,1,0,0,0);day_b_date=createDate(day_b);}
+		if(subDateArr(day_a,day_b) > 0)term[i][1]=day_a;
+		else term[i][1]=day_b;
+		if(interimCheck(term[i][0],term[i][1])){
+			term[i][2]=true;
+		}
+		term[i][3]=purchaseLicense[i];
+	}
+	return term;
+}
+function subDateArr(arr1,arr2){
+	if(arr1==null) return NaN;
+	if(arr1.length!=6)return NaN;
+	if(arr2==null) return NaN;
+	if(arr2.length!=6)return NaN;
+	if(arr1[0] < arr2[0] ) return 1;
+	else if(arr1[0] > arr2[0] ) return -1;
+	if(arr1[1] < arr2[1] ) return 1;
+	else if(arr1[1] > arr2[1] ) return -1;
+	if(arr1[2] < arr2[2] ) return 1;
+	else if(arr1[2] > arr2[2] ) return -1;
+	if(arr1[3] < arr2[3] ) return 1;
+	else if(arr1[3] > arr2[3] ) return -1;
+	if(arr1[4] < arr2[4] ) return 1;
+	else if(arr1[4] > arr2[4] ) return -1;
+	if(arr1[5] < arr2[5] ) return 1;
+	else if(arr1[5] > arr2[5] ) return -1;
+	return 0;
+}
+///////////////////////////////////////////////////////////////////////////////////////////
+function showTema(state){
+	var temaIcon=new Array("","","","",""); // "欠番","ジャンル系","特集紹介","曲紹介","歌手紹介"
+	if(!gReturnState) setReturnData(gScreenState,state);
+	gReturnState=false;
+	gScreenState=state;
+	if(state!=1) sceneJpg("ScreenState",state);
+	sceneInit();
+	gState.temaIconSub=temaIcon[state];
+	showTemaIcon();
+}
+function sceneInit(){
+	if(gState.upbox!=null) gState.upbox.hidden();
+	if(gState.downbox!=null) gState.downbox.hidden();
+
+	gState.scupkey=scupkeyDefault;
+	gState.scdownkey=scdownkeyDefault;
+	gState.allHidden=allHiddenDefault;
+}
+// 画面により静止画を分けるための処理
+// type : genreID or ScreenState
+// num  :
+function sceneJpg(type,num){
+	if(type=="ScreenState") num+=19;
+	setImg("video_off",gFullScrJpg+"karaoke_"+padding("00",num)+".jpg");
+}
+// ポップアップ閉じる処理
+function goNowScreen(id){
+	if(gFullWindow) setFcs("full_focus");
+	else{
+//		ub_blur();
+		if(gState.upbox!=null){
+			gState.upbox.showBlur("m");gState.upbox.showBlur("s");
+			gState.upbox.focusState=(gState.upbox.focusState=="m"||gState.upbox.focusState=="")?"":"m";
+		}
+		kl_blur();
+		for(var i=0;i<4;i++) detail_blur(i);
+		hideBuyPop();
+//		gSwkeyBord.close();
+		hideElem("kb_close");
+		hideElem("kb_search");
+		hideElem("kb_delete");
+		hideElem("keyboard_div");
+		hideElem("onkey_div");
+
+		gPlaySound=false;
+		gSideKey=true;
+		gUpDownKey=true;
+		if(gState.downbox!=null&&gState.downbox.objtype=="kdetail"){
+			defaultFocus2();
+		}else{
+			defaultFocus();
+		}
+	}
+}
+// DBエラー用ポップアップ閉じる処理
+function goDBErrScreen(id){
+	if(gFullWindow){
+		if(gFullInfo)hideKaraokInfomation();
+		setFcs("full_focus");
+	}else{
+		if(gWindInfo)hideKaraokInfomationL();
+		if(gState.upbox!=null){
+			gState.upbox.showBlur("m");
+			gState.upbox.showBlur("s");
+			gState.upbox.focusState=(gState.upbox.focusState=="m"||gState.upbox.focusState=="")?"":"m";
+		}
+		kl_blur();
+		for(var i=0;i<4;i++) detail_blur(i);
+		hideBuyPop();
+		hideElem("kb_close");
+		hideElem("kb_search");
+		hideElem("kb_delete");
+		hideElem("keyboard_div");
+		hideElem("onkey_div");
+
+		gPlaySound=false;
+		gSideKey=true;
+		gUpDownKey=true;
+		updateByQueue();
+		if(gState.downbox!=null&&gState.downbox.objtype=="kdetail")gState.downbox.showSynopis();
+		if(document.currentFocus==null)defaultFocus();
+	}
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+function defaultFocus(){
+	if(gState.upbox!=null&&gState.upbox.isfocus()){gState.upbox.focus(-1); playSound(9);}
+	else if(gState.downbox!=null&&gState.downbox.isfocus()){gState.downbox.focus(-1); playSound(9);}
+	else scFocus();
+}
+function defaultFocus2(){
+	if(gState.downbox!=null&&gState.downbox.isfocus()){gState.downbox.focus(-1); playSound(9);}
+	else if(gState.upbox!=null&&gState.upbox.isfocus()){gState.upbox.focus(-1); playSound(9);}
+	else scFocus();
+}
+
+function scupkeyDefault(){
+	if(gState.downbox!=null&&gState.downbox.isfocus()){gState.downbox.focus(1); playSound(9);}
+	else if(gState.upbox!=null&&gState.upbox.isfocus()){gState.upbox.focus(1); playSound(9);}
+	else return;
+	scblur(gScIdx);
+}
+function scdownkeyDefault(){
+	if(gState.upbox!=null&&gState.upbox.isfocus()){gState.upbox.focus(2); playSound(9);}
+	else if(gState.downbox!=null&&gState.downbox.isfocus()){gState.downbox.focus(2); playSound(9);}
+	else return;
+	scblur(gScIdx);
+}
+function allHiddenDefault(){
+	// VOD再生中なら停止する
+	StopVideo();
+	if(gState.upbox!=null) gState.upbox.hidden();
+	if(gState.downbox!=null) gState.downbox.hidden();
+	gState.upbox=null;
+	gState.downbox=null;
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+// UserKey管理
+function setUserKey(key){
+	var keys=key.split(" ");
+	var flg=false;
+	var i,j;
+	if(keys==null||keys.length<=0) return; // 設定情報不正
+	for(i=0;i<keys.length;i++){
+		flg=false;
+		for(j=0;j<gUserKey.length;j++){
+			if(keys[i]==gUserKey[j]){
+				gUserKeySetCnt[j]++;
+				flg=true;
+			}
+		}
+		if(!flg){gUserKey[j]=keys[i];gUserKeySetCnt[j]=1;}
+	}
+	var str="basic data-button ";
+	for(i=0;i<gUserKey.length;i++) if(gUserKeySetCnt[i]>0) str+=gUserKey[i]+" ";
+	str=str.substring(0,str.length-1);
+	getElementById("body").normalStyle.usedKeyList=str;
+}
+function delUserKey(key){
+	var keys=key.split(" ");
+	var i,j;
+	if(keys==null||keys.length<=0) return; // 設定情報不正
+	for(i=0;i<keys.length;i++){
+		for(j=0;j<gUserKey.length;j++){
+			if(keys[i]==gUserKey[j]){
+				gUserKeySetCnt[j]--;
+				if(gUserKeySetCnt[j]<=0) gUserKeySetCnt[j]=0;
+			}
+		}
+	}
+	var str="basic data-button ";
+	for(i=0;i<gUserKey.length;i++) if(gUserKeySetCnt[i]>0) str+=gUserKey[i]+" ";
+	str=str.substring(0,str.length-1);
+
+	getElementById("body").normalStyle.usedKeyList=str;
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+// 動画再生ロジック
+////////////////////////////////////////////////////////////////////////////////////////////
+function keyOffKaraoke(){
+	if(!isNaN(gFTmId)){
+		browser.clearTimer(gFTmId);
+		gFTmId=NaN;
+	}
+	if(!gFOff){
+		gFKey="";
+		if(document.currentFocus)gFKey=document.currentFocus.id;
+		//	lockScreen();
+		if(!gFullWindow) showElem("loading2");
+		setFcs("default");
+		//	unlockScreen();
+		gFOff=true;
+	}
+	if(!gChgRsvFlg)gFTmId=browser.setInterval("keyOnKaraoke();",1000,1);
+}
+function keyOnKaraoke(){
+	gFOff=false;
+	if(!isNaN(gFTmId)){
+		browser.clearTimer(gFTmId);
+		gFTmId=NaN;
+	}
+//	lockScreen();
+	setFcs(gFKey);
+	if(gState.downbox!=null&&gState.downbox.objtype=="klist"&&gState.downbox.listType==3){
+		if(document.currentFocus==null){
+			gPlaySound=false;
+			defaultFocus2();
+		}
+	}
+	// 曲紹介
+	if(gState.downbox!=null&&gState.downbox.objtype=="kdetail"){
+		if(document.currentFocus==null){
+			gPlaySound=false;
+			defaultFocus2();
+		}else{
+			var fcs=document.currentFocus.id;
+			if(fcs.indexOf("detailbtn")!=-1){
+				var idx=Number(fcs.substring(9,fcs.length));
+				detail_focus(idx);
+			}
+
+		}
+	}
+	hideElem("loading2");
+//	unlockScreen();
+	gFKey="";
+}
+
+// 絵音停止ハンドラ
+function mediaStopped(){
+	lockScreen();
+	setUserKey("special-1");
+	getElementById("MediaStopped").subscribe=false;
+	var info=gInterruptContents;
+	gInterruptContents=null;
+	// 予約リストの先頭を削除
+	if(!removeQueue(removeKaraokeReservation)){
+		// 先頭削除失敗
+		StopVideo();
+		if(gFullWindow){ // 全画面なら解除
+			gFullWindow=false;
+			showWindowMode();
+		}
+		return;
+	}
+	// 割り込み曲があるか
+	if(info!=null){
+		// 先頭に追加
+		var ret=addQueue(addFirstKaraokeQueue,info);
+		if(ret=="NG"){
+			StopVideo();
+			if(gFullWindow){ // 全画面なら解除
+				gFullWindow=false;
+				showWindowMode();
+			}
+			return;
+		}
+		else if(ret=="FULL"){updateByQueue();showDetailMass("予約がいっぱいです。");return;}
+		else if(ret=="OK"){
+		}
+	}
+	// 予約曲があるか
+	var list=getQueue(getKaraokeQueue,null);
+	if(gDBErr)list=gDBErrQueue;
+	if(list!=null&&list.totalCount!=0){
+		if(list.contentList.length>=1){
+			if(list.contentList[0].contentDetail!=null&&list.contentList[0].contentDetail.activeLicense!=null&&
+				list.contentList[0].contentDetail.activeLicense.programUrl!=""){
+				updateByQueue();
+				// 再生開始
+				PlayVideo(list.contentList[0]);
+//				unlockScreen();
+				return;
+			}else{
+				// 購入ライセンスが切れ
+				showPopup(new Array("閉じる"),goNowScreen,"エラー",gLisenceMsg,"");
+				gFullWindow=false;
+			}
+		}
+	}else if(list==null) gFullWindow=false;
+	StopVideo();
+	showWindowMode(); // 解除
+	if(list!=null&&!gDBErr) updateByQueue();
+//	unlockScreen();
+}
+
+// Dボタン制御
+function dataButtonPressed(){
+	if(gFOff)return;
+	if(gShowPopup)return;
+	if(!gPlayMovie) return;
+	playSound(7);
+	lockScreen();
+	if(gFullWindow){
+		// 全画面解除
+		showWindowMode();
+	}else{
+		// 全画面化
+		showFullMode();
+	}
+	unlockScreen();
+}
+
+// 再生
+function PlayVideo(obj){
+	if(obj==null||obj.contentDetail==null||obj.contentDetail.activeLicense==null||obj.contentDetail.activeLicense.programUrl=="")return;
+	var URL=String(obj.contentDetail.activeLicense.programUrl);
+
+	var elm=getElementById("Video");
+	keyOffKaraoke();
+	elm.data=URL;
+	showElem("Video");
+	elm.streamStatus="play";
+	hideElem("video_off"); // 静止画非表示
+	gPlayMovie=true;
+	getElementById("MediaStopped").subscribe=false;
+	getElementById("MediaStopped").subscribe=true;
+	delUserKey("special-1");
+	gColFlg|=1;
+	showElem("guide_b01");
+	showElem("guide_d01"); // dボタン押下で全画面アイコン表示
+}
+// 停止
+function StopVideo() {
+	if(gPlayMovie==false) return;
+	gPlayMovie=false;
+	gColFlg&=(15-1);
+	hideKaraokInfomationL();
+	hideElem("guide_b01");
+	hideElem("guide_d01"); // dボタン押下で全画面アイコン非表示
+	showElem("video_off"); // 静止画表示
+	getElementById("Video").streamStatus="stop";
+	getElementById("MediaStopped").subscribe=false;
+	hideElem("Video");
+}
+
+// 予約変更時の更新
+function updateByQueue(){
+	// 予約リスト
+	if(gGenreCheng==false&&gState.downbox!=null&&gState.downbox.objtype=="klist"&&gState.downbox.listType==3){
+		if(gState.downbox.load()==-1) return;
+		gState.downbox.show();
+
+		if(document.currentFocus==null){
+			gPlaySound=false;
+			defaultFocus2();
+		}
+	}
+	if(gState.upbox!=null&&gState.upbox.listObj!=null&&gState.upbox.listObj.objtype=="klist"&&gState.upbox.listObj.listType==3){
+		gState.upbox.listObj.load();
+		gState.upbox.idx=0;
+	}
+	// 曲紹介
+	if(gState.downbox!=null&&gState.downbox.objtype=="kdetail"){
+		gState.downbox.show();
+		if(document.currentFocus==null){
+			gPlaySound=false;
+			defaultFocus2();
+		}else{
+			var fcs=document.currentFocus.id;
+			if(fcs.indexOf("detailbtn")!=-1){
+				var idx=Number(fcs.substring(9,fcs.length));
+				detail_focus(idx);
+			}
+
+		}
+	}
+	// 曲情報
+	if(gFullWindow==true&&gFullInfo==true) showKaraokInfomation();// 全画面状態かつ情報エリア表示中なら更新
+	if(gFullWindow==false&&gWindInfo==true) showKaraokInfomationL();
+}
+
+//全画面解除
+function showWindowMode(){
+
+	hideKaraokInfomation(); // 曲情報非表示
+	hideFullCodeIn();		// 曲番号入力非表示
+	hideFullScrDbtn();		// Dボタン表示
+
+	getElementById("basebox").normalStyle.top="0px";
+	getElementById("clock").normalStyle.top="41px";
+	getElementById("shortcut").normalStyle.top="471px";
+	getElementById("upbox").normalStyle.top="72px";
+	getElementById("detail").normalStyle.top="70px";
+	getElementById("list").normalStyle.top="148px";
+	getElementById("keyboard_div").normalStyle.top="112px";
+	getElementById("buybox1").normalStyle.top="118px";
+	getElementById("buybox2").normalStyle.top="118px";
+	var elm=getElementById("Video");
+	elm.normalStyle.left="63px";
+	elm.normalStyle.top="65px";
+	elm.normalStyle.width="540px";
+	elm.normalStyle.height="405px";
+	delUserKey("numeric-tuning");
+
+	// フォーカス制御(暫定)
+	if(gFullWindow){
+		gPlaySound=false;
+		 if(isVis("keyboard_div")){
+		 	showElem("onkey_div");
+			gSwkeyBord.move(0,0,-1);
+			setFcs("kb_dummy");
+		}else{
+			if(gState.upbox!=null){
+				gState.upbox.showBlur("m");gState.upbox.showBlur("s");
+				gState.upbox.focusState=(gState.upbox.focusState=="m"||gState.upbox.focusState=="")?"":"m";
+			}
+			kl_blur();
+			for(var i=0;i<4;i++) detail_blur(i);
+			if(gBuyObj) hideBuyPop();
+			hideElem("kb_close");
+			hideElem("kb_search");
+			hideElem("kb_delete");
+			hideElem("keyboard_div");
+			hideElem("onkey_div");
+
+			gPlaySound=false;
+			gSideKey=true;
+			gUpDownKey=true;
+			if(gState.downbox!=null&&gState.downbox.objtype=="kdetail"){
+				defaultFocus2();
+			}else{
+				defaultFocus();
+			}
+		}
+	}
+	gFullWindow=false;
+}
+
+//全画面化
+function showFullMode(){
+	gFullWindow=true;
+	hideKaraokInfomationL(); // 曲情報非表示
+	getElementById("basebox").normalStyle.top="-540px";
+	getElementById("clock").normalStyle.top="-540px";
+	getElementById("shortcut").normalStyle.top="-540px";
+	getElementById("upbox").normalStyle.top="-540px";
+	getElementById("detail").normalStyle.top="-540px";
+	getElementById("list").normalStyle.top="-540px";
+	getElementById("keyboard_div").normalStyle.top="-540px";
+	getElementById("buybox1").normalStyle.top="-540px";
+	getElementById("buybox2").normalStyle.top="-540px";
+	var elm=getElementById("Video");
+	elm.normalStyle.left="0px";
+	elm.normalStyle.top="0px";
+	elm.normalStyle.width="960px";
+	elm.normalStyle.height="540px";
+	setUserKey("numeric-tuning");
+
+	// ガイドアイコン表示
+	showElem("fullscrDbtn");
+	if(!isNaN(gFullScrTimer)){
+		browser.clearTimer(gFullScrTimer);
+		gFullScrTimer=NaN;
+	}
+	gFullScrTimer=browser.setInterval("hideFullScrDbtn();",10000,1);
+
+	// フォーカスをダミーキーに移動
+
+	if(document.currentFocus)
+		if(document.currentFocus.id=="scbtn"){
+			scblur(gScIdx);
+			gScIdx=0;
+		}
+	// ダミーキーにフォーカス移動
+	ub_blur();kl_blur();
+	for(var i=0;i<4;i++) detail_blur(i);
+	gState.upbox.focusState="";
+	hideElem("kb_close");hideElem("kb_search");hideElem("kb_delete");hideElem("onkey_div");
+	setFcs("full_focus");
+}
+
+function hideFullScrDbtn(){
+	if(!isNaN(gFullScrTimer)){
+		browser.clearTimer(gFullScrTimer);
+		gFullScrTimer=NaN;
+	}
+	hideElem("fullscrDbtn");
+	gFullScrTimer=NaN;
+}
+
+// 曲情報表示
+function showKaraokInfomation(){
+	// 曲リスト取得
+	gFullInfo=true;
+	if(gDBErr){
+		// DB異常表示
+		hideFullScrDbtn(); // ガイドアイコンを消しておく
+		hideFullCodeIn(); // 入力エリアを消しておく
+		setText("info_title","サーバー障害により曲情報が表示されません。");
+		showElem("karaoke_info");
+		return;
+	}
+	var retList = gKaraokeQueue;
+	if(retList==null||retList.totalCount==0||retList.contentList==null||retList.contentList.length==0){
+		if(gFullWindow){ // 全画面なら解除
+			gFullWindow=false;
+			showWindowMode();
+		}
+		return;
+	}
+	// 情報表示
+	hideFullScrDbtn(); // ガイドアイコンを消しておく
+	hideFullCodeIn(); // 入力エリアを消しておく
+	setText("info_title",retList.contentList[0].basicDescription.title);
+	setText("info_name",retList.contentList[0].karaokeInformation.artistName);
+	setText("info_num",retList.totalCount);
+	if(retList.contentList[0].karaokeInformation.titleAsNext==""&&retList.totalCount==1) setText("info_next","予約されていません");
+	else setText("info_next",retList.contentList[0].karaokeInformation.titleAsNext);
+	showElem("karaoke_info");
+}
+function hideKaraokInfomation(){
+	gFullInfo=false;
+	setText("info_title","");
+	setText("info_name","");
+	setText("info_num","");
+	setText("info_next","");
+	hideElem("karaoke_info");
+}
+function showKaraokInfomationL(){
+	gWindInfo=true;
+	// 曲リスト取得
+	if(gDBErr){
+		// DB異常表示
+		setText("infoL_title","サーバー障害により曲情報が表示されません。");
+		showElem("karaoke_infoL");
+		return;
+	}
+	var retList = gKaraokeQueue;
+	if(retList==null||retList.totalCount==0||retList.contentList==null||retList.contentList.length==0)return;
+	// 情報表示
+	setText("infoL_title",retList.contentList[0].basicDescription.title);
+	setText("infoL_name",retList.contentList[0].karaokeInformation.artistName);
+	setText("infoL_num",retList.totalCount);
+	if(retList.contentList[0].karaokeInformation.titleAsNext==""&&retList.totalCount==1) setText("infoL_next","予約されていません");
+	else setText("infoL_next",retList.contentList[0].karaokeInformation.titleAsNext);
+	showElem("karaoke_infoL");
+}
+function hideKaraokInfomationL(){
+	gWindInfo=false;
+	setText("infoL_title","");
+	setText("infoL_name","");
+	setText("infoL_num","");
+	setText("infoL_next","");
+	hideElem("karaoke_infoL");
+}
+
+// 曲番号入力
+function showFullCodeIn(mas){
+	hideFullScrDbtn(); // ガイドアイコンを消しておく
+	hideKaraokInfomation(); // 情報表示エリアを消しておく
+	if(gFullCodeWord==null)gFullCodeWord="";
+
+	setText("full_code",padding2("−−−−−",numUpper(gFullCodeWord)).toUpperCase());
+	setText("full_message",mas);
+	showElem("karaoke_fullmes");
+
+	if(!isNaN(gFullCodeTimer)){
+		browser.clearTimer(gFullCodeTimer);
+		gFullCodeTimer=NaN;
+	}
+	if(isNaN(gFullCodeTimer)) gFullCodeTimer=browser.setInterval("hideFullCodeIn();",10000,1);
+}
+function searchFullCode(){
+	if(gPObj!=null&&gFullCodeWord.length==5){decideFullCode();return;}
+
+	if(gFullCodeWord==null) return false;
+	playSound(7);
+	var mas="５桁入力で決定ボタン。";
+	if(gFullCodeWord.length==5) {
+		//検索開始
+		var pObj = getList(searchKaraokeIdDetail,gFullCodeWord,null,null);
+		if(pObj==null){
+			if(gFullWindow){ // 全画面なら解除
+				gFullWindow=false;
+				showWindowMode();
+			}
+			return;
+		}
+		if(pObj.totalCount==0||pObj.contentList==null||pObj.contentList.length==0){ //検索結果0件の時はエラー表示
+			mas="該当する曲がありません。";
+			showFullCodeIn(mas);
+			return;
+		}
+		// 表示期限切れは、検索結果0件と同様にする
+		if(pObj.contentList[0].period!=null&&!interimCheck(pObj.contentList[0].period.displayStart,pObj.contentList[0].period.displayEnd)){
+			mas="該当する曲がありません。";
+			showFullCodeIn(mas);
+			return;
+		}
+		mas=convOverText(pObj.contentList[0].karaokeInformation.titleAsReserve+"／"+pObj.contentList[0].karaokeInformation.artistName,48);
+		showElem("cddec");
+		gPObj=pObj;
+	}else{
+		mas="曲番号は５桁入力してください。";
+	}
+	showFullCodeIn(mas);
+}
+function decideFullCode(){
+	playSound(7);
+	var mas="";
+	hideElem("cddec");
+	var ret=addQueue(addLastKaraokeQueue,gPObj.contentList[0]);
+	if(ret=="NG"){
+		if(gFullWindow){ // 全画面なら解除
+			gFullWindow=false;
+			showWindowMode();
+		}
+		gPObj=null;
+		return;
+	}
+	else if(ret=="FULL") mas="予約がいっぱいです。";
+	else if(ret=="OK"){
+		var list=getQueue(getKaraokeQueue,null);
+		if(gDBErr){
+			if(gPlayMovie||getElementById("Video").streamStatus!="stop"){ // 再生中
+				getElementById("Video").streamStatus="stop";
+				gInterruptContents=gDBErrQueue.contentList[0];
+			}
+		}else if(list!=null&&list.totalCount!=0){
+			updateByQueue();
+			mas="予約"+list.totalCount+"に "+convOverText(gPObj.contentList[0].basicDescription.title,14)+"/"+convOverText(gPObj.contentList[0].karaokeInformation.artistName,10)+" を予約しました。";
+		}
+		gFullCodeWord="";
+	}
+	gPObj=null;
+	if(mas!="")showFullCodeIn(mas);
+	else hideFullCodeIn();
+}
+
+function addFullCode(num){
+	if(gFullCodeWord==null)gFullCodeWord="";
+	if(gFullCodeWord.length>4) return false;
+	gPObj=null;
+	hideElem("cddec");
+	gFullCodeWord+=String(num);
+	var ms="曲番号を５桁入力して決定ボタンを押してください。";
+	if(gFullCodeWord.length>=5) ms="決定ボタンを押してください。";
+	showFullCodeIn(ms);
+	return true;
+}
+function delFullCode(){
+	if(gFullCodeWord==null)gFullCodeWord="";
+	if(gFullCodeWord.length<=0) return false;
+	gPObj=null;
+	hideElem("cddec");
+	gFullCodeWord=gFullCodeWord.substring(0,gFullCodeWord.length-1);
+	var ms="曲番号を５桁入力して決定ボタンを押してください。";
+	if(gFullCodeWord.length>=5) ms="決定ボタンを押してください。";
+	showFullCodeIn(ms);
+	return true;
+}
+function hideFullCodeIn(){
+	if(!isNaN(gFullCodeTimer)){
+		browser.clearTimer(gFullCodeTimer);
+		gFullCodeTimer=NaN;
+	}
+	gFullCodeWord=null;
+	hideElem("karaoke_fullmes");
+	setText("full_code","");
+	setText("full_message","");
+	hideElem("cddec");
+	gPObj=null;
+}
+
+// 全画面表示の時のキーハンドラ
+function fullkey(){
+	var code = document.currentEvent.keyCode;
+	var id = document.currentEvent.target.id;
+	lockScreen();
+	if((code>=5)&&(code<=14)){//数字キー
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		if(addFullCode(code-5)) playSound(7);
+	}else if(21<=code && code<=24){
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		colorFullKey(code);
+	}else if(code==19||code==3){
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		if(delFullCode()) playSound(7);
+	}else if(code==18){
+		if(!gSideKey||!gUpDownKey) {unlockScreen();return;}
+		searchFullCode();
+	}
+	unlockScreen();
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+// 購入ダイアログ
+////////////////////////////////////////////////////////////////////////////////////////////
+function buykey(){
+	var code = document.currentEvent.keyCode;
+	var id = document.currentEvent.target.id;
+	lockScreen();
+	if(code==1){
+		if(id=="buy_btn1"){
+			buypop_blur(id);
+			buypop_focus("buy_btn0");
+		}else if(id=="buy_cancel"){
+			buypop_blur(id);
+			if(isVis("buy_btn1")){buypop_focus("buy_btn1");}
+			else buypop_focus("buy_btn0");
+		}else if(isVis("bt_linecode")){
+			buypop_blur(id);
+			if(id=="bt_1") buypop_focus("bt_linecode");
+			if(id=="bt_2") buypop_focus("bt_linecode");
+			else if(id=="bt_linecode") buypop_focus("bt_1");
+		}
+	}else if(code==2){
+		if(id=="buy_btn0"){
+			buypop_blur(id);
+			if(isVis("buy_btn1")) buypop_focus("buy_btn1");
+			else buypop_focus("buy_cancel");
+		}else if(id=="buy_btn1"){
+			buypop_blur(id);
+			buypop_focus("buy_cancel");
+		}else if(isVis("bt_linecode")){
+			buypop_blur(id);
+			if(id=="bt_1") buypop_focus("bt_linecode");
+			if(id=="bt_2") buypop_focus("bt_linecode");
+			else if(id=="bt_linecode") buypop_focus("bt_1");
+		}
+	}else if(code==3){
+		if(id=="bt_linecode"){
+			if(gBuyPin=="") return;
+			gBuyPin=gBuyPin.substring(0,gBuyPin.length-1);
+			playSound(9);
+			var msk="＊＊＊＊";
+			var txt=msk.substring(0,gBuyPin.length);
+			setText("bt_linecodet",padding2("−−−−",txt));
+		}else if(id=="bt_2"){buypop_blur(id); buypop_focus("bt_1");}
+		else if(id=="bt_1"){buypop_blur(id); buypop_focus("bt_2");}
+	}else if(code==4){
+		if(id=="bt_2"){buypop_blur(id); buypop_focus("bt_1");}
+		else if(id=="bt_1"){buypop_blur(id); buypop_focus("bt_2");}
+	}else if( (code >= 5) && (code <= 14) ){//数字キー
+		if(id=="bt_linecode"){
+			var num = (code-5);
+			if(gBuyPin.length<4){
+				gBuyPin+=String(num);
+				playSound(9);
+				var msk="＊＊＊＊";
+				var txt=msk.substring(0,gBuyPin.length);
+				setText("bt_linecodet",padding2("−−−−",txt));
+				if(gBuyPin.length>=4){
+					buypop_blur(id);
+					gPlaySound=false;
+					buypop_focus("bt_1");
+				}
+			}
+		}
+	}else if(code==18){
+		if(id=="buy_btn1"||id=="buy_btn0"){
+			var idx=parseInt(id.substring(7),10);
+			if(isNaN(idx)||idx>gBuyterm.length) return;
+			playSound(7);
+			pushBuyBtn(idx,gBuyterm[gBuyShowIdx[idx]][3].purchaseId,gState.downbox.info.contentDetail.cid,"karaoke_package");
+		}else if(id=="buy_cancel"||id=="bt_2"){
+			playSound(7);
+			hideBuyPop();
+			gPlaySound=false;
+			defaultFocus2();
+		}else if(id=="bt_1"){
+			if(gBuyPin.length==4||!isVis("bt_linecode")){
+				if(buyContent()){
+					playSound(7);
+					// 購入が成功したら画面更新をしてポップアップを閉じる
+					hideBuyPop();
+					gPlaySound=false;
+					// 曲詳細画面再構築
+					showByContentInformation(gState.downbox.info.crid,gState.downbox.info.displayType,false);
+					if(gShowPopup)return;
+					if(gDBErr&&(gPlayMovie||getElementById("Video").streamStatus!="stop")){ // 再生中
+						getElementById("Video").streamStatus="stop";
+						gInterruptContents=gState.downbox.info;
+					}else{
+						// 購入後再生
+						var ret=addQueue(addLastKaraokeQueue,gState.downbox.info);// 予約追加
+						// 予約表示
+						if(!showRsv(ret)) return;
+						// 再生中でなければ、再生開始
+						if(!gPlayMovie&&getElementById("Video").streamStatus=="stop"){
+							var list=gKaraokeQueue;
+							if(gDBErr)list=gDBErrQueue;
+							if(list!=null&&list.totalCount!=0&&list.contentList.length>=1){
+								if(list.contentList[0].contentDetail!=null&&list.contentList[0].contentDetail.activeLicense!=null&&
+									list.contentList[0].contentDetail.activeLicense.programUrl!=""){
+									// 再生開始
+									PlayVideo(list.contentList[0]);
+								}else{
+									// 購入ライセンスが切れ
+									stopChgRsv();
+									showPopup(new Array("閉じる"),goNowScreen,"エラー",gLisenceMsg,"");
+									StopVideo();
+									return;
+								}
+							}else{
+							}
+						}
+					}
+					gPlaySound=false;
+					defaultFocus2();
+				}
+			}else{
+				buypop_blur(id);
+				buypop_focus("bt_linecode");
+			}
+		}
+	}else if(code==19){
+		if(id=="bt_linecode"){
+			if(gBuyPin=="") return;
+			gBuyPin=gBuyPin.substring(0,gBuyPin.length-1);
+			playSound(9);
+			var msk="＊＊＊＊";
+			var txt=msk.substring(0,gBuyPin.length);
+			setText("bt_linecodet",padding2("−−−−",txt));
+		}
+	}
+	unlockScreen();
+}
+function hideBuyPop(){
+	setText("buy_btn0t","");
+	setText("buy_btn1t","");
+	hideElem("buy_btn0");
+	hideElem("buy_btn1");
+	hideElem("buybox1");
+
+	hidePinPop();
+
+	gBuyObj=null;
+	gBuyterm=new Array();
+	gBuyIdx=0;
+	gBuyShowIdx=new Array();
+	gBuyPin="";
+	gBuyResultConfirm=null;
+}
+function showBuyPop(obj){
+	gBuyObj=obj;
+	// 購入可能かどうかチェック
+	gBuyterm=getPurchaseLicense(gBuyObj.contentDetail);
+	var flg=false;
+	var i=0,idx=0;
+	for(i=0;i<gBuyterm.length;i++){
+		if(idx==2) break;
+		if(gBuyterm[i][2]){
+			flg=true;
+			buypop_blur("buy_btn"+idx);
+			showElem("buy_btn"+idx);
+			setText("buy_btn"+idx+"t",gBuyterm[i][3].name+"\r\n"+gBuyterm[i][3].price+"円(税込)／"+gBuyterm[i][3].quantityRange+gBuyterm[i][3].quantityUnit);
+			gBuyShowIdx[idx]=i;
+			idx++;
+		}
+	}
+	if(!flg){
+		// 購入可能パックがない
+		showByContentInformation(gState.downbox.info.crid,gState.downbox.info.displayType,false);
+		detail_blur(1);
+		showPopup(new Array("閉じる"),goNowScreen,"エラー","\r\n\r\n購入期限が切れているため、\r\nご購入できません。\r\n状態番号：19050","");
+		return;
+	}
+	setUserKey("numeric-tuning");
+	showElem("buybox1");
+	buypop_focus("buy_cancel");
+}
+function buypop_focus(id){
+	if(id=="buy_cancel"||id=="bt_1"||id=="bt_2") setImg(id,"images/bt_2-f.png");
+	else if(id=="bt_linecode") setImg(id,"images/bt_linecode-f.png");
+	else  setImg(id,"images/bt_3-f.png");
+	playSound(9);
+	if(id!="bt_linecode")setTxtCol(id+"t","0","189 191");
+	setFcs(id);
+}
+function buypop_blur(id){
+	if(id=="buy_cancel"||id=="bt_1"||id=="bt_2") setImg(id,"images/bt_2.png");
+	else if(id=="bt_linecode") setImg(id,"images/bt_linecode.png");
+	else  setImg(id,"images/bt_3.png");
+	if(id!="bt_linecode")setTxtCol(id+"t","7","171 167");
+}
+// 購入ボタンが押された時の関数
+function pushBuyBtn(idx,purchaseId,cid,displayType){
+	gBuyResultConfirm=buyConfirmProc(purchaseId,cid,displayType);
+	if(gBuyResultConfirm==null) return false;
+	if(gBuyResultConfirm.nextcom=="buy_license"){
+		gBuyIdx=gBuyShowIdx[idx];
+		if(gBuyResultConfirm.requestPin==1){
+			gPlaySound=false;
+			return showPinPop1(gBuyResultConfirm); // PIN入力あり購入ポップアップ表示
+		}else if(gBuyResultConfirm.requestPin==0){
+			gPlaySound=false;
+			return showPinPop2(gBuyResultConfirm); // PIN入力なし購入ポップアップ表示
+		}
+	}else if(gBuyResultConfirm.nextcom=="buy_complete"){
+		// 購入済み
+		hideBuyPop();
+		// 曲詳細画面再構築
+		gPlaySound=false;
+		showByContentInformation(gState.downbox.info.crid,gState.downbox.info.displayType,false);
+		if(gShowPopup)return;
+		if(gDBErr&&(gPlayMovie||getElementById("Video").streamStatus!="stop")){ // 再生中
+			getElementById("Video").streamStatus="stop";
+			gInterruptContents=gState.downbox.info;
+		}else{
+			// 購入後再生
+			var ret=addQueue(addLastKaraokeQueue,gState.downbox.info);// 予約追加
+			// 予約表示
+			if(!showRsv(ret)) return;
+			// 再生中でなければ、再生開始
+			if(!gPlayMovie&&getElementById("Video").streamStatus=="stop"){
+				var list=gKaraokeQueue;
+				if(gDBErr)list=gDBErrQueue;
+				if(list!=null&&list.totalCount!=0&&list.contentList.length>=1){
+					if(list.contentList[0].contentDetail!=null&&list.contentList[0].contentDetail.activeLicense!=null&&
+						list.contentList[0].contentDetail.activeLicense.programUrl!=""){
+						// 再生開始
+						PlayVideo(list.contentList[0]);
+					}else{
+						// 購入ライセンスが切れ
+						stopChgRsv();
+						showPopup(new Array("閉じる"),goNowScreen,"エラー",gLisenceMsg,"");
+						StopVideo();
+						return;
+					}
+				}else{
+				}
+			}
+		}
+		gPlaySound=false;
+		defaultFocus2();
+		return true;
+	}
+	showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr("50","59")),"");
+	return false;
+}
+// 購入処理
+function buyContent(){
+	if(gBuyResultConfirm==null){
+		// 購入情報なしエラーホップアップ表示
+		return false;
+	}
+	var pin = gBuyPin;
+	if(pin=="") pin=null;
+//	var resultBuyLicense=buyLicenseProc(gBuyResultConfirm,pin,gBuyterm[gBuyIdx][3].displayType);
+	var resultBuyLicense=buyLicenseProc(gBuyResultConfirm,pin,"karaoke_package");
+	if(resultBuyLicense==null) return false;
+	if(resultBuyLicense.nextcom=="buy_complete"){
+		// 購入成功
+		return true;
+	}
+	showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr("51","59")),"");
+	return false;
+}
+function showPinPop1(resultConfirm){
+	setText("buybox_title","購入のご確認");
+	var comment="\r\n購入暗証番号を入力してください。\r\n上記金額が課金されます。";
+	if(resultConfirm.vzoneFlag==1) comment="\r\n購入暗証番号を入力してください。\r\nＶゾーン対象作品なので無料でご覧になれます。";
+	setText("buybox_msg0","■ "+gBuyterm[gBuyIdx][3].price+"円(税込)／"+gBuyterm[gBuyIdx][3].quantityRange+gBuyterm[gBuyIdx][3].quantityUnit+comment);
+	showElem("bt_linecode");
+	setText("bt_linecodet","−−−−");
+	showElem("bt_1");
+	setText("bt_1t","購入する");
+	showElem("bt_2");
+	setText("bt_2t","購入をやめる");
+	buypop_blur("bt_1");
+	buypop_blur("bt_2");
+	buypop_focus("bt_linecode");
+	showElem("buybox2");
+}
+function showPinPop2(resultConfirm){
+	setText("buybox_title","購入のご確認");
+	var comment="\r\n購入しますか？";
+	if(resultConfirm.vzoneFlag==1) comment="\r\nＶゾーン対象作品なので無料でご覧になれます。";
+	setText("buybox_msg1","\r\n\r\n\r\n■ "+gBuyterm[gBuyIdx][3].price+"円(税込)／"+gBuyterm[gBuyIdx][3].quantityRange+gBuyterm[gBuyIdx][3].quantityUnit+comment);
+	showElem("bt_1");
+	setText("bt_1t","購入する");
+	showElem("bt_2");
+	setText("bt_2t","購入をやめる");
+	buypop_blur("bt_1");
+	buypop_focus("bt_2");
+	showElem("buybox2");
+}
+
+
+function hidePinPop(){
+	hideElem("bt_1");
+	hideElem("bt_2");
+	hideElem("bt_linecode");
+	setText("buybox_title","");
+	setText("buybox_msg0","");
+	setText("buybox_msg1","");
+	setText("bt_1t","");
+	setText("bt_2t","");
+	setText("bt_linecodet","");
+	delUserKey("numeric-tuning");
+	hideElem("buybox2");
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+// サーバー問い合わせ関数群
+////////////////////////////////////////////////////////////////////////////////////////////
+// ジャンル取得関数
+function getGenres(func){
+	var genres=func(gState.ispid,gState.mode,gState.age);
+	if(genres!=null) return genres;
+	var ret = getErrStat();
+	if(ret==null){
+		genres=func(gState.ispid,gState.mode,gState.age);
+		if(genres!=null) return genres;
+		ret = getErrStat();
+	}
+	if(ret==null) showLoginErr();
+	else showPopup(new Array("ホームへ"),gohome,"エラー",ret[1],ret[0]);
+	return null;
+}
+
+// リスト取得関数
+function getListFunc(func,value1,value2,page,ispid, mode, age){
+	if(func==null) return null;
+	var retList=null;
+	if(value2==null){
+		if(page==null){
+			retList=func(value1,ispid,mode,age);
+		}else{
+			if(value1==null){
+				retList=func(page,ispid,mode,age);
+			}else{
+				retList=func(value1,page,ispid,mode,age);
+			}
+		}
+	}else{
+		retList=func(value1,value2,page,ispid,mode,age);
+	}
+	return retList;
+}
+function getList(func,value1,value2,page){
+	var list=getListFunc(func,value1,value2,page,gState.ispid,gState.mode,gState.age);
+	if(list!=null) return list;
+	var ret = getErrStat();
+	if(ret==null){
+		list=getListFunc(func,value1,value2,page,gState.ispid,gState.mode,gState.age);
+		if(list!=null) return list;
+		ret = getErrStat();
+	}
+	if(ret==null) showLoginErr();
+	else if(gTitleSide==true) showPopup(new Array("ホームへ"),gohome,"エラー",ret[1],ret[0]);
+	else showPopup(new Array("閉じる"),goNowScreen,"エラー",ret[1],ret[0]);
+	lockScreen();
+	return null;
+}
+// 詳細取得
+function getDetail(crid,displayType){
+	var detail=getKaraokeContentDetail(crid,displayType,gState.ispid,gState.mode,gState.age);
+	if(detail!=null){
+		if(detail.period!=null&&!interimCheck(detail.period.displayStart,detail.period.displayEnd)){
+			showPopup(new Array("ホームへ"),gohome,"エラー","\r\n提供期間外のためご利用いただけません。\r\n\r\n状態番号：39075","");
+			return null;
+		}
+		return detail;
+	}
+	var ret = getErrStat();
+	if(ret==null){
+		detail=getKaraokeContentDetail(crid,displayType,gState.ispid,gState.mode,gState.age);
+		if(detail!=null){
+			if(detail.period!=null&&!interimCheck(detail.period.displayStart,detail.period.displayEnd)){
+				showPopup(new Array("ホームへ"),gohome,"エラー","\r\n提供期間外のためご利用いただけません。\r\n\r\n状態番号：39075","");
+				return null;
+			}
+			return detail;
+		}
+		ret = getErrStat();
+	}
+	if(ret==null) showLoginErr();
+	else showPopup(new Array("ホームへ"),gohome,"エラー",ret[1],ret[0]);
+	return detail;
+}
+// 詳細文取得
+function getSynopsis(crid,displayType,page){
+	var synopis=getKaraokeSynopsis(crid,displayType,page,gState.ispid,gState.mode,gState.age);
+	if(synopis!=null) return synopis;
+	var ret = getErrStat();
+	if(ret==null){
+		synopis=getKaraokeSynopsis(crid,displayType,page,gState.ispid,gState.mode,gState.age);
+		if(synopis!=null) return synopis;
+		ret = getErrStat();
+	}
+	if(ret==null) showLoginErr();
+	return synopis;
+}
+
+// 予約リスト追加
+function addQueue(func,info){
+	var drmId=getDRMID("marlin_iptv_es");
+	var arr=browser.checkIPTVServiceRegistrationInfo(IP_SERVICE_PROVIDER_ID);
+	// 基本情報取得失敗ポップアップ表示
+	var errCode=(func==addLastKaraokeQueue)?"77":"78";
+	if(drmId==null||String(drmId)=="NaN"){
+		showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr(errCode,"19")),"");
+		return null;
+	}else if(arr==null||arr[0]==""){
+		showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr(errCode,"29")),"");
+		return null;
+	}
+	if(gDBErr){
+		gDBErrQueue=new PageInformation(1,new Array(info));
+		return "OK";
+	}
+	var ret=func(info,drmId,arr[0]);
+	if(ret=="OK"){
+//		updateByQueue();// 画面を更新しておく
+		return ret;
+	}
+	if(ret=="NG"){
+		var err = getErrStat();
+		if(err==null){
+			ret=func(info,drmId,arr[0]);
+			if(ret=="OK"){
+//				updateByQueue();// 画面を更新しておく
+				return ret;
+			}
+			err = getErrStat();
+		}
+	}
+	if(ret=="FULL"){
+		// 予約リストがいっぱい
+	}else if(ret=="NG"){
+		if(gDBErr){
+			showPopup(new Array("閉じる"),goDBErrScreen,"サーバー障害","\r\nサーバー障害が発生しました。\r\nカラオケ予約機能がご利用いただけません。","");
+			if(gFullWindow){ // 全画面なら解除
+				gFullWindow=false;
+				showWindowMode();
+			}
+		}else showPopup(new Array("閉じる"),goNowScreen,"エラー",err[1],err[0]);
+	}
+	return ret;
+}
+// 予約リスト削除
+function removeQueue(func){
+	var drmId=getDRMID("marlin_iptv_es");
+	var arr=browser.checkIPTVServiceRegistrationInfo(IP_SERVICE_PROVIDER_ID);
+	// 基本情報取得失敗ポップアップ表示
+	var errCode=79;
+	if(drmId==null||String(drmId)=="NaN"){
+		showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr(errCode,"19")),"");
+		return null;
+	}else if(arr==null||arr[0]==""){
+		showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr(errCode,"29")),"");
+		return null;
+	}
+
+	if(gDBErr){
+		gDBErrQueue=new PageInformation(0,new Array());
+		return true;
+	}
+	var list=gKaraokeQueue;
+	if(list==null||list.contentList==null||list.contentList.length==0)return false;
+	var ret=func(list.contentList[0],drmId,arr[0]);
+	if(ret=="OK") return true;
+	var err = getErrStat();
+	if(err==null){
+		ret=func(list.contentList[0],drmId,arr[0]);
+		if(ret=="OK") return true;
+		err=getErrStat();
+	}
+	if(gDBErr) showPopup(new Array("閉じる"),goDBErrScreen,"サーバー障害","\r\nサーバー障害が発生しました。\r\nカラオケ予約機能がご利用いただけません。","");
+	else showPopup(new Array("閉じる"),goNowScreen,"エラー",err[1],err[0]);
+	return false;
+}
+// 予約リスト取得(PageInformation)
+var gDBErrQueue=new PageInformation(0,new Array());
+function getQueue(func,value1){
+//	gKaraokeQueue=null;
+	var drmId=getDRMID("marlin_iptv_es");
+	var arr=browser.checkIPTVServiceRegistrationInfo(IP_SERVICE_PROVIDER_ID);
+	// 基本情報取得失敗ポップアップ表示
+	var errCode=(value1==null)?"81":"82";
+	if(drmId==null||String(drmId)=="NaN"){
+		showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr(errCode,"19")),"");
+		return null;
+	}else if(arr==null||arr[0]==""){
+		showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr(errCode,"29")),"");
+		return null;
+	}
+
+
+	var queues=null;
+	if(gDBErr)queues=new PageInformation(0,new Array());
+	else if(value1==null) queues=func(drmId,arr[0]);
+	else queues=func(value1,drmId,arr[0]);
+	if(queues!=null){
+		if(queues.totalCount>0)	gIsQueue=true;
+		else gIsQueue=false;
+		if(gGenreCheng==false&&gState.upbox!=null&&gState.upbox.stype==2) gState.upbox.showBtn(); // 予約開始ボタンの更新
+		if(func==getKaraokeQueue)gKaraokeQueue=queues;
+		return queues;
+	}
+	var ret = getErrStat();
+	if(ret==null){
+		if(value1==null) queues=func(drmId,arr[0]);
+		else queues=func(value1,drmId,arr[0]);
+		if(queues!=null){
+			if(queues.totalCount>0) gIsQueue=true;
+			else gIsQueue=false;
+			if(gGenreCheng==false&&gState.upbox!=null&&gState.upbox.stype==2) gState.upbox.showBtn(); // 予約開始ボタンの更新
+			if(func==getKaraokeQueue)gKaraokeQueue=queues;
+			return queues;
+		}
+		ret = getErrStat();
+	}
+	if(gDBErr){
+		if(gState.upbox!=null){
+			gState.upbox.showBlur("m");
+			gState.upbox.showBlur("s");
+			gState.upbox.focusState=(gState.upbox.focusState=="m"||gState.upbox.focusState=="")?"":"m";
+		}
+		showPopup(new Array("閉じる"),goDBErrScreen,"サーバー障害","\r\nサーバー障害が発生しました。\r\nカラオケ予約機能がご利用いただけません。","");		
+	}else if(gTitleSide==true) showPopup(new Array("ホームへ"),gohome,"エラー",ret[1],ret[0]);
+	else showPopup(new Array("閉じる"),goNowScreen,"エラー",ret[1],ret[0]);
+	lockScreen();
+	return queues;
+}
+// 予約表示
+function showRsv(ret){
+	if(ret=="NG") return false; // エラー
+	else if(ret=="FULL"){showDetailMass("予約がいっぱいです。");}
+	else if(ret=="OK"){
+		// 予約リストを取得する
+		gPlaySound=false;
+		var list=getQueue(getKaraokeQueue,null);
+		gPlaySound=true;
+		if(list!=null&&list.totalCount!=0){
+			if(gState.downbox!=null&&gState.downbox.info!=null){
+				showDetailMass("予約"+list.totalCount+"に "+convOverText(gState.downbox.info.basicDescription.title,14)+"/"+convOverText(gState.downbox.info.karaokeInformation.artistName,10)+" を予約しました。");
+				gChgRsvFlg=true;
+				keyOffKaraoke();
+			}
+		}
+	}
+	return true;
+}
+// 購入確認関数
+function buyConfirmProc(purchaseId,cid,displayType){
+	var drmId=getDRMID("marlin_iptv_es");
+	var arr=browser.checkIPTVServiceRegistrationInfo(IP_SERVICE_PROVIDER_ID);
+	if(drmId!=null&&String(drmId)!="NaN"&&arr!=null&&arr[0]!=""){
+		drmId=String(drmId.indexOf("0x")==0?drmId.substring(2):drmId).toLowerCase();
+
+		var buyInfo=buyConfirm(purchaseId,cid,displayType,drmId,arr[0]);
+		if(buyInfo!=null) return buyInfo;
+		var ret = getErrStat();
+		if(ret==null){
+			var buyInfo=buyConfirm(purchaseId,cid,displayType,drmId,arr[0]);
+			if(buyInfo!=null) return buyInfo;
+			ret = getErrStat();
+		}
+		// サーバエラーホップアップ表示
+		showPopup(new Array("閉じる"),goNowScreen,"エラー",String(ret[1]),String(ret[0]));
+		hideBuyPop();
+	}else{
+		// 基本情報取得失敗ポップアップ表示
+		if(drmId==null||String(drmId)=="NaN") showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr("50","29")),"");
+		else if(arr==null||arr[0]=="") showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr("50","39")),"");
+	}
+	return null;
+}
+function buyLicenseProc(resultConfirm,pin,displayType){
+	var drmId=getDRMID("marlin_iptv_es");
+	var arr=browser.checkIPTVServiceRegistrationInfo(IP_SERVICE_PROVIDER_ID);
+	if(drmId!=null&&String(drmId)!="NaN"&&arr!=null&&arr[0]!=""){
+		drmId=String(drmId.indexOf("0x")==0?drmId.substring(2):drmId).toLowerCase();
+
+		var buyInfo=buyLicense(resultConfirm,pin,displayType,drmId,arr[0]);
+		if(buyInfo!=null) return buyInfo;
+		var ret = getErrStat();
+		if(ret==null){
+			var buyInfo=buyLicense(resultConfirm,pin,displayType,drmId,arr[0]);
+			if(buyInfo!=null) return buyInfo;
+			ret = getErrStat();
+		}
+		// サーバエラーホップアップ表示
+		var errArr=getErrors();
+		var idx=errArr.length-1;
+		showPopup(new Array("閉じる"),goNowScreen,"エラー",String(ret[1]),String(ret[0]));
+		hideBuyPop();
+	}else{
+		// 基本情報取得失敗ポップアップ表示
+		if(drmId==null||String(drmId)=="NaN") showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr("51","29")),"");
+		else if(arr==null||arr[0]=="") showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr("51","39")),"");
+	}
+	return null;
+}
+/////////////////////////////ソフトウェアキーボード/////////////////////////////
+function kbShow(word){ // ソフトウェアキーボード呼び出し
+	gSwkeyBord.init();
+	gSwkeyBord.setword(word);
+}
+
+function SoftWareKeyBord(){
+	this.word	= "";
+	this.max_word = 12;
+	this.keys="あいうえおぁかきくけこぃさしすせそぅたちつてとぇなにぬねのぉはひふへほっまみむめもゃや　ゆ　よゅらりるれろょわをん゛゜ー";
+	this.d_top =  62;// 初期位置
+	this.d_left =  4;// 初期位置
+	this.width = 26;// キー間隔
+	this.height= 30;// キー間隔
+	this.x = 0;// 現フォーカス位置
+	this.y = 0;// 現フォーカス位置
+	this.max_x = 10;// キーの横文字数
+	this.max_y = 6;// キーの縦文字数
+	this.wordbar_d_left = 21;
+	this.cnt=0;
+	this.init			= SWKB_init;
+	this.move			= SWKB_move;
+	this.onclick		= SWKB_onclick;
+	this.backspace		= SWKB_backspace;
+	this.getword		= SWKB_getword;
+	this.setword		= SWKB_setword;
+	this.close			= SWKB_close;
+	this.err=false;
+}
+function SWKB_init(){
+	this.x=0;
+	this.y=0;
+	this.cnt=0;
+	this.word="";
+	this.move(0,0,-1);
+	showElem("keyboard_div");
+	showElem("onkey_div");
+	setFcs("kb_dummy");
+	this.err=false;
+}
+function SWKB_close(){
+	hideElem("kb_close");
+	hideElem("kb_search");
+	hideElem("kb_delete");
+	hideElem("keyboard_div");
+	hideElem("onkey_div");
+	if(this.err) return;
+	if(gState.downbox!=null&&gState.downbox.isfocus()) gState.downbox.focus(-1);
+	else if(gState.upbox!=null&&gState.upbox.isfocus()) gState.upbox.focus(1);
+	else scFocus();
+}
+function SWKB_move(x,y,code){
+	var word="";
+	var left=0;
+	var top=0;
+	if(code==1) y--;
+	else if(code==2) y++;
+	else if(code==3) x--;
+	else if(code==4) x++;
+
+	if(x<0){this.cnt=0; return -3;}
+	if(x>=this.max_x){this.cnt=0; return -4;}
+	if(y<0){this.cnt=0; return -1;}
+	if(y>=this.max_y){this.cnt=0; return -2;}
+
+	// キーボード内
+	word = this.keys.charAt((x*this.max_y)+y);
+	if(word!="　"){
+		left = this.d_left + (this.width*x);
+		top = this.d_top + (this.height*y);
+		if(y==5) top+=10;
+		getElementById("onkey_div").normalStyle.left = String(left)+"px";
+		getElementById("onkey_div").normalStyle.top = String(top)+"px";
+		this.x = x;
+		this.y = y;
+		return 0;
+	}
+	this.cnt++;
+	return this.move(x,y,code);
+
+}
+function SWKB_onclick(){
+	var word = "";
+	var bf="";
+	var af="";
+	word = this.keys.charAt((this.x*this.max_y)+this.y);
+	if(word=="゛"){
+		if( this.word=="") return;
+		bf = "かきくけこさしすせそたちつてとはひふへほぱぴぷぺぽがぎぐげござじずぜぞだぢづでどばびぶべぼ";
+		af = "がぎぐげござじずぜぞだぢづでどばびぶべぼばびぶべぼかきくけこさしすせそたちつてとはひふへほ";
+		word = this.word.substring(this.word.length-1,this.word.length);
+		var ret = bf.indexOf(word);
+		if(ret>=0){
+			this.setword(this.word.substring(0,this.word.length-1)+af.charAt(ret));
+			return true;
+		}
+	}else if(word=="゜"){
+		if( this.word=="") return;
+		bf = "はひふへほばびぶべぼぱぴぷぺぽ";
+		af = "ぱぴぷぺぽぱぴぷぺぽはひふへほ";
+		word = this.word.substring(this.word.length-1,this.word.length);
+		var ret = bf.indexOf(word);
+		if(ret>=0){
+			this.setword(this.word.substring(0,this.word.length-1)+af.charAt(ret));
+			return true;
+		}
+//	}else if(this.word.length==0&&(String("ぁぃぅぇぉっゃょゅー").indexOf(word)!=-1)){
+//		return false;
+	}else{
+		this.setword(this.word+word);
+		return true;
+	}
+	return false;
+}
+function SWKB_backspace(){this.setword(this.word.substring(0,this.word.length-1));}
+function SWKB_getword(){return this.word;}
+function SWKB_setword(wd){
+	if(wd.length>this.max_word){
+		var tmp = wd.substring(0,this.max_word-1);
+		wd = tmp + wd.substring(this.max_word,this.max_word+1);
+	}
+	this.word = wd;
+	if( wd.length < this.max_word ){
+		getElementById("wordbar").normalStyle.left = String(this.wordbar_d_left+(wd.length*20))+"px";
+	}else if( this.max_word <= wd.length ){
+		getElementById("wordbar").normalStyle.left = String(this.wordbar_d_left+((this.max_word-1)*20))+"px";
+	}
+	setText("word",this.word);
+}
+function keyboard_focus(hideId,showId){
+	playSound(9);hideElem(hideId);showElem(showId);setFcs(showId);
+}
+function keyboard_keydown(){
+	var id = document.currentEvent.target.id;
+	var code= document.currentEvent.keyCode;
+	lockScreen();
+	if(code==1||code==2||code==3||code==4){
+		if(id=="kb_dummy"){
+			if(gSwkeyBord.move(gSwkeyBord.x,gSwkeyBord.y,code)==0){
+				playSound(9);
+			}else{
+				if(code==1){
+					keyboard_focus("onkey_div","kb_close");
+				}else if(code==2){
+					keyboard_focus("onkey_div","kb_search");
+				}else if(code==3){
+					if(gSwkeyBord.move(9,gSwkeyBord.y,-1)==0){
+						playSound(9);
+					}
+				}else if(code==4){
+					if(gSwkeyBord.move(0,gSwkeyBord.y,-1)==0){
+						playSound(9);
+					}
+				}
+			}
+		}else{
+			if(code==1){
+				if(id=="kb_search"&&gSwkeyBord.move(gSwkeyBord.x,5,-1) == 0){
+					playSound(9);showElem("onkey_div");setFcs("kb_dummy");hideElem("kb_search");
+				}else if(id=="kb_delete"){
+					keyboard_focus("kb_delete","kb_search");
+				}else if(id=="kb_close"){
+					keyboard_focus("kb_close","kb_delete");
+				}
+			}else if(code==2){
+				if(id=="kb_search"){
+					keyboard_focus("kb_search","kb_delete");
+				}else if(id=="kb_delete"){
+					keyboard_focus("kb_delete","kb_close");
+				}else if(id=="kb_close"&&gSwkeyBord.move(gSwkeyBord.x,0,-1)==0){
+					playSound(9);showElem("onkey_div");setFcs("kb_dummy");hideElem("kb_close");
+				}
+			}
+		}
+	}else if(code==18){
+		if(id=="kb_search"){
+			// 検索開始
+			var word = gSwkeyBord.getword();
+			if(word=="") return;
+			playSound(7);
+			if(!gState.upbox.searchWord(word)) gSwkeyBord.err=true;
+			gSwkeyBord.close();
+		}else if(id=="kb_delete"){
+			if(gSwkeyBord.getword()!=""){
+				gSwkeyBord.backspace();
+				playSound(7);
+			}
+		}else if(id=="kb_close"&&gSwkeyBord.move(gSwkeyBord.x,0,-1)==0){
+			// ホップアップ閉じ
+			gSwkeyBord.close();
+			playSound(7);
+		}else if(id=="kb_dummy"&&gSwkeyBord.onclick()){
+			playSound(7);
+		}
+	}else if(code==19){
+		if(gSwkeyBord.getword()!=""){
+			gSwkeyBord.backspace();
+			playSound(7);
+		}
+	}else if(21<=code && code<=24){
+		colorKey(code);
+	}
+	unlockScreen();
+}
+// 予約リスト削除
+function rsvRmv(cd){
+	if(gPlayMovie&&gKaraokeQueue.contentList!=null&&gKaraokeQueue.contentList.length>0&&gKaraokeQueue.contentList[0].karaokeInformation.uid==cd.karaokeInformation.uid){
+		//再生中の１曲目を削除する時は今流れている曲を止める
+		getElementById("Video").streamStatus="stop";
+		return false;
+	}
+
+	var drmId=getDRMID("marlin_iptv_es");
+	var arr=browser.checkIPTVServiceRegistrationInfo(IP_SERVICE_PROVIDER_ID);
+	// 基本情報取得失敗ポップアップ表示
+	var errCode=79;
+	if(drmId==null||String(drmId)=="NaN"){
+		showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr(errCode,"19")),"");
+		return false;
+	}else if(arr==null||arr[0]==""){
+		showPopup(new Array("閉じる"),goNowScreen,"エラー",setErrMsg(getBmlErr(errCode,"29")),"");
+		return false;
+	}
+
+	if(gDBErr){
+		gDBErrQueue=new PageInformation(0,new Array());
+		return true;
+	}
+
+	var ret=removeKaraokeReservation(cd,drmId,arr[0]);
+	if(ret=="OK") return true;
+	var err = getErrStat();
+	if(err==null){
+		ret=removeKaraokeReservation(cd,drmId,arr[0]);
+		if(ret=="OK") return true;
+		err=getErrStat();
+	}
+	if(gDBErr) showPopup(new Array("閉じる"),goDBErrScreen,"サーバー障害","\r\nサーバー障害が発生しました。\r\nカラオケ予約機能がご利用いただけません。","");
+	else showPopup(new Array("閉じる"),goNowScreen,"エラー",err[1],err[0]);
+	return false;
+}
+function colorKey(code){
+	if(code==21&&(gColFlg&1)){
+		playSound(7);
+		if(gWindInfo)hideKaraokInfomationL();
+		else if(!gChgRsvFlg)showKaraokInfomationL();
+	}else if(code==22&&(gColFlg&2)){
+		playSound(7);
+		gPlaySound=false;
+		scblur(gScIdx);
+		showGenre(4);
+		gPlaySound=true;
+	}else if(code==23&&(gColFlg&4)){
+		playSound(7);
+		gPlaySound=false;
+		scblur(gScIdx);
+		showGenre(9);
+		gPlaySound=true;
+	}else if(code==24&&(gColFlg&8)){
+		if(gState.downbox!=null){
+			gRmvKCI=gState.downbox.get();
+			var idx=gState.downbox.idx;
+			if(gRmvKCI!=null){
+				playSound(7);
+				showPopup2(new Array("削除する","削除しない"),pop2funcRsvRmv,"予約削除","予約リスト("+(idx+1)+")\n"+convOverText(gRmvKCI.basicDescription.title,14)+" / "+convOverText(gRmvKCI.karaokeInformation.artistName,10)+"\nを削除しますか？");
+			}
+		}
+	}
+}
+function colorFullKey(code){
+	if(code==21){
+		playSound(7);
+		if(gFullInfo) hideKaraokInfomation();
+		else showKaraokInfomation();
+	}else if(code==22){
+		playSound(7);
+		showWindowMode();
+		gPlaySound=false;
+		showGenre(4);
+		gPlaySound=true;
+	}else if(code==23){
+		playSound(7);
+		showWindowMode();
+		gPlaySound=false;
+		showGenre(9);
+		gPlaySound=true;
+	}
+}
+////////////////////////////////////////////////////////////////////////////////
+function padding2( format , str ){return str + format.substring( 0, format.length - String(str).length );}
+function numUpper(num){
+	var list=new Array("０","１","２","３","４","５","６","７","８","９");
+	num=String(num);
+	var str="";
+	for(var i=0;i<num.length;i++) str+=list[Number(num.charAt(i))];
+	return str;
+}
+function dummy_colorClick(code){}
+function onunload(){}
+]]></script>
+<bevent>
+	<beitem id="DataButtonPressed" type="DataButtonPressed" onoccur="dataButtonPressed();" subscribe="subscribe"/>
+	<beitem id="MediaStopped" type="MediaStopped" onoccur="mediaStopped();" object_id="Video"/>
+</bevent>
+</head>
+<body id="body" onload="onload();" onunload="onunload();">
+<div style="width:960px;height:540px;">
+	<object id="Video" type="application/X-arib-contentPlayControl" data="" style="left:63px;top:65px;width:540px;height:405px;visibility:hidden;" streamstatus="stop"/>
+</div>
+<div id="basebox" style="width:960px;height:540px;">
+	<object id="video_off" type="image/jpeg" data="images/dummy_06.jpg" style="left:63px;top:65px;width:540px;height:405px;visibility:visible;"/>
+	<object id="bg" type="image/X-arib-png" data="images/bg_ko02.png" style="width:960px;height:540px;"/>
+	<object id="logo" type="image/X-arib-png" data="images/logo.png" style="width:270px;height:62px;"/>
+	<object id="temaIcon" type="image/X-arib-png" data="images/pos-ko.png" style="left:269px;top:37px;width:110px;height:25px;"/>
+	<object id="temaIconSub" type="image/X-arib-png" data="images/pos-2nd.png" style="left:379px;top:37px;width:150px;height:25px;visibility:hidden;"/>
+	<p id="temaIconSub_t" class="temaIconSub" style="left:403px;top:42px;width:128px;height:16px;"><![CDATA[]]></p>
+	<object id="guide_d01" type="image/X-arib-png" data="images/guide_d03.png" style="left:62px;top:482px;width:130px;height:22px;visibility:hidden;"/>
+	<object id="guide_b01" type="image/X-arib-png" data="images/guide_ko02.png" style="left:192px;top:482px;width:100px;height:22px;visibility:hidden;"/>
+	<object id="guide_r01" type="image/X-arib-png" data="images/guide_ko03.png" style="left:292px;top:482px;width:100px;height:22px;visibility:hidden;"/>
+	<object id="guide_g01" type="image/X-arib-png" data="images/guide_ko04.png" style="left:392px;top:482px;width:100px;height:22px;visibility:hidden;"/>
+	<object id="guide_y01" type="image/X-arib-png" data="images/guide_ko05.png" style="left:492px;top:482px;width:100px;height:22px;visibility:hidden;"/>
+</div>
+<div id="clock" style="left:706px;top:41px;width:192px;height:16px;">
+	<p id="clock0" class="clocktext"><![CDATA[]]></p>
+	<p id="clock1" class="clocktext" style="left:16px;"><![CDATA[]]></p>
+	<p id="clock2" class="clocktext" style="left:32px;"><![CDATA[]]></p>
+	<p id="clock3" class="clocktext" style="left:48px;"><![CDATA[]]></p>
+	<p id="clock4" class="clocktext" style="left:64px;width:32px;"><![CDATA[]]></p>
+	<p id="clock5" class="clocktext" style="left:100px;width:32px;"><![CDATA[]]></p>
+	<p id="clock6" class="clocktext" style="left:120px;"><![CDATA[]]></p>
+	<p id="clock7" class="clocktext" style="left:136px;width:8px;"><![CDATA[]]></p>
+	<p id="clock8" class="clocktext" style="left:144px;"><![CDATA[]]></p>
+</div>
+<div id="shortcut" style="left:627px;top:471px;width:274px;height:36px;">
+	<object id="scbtn" type="image/X-arib-png" data="images/bt_s_bk.png" style="width:70px;height:36px;" onkeydown="sckey();"/>
+</div>
+
+<div id="karaoke_info" style="left:130px;top:42px;width:700px;height:118px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/ko_dialogbox02.png" style="width:700px;height:118px;"/>
+	<p id="info_title" style="left:80px;top:11px;width:600px;height:20px;font-size:20px;color-index:173;grayscale-color-index:169 154;"><![CDATA[]]></p>
+	<p id="info_name"  style="left:80px;top:41px;width:500px;height:20px;font-size:20px;color-index:173;grayscale-color-index:169 154;"><![CDATA[]]></p>
+	<p id="info_num" style="left:660px;top:98px;width:16px;height:16px;text-align:center;font-size:16px;color-index:173;grayscale-color-index:15 160;"><![CDATA[]]></p>
+	<p id="info_next" style="left:80px;top:71px;width:600px;height:20px;font-size:20px;color-index:173;grayscale-color-index:169 154;"><![CDATA[]]></p>
+</div>
+<div id="karaoke_infoL" style="left:65px;top:74px;width:536px;height:105px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/ko_dialogbox04.png" style="width:536px;height:105px;"/>
+	<p id="infoL_title" style="left:53px;top:9px;width:480px;height:16px;font-size:16px;color-index:173;grayscale-color-index:169 154;"><![CDATA[]]></p>
+	<p id="infoL_name"  style="left:53px;top:35px;width:400px;height:16px;font-size:16px;color-index:173;grayscale-color-index:169 154;"><![CDATA[]]></p>
+	<p id="infoL_num" style="left:497px;top:85px;width:16px;height:16px;text-align:center;font-size:16px;color-index:173;grayscale-color-index:15 160;"><![CDATA[]]></p>
+	<p id="infoL_next" style="left:53px;top:61px;width:480px;height:16px;font-size:16px;color-index:173;grayscale-color-index:169 154;"><![CDATA[]]></p>
+</div>
+
+<div id="karaoke_fullmes" style="left:67px;top:42px;width:766px;height:460px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/ko_dialogbox03.png" style="left:61px;width:178px;height:44px;"/>
+	<object type="image/X-arib-png" data="images/ko_dialogbox01.png" style="left:246px;width:520px;height:44px;"/>
+	<p id="full_code" style="left:90px;top:10px;width:120px;height:24px;font-size:24px;color-index:0;grayscale-color-index:156 170;"><![CDATA[]]></p>
+	<p id="full_message" style="left:266px;top:12px;width:480px;height:20px;font-size:20px;color-index:173;grayscale-color-index:169 154;"><![CDATA[]]></p>
+	<div id="cddec" style="top:398px;width:170px;height:62px;visibility:hidden;">
+		<object type="image/X-arib-png" data="images/ko_dialogbox05.png" style="width:170px;height:62px;"/>
+		<p style="left:13px;top:11px;width:144px;height:40px;font-size:16px;line-height:20px;color-index:173;grayscale-color-index:169 154;"><![CDATA[決定キーで予約確定]]></p>
+	</div>
+</div>
+<!-- upbox -->
+<div id="upbox" style="left:609px;top:72px;width:296px;height:200px;visibility:hidden;">
+	<!-- メインジャンル -->
+	<object id="bg_gm" type="image/X-arib-png" data="images/bg_ctg10.png" style="left:14px;width:270px;height:36px;visibility:hidden;" onkeydown="ugkey();"/>
+	<object id="csrm0" type="image/X-arib-png" data="images/csr_left02.png" style="left:66px;top:3px;width:30px;height:30px;visibility:hidden;"/>
+	<object id="csrm1" type="image/X-arib-png" data="images/csr_right02.png" style="left:202px;top:3px;width:30px;height:30px;visibility:hidden;"/>
+	<p id="ctgmt0" style="left:19px;top:8px;width:40px;height:20px; text-align:center;font-size:20px;color-index:173;grayscale-color-index:170 162;"><![CDATA[]]></p>
+	<p id="ctgmt1" style="left:99px;top:8px;width:100px;height:20px;text-align:center;font-size:20px;color-index:138;grayscale-color-index:154 162;"><![CDATA[]]></p>
+	<p id="ctgmt2" style="left:239px;top:8px;width:40px;height:20px; text-align:center;font-size:20px;color-index:173;grayscale-color-index:170 162;"><![CDATA[]]></p>
+	<!-- サブジャンル -->
+	<object id="bg_gs" type="image/X-arib-png" data="images/bg_ctg11.png" style="left:14px;top:40px;width:270px;height:28px;visibility:hidden;"  onkeydown="ugkey();"/>
+	<object id="csrs0" type="image/X-arib-png" data="images/csr_left05.png" style="left:68px;top:40px;width:28px;height:28px;visibility:hidden;"/>
+	<object id="csrs1" type="image/X-arib-png" data="images/csr_right05.png" style="left:202px;top:40px;width:28px;height:28px;visibility:hidden;"/>
+	<p id="ctgst0" style="left:19px;top:44px;width:40px;height:20px; text-align:center;font-size:20px;color-index:173;grayscale-color-index:170 162;"><![CDATA[]]></p>
+	<p id="ctgst1" style="left:99px;top:44px;width:100px;height:20px;text-align:center;font-size:20px;color-index:138;grayscale-color-index:154 162;"><![CDATA[]]></p>
+	<p id="ctgst2" style="left:239px;top:44px;width:40px;height:20px; text-align:center;font-size:20px;color-index:173;grayscale-color-index:170 162;"><![CDATA[]]></p>
+	<!-- メインタイトル -->
+	<object id="bg_tm" type="image/X-arib-png" data="images/bg_ctg08.png" style="left:14px;width:270px;height:36px;visibility:hidden;" onkeydown="ugkey();"/>
+	<object id="csrm2" type="image/X-arib-png" data="images/csr_left06.png" style="top:3px;width:30px;height:30px;visibility:hidden;"/>
+	<object id="csrm3" type="image/X-arib-png" data="images/csr_right06.png" style="left:266px;top:3px;width:30px;height:30px;visibility:hidden;"/>
+	<p id="titlem" style="left:29px;top:8px;width:240px;height:20px; text-align:center;font-size:20px;color-index:7;grayscale-color-index:170 160;"><![CDATA[]]></p>
+	<div style="left:29px;top:8px;width:240px;height:20px;">
+		<p id="titlet" style="width:240px;height:20px; text-align:center;font-size:20px;color-index:0;grayscale-color-index:189 191;"><![CDATA[]]></p>
+	</div>
+	<!-- サブタイトル -->
+	<object id="bg_ts" type="image/X-arib-png" data="images/bg_ctg09.png" style="left:14px;top:40px;width:270px;height:28px;visibility:hidden;" onkeydown="ugkey();"/>
+	<p id="titles" style="left:21px;top:46px;width:256px;height:16px; text-align:center;font-size:16px;color-index:7;grayscale-color-index:170 160;"><![CDATA[]]></p>
+	<!-- ボタン -->
+	<object id="bt_ko_start" type="image/X-arib-png" data="images/bt_ko_start.png" style="left:59px;top:38px;width:186px;height:32px;visibility:hidden;" onkeydown="ugkey();"/>
+	<object id="bt_ko_input" type="image/X-arib-png" data="images/bt_ko_input.png" style="left:59px;top:38px;width:186px;height:32px;visibility:hidden;" onkeydown="ugkey();"/>
+	<object id="bt_ko_kcode" type="image/X-arib-png" data="images/bt_ko_kcode.png" style="left:51px;top:35px;width:202px;height:38px;visibility:hidden;" onkeydown="ugkey();"/>
+	<object id="bt_ko_feature" type="image/X-arib-png" data="images/bt_ko_feature.png" style="left:59px;top:38px;width:186px;height:32px;visibility:hidden;" onkeydown="ugkey();"/>
+	<p id="codet" style="left:99px;top:44px;width:100px;height:20px; text-align:center;font-size:20px;color-index:0;grayscale-color-index:156 170;"><![CDATA[]]></p>
+</div>
+<div id="detail" style="left:73px;top:70px;width:832px;height:392px; visibility:hidden;">
+	<!-- 詳細ボタン -->
+	<object type="image/X-arib-png" data="images/bg_ctg12.png" style="left:545px;top:45px;width:280px;height:107px;"/>
+	<object id="detailbtn0" type="image/X-arib-png" data="images/bt_ko_detail01.png" style="left:557px;top:55px;width:256px;height:32px;visibility:hidden;" onkeydown="detailkey();"/>
+	<object id="detailbtn1" type="image/X-arib-png" data="images/bt_ko_detail01.png" style="left:557px;top:85px;width:256px;height:32px;visibility:hidden;" onkeydown="detailkey();"/>
+	<object id="detailbtn2" type="image/X-arib-png" data="images/bt_ko_detail01.png" style="left:557px;top:115px;width:256px;height:32px;visibility:hidden;" onkeydown="detailkey();"/>
+	<p id="detailbtn0t" style="left:565px;top:63px;width:240px;height:16px;font-size:16px;color-index:7;grayscale-color-index:171 167;"><![CDATA[]]></p>
+	<p id="detailbtn1t" style="left:565px;top:93px;width:240px;height:16px;font-size:16px;color-index:7;grayscale-color-index:171 167;"><![CDATA[]]></p>
+	<p id="detailbtn2t" style="left:565px;top:123px;width:240px;height:16px;font-size:16px;color-index:7;grayscale-color-index:171 167;"><![CDATA[]]></p>
+	<!-- メッセージダイアログ -->
+	<object id="detail_message" type="image/X-arib-png" data="images/ko_dialogbox01.png" style="top:5px;width:520px;height:44px;visibility:hidden;"/>
+	<p id="detail_messaget" style="left:20px;top:17px;width:480px;height:20px;font-size:20px;color-index:173;grayscale-color-index:169 154;"><![CDATA[]]></p>
+	<!-- 解説本文 -->
+	<p id="detail_text" style="left:554px;top:158px;width:260px;height:192px;line-height:24px;font-size:20px;color-index:173;grayscale-color-index:169 154;"><![CDATA[]]></p>
+	<!-- 解説ボタン -->
+	<object id="detailbtn3" type="image/X-arib-png" data="images/bt_ko_detail02-g.png" style="left:625px;top:360px;width:120px;height:32px;visibility:hidden;" onkeydown="detailkey();"/>
+	<p id="detailbtn3t" style="left:690px;top:368px;width:48px;height:16px;text-align:center;font-size:16px;color-index:7;grayscale-color-index:171 167;"><![CDATA[]]></p>
+</div>
+<div id="list" style="left:610px;top:148px;width:295px;height:313px; visibility:hidden;">
+	<!-- リスト -->
+	<object id="bt_klist00" type="image/X-arib-png" data="images/bt_klist01.png" style="left:30px;width:236px;height:30px;visibility:hidden;"/>
+	<object id="bt_klist01" type="image/X-arib-png" data="images/bt_klist02.png" style="left:30px;top:30px;width:236px;height:30px;visibility:hidden;"/>
+	<object id="bt_klist02" type="image/X-arib-png" data="images/bt_klist03.png" style="left:30px;top:60px;width:236px;height:30px;visibility:hidden;"/>
+	<object id="bt_klist03" type="image/X-arib-png" data="images/bt_klist04.png" style="left:30px;top:90px;width:236px;height:30px;visibility:hidden;"/>
+	<object id="bt_klist04" type="image/X-arib-png" data="images/bt_klist05.png" style="left:30px;top:120px;width:236px;height:30px;visibility:hidden;"/>
+	<object id="bt_klist05" type="image/X-arib-png" data="images/bt_klist06.png" style="left:30px;top:150px;width:236px;height:30px;visibility:hidden;"/>
+	<object id="bt_klist06" type="image/X-arib-png" data="images/bt_klist07.png" style="left:30px;top:180px;width:236px;height:30px;visibility:hidden;"/>
+	<object id="bt_klist07" type="image/X-arib-png" data="images/bt_klist08.png" style="left:30px;top:210px;width:236px;height:30px;visibility:hidden;"/>
+	<object id="bt_klist08" type="image/X-arib-png" data="images/bt_klist09.png" style="left:30px;top:240px;width:236px;height:30px;visibility:hidden;"/>
+	<!-- リストフォーカス -->
+	<object id="bt_klist" type="image/X-arib-png" data="images/bt_klist-f.png" style="left:30px;top:0px;width:236px;height:30px;visibility:hidden;" onkeydown="listkey();"/>
+	<!-- リストテキスト -->
+	<p id="bt_klist00t1" class="btlist" style="left:57px;top:7px;width:112px;"><![CDATA[]]></p>
+	<p id="bt_klist01t1" class="btlist" style="left:57px;top:37px;width:112px;"><![CDATA[]]></p>
+	<p id="bt_klist02t1" class="btlist" style="left:57px;top:67px;width:112px;"><![CDATA[]]></p>
+	<p id="bt_klist03t1" class="btlist" style="left:57px;top:97px;width:112px;"><![CDATA[]]></p>
+	<p id="bt_klist04t1" class="btlist" style="left:57px;top:127px;width:112px;"><![CDATA[]]></p>
+	<p id="bt_klist05t1" class="btlist" style="left:57px;top:157px;width:112px;"><![CDATA[]]></p>
+	<p id="bt_klist06t1" class="btlist" style="left:57px;top:187px;width:112px;"><![CDATA[]]></p>
+	<p id="bt_klist07t1" class="btlist" style="left:57px;top:217px;width:112px;"><![CDATA[]]></p>
+	<p id="bt_klist08t1" class="btlist" style="left:57px;top:247px;width:112px;"><![CDATA[]]></p>
+	<p id="bt_klist00t2" class="btlist" style="left:179px;top:7px;width:80px;"><![CDATA[]]></p>
+	<p id="bt_klist01t2" class="btlist" style="left:179px;top:37px;width:80px;"><![CDATA[]]></p>
+	<p id="bt_klist02t2" class="btlist" style="left:179px;top:67px;width:80px;"><![CDATA[]]></p>
+	<p id="bt_klist03t2" class="btlist" style="left:179px;top:97px;width:80px;"><![CDATA[]]></p>
+	<p id="bt_klist04t2" class="btlist" style="left:179px;top:127px;width:80px;"><![CDATA[]]></p>
+	<p id="bt_klist05t2" class="btlist" style="left:179px;top:157px;width:80px;"><![CDATA[]]></p>
+	<p id="bt_klist06t2" class="btlist" style="left:179px;top:187px;width:80px;"><![CDATA[]]></p>
+	<p id="bt_klist07t2" class="btlist" style="left:179px;top:217px;width:80px;"><![CDATA[]]></p>
+	<p id="bt_klist08t2" class="btlist" style="left:179px;top:247px;width:80px;"><![CDATA[]]></p>
+	<p id="bt_klist00t3" class="btlist" style="left:57px;top:7px;width:192px;"><![CDATA[]]></p>
+	<p id="bt_klist01t3" class="btlist" style="left:57px;top:37px;width:192px;"><![CDATA[]]></p>
+	<p id="bt_klist02t3" class="btlist" style="left:57px;top:67px;width:192px;"><![CDATA[]]></p>
+	<p id="bt_klist03t3" class="btlist" style="left:57px;top:97px;width:192px;"><![CDATA[]]></p>
+	<p id="bt_klist04t3" class="btlist" style="left:57px;top:127px;width:192px;"><![CDATA[]]></p>
+	<p id="bt_klist05t3" class="btlist" style="left:57px;top:157px;width:192px;"><![CDATA[]]></p>
+	<p id="bt_klist06t3" class="btlist" style="left:57px;top:187px;width:192px;"><![CDATA[]]></p>
+	<p id="bt_klist07t3" class="btlist" style="left:57px;top:217px;width:192px;"><![CDATA[]]></p>
+	<p id="bt_klist08t3" class="btlist" style="left:57px;top:247px;width:192px;"><![CDATA[]]></p>
+	<!-- 説明文 -->
+	<p id="explanation" style="left:28px;top:5px;width:240px;height:264px;line-height:24px;font-size:20px;color-index:173;grayscale-color-index:169 154;"><![CDATA[]]></p>
+	<!-- ページ切り替え -->
+	<object id="page_prv05" type="image/X-arib-png" data="images/page_prv05.png" style="left:14px;top:3px;width:14px;height:264px;visibility:hidden;"/>
+	<object id="page_nxt05" type="image/X-arib-png" data="images/page_nxt05.png" style="left:268px;top:3px;width:14px;height:264px;visibility:hidden;"/>
+	<object id="csr_left01" type="image/X-arib-png" data="images/csr_left01.png" style="top:123px;width:25px;height:25px;visibility:hidden;"/>
+	<object id="csr_right01" type="image/X-arib-png" data="images/csr_right01.png" style="left:270px;top:123px;width:25px;height:25px;visibility:hidden;"/>
+	<!-- ページ数 -->
+	<object id="bg_value" type="image/X-arib-png" data="images/bg_value.png" style="left:13px;top:285px;width:270px;height:28px;visibility:hidden;"/>
+	<object id="value02" type="image/X-arib-png" data="images/value02.png" style="left:161px;top:293px;width:60px;height:14px;visibility:hidden;"/>
+	<p id="paget" style="left:220px;top:291px;width:56px;height:16px;text-align:center;font-size:16px;color-index:173;grayscale-color-index:15 160;"><![CDATA[]]></p>
+</div>
+<div id="fullscrDbtn" style="width:960px;height:540px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/guide_ko01.png" style="left:67px;top:386px;width:170px;height:116px;"/>
+</div>
+<!-- ソフトウェアキーボード -->
+<div id="keyboard_div" style="left:618px; top:112px; width:280px; height:392px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/bg_keyboard.png" style="width:280px;height:392px;"/>
+	<!-- 打ち込みキーワード -->
+	<p id="word" style="left:20px;top:21px;width:240px;height:20px;font-size:20px;color-index:0;grayscale-color-index:156 170;"><![CDATA[]]></p>
+	<div id="wordbar" style="left:20px; top:41px; width:20px; height:2px;background-color-index:187;" />
+	<!-- フォーカス -->
+	<div id="kb_dummy" style="left:0px;top:0px;height:2px;width:2px;"  onkeydown="keyboard_keydown();" />
+	<div id="onkey_div" style="left:4px;top:58px;height:38px;width:38px;">
+		<object type="image/X-arib-png" data="images/bt_kb_key-f.png" style="width:38px;height:38px;"/>
+	</div>
+	<!-- ボタン -->
+	<object id="kb_search" type="image/X-arib-png" data="images/bt_kb_search-f.png" style="left:9px; top:269px;width:262px;height:38px;visibility:hidden;" onkeydown="keyboard_keydown();"/>
+	<object id="kb_delete" type="image/X-arib-png" data="images/bt_kb_delete-f.png" style="left:9px; top:310px;width:262px;height:28px;visibility:hidden;" onkeydown="keyboard_keydown();"/>
+	<object id="kb_close" type="image/X-arib-png" data="images/bt_kb_close-f.png" style="left:47px; top:354px;width:186px;height:32px;visibility:hidden;" onkeydown="keyboard_keydown();"/>
+</div>
+<!-- 購入ポップアップ -->
+<div id="buybox1" style="left:621px;top:118px;width:274px;height:307px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/bg_kpopup.png" style="width:274px;height:307px;"/>
+	<object id="buy_btn0" type="image/X-arib-png" data="images/bt_3.png" style="left:19px; top:68px;width:236px;height:80px;visibility:hidden;" onkeydown="buykey();"/>
+	<object id="buy_btn1" type="image/X-arib-png" data="images/bt_3.png" style="left:19px; top:148px;width:236px;height:80px;visibility:hidden;" onkeydown="buykey();"/>
+	<object id="buy_cancel" type="image/X-arib-png" data="images/bt_2.png" style="left:59px; top:244px;width:156px;height:36px;" onkeydown="buykey();"/>
+
+	<p id="buy_title" style="left:27px;top:28px;width:220px;height:20px;text-align:center;font-size:20px;color-index:7;grayscale-color-index:171 163;"><![CDATA[選択リスト]]></p>
+	<p id="buy_btn0t" style="left:27px;top:75px;width:220px;height:66px;text-align:center;line-height:22px;font-size:20px;color-index:7;grayscale-color-index:171 167;"><![CDATA[]]></p>
+	<p id="buy_btn1t" style="left:27px;top:155px;width:220px;height:66px;text-align:center;line-height:22px;font-size:20px;color-index:7;grayscale-color-index:171 167;"><![CDATA[]]></p>
+	<p id="buy_cancelt" style="left:67px;top:252px;width:140px;height:20px;text-align:center;font-size:20px;color-index:7;grayscale-color-index:171 167;"><![CDATA[購入をやめる]]></p>
+</div>
+<div id="buybox2" style="left:180px;top:118px;width:600px;height:310px;visibility:hidden;">
+	<object id="bg_popup" type="image/X-arib-png" data="images/bg_popup.png" style="width:600px;height:310px;"/>
+	<object id="bg_puttl" type="image/X-arib-png" data="images/bg_puttl.png" style="left:27px;top:26px;width:546px;height:24px;"/>
+	<object id="bt_1" type="image/X-arib-png" data="images/bt_2.png" style="left:137px;top:239px;width:156px;height:36px; visibility:hidden;" onkeydown="buykey();"/>
+	<object id="bt_2" type="image/X-arib-png" data="images/bt_2.png" style="left:307px;top:239px;width:156px;height:36px; visibility:hidden;" onkeydown="buykey();"/>
+	<object id="bt_linecode" type="image/X-arib-png" data="images/bt_linecode.png" style="left:175px;top:149px;width:250px;height:55px; visibility:hidden;" onkeydown="buykey();"/>
+
+	<p id="buybox_title" style="left:40px;top:28px;width:520px;height:20px;font-size:20px;color-index:7;grayscale-color-index:171 163;text-align:center;"><![CDATA[]]></p>
+	<p id="buybox_msg0" style="left:40px;top:58px;width:520px;height:72px;font-size:20px;color-index:173;grayscale-color-index:169 154;text-align:center;line-height:24px;"><![CDATA[]]></p>
+	<p id="buybox_msg1" style="left:40px;top:58px;width:520px;height:168px;font-size:20px;color-index:173;grayscale-color-index:169 154;text-align:center;line-height:24px;"><![CDATA[]]></p>
+	<p id="bt_1t" class="pbtn" style="left:145px;top:247px;width:140px;height:20px;text-align:center;"><![CDATA[]]></p>
+	<p id="bt_2t" class="pbtn" style="left:315px;top:247px;width:140px;height:20px;text-align:center;"><![CDATA[]]></p>
+	<p id="bt_linecodet" style="left:252px;top:166px;width:96px;height:24px;font-size:24px;color-index:0;grayscale-color-index:156 170;text-align:center;"><![CDATA[]]></p>
+</div>
+<div id="pop" style="left:180px;top:118px;width:600px;height:310px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/bg_popup.png" style="width:600px;height:310px;"/>
+	<object id="titBase" type="image/X-arib-png" data="images/bg_puttl.png" style="left:27px;top:26px;width:546px;height:24px;"/>
+	<object id="pbtn0" type="image/X-arib-png" data="images/bt_2.png" style="top:239px;width:156px;height:36px;visibility:hidden;" onkeydown="popkey();"/>
+	<object id="pbtn1" type="image/X-arib-png" data="images/bt_2.png" style="top:239px;width:156px;height:36px;visibility:hidden;" onkeydown="popkey();"/>
+	<object id="pbtn2" type="image/X-arib-png" data="images/bt_2.png" style="top:239px;width:156px;height:36px;visibility:hidden;" onkeydown="popkey();"/>
+	<p id="ptitle" style="left:40px;top:28px;width:520px;height:20px;font-size:20px;color-index:7;grayscale-color-index:171 163;text-align:center;"><![CDATA[]]></p>
+	<p id="ptext" style="left:40px;top:60px;width:520px;height:168px;font-size:20px;line-height:24px;color-index:173;grayscale-color-index:169 154;text-align:center;"><![CDATA[]]></p>
+	<p id="pbtn0t" class="pbtn" style="top:247px;width:140px;height:20px;"><![CDATA[]]></p>
+	<p id="pbtn1t" class="pbtn" style="top:247px;width:140px;height:20px;"><![CDATA[]]></p>
+	<p id="pbtn2t" class="pbtn" style="top:247px;width:140px;height:20px;"><![CDATA[]]></p>
+</div>
+<div id="pop2" style="left:621px;top:118px;width:274px;height:307px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/bg_kpopup.png" style="width:274px;height:307px;"/>
+	<object id="p2btn0" type="image/X-arib-png" data="images/bt_4.png" style="left:21px; top:239px;width:116px;height:36px;" onkeydown="pop2key();"/>
+	<object id="p2btn1" type="image/X-arib-png" data="images/bt_4.png" style="left:140px;top:239px;width:116px;height:36px;" onkeydown="pop2key();"/>
+	<p id="p2title" style="left:27px;top:28px;width:220px;height:20px;text-align:center;font-size:20px;color-index:7;grayscale-color-index:171 163;"><![CDATA[]]></p>
+	<p id="p2text" style="left:25px;top:60px;width:224px;height:168px;font-size:16px;line-height:24px;color-index:173;grayscale-color-index:169 154;text-align:center;"><![CDATA[]]></p>
+	<p id="p2btn0t" style="left:31px; top:249px;width:96px;height:16px;text-align:center;font-size:16px;color-index:7;grayscale-color-index:171 167;"><![CDATA[]]></p>
+	<p id="p2btn1t" style="left:147px;top:249px;width:96px;height:16px;text-align:center;font-size:16px;color-index:7;grayscale-color-index:171 167;"><![CDATA[]]></p>
+</div>
+<div id="default" style="width:2px;height:2px;nav-index:0;" onkeydown="dummyFocus();"/>
+<div id="full_focus" style="width:2px;height:2px;" onkeydown="fullkey();"/>
+<div id="loading2" style="left:628px;top:246px;width:260px;height:74px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/load3.png" style="width:260px;height:74px;"/>
+</div>
+</body>
+</bml>

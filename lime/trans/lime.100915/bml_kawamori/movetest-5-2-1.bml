@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC
+	"+//ARIB STD-B24:1999//DTD BML Document//JA" "bml_1_0.dtd">
+<?bml bml-version="1.0" ?>
+<!--
+============================================================
+Copyright (C)2009, NTT Inc. All rights reserved.
+============================================================
+-->
+<bml>
+<head>
+
+<title>JavaScript sample</title>
+<style><![CDATA[
+ 
+  body {
+    resolution:960x540;
+    display-aspect-ratio:16v9;
+  }
+    #display	{ font-size:20px;
+    			background-color-index:16;
+    			color-index:7;
+				top:30px;left:30px;width:780px;height:200px;}
+ 	p 			{background-color-index:7;color-index:0}
+ 	:focus		{ background-color-index:72;}
+ 	:blur		{ background-color-index:65;}
+  	.all		{
+		left:    0px;
+		top:     0px;
+		width: 960px;
+		height:540px;
+	}
+	
+]]></style>
+<script src='scripts/mycommon.ecm.js'/>
+<script>
+<![CDATA[
+ 
+var i,j,k;
+var msg; //入れたいテキストの数
+
+var msgdmy;
+
+function init(){
+i=0,j=0,k=1;
+
+
+msg = new Array(); //入れたいテキストの数
+
+
+msg[0] = "text1";
+msg[1] = "text2";
+msg[2] = "text3";
+msg[3] = "てきすと1";
+msg[4] = "てきすと2";
+msg[5] = "てきすと3";
+msg[6] = "つづき1";
+msg[7] = "つづき2";
+msg[8] = "つづき3";
+msg[9] = "おわり";
+
+ msgdmy="";
+ 
+
+ typeTextScroll();
+ 
+}
+
+function typeTextScroll(){
+//	printlnd(j);
+
+	msgdmy=msg[j];
+//printlnd(msgdmy);
+//printlnd(j);
+
+	$('lay1').firstChild.data=msgdmy;
+	$('lay2').firstChild.data=msgdmy;
+	$('lay3').firstChild.data=msgdmy;
+	$('lay4').firstChild.data=msgdmy;
+	$('lay5').firstChild.data=msgdmy;
+	$('lay6').firstChild.data=msgdmy;
+	$('lay7').firstChild.data=msgdmy;
+	$('lay8').firstChild.data=msgdmy;
+	$('lay9').firstChild.data=msgdmy;
+
+	printd(j);
+
+	i=0;
+	k=1;
+	
+	typeText();
+
+browser.setInterval('textScroll()', 2000,0)
+//	setTimeout("textScroll()", 2000);
+
+	j++;
+//printlnd(j);
+	
+	if(j >= 10){
+		j = 0;
+	}
+
+browser.setInterval("typeTextScroll()",3500);
+
+}
+
+
+function typeText(){
+
+	if(i > msgdmy.length){
+		browser.clearTimer(timer2);
+	}else{
+		s = msgdmy.substring(0,i);
+		var l = $('lay0').firstChild;
+	l.data = s;
+			printd(l.data);
+		i++;
+		timer2 = browser.setInterval("typeText()",100); //タイピングスピード
+	}
+
+}
+
+function textScroll(){
+
+//printlnd("scroll");
+
+	if(k > 9){
+		$('lay0').firstChild.data = "";
+		$('lay9').normalStyle.visibility='hidden';
+		$('lay0').normalStyle.visibility='visible';
+		browser.clearTimer(timer3);
+	}else{
+		h = k - 1;
+		ids = "lay" + k;
+		idh = "lay" + h;
+		$(idh).normalStyle.visibility='hidden';
+		$(ids).normalStyle.visibility='visible';
+		k++;
+		printd(k);
+		timer3 = setTimeout("textScroll()",120); //スクロールスピード
+	}
+
+}
+
+]]>
+</script>
+</head>
+<body style="background-color-index:7;" onload="init();">
+
+<!-- typeTextScroll()
+-->
+
+
+<p id="lay9"  style="position: absolute; top:100px; left:200px;height:30px;width:150px;font-size:30px; visibility:hidden"><![CDATA[]]></p>
+<p id="lay8"  style="position: absolute; top:104px; left:200px;height:30px;width:150px;font-size:30px; visibility:hidden"><![CDATA[]]></p>
+<p id="lay7"  style="position: absolute; top:108px; left:200px;height:30px;width:150px;font-size:30px; visibility:hidden"><![CDATA[]]></p>
+<p id="lay6"  style="position: absolute; top:112px; left:200px;height:30px;width:150px;font-size:30px; visibility:hidden"><![CDATA[]]></p>
+<p id="lay5"  style="position: absolute; top:116px; left:200px;height:30px;width:150px;font-size:30px; visibility:hidden"><![CDATA[]]></p>
+<p id="lay4"  style="position: absolute; top:120px; left:200px;height:30px;width:150px;font-size:30px; visibility:hidden"><![CDATA[]]></p>
+<p id="lay3"  style="position: absolute; top:124px; left:200px;height:30px;width:150px;font-size:30px; visibility:hidden"><![CDATA[]]></p>
+<p id="lay2"  style="position: absolute; top:128px; left:200px;height:30px;width:150px;font-size:30px; visibility:hidden"><![CDATA[]]></p>
+<p id="lay1"  style="position: absolute; top:132px; left:200px;height:30px;width:150px;font-size:30px; visibility:hidden"><![CDATA[]]></p>
+<p id="lay0"  style="position: absolute; top:136px; left:200px;height:30px;width:150px;font-size:30px;color-index:0; visibility:visible"><![CDATA[]]></p>
+
+
+<!-- 	for debugging -->
+<p id="display" style="top:400px;left:50px;width:150px;height:200px;"><![CDATA[]]></p>
+
+</body>
+</bml>

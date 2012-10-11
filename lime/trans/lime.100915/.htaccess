@@ -1,0 +1,3 @@
+AddCharset EUC-JP .tsv
+AddCharset x-user-defined .clt
+AddType text/plain .clt

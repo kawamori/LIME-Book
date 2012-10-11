@@ -1,0 +1,6 @@
+JavaScript Lint 0.3.0 (JavaScript-C 1.5 2004-09-24)
+Developed by Matthias Miller (http://www.JavaScriptLint.com)
+
+
+0 error(s), 0 warning(s)
+Press any key to continue...

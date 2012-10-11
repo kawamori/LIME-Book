@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA" "http://www.arib.or.jp/B24/DTD/bml_1_0.dtd">
+<?bml bml-version="1.0" ?>
+<bml>
+<head>
+<title/>
+<style><![CDATA[
+	body{background-color-index:0;resolution:960x540;display-aspect-ratio:16v9;used-key-list:basic data-button numeric-tuning;clut:url(images/baria.clt);}
+	.main {left:0px; top:100px; width:960px; height:450px;}
+	.mysq {left:700px; top:100px; width:500px; height:450px;}
+	.clrbutton {width:140px;height:70px;}
+	p.clrbutton {text-align:center;color-index:7;}
+	.databutton {width:120px;height:70px;}
+	p.databutton {text-align:center;color-index:0;line-height:30px;}
+	.header {left:0px; top:0px; width:960px; height:160px;}
+	#status	{left:30px;top:80px;width:400px;height:24px;
+		background-color-index:6;}
+]]></style>
+
+<script><![CDATA[
+/*
+var code = document.currentEvent.keyCode;
+var id = document.currentEvent.target.id;
+if(code==19){
+	launchTop();
+}
+*/
+function focus(){
+	var target = document.currentEvent.target;
+	browser.playRomSound("romsound://9");
+	target.nextSibling.normalStyle.visibility = "visible";
+	target.focusStyle.colorIndex = "1";
+}
+function blur(){
+	var target = document.currentEvent.target;
+	target.nextSibling.normalStyle.visibility = "hidden";
+}
+
+function click(){
+	var target = document.currentEvent.target;
+	var text = target.nextSibling.nextSibling.firstChild.data;
+	//var nowtext = target.firstChild.data;
+	browser.playRomSound("romsound://7");
+	
+	
+	if(text == "メインメニュー") {
+		browser.launchDocument("top.bml");
+	}
+	if(text == "1つ前に戻る") {
+		browser.launchDocument("kawasaki.bml");
+	}
+	
+	
+	/*
+	if(link != "") {
+		browser.launchDocument(link);
+	}
+	*/
+	//document.getElementById("status").firstChild.data = "["+text+"]がクリックされました";
+}
+
+function DataButtonHandler(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("../../lab2.sample/bml/startup.bml");
+}
+
+]]></script>
+
+<bevent>
+<beitem id="be0" type="DataButtonPressed" onoccur="DataButtonHandler();" subscribe="subscribe"/>
+</bevent>
+
+</head>
+<body style="background-color-index:7;">
+
+<!-- ヘッダ -->
+<div class="header">
+	<object type="image/jpeg" data="images/fletssq.jpg" style="width:1920px; height:112px"/>
+</div>
+
+<!-- メインコンテンツ -->
+<div class="main">
+	
+	<object type="image/jpeg" data="images/ekimae.jpg" style="left:500px; top:0px; width:777px; height:211px;"/>
+	
+	<p style="left:75px; top:0px; width:680px; height:70px; font-size:35px;color-index:0;background-color-index:72;">
+		『川崎はその先へ』<br/>〜川崎駅東口駅前広場再編整備について〜
+	</p>
+	
+	<object type="image/jpeg" data="images/sonosaki.jpg" style="left:50px; top:100px; width:516px; height:173px;"/>
+	
+	<p style="left:350px; top:125px; width:600px; height:100px; font-size:20px;color-index:0;background-color-index:7;">
+		川崎駅東口駅前広場再編整備に関するさまざまな情報を、<br/>
+		ホームページで発信していきます。<br/>
+		http://kawasaki-sonosaki.jp/
+	</p>
+	
+	<p style="left:350px; top:250px; width:600px; height:100px; font-size:20px;color-index:0;background-color-index:7;">
+		問い合わせ先<br/>
+		まちづくり局市街地市街地整備推進課<br/>
+		電話：044-200-3021  FAX：044-200-3970
+	</p>
+
+</div>
+
+<!-- フッタ(カラーボタン) -->
+<div style="left:30px; top:480px; width:750px; height:40px">
+	<div class="clrbutton" style="left:0px;">
+		<object class="clrbutton" type="image/jpeg" data="images/button_blue.jpg"
+			style="nav-index:0;nav-right:1;nav-left:4;" accesskey="B"
+			onfocus="focus();" onblur="blur();" onclick="click();"/>
+		<object class="clrbutton" type="image/jpeg" data="images/button_blue_h.jpg"
+			style="visibility:hidden;"/>
+		<p class="clrbutton" style="top:8px; font-size:18px; text-align:center; grayscale-color-index:104 86;">メインメニュー</p>
+	</div>
+
+	<div class="clrbutton" style="left:145px;">
+		<object class="clrbutton" type="image/jpeg" data="images/button_red.jpg"
+			accesskey="X"
+			onfocus="focus();" onblur="blur();" onclick="click();"/>
+		<object class="clrbutton" type="image/jpeg" data="images/button_red_h.jpg"
+			style="visibility:hidden;"/>
+		<p class="clrbutton" style="top:8px;font-size:18px; grayscale-color-index:61 56;">1つ前に戻る</p>
+	</div>
+
+	<div class="clrbutton" style="left:145px;">
+		<object class="clrbutton" type="image/jpeg" data="images/button_red.jpg"
+			style="nav-index:1;nav-right:2;nav-left:0;" accesskey="R"
+			onfocus="focus();" onblur="blur();" onclick="click();"/>
+		<object class="clrbutton" type="image/jpeg" data="images/button_red_h.jpg"
+			style="visibility:hidden;"/>
+		<p class="clrbutton" style="top:8px; font-size:18px; grayscale-color-index:61 56;">1つ前に戻る</p>
+	</div>
+
+	<div class="clrbutton" style="left:290px;">
+		<object class="clrbutton" type="image/jpeg" data="images/button_green.jpg"
+			style="nav-index:2;nav-right:3;nav-left:1;" accesskey="G"
+			onfocus="focus();" onblur="blur();" onclick=""/>
+		<object class="clrbutton" type="image/jpeg" data="images/button_green_h.jpg"
+			style="visibility:hidden;"/>
+		<p class="clrbutton"></p>
+	</div>
+
+	<div class="clrbutton" style="left:435px;">
+		<object class="clrbutton" type="image/jpeg" data="images/button_yellow.jpg"
+			style="nav-index:3;nav-right:4;nav-left:2;" accesskey="Y"
+			onfocus="focus();" onblur="blur();" onclick=""/>
+		<object class="clrbutton" type="image/jpeg" data="images/button_yellow_h.jpg"
+			style="visibility:hidden;"/>
+		<p class="clrbutton"></p>
+	</div>
+	
+	<div class="databutton" style="left:580px;">
+		<object class="databutton" type="image/jpeg" data="images/button_data.jpg"
+			style="nav-index:4;nav-right:0;nav-left:3;"
+			onfocus="focus();" onblur="blur();" onclick=""/>
+		<object class="databutton" type="image/jpeg" data="images/button_data_h.jpg"
+			style="visibility:hidden;"/>
+		<p class="databutton" style="top:2;font-size:18px;">切替</p>
+	</div>
+</div>
+
+<!--<p id="status"><![CDATA[]]></p>-->
+</body>
+</bml>

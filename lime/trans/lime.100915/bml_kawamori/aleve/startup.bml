@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+<head  xmlns="http://www.w3.org/1999/xhtml">
+<title>Aleve's LIME page</title>
+
+<style><![CDATA[
+
+	}
+]]></style>
+
+<script><![CDATA[
+
+]]></script>
+</head>
+<body  xmlns="http://www.w3.org/1999/xhtml" onload="myload();">
+<p> Welcome to Aleve's LIME page </p>
+
+
+<div style="left:0px; top:0px; width:960px; height:540px">
+  <object type="image/jpeg" data="media/aleve-header.jpg" style="left:260px;top:10px;width:456px;height:120px;"/>
+  <object type="image/X-arib-png" data="media/aleve-profile.png" style="left:45px;top:160px;width:880px;height:251px;"/>
+</div>
+
+</body>
+</bml>
+

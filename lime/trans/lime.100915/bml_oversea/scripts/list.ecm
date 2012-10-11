@@ -1,0 +1,398 @@
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// copyright (C)2009, NTT Inc. All rights reserved.
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function VodList(){
+  this.className   = 'VodList';
+  
+  this.list = new Array();
+
+  this.list        = null;
+  this.numPerPage  = 9;
+  this.totalCount  = 0;
+  this.currentPage = 0;
+  this.maxPage     = 0;
+  this.curListIdx  = 0;
+  this.curListMax  = 0;
+
+  this.activate    = VListActivateFunc;
+  this.visible     = false;
+  this.show        = VListShowFunc;
+  this.hide        = VListHideFunc;
+
+  this.isFocused   = false;
+  this.isFocusable = VListIsFocusableFunc;
+  this.focus       = VListFocusFunc;
+  this.moveFocus   = VListMoveFocusFunc;
+  this.blur        = VListBlurFunc;
+
+  this.showDetail  = VListShowDetailFunc;
+  this.nextPage    = VListShowNextPageFunc;
+  this.prevPage    = VListShowPrevPageFunc;
+  this.execReturn  = VListExecReturnFunc;
+
+  this.getCurrentContentInfo    = VListGetCurrentContentInfoFunc;
+  this.showCurrentContentDetail = VListShowCurrentContentDetailFunc;
+}
+
+//--------------------------------------------------------------
+function VListActivateFunc() {
+  hideElement('loading');
+
+  gParams.activeObj    = this;
+  gParams.isFirstSound = true;
+
+  setText ('txt_title', truncate('Select Content', 74));
+  setImage('img_base', 'images/list/bg.jpg');
+  showElement('basePane');
+
+  gParams.horizontalKeyEnable = true;
+  gParams.verticalKeyEnable   = true;
+
+  gParams.shortcutObj.hide();
+  this.show();
+  this.focus();
+
+  if (!this.isFocusable() && gParams.shortcutObj.isFocusable()) gParams.shortcutObj.focus();
+}
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function VListShowFunc() {
+  keyOff(); {
+    getElementById('body').normalStyle.usedKeyList = 'basic data-button numeric-tuning';
+  
+    var vodList = getContentInfoListOverIP();
+    if ((vodList.list == null) || (vodList.list.length <= 0)) {
+      this.totalCount = this.maxPage = this.currentPage = 0;
+      this.hide();
+      keyOn();
+      debug('[Error]('+this.className+'):No vod data found');
+      return;
+    };
+    
+    this.list        = vodList.list;
+    this.totalCount  = vodList.totalNum;
+    this.maxPage     = vodList.totalNum / this.numPerPage +
+                         ((vodList.totalNum % this.numPerPage) ? 1 : 0);
+    
+    if (gParams.crid) {
+      var idx = -1;
+      for(var i = 0, list = this.list, j = list.length; i < j; i++) {
+        var cntInfo = list[i];
+        if (cntInfo.crid == gParams.crid) {
+          idx = i;
+          break;
+        }
+      }
+      if (idx >= 0) {
+        this.currentPage = idx / this.numPerPage;
+        this.curListIdx  = idx - this.currentPage * this.numPerPage;
+      }
+      gParams.crid = null;
+    }
+    this.currentPage = min(this.currentPage, this.maxPage - 1);
+    
+    var idx = this.currentPage * this.numPerPage;
+    this.curListMax = (idx + this.numPerPage > this.totalCount) ?
+      (this.totalCount - idx - 1) : this.numPerPage - 1;
+    
+    for(var i = 0, j = this.curListMax; i <= j;  i++) {
+      var cntInfo = this.list[idx + i];
+      
+      setText('txt_list'+i, truncate(cntInfo.title, 42));
+      setTextColor('txt_list'+i, '174', '171 166');
+      showElement('img_listBg'+i);
+    };
+    for(var i = this.curListMax + 1, j = this.numPerPage; i < j; i++) {
+      setText('txt_list'+i, '');
+      hideElement('img_listBg'+i);
+    };
+    
+    showElement('lbl_listMaxNum');
+    showElement('lbl_pageDisplay');
+    setText('txt_listMaxNum',  this.totalCount);
+    setText('txt_pageDisplay', (this.maxPage <= 0) ? '0/0' : (this.currentPage+1)+'/'+this.maxPage);
+    
+    if (this.maxPage > 1) {
+      (this.currentPage > 0)               ? showElement('csr_left')  : hideElement('csr_left');
+      (this.currentPage < this.maxPage -1) ? showElement('csr_right') : hideElement('csr_right');
+    } else {
+      hideElement('csr_left');
+      hideElement('csr_right');
+    }
+    
+    this.visible = true;
+    this.moveFocus(this.curListIdx);
+    showElement('list');
+  }; keyOn();
+
+  return;
+}
+
+//------------------------------
+function VListShowNextPageFunc() {
+  if (!this.isFocusable()) return;
+  
+  if ((this.currentPage + 1) >= this.maxPage) return;
+
+  playSound(9);
+  this.currentPage += 1;
+  this.show();
+}
+
+//------------------------------
+function VListShowPrevPageFunc() {
+  if (!this.isFocusable()) return;
+  
+  if (this.currentPage <= 0) return;
+
+  playSound(9);
+  this.currentPage -= 1;
+  this.show();
+}
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function VListIsFocusableFunc() {
+  return(this.visible && (this.list != null) && (this.totalCount > 0));
+}
+
+//------------------------------
+function VListFocusFunc(state) { // 1:top, -1:bottom, 0:currentIdx
+  if (!this.isFocusable() || this.isFocused) return;
+  
+  if (state == 1) {
+    this.curListIdx = 0;
+  } else if (state == -1) {
+    this.curListIdx = this.curListMax;
+  } else {
+    this.curListIdx = max(0, min(this.curListMax, this.curListIdx));
+  };
+
+  playSound(9);
+  this.isFocused = true;
+  this.moveFocus(this.curListIdx);
+
+  showElement('btn_listFocus');
+  setFocus('btn_listFocus');
+
+  return;
+}
+
+//------------------------------
+function VListMoveFocusFunc(pos) {
+  if (!this.isFocusable() || !this.isFocused) return;
+  
+  this.curListIdx = max(0, min(this.curListMax, pos));
+
+  getElementById('btn_listFocus').normalStyle.top = (86 + this.curListIdx * 30)+'px';
+  setImage('btn_listFocus','images/list/btn_listFocus-focus.jpg');
+
+  for(var i = 0, j = this.curListMax; i <= j; i++){
+    if(i == this.curListIdx){
+      setTextColor('txt_list'+i, '0',   ' 90 100');
+    }else{
+      setTextColor('txt_list'+i, '174', '171 166');
+    }
+  }
+  showElement('btn_listFocus');
+
+  var cntInfo = this.getCurrentContentInfo();
+  setText('txt_synopsisShort',    cntInfo.cDetailShort);
+  showElement('txt_synopsisShort');
+
+  setImage('img_thmbMiddle', 'images/list/loading.jpg');
+  showElement('img_thmbMiddle');
+  hideElement('txt_copyrightShort');
+  
+  gParams.horizontalKeyEnable = false;
+
+  if(!isNaN(gParams.thumbDispTimer)) browser.clearTimer(gParams.ThumbDispTimer);
+  gParams.thumbDispTimer = browser.setInterval('VListShowDetail();', 700, 1);
+}
+
+//------------------------------
+function VListBlurFunc() {
+  if (!this.isFocusable() || !this.isFocused) return;
+
+  setImage('btn_listFocus', 'images/list/btn_listFocus-nofocus.jpg');
+
+  for(var i = 0, j = this.numPerPage; i < j; i++) {
+    if (i == this.curListIdx) {
+      setTextColor('txt_list'+i, '138', '154 162');
+    }else{
+      setTextColor('txt_list'+i, '174', '171 166');
+    }
+  };
+  hideElement('csr_left');
+  hideElement('csr_right');
+
+  setFocus('default');
+  this.isFocused = false;
+}
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function VListShowDetail() {
+  if(!isNaN(gParams.thumbDispTimer)) browser.clearTimer(gParams.thumbDispTimer);
+  gParams.thumbDispTimer = NaN;
+
+  var listObj = gParams.listObj;
+  if ((listObj == null) || !listObj.visible) return;
+  
+  keyOff(); {
+    browser.lockScreen(); {
+      listObj.showDetail();
+    }; browser.unlockScreen();
+  }; keyOn();
+
+  gParams.horizontalKeyEnable = true;
+}
+
+//------------------------------
+function VListShowDetailFunc() {
+  if (!this.visible) return;
+  
+  var cntInfo = this.list[this.curListIdx + this.currentPage * this.numPerPage];
+  if (cntInfo == null) return;
+
+  setImage('img_thmbMiddle', (cntInfo.thumbnailMUrl) ?
+           cntInfo.thumbnailMUrl : 'images/list/noimage.jpg');
+  showElement('img_thmbMiddle');
+
+  setText('txt_copyrightShort', cntInfo.copyrightSht);
+  showElement('txt_copyrightShort');
+
+  gParams.horizontalKeyEnable = true;
+};
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function VListHideFunc() {
+  if (!this.visible) return;
+  
+  setText('txt_synopsisShort',  '');
+  setText('txt_copyrightShort', '');
+
+  for(var i = 0, j = this.numPerPage; i < j; i++){
+    setText('txt_list'+i, '');
+    hideElement('img_listBg'+i);
+    setTextColor('txt_list'+i, '163', '160 154');
+  }
+  hideElement('lbl_listMaxNum');
+  hideElement('lbl_pageDisplay');
+  setText('txt_listMaxNum',  '');
+  setText('txt_pageDisplay', '');
+
+  hideElement('csr_left');
+  hideElement('csr_right');
+  hideElement('btn_listFocus');
+  hideElement('img_thmbMiddle');
+  
+  hideElement('list');
+  getElementById('body').normalStyle.usedKeyList ='basic data-button';
+
+  setFocus('default');
+  this.isFocused = false;
+  this.visible   = false;
+}
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function VListExecReturnFunc() {}
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function VListGetCurrentContentInfoFunc() {
+  return((!this.list || (this.list.length <= 0)) ?
+       null : this.list[this.curListIdx + this.currentPage * this.numPerPage]);
+}
+
+function VListShowCurrentContentDetailFunc() {
+  var cntInfo = this.getCurrentContentInfo();
+  gParams.crid = cntInfo.crid;
+  
+  playSound(7);
+  this.hide();
+  gParams.detailObj.activate(cntInfo);
+}
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function onListKeyDown() {
+  var code = document.currentEvent.keyCode;
+  var id   = document.currentEvent.target.id;
+
+  var listObj  = gParams.listObj;
+  var shortcut = gParams.shortcutObj;
+
+  browser.lockScreen(); {
+    //------------------------------
+    if (upKeyPressed(code)) {
+      if (!gParams.verticalKeyEnable) {
+        browser.unlockScreen();
+        return;
+      } else if (listObj.curListIdx > 0) {
+        playSound(9);
+        listObj.moveFocus(listObj.curListIdx - 1);
+      } else if (shortcut.isFocusable()) {
+        listObj.blur();
+        shortcut.focus();
+      } else {
+        playSound(9);
+        listObj.moveFocus(listObj.curListMax);
+      }
+      
+    //------------------------------
+    } else if (downKeyPressed(code)) {
+      if (!gParams.verticalKeyEnable) {
+        browser.unlockScreen();
+        return;
+      } else if (listObj.curListIdx < listObj.curListMax) {
+        playSound(9);
+        listObj.moveFocus(listObj.curListIdx + 1);
+      } else if (shortcut.isFocusable()) {
+        listObj.blur();
+        shortcut.focus();
+      } else {
+        playSound(9);
+        listObj.moveFocus(0);
+      }
+      
+    //------------------------------
+    } else if (leftKeyPressed(code)) {
+      if (!gParams.horizontalKeyEnable || (listObj.currentPage <= 0)) {
+        browser.unlockScreen();
+        return;
+      }
+      listObj.prevPage();
+      
+    } else if (rightKeyPressed(code)) {
+      if (!gParams.horizontalKeyEnable || ((listObj.currentPage + 1) > listObj.maxPage)) {
+        browser.unlockScreen();
+        return;
+      }
+      listObj.nextPage();
+      
+    } else if (isNumericTuned(code)) {
+      var idx = getTunedNumber(code) - 1;
+      if ((idx < 0) || (idx > listObj.curListMax)) {
+        browser.unlockScreen();
+        return;
+      }
+      if (listObj.curListIdx != idx) listObj.curListIdx = idx;
+      showElement('loading');
+      listObj.showCurrentContentDetail();
+      
+    } else if (isColorPressed(code)) {
+      if (isBlueButtonPressed(code)) {
+        var cntInfo = listObj.getCurrentContentInfo();
+
+        browser.launchDocument(
+          createUri(getCurrentPath()+'vodEmbedded.bml', 'crid', cntInfo.crid),
+          'cut');
+      }
+      
+    } else if (enterKeyPressed(code)) {
+      showElement('loading');
+      listObj.showCurrentContentDetail();
+
+//    } else if (returnKeyPressed(code)) {
+//      shortcut.execReturn();
+    }
+  }; browser.unlockScreen();
+}
+  

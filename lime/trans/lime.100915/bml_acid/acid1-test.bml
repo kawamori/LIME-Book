@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC
+	"+//ARIB STD-B24:1999//DTD BML Document//JA" "bml_1_0.dtd">
+<?bml bml-version="1.0" ?>
+<bml>
+<head><style><![CDATA[
+body	{background-color-index:4;}
+
+.dl {
+margin: 0;
+border-width: 5px;
+border-style: solid;
+border-color-index: 0;
+padding: 5px;
+}
+
+.dt { 
+background-color-index:9;
+margin: 0; 
+width: 50px; 
+height: 28px;
+border-width: 5px;
+border-style: solid;
+border-color-index: 0;
+color-index:7;
+text-align:center;
+}
+
+.dd {
+text-align:right;
+margin: 0;
+border-width: 10px;
+border-style: solid;
+border-color-index: 0;
+padding: 5px;
+width: 34px;
+height: 27px;
+}
+
+.ul {
+margin: 0;
+border-width: 10px;
+border-style: solid;
+border-color-index: 0;
+padding: 0;
+}
+
+.li {
+color-index:0;
+/*height: 9px;
+width: 5px;*/
+margin: 0;
+border-width: 5px;
+border-style: solid;
+border-color-index:0;
+padding: 1px;
+background-color-index:60;}
+#bar {
+background-color-index:0;
+color-index:7;
+width: 41px;
+border-width: 5px;
+border-style: solid;
+border-color-index:0;
+margin: 0;}
+#baz {
+margin: 0;
+border-width: 5px;
+border-style: solid;
+border-color-index:0;
+padding: 5px;
+width: 10px;
+height: 10px;
+background-color-index:0;
+color-index:7;
+}
+
+.form { 
+margin: 0;
+display: inline;}
+.blockquote {
+margin: 0;
+border-width: 5px;
+border-style: solid;
+border-color-index:0;
+padding: 1px;
+width: 5px;
+height: 9px;
+float: left;
+background-color-index:0;
+color-index: 0;
+}
+.address {
+font-style: normal;
+background-color-index:60;}
+.h1 {
+background-color-index:0;
+color-index:7;
+float: left;
+margin: 0;
+border-width: 5px;
+border-style: solid;
+border-color-index:0;
+padding: 1px;
+width: 10px;
+height: 10px;
+font-weight: normal;
+font-size: 16px;
+}
+p	{font-size:16px;}
+a {color-index:4;}
+div { border-color-index: 7;}
+]]></style>
+
+</head>
+<body>
+<div class="dl" style="width:510px;height:410px;left:20px;top:20px;background-color-index:7;">
+	<p class="dt" style="width:75px;height:310px;left:5px;top:5px;">toggle</p>
+	<div class="dd" style="width:380px;height:300px;left:100px;top:5px;">
+		<div classs="ul" style="width:400px;height:300px;left:5px;top:0px;">
+			<p class="li" style="width:75px;height:113px;left:5px;top:10px;">the way</p>
+			<p class="li" id="bar" style="width:160px;height:100px;left:100px;top:10px;">
+				<p style="width:160px;height:100px;left:0px;top:0px;">the world ends</p>
+				<div class="form" style="width:160px;height:80px;left:0px;top:20px;">
+								<p style="width:160px;height:50px;left:0px;top:10px;">	 bang </p>
+								 <input type="radio" id="foo" maxlength="1" value="*" style="width:60px;height:30px;left:70px;top:0px;nav-index:0;nav-down:1;"/>
+								<p style="width:160px;height:80px;left:0px;top:50px;">	 whimper 
+								<input type="radio" name="foo2" value="+" maxlength="1"  style="width:60px;height:30px;left:70px;top:0px;nav-index:1;nav-up:0;"/></p>
+				</div><!-- end of form -->
+			</p>
+			<p class="li" style="width:75px;height:113px;left:280px;top:10px;">I grow old</p>
+ 			<p class="li" id="baz" style="width:120px;height:120px;left:5px;top:140px;">pluot?</p>
+		</div> <!-- end of ul-->
+		<div class="blockquote" style="width:60px;height:140px;left:160px;top:140px;">
+			<p class="address" style="width:50px;height:120px;left:0px;top:5px;">bar maids</p>
+		</div> <!-- end blockquote -->
+		<p  class="h1" style="width:120px;height:120px;left:240px;top:140px;">sing to me, erbarme dich</p>
+	</div><!-- end of dd-->
+</div><!-- end of dl-->
+<p id="pp" style="top:355px;left:30px;width:490px;height:80px;background-color-index:7;">
+		 This is an emulation of W3C Acid Test1 by LIME-CSS of ITU-T H.762.
+		  The original test can be found  <a href="
+http://hls.okimediaserver.com/cgi-bin/hls/portal_hls.cgi?hls=1&title=penguin_700k&bitrate=732952&contents_path=%2fmoviebox%2foki%2fh264%2dmobile%2dts%2fpenguin_700k%2emp4&file=.m3u8">here</a>.
+		  All implementations of conformant LIME-CSS agents should be able to render the document elements above. </p>
+</body>
+</bml>

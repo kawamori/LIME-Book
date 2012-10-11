@@ -1,0 +1,1417 @@
+//============================================================
+//Copyright (C)2009, NTT Plala Inc. All rights reserved.
+//Copyright(C) Nippon Telegraph and Telephone Corporation 2010
+//============================================================
+var gECMALoadedFlg = true;
+/**************************  共通データ  ********************************/
+var gUregMax = 28;
+var gState = new State();
+var gBmlName=new Array("startup.bml","tv.bml","video.bml","mypage.bml","news.bml","config.bml","premium.bml","subscribe.bml","karaoke_top.bml","karaoke.bml","nod_video.bml","nod_news.bml");
+function State(){
+	this.bmltype=0; // 0:ホーム 1:tv 2:video 3:mypage 4:news 5:config 6:premium 7:subscribe 8:karaoke_top 9:karaoke 10:nod_video 11:nod_news
+	this.curBml="";
+
+// パレンタル情報 readPersistentArray() で取得(ページ切り替え単位で更新)
+	this.secret=false; // シークレットモードON/OFF
+	this.age=20;
+
+// ログイン情報
+	this.mode="";
+	this.ispid="";
+	this.plan_code="";
+	this.login_flg="";
+	this.linetype="";
+// テーマアイコン情報
+	this.temaIconSub="";
+
+// タイマー
+	this.clockTimerID=NaN; // 時計
+
+// UREG
+	// 0:ログイン情報	:login_flg				String	初期ログインフラグ
+	// 1:				:plan_code				String	プランコード
+	// 2:				:mode					String	端末拡張設定
+	// 3:				:ispid					String	ISPID
+	// 4:				:linetype				String	回線網タイプ
+	// 5:				:secret					bool	シークレットモード
+	// 6:遷移先指定情報 :param_crid				String
+	// 7: 				:param_displayType		String
+	// 8:戻るBML		:return_bmltype			Number
+	// 9:タイミング		:return_timing			String
+	//10:				:fromTop				bool
+	//11:戻る制御メイン :return_state			String
+	//12:				:return_crid_1			String
+	//13:				:return_crid_2			String
+	//14:				:return_page
+	//15:				:return_sort
+	//16:戻る制御サブ   :return_subl_crid		String
+	//17:				:return_subl_displayType String
+	//18:				:return_subl_state		Number
+	//19:				:return_subl_age		Number
+	//20:				:return_subl_idx		Number
+	//21:					:return_subl_page
+	//22:					:return_subl_sort
+	//23:戻る制御サブ   :return_subd_crid		String
+	//24:				:return_subd_displayType String
+	//25:				:return_subd_state		Number
+	//26:				:return_subd_age		Number
+	//27:ボタン操作音設定	:volume_flag				Boolean
+	this.Ureg=new Array(gUregMax);
+
+	this.param_crid="";
+	this.param_displayType="";
+	this.return_bmltype=0;
+	this.return_timing="none";
+	this.return_state=-1;
+	this.return_crid_1="";
+	this.return_crid_2="";
+	this.return_page=0;
+	this.return_sort="";
+	this.return_sublist_crid="";
+	this.return_sublist_displayType="";
+	this.return_sublist_state=-1;
+	this.return_sublist_age=0;
+	this.return_sublist_idx=0;
+	this.return_sublist_page=0;
+	this.return_sublist_sort="";
+	this.return_subdetail_crid="";
+	this.return_subdetail_displayType="";
+	this.return_subdetail_state=-1;
+	this.return_subdetail_age=0;
+
+	this.load = ST_load;
+	this.init = ST_init;
+	this.launchDocument = ST_launchDocument;
+	this.getUrl = ST_getUrl;
+	this.allHidden = ST_allHidden;
+
+	this.scupkey = null;
+	this.scdownkey = null;
+
+// 表示用データ
+	this.upbox = null;
+	this.downbox = null;
+
+// 戻る制御用
+	this.fromTop=false;
+	this.rootReturnData = new returnData();
+	this.subReturnData = new returnData();
+
+// ホームへの遷移識別
+	this.returnHome=false;
+
+// ボタン操作音設定フラグ
+	this.volume_flag=true;
+
+// BMLで付加していないデータ
+	this.outofbml_data=new Array();
+}
+// UPBOXのGET用データ
+function UpGetData(id,sort,displayType){
+	this.id=id;
+	this.sort=sort;
+	this.displayType=displayType;
+}
+// 初期化処理
+function ST_load(){
+	var tmp;
+	var i,j;
+	// GETデータ取得
+	var uri=browser.getActiveDocument();
+	if(uri==null)return;
+	var ary=uri.split("?");
+	this.curBml=String(ary[0]);
+	if(ary!=null&&ary.length>1){
+		this.Ureg = ary[1].split("&");
+		if(this.Ureg.length<gUregMax){
+			for(i=this.Ureg.length;i<gUregMax;i++)this.Ureg[i]="";
+		}
+		for(i=0;i<this.Ureg.length;i++) {
+			for(j=gEncTbl.length-1;j>=0;j--)this.Ureg[i]=(String(this.Ureg[i]).split(gEncTbl[j])).join(gDecTbl[j]);
+			if(this.Ureg[i]=="null"||this.Ureg[i]=="NULL")this.Ureg[i]="";
+		}
+		//Ureg復元
+		this.login_flg=this.Ureg[0];
+		this.plan_code=this.Ureg[1];
+		this.mode=this.Ureg[2];
+		this.ispid=this.Ureg[3];
+		this.linetype=this.Ureg[4];
+//		if(this.Ureg[5]=="1")this.secret=true;
+//		else this.secret=false;
+		this.secret=false;
+//		var ext=(gState.secret)?"2.png":"1.png";
+//		setImg("scbtn5","images/bt_s_scrt"+ext);
+		this.param_crid=this.Ureg[6];
+		this.param_displayType=this.Ureg[7];
+		this.return_bmltype=this.Ureg[8];
+		this.return_timing=this.Ureg[9];
+		if(this.Ureg[10]=="1")this.fromTop=true;
+		else this.fromTop=false;
+		this.return_state=this.Ureg[11];
+		this.return_crid_1=this.Ureg[12];
+		this.return_crid_2=this.Ureg[13];
+		if(this.Ureg[14]=="NaN")this.return_page=NaN;
+		else{
+			tmp=parseInt(this.Ureg[14],10);
+			if(isNaN(tmp))this.return_page=NaN;
+			else this.return_page=tmp;
+		}
+		this.return_sort=this.Ureg[15];
+		this.return_sublist_crid=this.Ureg[16];
+		this.return_sublist_displayType=this.Ureg[17];
+		if(this.Ureg[18]=="NaN")this.return_sublist_state=NaN;
+		else{
+			tmp=parseInt(this.Ureg[18],10);
+			if(isNaN(tmp))this.return_sublist_state=NaN;
+			else this.return_sublist_state=tmp;
+		}
+		if(this.Ureg[19]=="NaN")this.return_sublist_age=NaN;
+		else{
+			tmp=parseInt(this.Ureg[19],10);
+			if(isNaN(tmp))this.return_sublist_age=NaN;
+			else this.return_sublist_age=tmp;
+		}
+		if(this.Ureg[20]=="NaN")this.return_sublist_idx=NaN;
+		else{
+			tmp=parseInt(this.Ureg[20],10);
+			if(isNaN(tmp))this.return_sublist_idx=NaN;
+			else this.return_sublist_idx=tmp;
+		}
+		if(this.Ureg[21]=="NaN")this.return_sublist_page=NaN;
+		else{
+			tmp=parseInt(this.Ureg[21],10);
+			if(isNaN(tmp))this.return_sublist_page=NaN;
+			else this.return_sublist_page=tmp;
+		}
+		this.return_sublist_sort=this.Ureg[22];
+		this.return_subdetail_crid=this.Ureg[23];
+		this.return_subdetail_displayType=this.Ureg[24];
+		if(this.Ureg[25]=="NaN")this.return_subdetail_state=NaN;
+		else{
+			tmp=parseInt(this.Ureg[25],10);
+			if(isNaN(tmp))this.return_subdetail_state=NaN;
+			else this.return_subdetail_state=tmp;
+		}
+		if(this.Ureg[26]=="NaN")this.return_subdetail_age=NaN;
+		else{
+			tmp=parseInt(this.Ureg[26],10);
+			if(isNaN(tmp))this.return_subdetail_age=NaN;
+			else this.return_subdetail_age=tmp;
+		}
+		if(this.Ureg[27]=="0")this.volume_flag=false;
+		else this.volume_flag=true;
+		// BML付加以外のデータを格納
+		for(i=0;(i+28)<this.Ureg.length;i++){
+			this.outofbml_data[i]=this.Ureg[28+i];
+		}
+	}
+}
+function ST_init(){
+	// 時計表示
+	clockStart();
+	showTemaIcon();
+	if(this.curBml==""){
+		if(this.bmltype==0)return true;
+		else{
+			if(this.bmltype!=7&&this.bmltype!=99)showPopup(new Array("ホームへ"),gohome,"エラー",setErrMsg(getBmlErr("01","09")),"");
+		}
+		return false;
+	}
+	var tmp=this.curBml.split("?")[0].split("/");
+	var ret=initParams(this.linetype,this.ispid,String(tmp[tmp.length-1]).split(".")[0]);
+	if(ret!="OK"){
+		if(this.bmltype!=0&&this.bmltype!=7&&this.bmltype!=99)showLoginErr();
+		return false;
+	}
+	getParental();
+	return true;
+}
+function ST_getUrl(uri){
+	var i,j;
+	this.Ureg=new Array(gUregMax);
+	this.Ureg[0]=this.login_flg;
+	this.Ureg[1]=this.plan_code;
+	this.Ureg[2]=this.mode;
+	this.Ureg[3]=this.ispid;
+	this.Ureg[4]=this.linetype;
+	if(this.secret==true)this.Ureg[5]=1;
+	else this.Ureg[5]=0;
+	this.Ureg[6]=this.param_crid;
+	this.Ureg[7]=this.param_displayType;
+	this.Ureg[8]=this.return_bmltype;
+	this.Ureg[9]=this.return_timing;
+	if(this.fromTop==true)this.Ureg[10]=1;
+	else this.Ureg[10]=0;
+	this.Ureg[11]=this.return_state;
+	this.Ureg[12]=this.return_crid_1;
+	this.Ureg[13]=this.return_crid_2;
+	this.Ureg[14]=this.return_page;
+	this.Ureg[15]=this.return_sort;
+	this.Ureg[16]=this.return_sublist_crid;
+	this.Ureg[17]=this.return_sublist_displayType;
+	this.Ureg[18]=this.return_sublist_state;
+	this.Ureg[19]=this.return_sublist_age;
+	this.Ureg[20]=this.return_sublist_idx;
+	this.Ureg[21]=this.return_sublist_page;
+	this.Ureg[22]=this.return_sublist_sort;
+	this.Ureg[23]=this.return_subdetail_crid;
+	this.Ureg[24]=this.return_subdetail_displayType;
+	this.Ureg[25]=this.return_subdetail_state;
+	this.Ureg[26]=this.return_subdetail_age;
+	if(this.volume_flag)this.Ureg[27]=1;
+	else this.Ureg[27]=0;
+
+	for(i=0;i<this.Ureg.length;i++){
+		for(j=0;j<gEncTbl.length;j++)this.Ureg[i]=(String(this.Ureg[i]).split(gDecTbl[j])).join(gEncTbl[j]);
+		if(this.Ureg[i]=="null"||this.Ureg[i]=="NULL")this.Ureg[i]="";
+	}
+	if(this.Ureg.length>0){
+		uri+="?";
+		for(var i=0;i<this.Ureg.length&&i<gUregMax;i++){
+			if(i!=0)uri+="&";
+			uri+=(this.Ureg[i]!=null)?this.Ureg[i]:"";
+		}
+	}
+	return uri;
+}
+//カラオケ遷移動作修正
+var gHoldUri="";
+var gScLaunchFlg=false;
+var gShowPopup=false;
+function ST_launchDocument(uri){
+	gHoldUri=uri;
+	if(gPlayMovie){
+		lockScreen();
+		gScLaunchFlg=false;
+		var evt=document.currentEvent;
+		if(evt!=null){
+			var id="";
+			if(evt.target!=null&&evt.target.id!=null)id=evt.target.id;
+			if(id.indexOf("pbtn")==0||id.indexOf("buy_")==0||id=="bt_1"||id=="bt_2"){
+				holdLaunch();
+				return;
+			}
+			if(id=="scbtn"&&evt.keyCode==18){
+				scblur(gScIdx);
+				gScLaunchFlg=true;
+			}
+		}
+		var msg="再生中のカラオケが\n中断されます。\nよろしいですか？\n\n中断された曲は\n予約リストに残ります。";
+		if(gDBErr)msg="再生中のカラオケが\n中断されます。\nよろしいですか？";
+		showPopup2(new Array("はい","いいえ"),pop2funcLaunch,"ご確認",msg);
+		unlockScreen();
+	}else{
+		lockScreen();
+		holdLaunch();
+	}
+}
+function holdLaunch(){
+	if(gHoldUri=="")return;
+	if(gState.allHidden!=null)gState.allHidden();
+	showElem("loading2");
+	unlockScreen();
+	var ret=NaN;
+	var ret=browser.launchDocument(gState.getUrl(gHoldUri),"cut");
+	if(isNaN(ret))launchHome();
+}
+function ST_allHidden(){}
+
+/***************************  URLエンコード対象テーブル  *********************************/
+var gDecTbl=new Array();var gEncTbl=new Array();
+gDecTbl[0]='%'; gEncTbl[0]='%25';
+gDecTbl[1]='#'; gEncTbl[1]='%23';
+gDecTbl[2]='$'; gEncTbl[2]='%24';
+gDecTbl[3]='&'; gEncTbl[3]='%26';
+gDecTbl[4]='+'; gEncTbl[4]='%2B';
+gDecTbl[5]='/'; gEncTbl[5]='%2F';
+gDecTbl[6]=':'; gEncTbl[6]='%3A';
+gDecTbl[7]=';'; gEncTbl[7]='%3B';
+gDecTbl[8]='='; gEncTbl[8]='%3D';
+gDecTbl[9]='?'; gEncTbl[9]='%3F';
+gDecTbl[10]=' ';gEncTbl[10]='+';
+
+/**************  マルチキャスト非対応時用画材定義テーブル  **************/
+var gMltCstDisableImg=new Array();
+	gMltCstDisableImg["fdn-e"]="images/img_defalt_fdn-e.png";
+	gMltCstDisableImg["fdn-w"]="images/img_defalt_fdn-w.png";
+	gMltCstDisableImg["ngn-e"]="images/img_defalt_ngn-e.png";
+	gMltCstDisableImg["ngn-w"]="images/img_defalt_ngn-w.png";
+
+/***************************  共通配置  *********************************/
+// サブテーマアイコン表示
+function showTemaIcon(){
+	if(gState.temaIconSub!=""){
+		showElem("temaIconSub");
+		setText("temaIconSub_t",gState.temaIconSub);
+	}else{
+		hideElem("temaIconSub");
+		setText("temaIconSub_t","");
+	}
+}
+// 時計
+function clockStart(){
+	getElementById("clock").normalStyle.top = "41px";
+	if( !isNaN( gState.clockTimerID ) )browser.clearTimer( gState.clockTimerID );
+	clockLoop();
+}
+function clockStop(){
+	getElementById("clock").normalStyle.top = "-540px";
+	if( !isNaN( gState.clockTimerID ) )browser.clearTimer( gState.clockTimerID );
+	gState.clockTimerID = NaN;
+}
+function clockLoop(){
+	gState.clockTimerID = NaN;
+	var now = new Date();
+	var day = new Array("(日)","(月)","(火)","(水)","(木)","(金)","(土)");
+
+	lockScreen();
+		if(now != null){
+			setText("clock0",padding( "  " , now.getMonth()+1));
+			setText("clock1","月");
+			setText("clock2",padding( "  " , now.getDate() ));
+			setText("clock3","日");
+			setText("clock4",day[ now.getDay() ]);
+			var hour = now.getHours();
+			if(hour>=12){
+				setText("clock5","PM");
+				setText("clock6",padding( "00" , now.getHours()-12 ));
+			}else{
+				setText("clock5","AM");
+				setText("clock6",padding( "00" , now.getHours() ));
+			}
+			setText("clock7",":");
+			setText("clock8",padding( "00" , now.getMinutes() ));
+		}
+		else{
+			getElementById("clock").normalStyle.top = "-540px";
+		}
+	unlockScreen();
+
+	gState.clockTimerID = browser.setInterval( "clockLoop();",1000,1);
+}
+
+// 現時刻がstart から end までに含まれているかチェックする
+function interimCheck(start,end){
+	if(!dateCheck(start)||dateCheck(end))return false;
+	return true;
+}
+function gohome(id){launchHome();}
+function checkParental(info){
+	if(info.basicDescription==null||info.basicDescription.parentalRate>gState.age){
+		showPopup(new Array("ホームへ"),gohome,"エラー","視聴年齢制限を超えているため、\r\n画面を表示出来ません。\r\nホームへ戻ります。\r\n状態番号：09999","");
+		return false;
+	}
+	return true;
+}
+
+// ショートカットキーハンドラ
+var gScbtns=new Array("bt_s_bk","bt_s_my","bt_s_tv","bt_s_v","bt_s_ko","bt_s_pr","bt_s_home");
+var gScFuncs=new Array(returnFunc,launchMypage,launchTv,launchVideo,launchKaraokeTop,launchPremium,launchHome);
+var gScIdx=0;
+function scFocus(){scfocus(0);setFcs("scbtn");}
+function scfocus(idx){
+	gScIdx=idx;
+	playSound(9);
+	var ext="-f.png";
+	var left=new Array("0px","68px","102px","136px","170px","204px","238px");
+	var width=new Array("70px","36px","36px","36px","36px","36px","36px");
+	getElementById("scbtn").normalStyle.left=left[idx];
+	getElementById("scbtn").normalStyle.width=width[idx];
+	setImg("scbtn","images/"+gScbtns[idx]+ext);
+}
+function scblur(idx){
+	var ext=".png";
+	setImg("scbtn","images/"+gScbtns[idx]+ext);
+}
+function scbtndownkey(idx){playSound(7);}
+function sckey(){
+	var code=document.currentEvent.keyCode;
+	var id=document.currentEvent.target.id;
+	var idx=gScIdx;
+	lockScreen();
+	if(code==1){
+		if(gState.scupkey!=null)gState.scupkey();
+	}else if(code==2){
+		if(gState.scdownkey!=null)gState.scdownkey();
+	}else if(code==3){
+		scblur(idx);
+		idx--;
+		if(idx<0)idx=gScbtns.length-1;
+		scfocus(idx);
+	}else if(code==4){
+		scblur(idx);
+		idx++;
+		if(gScbtns.length<=idx)idx=0;
+		scfocus(idx);
+	}else if(code>=5&&code<=14){
+		if(gState.downbox!=null&&(code-5)<=gState.downbox.list.length&&5<code){
+			scblur(idx);
+			gState.downbox.numClick(code);
+		}
+	}else if(21<=code&&code<=24){
+		colorKey(code);
+	}else if(code==18){
+		if(idx==0)gPlaySound=false;
+		scbtndownkey(idx);
+		if(idx!=0){
+			gState.param_crid="";
+			gState.param_displayType="";
+		}
+		gScFuncs[idx]();
+	}else if(code==19){
+		scblur(gScIdx);
+		returnFunc();
+	}
+	unlockScreen();
+}
+function colorKey(code){}
+/*************************  戻るボタン関数  *******************************/
+// 記憶するデータ構造
+function RooTRData(){
+	this.state=0;
+	this.crid1="";
+	this.crid2="";
+}
+function RData(){
+	this.state=0;
+	this.crid="";
+	this.displayType="";
+	this.sort="";
+	this.page=0;
+	this.idx=0;
+	this.age=0;
+}
+function returnData(){
+	this.list=null;
+	this.detail=null;
+}
+
+function showByObj(obj,listObj){
+}
+
+function showByCrid(crid,displayType,state,listObj){
+}
+
+var gReturnState=false;
+// 戻るボタン制御f
+
+function setStartReturnData(){
+	gState.rootReturnData=new returnData();
+	if(gState.return_state!=-1){
+		gState.rootReturnData.detail=new RooTRData();
+		gState.rootReturnData.detail.state=gState.return_state;
+		gState.rootReturnData.detail.crid1=gState.return_crid_1;
+		gState.rootReturnData.detail.crid2=gState.return_crid_2;
+//		if(gState.rootReturnData.list!=null){
+//			gState.rootReturnData.list.page=gState.return_page;
+//			gState.rootReturnData.list.sort=(gState.return_sort ? gState.return_sort : null);
+//		}
+	}
+	gState.subReturnData=new returnData();
+	if(gState.return_sublist_state!=-1){
+		gState.subReturnData.list=new RData();
+		gState.subReturnData.list.state=gState.return_sublist_state;
+		gState.subReturnData.list.crid=gState.return_sublist_crid;
+		gState.subReturnData.list.displayType=(gState.return_sublist_displayType ? gState.return_sublist_displayType : null);
+		gState.subReturnData.list.idx=gState.return_sublist_idx;
+		gState.subReturnData.list.age=gState.return_sublist_age;
+		gState.subReturnData.list.page=isNaN(gState.return_sublist_page)?0:gState.return_sublist_page;
+		gState.subReturnData.list.sort=(gState.return_sublist_sort ? gState.return_sublist_sort : null);
+	}
+	if(gState.return_subdetail_state!=-1){
+		gState.subReturnData.detail=new RData();
+		gState.subReturnData.detail.state=gState.return_subdetail_state;
+		gState.subReturnData.detail.crid=gState.return_subdetail_crid;
+		gState.subReturnData.detail.displayType=(gState.return_subdetail_displayType ? gState.return_subdetail_displayType : null);
+		gState.subReturnData.detail.age=gState.return_subdetail_age;
+	}
+	clearReturnOnQuery();
+}
+function setReturnDataOnQuery(){
+	setReturnData(gScreenState,-1);
+	clearReturnOnQuery();
+	gState.return_timing="set";
+	if(gState.rootReturnData!=null&&gState.rootReturnData.detail!=null){
+		gState.return_state=gState.rootReturnData.detail.state;
+		gState.return_crid_1=gState.rootReturnData.detail.crid1;
+		gState.return_crid_2=gState.rootReturnData.detail.crid2;
+		if(gState.rootReturnData.list!=null){
+			gState.return_page=gState.rootReturnData.list.page;
+			gState.return_sort=gState.rootReturnData.list.sort;
+		}
+	}
+	if(gState.downbox!=null&&gState.downbox.objtype.indexOf("list")!=-1){
+		gState.return_sublist_state=gState.downbox.state;
+		gState.return_sublist_crid=gState.downbox.crid;
+		gState.return_sublist_displayType=gState.downbox.displayType;
+		gState.return_sublist_idx=gState.downbox.idx;
+		gState.return_sublist_age=gState.age;
+		gState.return_sublist_page=gState.downbox.nowPage;
+		gState.return_sublist_sort=gState.downbox.sort;
+	}else{
+		if(gState.upbox!=null&&gState.upbox.listObj!=null){
+			gState.return_sublist_state=gState.upbox.listObj.state;
+			gState.return_sublist_crid=gState.upbox.listObj.crid;
+			gState.return_sublist_displayType=gState.upbox.listObj.displayType;
+			gState.return_sublist_idx=gState.upbox.listObj.idx;
+			gState.return_sublist_age=gState.age;
+			gState.return_sublist_page=gState.upbox.listObj.nowPage;
+			gState.return_sublist_sort=gState.upbox.listObj.sort;
+		}
+		if(gState.downbox!=null){
+			gState.return_subdetail_state=gState.downbox.state;
+			gState.return_subdetail_crid=gState.downbox.crid;
+			gState.return_subdetail_displayType=gState.downbox.displayType;
+			gState.return_subdetail_age=gState.age;
+		}
+	}
+	gState.return_bmltype=gState.bmltype;
+}
+function clearReturnOnQuery(){
+	gState.return_timing="none";
+	gState.return_state=-1;
+	gState.return_crid_1="";
+	gState.return_crid_2="";
+	gState.return_bmltype=0;
+	gState.return_page=0;
+	gState.return_sort="";
+//	gState.fromTop=0;
+	clearSubReturnOnQuery();
+}
+function clearSubReturnOnQuery(){
+	if(!gState.fromTop){ // トップ経由していないものは、全リセットする
+		gState.return_timing="none";
+		gState.return_state=-1;
+		gState.return_bmltype=0;
+		gState.return_crid_1="";
+		gState.return_crid_2="";
+		gState.return_page=0;
+		gState.return_sort="";
+	}
+	gState.return_sublist_state=-1;
+	gState.return_sublist_crid="";
+	gState.return_sublist_displayType="";
+	gState.return_sublist_age=0;
+	gState.return_sublist_idx=0;
+	gState.return_sublist_page=0;
+	gState.return_sublist_sort="";
+	gState.return_subdetail_state=-1;
+	gState.return_subdetail_crid="";
+	gState.return_subdetail_displayType="";
+	gState.return_subdetail_age=0;
+}
+function createByQuery(){
+	setStartReturnData();
+	returnFunc();
+}
+function returnFunc(){
+	var obj = null;
+	var listObj=null;
+	playSound(7);
+	if(gState.upbox!=null&&gState.upbox.listObj!=null){
+		// listObj画面作成決定
+		obj = gState.upbox.listObj;
+		if(gState.subReturnData.detail==null&&gState.subReturnData.list!=null){
+			listObj = createDownBox(gState.subReturnData.list);// sub.listをlistObjにする。
+			gState.subReturnData.list=null;
+		}else if(gState.subReturnData.detail==null&&gState.subReturnData.list==null&&gState.rootReturnData.list!=null){
+			listObj = createDownBox(gState.rootReturnData.list);// root.listをlistObjにする。
+			gState.rootReturnData.list=null;
+		}
+		if(listObj==-1){
+			gPop.btns = new Array("ホームへ");
+			gPop.func = gohome;
+			showPopupbtn(gPop.btns);
+			return false;
+		}
+//		if(listObj!=null){
+//			var con = listObj.get();
+//			if(con!=null&&con.crid!=obj.crid) listObj=null;
+//		}
+		scblur(gScIdx);
+		gReturnState=true;
+		showByObj(obj,listObj);
+		return true;
+	}
+
+	if(gState.subReturnData.detail!=null){
+		obj=createDownBox(gState.subReturnData.detail);
+		gState.subReturnData.detail=null;
+		if(gState.subReturnData.list!=null){
+			listObj=createDownBox(gState.subReturnData.list);
+			gState.subReturnData.list=null;
+		}
+	}else if(gState.subReturnData.list!=null){
+		obj=createDownBox(gState.subReturnData.list);
+		gState.subReturnData.list=null;
+	}
+	if(listObj==null&&gState.rootReturnData.list!=null){
+		listObj = createDownBox(gState.rootReturnData.list);
+		gState.rootReturnData.list=null;
+	}
+	if(obj!=null){
+		scblur(gScIdx);
+		gReturnState=true;
+		if(listObj==-1||obj==-1){
+			gPop.btns = new Array("ホームへ");
+			gPop.func = gohome;
+			showPopupbtn(gPop.btns);
+			return false;
+		}
+//		if(listObj!=null){
+//			var con = listObj.get();
+//			if(con!=null&&con.crid!=obj.crid) listObj=null;
+//		}
+		showByObj(obj,listObj);
+		return true;
+	}
+	if(gState.rootReturnData.detail!=null){
+		gReturnState=true;
+		if(gState.bmltype==2){
+			scblur(gScIdx);
+			showMenu(gState.rootReturnData.detail.state);
+		}else if(gState.bmltype==4){
+			scblur(gScIdx);
+			shwoAnnounceTop(Number(gState.rootReturnData.detail.crid1));
+		}else if(gState.bmltype==1){
+			scblur(gScIdx);
+			showChList();
+		}else if(gState.bmltype==6){
+			scblur(gScIdx);
+			showPremiumTop(gState.rootReturnData.detail.crid1);
+		}else if(gState.bmltype==3){
+			scblur(gScIdx);
+			showMypageTop(Number(gState.rootReturnData.detail.crid1));
+		}else if(gState.bmltype==9){
+			scblur(gScIdx);
+			gPlaySound=false;
+			showGenre(Number(gState.rootReturnData.detail.crid1));
+		}else if(gState.bmltype==10){
+			scblur(gScIdx);
+			showMenu(gState.rootReturnData.detail.state);
+		}else if(gState.bmltype==11){
+			scblur(gScIdx);
+			shwoAnnounceTop(Number(gState.rootReturnData.detail.crid1));
+		}
+		gState.rootReturnData.detail=null;
+		return true;
+	}
+
+	if(gState.return_timing=="set"){
+		var bml=gState.return_bmltype;
+		gState.return_timing="return";
+		gState.return_bmltype=0;
+		if(checkUser()==1&&gBmlName[bml]=="startup.bml") gState.launchDocument("trial_home.bml");
+		else gState.launchDocument(gBmlName[bml]);
+		return;
+	}
+
+	// トップ画面に戻る
+	if( gScreenState!=0&&gState.fromTop){
+		gState.rootReturnData=new returnData();
+		gState.subReturnData=new returnData();
+		gPlaySound=false;
+		return returnTop();
+	}
+
+	// ホームへ
+	launchHome();
+	return true;
+}
+function returnTop(){
+	if(gState.bmltype==6){
+		playSound(7);
+		scblur(gScIdx);
+		showPremiumTop("");
+		return true;
+	}else if(gState.bmltype==1){
+		playSound(7);
+		scblur(gScIdx);
+		gTVTop();
+		return true;
+	}else if(gState.bmltype==2){
+		playSound(7);
+		scblur(gScIdx);
+		gVideoTop();
+		return true;
+	}else if(gState.bmltype==4){
+		playSound(7);
+		scblur(gScIdx);
+		shwoAnnounceTop(0);
+		return true;
+	}else if(gState.bmltype==3){
+		playSound(7);
+		scblur(gScIdx);
+		showMypageTop(0);
+		return true;
+	}else if(gState.bmltype==8){
+		playSound(7);
+		scblur(gScIdx);
+		showKaraokeTop();
+		return true;
+	}else if(gState.bmltype==9){
+		scblur(gScIdx);
+		gPlaySound=false;
+		launchKaraokeTop();
+		return true;
+	}else if(gState.bmltype==10){
+		playSound(7);
+		scblur(gScIdx);
+		gVideoTop();
+		return true;
+	}else if(gState.bmltype==11){
+		playSound(7);
+		scblur(gScIdx);
+		gState.launchDocument("nod_video.bml");
+//		showMypageTop(0);
+		return true;
+	}
+	return false;
+}
+/*************************  共通基礎関数  *******************************/
+// ハンドラ
+var gPlaySound = true;
+// 処理補助
+function getElementById(id){return document.getElementById(id);}
+function showElem(id){getElementById(id).normalStyle.visibility="visible";}
+function hideElem(id){getElementById(id).normalStyle.visibility="hidden";}
+function isVis(id){
+	if(getElementById(id).normalStyle.visibility=="visible")return true;
+	return false;
+}
+function setImg(id,img){if(getElementById(id).data!=img)getElementById(id).data=img;}
+function setText(id,str){getElementById(id).firstChild.data=String(str);}
+function padding(format,str){return format.substring(0,format.length-String(str).length)+str;}
+// 日付が現在より前ならTrue 後ならFALSEを返す
+function dateCheck(arr){
+	var day = new Date();
+	if(arr==null) return false;
+	if(arr[0] < Number(day.getFullYear()) ) return true;
+	else if(arr[0] > Number(day.getFullYear()) ) return false;
+	if(arr[1] < Number(day.getMonth()+1) ) return true;
+	else if(arr[1] > Number(day.getMonth()+1) ) return false;
+	if(arr[2] < Number(day.getDate()) ) return true;
+	else if(arr[2] > Number(day.getDate()) ) return false;
+	if(arr[3] < Number(day.getHours()) ) return true;
+	else if(arr[3] > Number(day.getHours()) ) return false;
+	if(arr[4] < Number(day.getMinutes()) ) return true;
+	else if(arr[4] > Number(day.getMinutes()) ) return false;
+	if(arr[5] < Number(day.getSeconds()) ) return true;
+	else if(arr[5] > Number(day.getSeconds()) ) return false;
+	return false;
+}
+function setTxtCol(id,fc,gsc){
+	var elmSt=getElementById(id).normalStyle;
+	if(elmSt.grayscaleColorIndex==String(gsc))return;
+	elmSt.colorIndex=String(fc);
+	elmSt.grayscaleColorIndex=String(gsc);
+}
+function romSound(id){
+	if(gState.volume_flag)browser.playRomSound("romsound://"+id);
+}
+function playSound(id){
+	if(gPlaySound) romSound(id);
+	gPlaySound=true;
+}
+function setStream(id,st){getElementById(id).streamStatus=st;}
+function setFcs(id){
+	if(gFOff)gFKey=id;
+	else getElementById(id).focus();
+}
+function lockScreen(){browser.lockScreen();}
+function unlockScreen(){browser.unlockScreen();}
+function subDate(arr,date,num){
+	var day=createDate(arr);
+	if(!day)return NaN;
+	return browser.subDate(day,date,num);
+}
+function createDate(arr){
+	if(arr==null||arr.length!=6) return null;
+	if(arr[0]>2100) return null;
+	else if(arr[0]==2100&&arr[1]>2) return null;
+	else if(arr[0]==2100&&arr[1]==2&&arr[2]>27) return null;
+	return (new Date(arr[0],(arr[1]-1),arr[2],arr[3],arr[4],arr[5]));
+}
+// 文字列「…」補完処理
+//   引数  txt : 対象文字列
+//         len : 表示可能バイト数
+//   返値  補完テキスト
+function convOverText(txt,len){
+	var c=0,bt=0,lim=0,ngF=false;
+	for(var i=0;i<txt.length;i++){
+		c=txt.charCodeAt(i);
+		bt+=(c<256?1:2);
+		if(len<bt){
+			ngF=true;
+			break;
+		}
+		if(bt<=len-2)lim=i+1;
+	}
+	if(ngF)return txt.substring(0,lim)+"…";
+	return txt;
+}
+// epgTune処理
+function epgTuneProc(serId){
+	var nId=parseInt(ORG_NETWORK_ID,10);
+	serId=parseInt(serId,10);
+	if(!isNaN(nId)&&!isNaN(serId)){
+		nId=padding("0000",nId.toString());
+		serId=padding("0000",serId.toString(16));
+		browser.epgTune("arib://"+nId+"."+serId+"."+serId);
+	}
+}
+// ホームトップ画面への遷移
+function launchHome(){
+	gState.returnHome=true;
+	if(checkUser()==1) gState.launchDocument("trial_home.bml");
+	else gState.launchDocument("startup.bml");
+}
+function launchTrialHome(){
+	gState.returnHome=true;
+	gState.launchDocument("trial_home.bml");
+}
+// テレビトップ画面への遷移
+function launchTv(){
+	if(gState.bmltype!=1)gState.launchDocument("tv.bml");
+	else{clearReturnOnQuery();gTVTop(); /*すでにTvにいる場合の処理を記述*/}
+}
+// プレミアムトップ画面への遷移
+function launchPremium(){
+	if(gState.bmltype!=6)gState.launchDocument("premium.bml");
+	else{clearReturnOnQuery();showPremiumTop(0); /*すでにTvにいる場合の処理を記述*/}
+}
+// ビデオトップ画面への遷移
+function launchVideo(){
+	if(gState.bmltype!=2)gState.launchDocument("video.bml");
+	else{clearReturnOnQuery();gVideoTop();/*すでにVideoにいる場合の処理を記述*/}
+}
+// マイページトップ画面への遷移
+function launchMypage(){
+	if(gState.bmltype!=3)gState.launchDocument("mypage.bml");
+	else{
+		clearReturnOnQuery();
+		lockScreen();
+		scblur(1);
+		showMypageTop(0);
+		unlockScreen();
+	}
+}
+// カラオケトップ画面への遷移
+function launchKaraokeTop(){
+	if(gState.bmltype!=8)gState.launchDocument("karaoke_top.bml");
+	else{
+		clearReturnOnQuery();
+		lockScreen();
+		scblur(4);
+		showKaraokeTop();
+		unlockScreen();
+	}
+}
+/***********************  ポップアップ関数  *****************************/
+// btns 配置するボタン名の配列
+// funcs btnsに対応するボタンのハンドラ
+// title ポップアップタイトル
+// text ポップアップ文言
+var gPop=new Pop();
+function Pop(){
+	this.func=null;
+	this.body="basic";
+	this.btns=null;
+}
+function showPopupbtn(btns){
+	var btnLeft = new Array(new Array("222"),new Array("137","307"),new Array("52","222","392"));
+	var btntLeft = new Array(new Array("230"),new Array("145","315"),new Array("60","230","400"));
+	for(var i=0;i<3;i++){
+		if(i<btns.length){
+			getElementById("pbtn"+i).normalStyle.left = btnLeft[btns.length-1][i]+"px";
+			getElementById("pbtn"+i+"t").normalStyle.left = btntLeft[btns.length-1][i]+"px";
+			setText("pbtn"+i+"t",btns[i]);
+			showElem("pbtn"+i);
+		}else{
+			hideElem("pbtn"+i);
+			setText("pbtn"+i+"t","");
+		}
+	}
+}
+function showPopup(btns,func,title,text,code){
+	if(btns==null||btns.length==0||btns.length>3)return;
+	gPop.func=func;
+	gPop.btns=btns;
+	lockScreen();
+	for(var i=0;i<3;i++)pop_blur("pbtn"+i);
+	showPopupbtn(btns);
+	setText("ptext",text);
+	gPop.body=getElementById("body").normalStyle.usedKeyList;
+	getElementById("body").normalStyle.usedKeyList="basic";
+	showElem("pop");
+	if(title==""||title=="エラー"){
+		hideElem("titBase");
+		setText("ptitle","");
+	}else{
+		getElementById("titBase").normalStyle.visibility="inherit";
+		setText("ptitle",title);
+	}
+	gPlaySound=false;
+	pop_focus("pbtn0");
+	if(gFOff==false)hideElem("loading2");
+	unlockScreen();
+	gShowPopup=true;
+}
+function hidePopup(){
+	var i;
+	for(i=0;i<3;i++){
+		hideElem("pbtn"+i);
+		setText("pbtn"+i+"t","");
+	}
+	setText("ptitle","");
+	setText("ptext","");
+	hideElem("pop");
+	getElementById("body").normalStyle.usedKeyList=gPop.body;
+	gPop.body="basic";
+	gShowPopup=false;
+}
+function pop_focus(id){
+	playSound(9);
+	setFcs(id);
+	setImg(id,"images/bt_2-f.png");
+	setTxtCol(id+"t","0","189 191");
+}
+function pop_blur(id){
+	setImg(id,"images/bt_2.png");
+	setTxtCol(id+"t","7","171 167");
+}
+function popkey(){
+	if(gPop.func==null)return;
+	var code=document.currentEvent.keyCode;
+	var id=document.currentEvent.target.id;
+	var idx=Number(id.substring(4,5));
+	if(isNaN(idx)||idx<0||idx>=3)return;
+	lockScreen();
+	if(code==3){
+		if(gPop.btns.length<=1) return;
+		pop_blur(id);
+		idx--;
+		if(idx<0)idx=gPop.btns.length-1;
+		pop_focus("pbtn"+idx);
+	}else if(code==4){
+		if(gPop.btns.length<=1) return;
+		pop_blur(id);
+		idx++;
+		if(gPop.btns.length<=idx)idx=0;
+		pop_focus("pbtn"+idx);
+	}else if(code==18){
+		playSound(7);
+		hidePopup();
+		gPop.func(id);
+	}
+	unlockScreen();
+}
+//再生時画面外遷移用ポップアップ
+function showPopup2(btns,func,title,text){
+	if(btns==null||btns.length!=2)return;
+	gPop.func=func;
+	lockScreen();
+	setText("p2btn0t",btns[0]);
+	setText("p2btn1t",btns[1]);
+	setText("p2title",title);
+	setText("p2text",text);
+	showElem("pop2");
+	gPlaySound=false;
+	pop2_blur("p2btn0");
+	pop2_focus("p2btn1");
+	gPlaySound=true;
+	gShowPopup=true;
+}
+function hidePopup2(){
+	hideElem("pop2");
+	gShowPopup=false;
+}
+function pop2_focus(id){
+	playSound(9);
+	setFcs(id);
+	setImg(id,"images/bt_4-f.png");
+	setTxtCol(id+"t","0","189 191");
+}
+function pop2_blur(id){
+	setImg(id,"images/bt_4.png");
+	setTxtCol(id+"t","7","171 167");
+}
+function pop2key(){
+	var code=document.currentEvent.keyCode;
+	var id=document.currentEvent.target.id;
+	lockScreen();
+	if(code==3||code==4){
+		pop2_blur(id);
+		if(id=="p2btn0")pop2_focus("p2btn1");
+		else if(id=="p2btn1")pop2_focus("p2btn0");
+	}else if(code==18){
+		playSound(7);
+		hidePopup2();
+		gPop.func(id);
+	}
+	unlockScreen();
+}
+var gRmvKCI=null;
+function pop2funcRsvRmv(id){
+	if(id=="p2btn0"){
+		if(gRmvKCI==null){updateByQueue();return;}
+		var ret=rsvRmv(gRmvKCI);
+		gRmvKCI=null;
+		if(ret!=true)return;
+		ret=getQueue(getKaraokeQueue,null);
+		if(ret==null)return;
+		if(gWindInfo)showKaraokInfomationL();
+		gPlaySound=false;
+		updateByQueue();// 画面を更新しておく
+		gPlaySound=true;
+	}else if(id=="p2btn1"){
+		gPlaySound=false;
+		if(gState.downbox!=null){
+			gState.downbox.focus(-1);
+		}else{
+			updateByQueue();
+		}
+		gPlaySound=true;
+	}
+}
+function pop2funcLaunch(id){
+	if(id=="p2btn0"){
+		holdLaunch();
+	}else if(id=="p2btn1"){
+		gPlaySound=false;
+		if(gScLaunchFlg){
+			scfocus(gScIdx);
+			setFcs("scbtn");
+		}else{
+			defaultFocus();
+		}
+		gPlaySound=true;
+	}
+}
+/*************************  パレンタル関連関数  *******************************/
+// 受信機設定の視聴制限年齢取得処理
+//   制限年齢が取得不可 : 常に 4
+//   制限解除状態       : 常に 20
+//   上記以外           : SecretMode OFF : DTV設定年齢(4〜20)
+//                        SecretMode ON  : 19 (DTV設定年齢が19以下) / 20 (DTV設定年齢が20)
+function getParental(){
+	var arr=browser.readPersistentArray("nvram://receiverinfo/parentallevel","U:7b,B:1b");
+	if(arr==null)gState.age=19;
+	else{
+		var age=parseInt(arr[0],10);
+		if(arr[1]==0){
+			gState.age=20;
+			return;
+		}
+		if(age<4||age>20)age=19;
+		if(gState.secret)gState.age=(age<20?19:20);
+		else gState.age=age;
+	}
+}
+/**************************  エラー処理  ********************************/
+// サーバエラーステータス取得処理
+//   API実行後、返り値が null の場合に呼んで、エラー表示テキストを取得する。
+//   返り値    Array : エラー情報取得
+//                       Array[0]="" or "サーバー障害"
+//                       Array[1]=エラー表示テキスト
+//             null  : 再ログイン実行（当該処理を再実行する）
+//	※カラオケのみ、サーバー障害時に下記DB異常フラグを立てる
+var gDBErr=false;
+function getErrStat(){
+	var errArr=getErrors();
+	var idx=errArr.length-1;
+	if(String(errArr[idx].serverCode)==String(ERROR_USER_DB)){gDBErr=true;return new Array("サーバー障害","\r\n"+errArr[idx].message);}
+	else if(String(errArr[idx].serverCode)!=String(ERROR_REQUEST_LOGIN))return new Array(String(errArr[idx].type),setErrMsg(errArr[idx]));
+	else{
+		var drmId=getDRMID("marlin_iptv_es");
+		if(drmId==null||String(drmId)=="NaN"){
+			gState.login_flg="";
+			return new Array("",setErrMsg(getBmlErr("06","19")));
+		}
+		var arr=browser.checkIPTVServiceRegistrationInfo(IP_SERVICE_PROVIDER_ID);
+		if(arr==null||arr[0]==""){
+			gState.login_flg="";
+			return new Array("",setErrMsg(getBmlErr("06","29")));
+		}
+		drmId=drmId.toLowerCase();
+		if(drmId.indexOf("0x")==0)drmId=drmId.substring(2);
+		var obj=login(drmId,arr[0]);
+		if(obj==null){
+			gState.login_flg="";
+			errArr=getErrors();
+			idx=errArr.length-1;
+			if(String(errArr[idx].type).charAt(1)==6) browser.launchDocument(gState.getUrl("drmid_err.bml")+"&drmerr="+errArr[idx].message,"cut");
+			return new Array("",setErrMsg(errArr[idx]));
+		}
+		if(obj.nextcom!="active_list_complete"){
+			if(obj.nextcom=="initialize"){
+				var date=new Date(2000,3,1);
+				browser.setIPTVServiceRegistrationInfo(IP_SERVICE_PROVIDER_ID,arr[0],date,REMOVE_DRM_SERVER_URL,REMOVE_SIGNATURE,REMOVE_CERTIFICATES_URL);
+			}
+			gState.login_flg="";
+			return new Array("",setErrMsg(getBmlErr("06","39")));
+		}
+		gState.login_flg="OK";
+		return null;
+	}
+}
+function showLoginErr(){
+	var errArr=getErrors();
+	var idx=errArr.length-1;
+	showPopup(new Array("ホームへ"),gohome,"エラー",setErrMsg(errArr[idx]),"");
+}
+function setErrMsg(errObj){
+	var tp=String(errObj.type).charAt(1);
+	var msg="";
+	if(tp=="9")msg="\r\n本体の電源を再度入れ直して、\r\n再度接続してください。\r\n\r\n状態番号："+errObj.type+errObj.apiId;
+	else if(tp=="5")msg="\r\n"+errObj.message;
+	else{
+		if(tp=="0"||tp=="3"||tp=="4")msg="サーバでエラーが発生しました。\r\n時間をおいて再度お試しください。";
+		else if(tp=="1")msg="サーバとの通信に失敗しました。\r\nお客さまの接続環境をご確認の上、再度お試しください。";
+		else if(tp=="2")msg="サーバでエラーが発生しました。\r\n時間をおいて再度お試しください。\r\n解決されない場合は、本体の電源を再度入れ直して、\r\n再度接続してください。";
+		msg=msg+"\r\n状態番号："+errObj.type+errObj.apiId+"\r\n"+errObj.message+(errObj.message!=""?"\r\n":"")+"管理番号："+errObj.code;
+	}
+	return msg;
+}
+function getBmlErr(apiId,type){return new Error(padding("000",apiId),type,"","");}
+//
+// TVの視聴ライセンスから視聴可能かのチェックを行う
+function hasTvViewLicense(licenseId,tierbit){
+	/**
+	if(licenseId==null) return false;
+	// 受信機のテラビット取得
+	var arr=browser.getIPTVLicenseInfo(licenseId.toUpperCase(),1);
+	if(arr!=null&&arr[0]==1){
+		var stbbit = padding("0000000000000000",String(arr[3]));
+		var stbbitArr=new Array(stbbit.substring(0,4),stbbit.substring(4,8),stbbit.substring(8,12),stbbit.substring(12,16));
+
+		var tvbit = padding("0000000000000000",tierbit);
+		var tvbitArr=new Array(tvbit.substring(0,4),tvbit.substring(4,8),tvbit.substring(8,12),tvbit.substring(12,16));
+
+		var retbit,tvbit;
+		var bit=0;
+		for(var i=0;i<4;i++){
+			retbit=parseInt(stbbitArr[i],16);
+			tvbit=parseInt(tvbitArr[i],16);
+			bit+=retbit&tvbit;
+		}
+		if(bit) return true;
+	}
+	return false;
+	**/
+	return true;
+}
+// ContentsInformation()のDisplayTypeを見て各BMLに遷移する。
+//  displayTypeが不明の場合はホームへ遷移
+function launchByContentInformation(crid,displayType){
+	var bml=(checkUser()==1)?"trial_home.bml":"startup.bml";
+	if((displayType=="video_program")||(displayType=="video_series")||(displayType=="video_package")||(displayType=="wizard")||(displayType=="related_programs")) {bml="video.bml";}
+	else if((displayType=="tv_channel")||(displayType=="channel_package")||(displayType=="tv_programs_promotion")) {bml="tv.bml";}
+	else if((displayType=="subscription_package")||(displayType=="series_svod")||(displayType=="channel_svod")||(displayType=="karaoke_package")) {bml="premium.bml";}
+	else if(displayType=="announcement") {bml="news.bml";}
+	else if(displayType=="karaoke_root"||displayType=="karaoke_series"||displayType=="karaoke_program"){bml="karaoke.bml";}
+	gState.param_crid=String(crid);
+	gState.param_displayType=String(displayType);
+	setReturnDataOnQuery();
+	gState.launchDocument(bml);
+}
+// キー連打回避処理
+var gFKey="",gFOff=false,gFTmId=NaN;
+function keyOff(){
+	if(!isNaN(gFTmId)){
+		browser.clearTimer(gFTmId);
+		gFTmId=NaN;
+	}
+	gFKey="";
+	if(document.currentFocus)gFKey=document.currentFocus.id;
+	lockScreen();
+	showElem("loading2");
+	setFcs("default");
+	unlockScreen();
+	gFOff=true;
+	gFTmId=browser.setInterval("keyOn();",1000,1);
+}
+function keyOn(){
+	gFOff=false;
+	if(!isNaN(gFTmId)){
+		browser.clearTimer(gFTmId);
+		gFTmId=NaN;
+	}
+//	if(gFKey==""){
+//		if(getElementById("scbtn5")==null)return;
+//		gFKey="scbtn5";
+//	}
+	lockScreen();
+	setFcs(gFKey);
+	hideElem("loading2");
+	unlockScreen();
+	gFKey="";
+}
+function dummyFocus(){}
+
+function getDRMID(str){
+	return browser.getDRMID(str);
+}
+// ユーザー判定
+// 0: 商用
+// 1: お試し
+function checkUser(){
+	if(gState.ispid==ISPID_TRIAL) return 1;
+	return 0;
+}
+var goTrialBackFunc=null;
+function trialPop(func){
+	goTrialBackFunc=func;
+	showPopup(new Array("申込み方法","閉じる"),goTrial,"サービスのご利用について","\r\n\r\n「ひかりＴＶ」をご利用いただくには\r\nお申し込みが必要となります。","");
+}
+function goTrial(id){
+	if(id=="pbtn0"){
+		gState.launchDocument("info.bml");
+	}else{
+		if(goTrialBackFunc) goTrialBackFunc(id);
+	}
+}
+
+//------------------------------
+// ティッカー処理
+function getTextCount(txt){
+	var c=0,bt=0;
+	for(var i=0;i<txt.length;i++){
+		c=txt.charCodeAt(i);
+		bt+=(c<256?1:2);
+	}
+	return bt;
+}
+var gTicker=new TickerData();
+// Ticker data
+function TickerData(){
+	this.targetid="";
+	this.time=100;
+	this.starttime=100;
+	this.text = ""; // アニメーションさせる文字列
+
+	this.move=10;
+	this.startflg=false;
+	this.intervalText="　";
+
+	this.font_size=NaN;
+	this.timerId=NaN;
+	this.buffer="";
+	this.width=NaN;
+	this.left=NaN;
+	this.byteCnt=0;
+	this.gap=0;
+	this.riv=0;
+
+	this.start= Ticker_start;
+	this.stop = Ticker_stop;
+	this.getTextCountEx=Ticker_getTextCountEx;
+}
+function setTicker(targetid,stime,itime,move,itext,text,byteCnt,flg){
+	if(getTextCount(text)>byteCnt){
+		gTicker.targetid=targetid;
+		gTicker.starttime=stime;
+		gTicker.time=itime;
+		gTicker.move=move;
+		gTicker.intervalText=itext;
+		gTicker.text=text;
+		gTicker.byteCnt=byteCnt;
+		gTicker.startflg=true;
+		if(flg) gTicker.start();
+
+		lockScreen();
+		setText(gTicker.targetid,text);
+	}
+}
+function Ticker_start(){
+	if( !isNaN(this.timerId) ){
+		browser.clearTimer( this.timerId );
+		this.timerId = NaN;
+	}
+	this.timerId=browser.setInterval("TickerInit();",this.starttime,1);
+	this.startflg=true;
+}
+function Ticker_stop(){
+	if( !isNaN(this.timerId) ){
+		browser.clearTimer( this.timerId );
+		this.timerId = NaN;
+	}
+	if(this.startflg){
+		setText(this.targetid,convOverText(this.text,this.byteCnt));
+		if(!isNaN(this.left))getElementById(this.targetid).normalStyle.left=this.left+"px";
+		if(!isNaN(this.width))getElementById(this.targetid).normalStyle.width=this.width+"px";
+	}
+	this.font_size=NaN;
+	this.timerId=NaN;
+	this.buffer="";
+	this.width=NaN;
+	this.left=NaN;
+	this.startflg=false;
+	this.text = ""; // アニメーションさせる文字列
+	this.gap=0;
+	this.riv=0;
+}
+function TickerInit(){
+	var obj=gTicker;
+	if(!obj) return;
+
+	if( !isNaN(obj.timerId) ){
+		browser.clearTimer( obj.timerId );
+		obj.timerId = NaN;
+	}
+	if(isNaN(obj.width))  obj.width=String(getElementById(obj.targetid).normalStyle.width).substring(0,String(getElementById(obj.targetid).normalStyle.width).length-2);
+	if(isNaN(obj.left))   obj.left=String(getElementById(obj.targetid).normalStyle.left).substring(0,String(getElementById(obj.targetid).normalStyle.left).length-2);
+	if(isNaN(obj.font_size)) obj.font_size=String(getElementById(obj.targetid).normalStyle.fontSize).substring(0,String(getElementById(obj.targetid).normalStyle.fontSize).length-2);
+	lockScreen();
+	if(isNaN(obj.width)||isNaN(obj.font_size)) return;
+	else getElementById(obj.targetid).normalStyle.width=(Number(obj.width)+Number(obj.font_size*2))+"px";
+	obj.buffer+=obj.text;
+	obj.buffer+=obj.intervalText;
+	setText(obj.targetid,obj.buffer);
+	Ticker();
+}
+function Ticker(){
+	var obj=gTicker;
+	if(!obj) return;
+	if(!obj.start) return;
+
+	if( !isNaN(obj.timerId) ){
+		browser.clearTimer( obj.timerId );
+		obj.timerId = NaN;
+	}
+
+	if(isVis(obj.targetid)){
+		var char_length=0;
+		var charSize=obj.font_size;
+		lockScreen();
+		obj.gap+=obj.move;
+		if(obj.gap>=charSize/2){
+			var flg=false;
+			for(var i=0;i<obj.buffer.length;i++){
+				var gap=0;
+				if(obj.buffer.charCodeAt(0)<0xFF) gap=charSize/2;
+				else gap=charSize;
+				if(obj.gap<=gap) break;
+				obj.gap-=gap;
+				obj.buffer=obj.buffer.substring(1);
+				flg=true;
+			}
+			if(flg) setText(obj.targetid,obj.buffer);
+		}
+		var tc=obj.getTextCountEx(obj.buffer,obj.byteCnt);
+		getElementById(obj.targetid).normalStyle.left=(obj.left-obj.gap-obj.riv)+"px";
+		if((tc-4)*obj.font_size/2<=obj.width) obj.timerId = browser.setInterval( "TickerInit();", obj.time, 1 );
+		else obj.timerId = browser.setInterval( "Ticker();", obj.time, 1 );
+	}
+}
+function Ticker_getTextCountEx(txt,byteCont){
+	var c=0,bt=0;
+	this.riv=this.font_size/4;
+	for(var i=0;i<txt.length;i++){
+		c=txt.charCodeAt(i);
+		bt+=(c<256?1:2);
+		if((byteCont+4)==bt) this.riv=0;
+	}
+	return bt;
+}
+gState.load();

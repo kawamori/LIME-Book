@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<tt xmls="http://www.w3.org/ns/ttml" xml:lang="zh">
+<body>
+<div>
+<p begin="0:0:13.50" end="0:0:17.00">
+事情本来很簡単
+</p>
+<p begin="0:0:19.50" end="0:0:21.50">
+事情開始復雑了
+</p>
+<p begin="0:0:30.00" end="0:0:33.20">
+事情更加復雑了
+</p>
+<p begin="0:1:00.00" end="0:1:04.00">
+愛情十八克
+</p>
+<p begin="0:1:08.00" end="0:1:12.00">
+情書男人写不起
+</p>
+</div>
+</body>
+</tt>

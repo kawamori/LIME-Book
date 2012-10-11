@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title>Ateneo</title>
+
+<style><![CDATA[
+	body{
+	
+		background-color-index:0;
+	}
+
+#heart {color-index:1;}
+#rose-stem  {color-index:2;}
+  #display	{ font-size:20px;
+    background-color-index:16;
+    color-index:7;
+    font-size:16px;
+	top:450px;left:760px;width:200px;height:80px;}
+	
+]]></style>
+
+<script>
+<![CDATA[
+
+]]></script>
+
+</head>
+<body>
+
+ <p id="heart" style="left:200px; top:0px; width:960px; height:200px;background-color-index:0;font-size:16px"><![CDATA[
+         
+
+
+  ,o8o, ,o8o,
+,888888,888888,
+888888888888888
+888888888888888
+`8888888888888
+  `888888888
+    `88888
+      `8
+
+]]>
+</p>
+
+
+ <p  style="left:340px; top:0px; width:400px; height:200px;color-index:7;font-size:36px"><![CDATA[
+ Welcome! It works.
+ 
+ ]]>
+ </p>
+</body>
+</bml>

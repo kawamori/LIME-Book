@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<!--
+============================================================
+Copyright (C)2009, NTT Inc. All rights reserved.
+============================================================
+-->
+<bml>
+<head>
+<title>DTV PORTAL(VOD)</title>
+<script><![CDATA[
+//--------------------------------------------------------------
+function onload(){
+  var vodobj = document.getElementById('vod');
+  vodobj.streamStatus = 'stop';
+  vodobj.data = 'http://htvl-pgw.iptvf.jp:12345/pgw/resolvecontent?contract_id=1234567890&drmid=1234567890abcdef&purchase_id=1234567890&promo=on&crypt=no&cid=00fxea9z3c';
+  vodobj.streamStatus = 'play';
+
+  var vodPane = document.getElementById('vodPane');
+  vodPane.normalStyle.visibility = 'visible';
+}
+
+]]></script>
+</head>
+//--------------------------------------------------------------
+<body id="body" onload="onload();">
+
+<div id="vodPane" style="top:85px;left:54px;width:720px;height:405px;visibility:hidden;">
+	<object id="vod" type="application/X-arib-contentPlayControl" data="" streamstatus="stop" style="top:0px;left:0px;width:720px;height:405px;visibility:visible;" />
+</div>
+
+</body>
+</bml>

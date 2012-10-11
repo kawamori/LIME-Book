@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title/>
+<style><![CDATA[
+	body{background-color-index:0;resolution:960x540;display-aspect-ratio:16v9;used-key-list:basic data-button numeric-tuning;}
+	p:focus{grayscale-color-index:61 56;}
+	.main {left:0px; top:0px; width:960px; height:540px;}
+	.clrbutton {width:140px;height:35px;}
+	p.clrbutton {text-align:center;color-index:7;}
+	.databutton {width:120px;height:35px;}
+	p.databutton {text-align:center;color-index:0;line-height:30px;}
+	#status	{left:30px;top:80px;width:400px;height:24px;background-color-index:6;}
+	p.clocktext{font-size:16px;color-index:110;grayscale-color-index:45 201;}
+]]></style>
+
+<script><![CDATA[
+
+function getElementById(id){return document.getElementById(id);}
+function showElem(id){getElementById(id).normalStyle.visibility="visible";}
+function hideElem(id){getElementById(id).normalStyle.visibility="hidden";}
+function isVis(id){
+	if(getElementById(id)==null) return false;
+	if(getElementById(id).normalStyle.visibility=="visible")return true;
+	return false;
+}
+function setText(id,str){getElementById(id).firstChild.data=String(str);}
+function lockScreen(){browser.lockScreen();}
+function unlockScreen(){browser.unlockScreen();}
+
+
+//------------------------------------------------------
+//
+// ビデオ(VOD)関連
+//
+//------------------------------------------------------
+var gRecomend=false;
+
+// VODコンテンツ指定
+function onload(){
+	PlayVideo("http://portal.miyagi.flets-east.jp:8080/test/servlet/mkmeta?cid=20101203145221059miyagi1&roll=off");
+}
+
+// VOD再生
+function PlayVideo(URL){
+	if(!URL)return;
+	URL=String(URL);
+	var elm=getElementById("Video");
+	elm.data=URL;
+	showElem("Video");
+	elm.streamStatus="play";
+//	showElem("ts");
+	getElementById("MediaStopped").subscribe=true;
+}
+
+//停止ボタンでVOD終了し、画面遷移
+function VideoStop(){
+	if(gRecomend){
+		getElementById("MediaStopped").subscribe=false;
+		show();
+		gRecomend=false;
+		unlockScreen();
+	}else{
+		getElementById("Video").streamStatus="stop";
+		getElementById("MediaStopped").subscribe=false;
+		hideElem("Video");
+		browser.launchDocument("vod_thumbnail.bml");
+	}
+}
+
+//ビデオをウィンドウ表示に切り替える
+function WindowShow(){
+	gPlayState=false;
+	var elm=getElementById("Video");
+	elm.normalStyle.left="390px";
+	elm.normalStyle.top="56px";
+	elm.normalStyle.width="592px";
+	elm.normalStyle.height="333px";
+}
+
+//ビデオをフルスクリーン表示に切り替える
+function FullShow(){
+	gPlayState=true;
+	var elm=getElementById("Video");
+	elm.normalStyle.left="0px";
+	elm.normalStyle.top="0px";
+	elm.normalStyle.width="960px";
+	elm.normalStyle.height="540px";
+}
+
+// ポータルTOPに戻る
+function launchTop(){
+	browser.playRomSound("romsound://7");
+	browser.launchDocument("vod_thumbnail.bml");
+}
+
+]]></script>
+
+<bevent>
+	<beitem id="MediaStopped" type="MediaStopped" onoccur="VideoStop();" object_id="Video"/>
+</bevent>
+
+</head>
+
+<body style="background-color-index:7;" onload="onload();">
+
+<!-- メインコンテンツ 960x540 -->
+<div class="main">
+	
+	<!-- ビデオ -->
+	<object id="Video" type="application/X-arib-contentPlayControl" data="" style="left:0px;top:0px;width:960px;height:540px;visibility:hidden;" streamstatus="stop"/>
+	
+</div>
+
+<!-- 青ボタンでTOPに移動 （画面には見えない？）-->
+<div>
+<object class="clrbutton" type="image/jpeg" data="images/button_blue.jpg" accesskey="B" onclick="launchTop()"/>
+</div>
+
+<!--<p id="status"><![CDATA[]]></p>-->
+</body>
+</bml>
+

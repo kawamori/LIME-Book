@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<!--
+============================================================
+Copyright (C)2009, NTT Inc. All rights reserved.
+============================================================
+-->
+<bml>
+<head>
+<title>DTV PORTAL(VOD)</title>
+<style><![CDATA[
+  body {
+    background-color-index:0;
+    display-aspect-ratio:16v9;
+    used-key-list:basic data-button;
+    clut:url(images/default.clt);
+  }
+  p.title {
+    font-size:20px;
+    color-index:0;
+    grayscale-color-index:171 167;
+    text-align:center;
+  }
+]]></style>
+</head>
+<body>
+<div style="left:10px;top:10px;width:760px;height:100px;background-color-index:7;">
+	<p id="txt_title" class="title" style="width:760px;height:20px;"><![CDATA[hello world!]]></p>
+	<p id="txt_title" class="title" style="top:50px;left:30px;width:70px;height:50px;background-color-index:20;"><![CDATA[hello world!]]></p>
+</div>
+
+
+</body>
+</bml>

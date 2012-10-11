@@ -1,0 +1,179 @@
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// copyright (C)2009, NTT Inc. All rights reserved.
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function VodEmbedded(){
+  this.className   = 'VodEmbedded';
+
+  this.cntInfo     = null;
+  this.status      = 'embedded';
+  
+  this.activate    = VEmbeddedActivateFunc;
+  this.visible     = false;
+  this.show        = VEmbeddedShowFunc;
+  this.hide        = VEmbeddedHideFunc;
+
+  this.isFocused   = false;
+  this.isFocusable = VEmbeddedIsFocusableFunc;
+  this.focus       = VEmbeddedFocusFunc;
+  this.blur        = VEmbeddedBlurFunc;
+
+  this.execReturn = VEmbeddedExecReturnFunc;
+}
+
+//--------------------------------------------------------------
+function VEmbeddedActivateFunc() {
+  hideElement('loading');
+
+  gParams.activeObj    = this;
+  gParams.isFirstSound = true;
+
+  if (!gParams.crid) {
+    debug('[Error]('+this.className+'):no crid defined');
+    this.hide();
+
+    gParams.shortcutObj.show();
+    gParams.shortcutObj.focus();
+    return;
+  }
+
+  this.crid = gParams.crid;
+  if (!this.cntInfo || (this.cntInfo.crid != this.crid)) {
+    if (!cntInfo) {
+      cntInfo = getContentInfoFromList(this.crid, getContentInfoListOverIP());
+      if (!cntInfo) {
+        debug('[Error]('+this.className+'):no content information found');
+        return;
+      }
+    }
+    this.cntInfo = cntInfo;
+  }
+  
+  gParams.shortcutObj.hide();
+  this.show();
+  this.focus();
+}
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function VEmbeddedShowFunc() {
+  if (!this.cntInfo || !this.cntInfo.playCtrlFUrl) {
+    debug('[Error]('+this.className+'):content play control file not defined');
+    return;
+  }
+  
+  browser.lockScreen(); {
+    getElementById('body').normalStyle.usedKeyList = 'basic data-button';
+
+    var vodPane = document.getElementById('vodPane');
+    vodPane.normalStyle.usedKeyList = 'basic data-button';
+  
+    var vodObj = document.getElementById('vod');
+    vodObj.streamstatus = 'stop';
+    vodObj.data = this.cntInfo.playCtrlFUrl;
+    vodObj.streamstatus = 'play';
+    debug(this.cntInfo.playCtrlFUrl);
+
+    showElement('basePane');
+    showElement('vodPane');
+    
+    this.visible = true;
+  }; browser.unlockScreen();
+
+  return;
+}
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function VEmbeddedHideFunc() {
+  if (!this.visible) return;
+
+  var vodObj = document.getElementById('vod');
+  vodObj.streamStatus = 'stop';
+  
+  hideElement('basePane');
+  hideElement('vodPane');
+
+  setFocus('default');
+  this.isFocused = false;
+  this.visible   = false;
+}
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function VEmbeddedIsFocusableFunc() {
+  return(this.visible);
+}
+
+//------------------------------
+function VEmbeddedFocusFunc(state) {
+  if (!this.isFocusable() || this.isFocused) return;
+  
+  playSound(9);
+  this.isFocused = true;
+  setFocus('vodPane');
+
+  return;
+}
+
+//------------------------------
+function VEmbeddedBlurFunc() {
+  if (!this.isFocusable() || !this.isFocused) return;
+
+  setFocus('default');
+  this.isFocused = false;
+}
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function VEmbeddedExecReturnFunc() {
+  playSound(7);
+  this.hide();
+  browser.launchDocument(getCurrentPath()+'startup.bml', 'cut');
+}
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function onEmbeddedKeyDown() {
+  var code = document.currentEvent.keyCode;
+  var id   = document.currentEvent.target.id;
+
+  var embedObj = gParams.embedObj;
+  var shortcut = gParams.shortcutObj;
+
+  browser.lockScreen(); {
+    //------------------------------
+//    if (upKeyPressed(code)) {
+//    } else if (downKeyPressed(code)) {
+//    } else if (leftKeyPressed(code)) {
+//    } else if (rightKeyPressed(code)) {
+//    } else if (isNumericTuned(code)) {
+//    } else if (isColorPressed(code)) {
+    if (isColorPressed(code)) {
+      if (isBlueButtonPressed(code)) {
+        var vodPane = document.getElementById('vodPane');
+        var vodObj  = document.getElementById('vod');
+        
+        if (embedObj.status == 'embedded') {
+          vodPane.normalStyle.top    =   '0px';
+          vodPane.normalStyle.left   =   '0px';
+          vodPane.normalStyle.width  = '960px';
+          vodPane.normalStyle.height = '540px';
+          
+          vodObj.normalStyle.width   = '960px';
+          vodObj.normalStyle.height  = '540px';
+          
+          embedObj.status = 'fullScreen';
+        } else {
+          vodPane.normalStyle.top    =  '85px';
+          vodPane.normalStyle.left   =  '54px';
+          vodPane.normalStyle.width  = '720px';
+          vodPane.normalStyle.height = '405px';
+          
+          vodObj.normalStyle.width   = '720px';
+          vodObj.normalStyle.height  = '405px';
+          
+          embedObj.status = 'embedded';
+        }
+      }
+    //    } else if (enterKeyPressed(code)) {
+    } else if (returnKeyPressed(code)) {
+      shortcut.execReturn();
+    }
+  }; browser.unlockScreen();
+}
+  
