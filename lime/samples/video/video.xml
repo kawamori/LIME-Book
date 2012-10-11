@@ -23,7 +23,7 @@
 		urlList[2] = "PinP/video.xml";
 		urlList[3] = "MNG-Video/startup.xml";
 		urlList[4] = "caption/bml/startup.bml";
-		urlList[5] = "";
+		urlList[5] = "nico/nicostartup.html";
 		urlList[6] = "";
 		urlList[7] = "";
 		urlList[8] = "";
@@ -73,7 +73,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">Captioning test</p>
 
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
-		onclick="jump();"></p>
+		onclick="jump();">Nico Test</p>
    <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
 		onclick="jump();"></p>
 		
