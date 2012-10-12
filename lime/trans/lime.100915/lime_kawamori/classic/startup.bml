@@ -139,7 +139,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 </div>
 
 <div id="imageBox" style="top:0px;left:5px;width:955px;height:540px;">
-<p id="text" style="top:0px;left:500px;width:440px;height:480px;color-index:7;background-color-index:8;"><![CDATA[classical art]]></p>
+<p id="text" style="top:0px;left:950px;width:10px;height:480px;color-index:7;background-color-index:8;"><![CDATA[]]></p>
 <object id="img" style="top:0px;left:0px;width:950px;height:540px" data="paris-louvre-mona-lisa.jpg" type="image/jpeg"/>
 
 </div>

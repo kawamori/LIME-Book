@@ -3,7 +3,7 @@
 <?bml bml-version="100.0" ?>
 <bml>
   <head>
-    <title>字幕のようなものを出す</title>
+    <title></title>
     <style>
       <![CDATA[
 	.base{width:960px;height:540px;background-color-index:4;}
@@ -76,7 +76,7 @@
 	       }
 
 	       function onButtonPressed() {
-		 //document.getElementById("text1").firstChild.data = "差し替えられた文字列";
+		 /*document.getElementById("text1").firstChild.data = ;*/
 	         browser.quitDocument();
 	       }
       ]]>
@@ -88,15 +88,14 @@
        <!--<object id="Vstream" type="video/X-arib-mpeg2" data="arib://-1.-1.-1/-1" remain="remain"/>
       <object id="Astream" type="audio/X-arib-mpeg2-aac" data="arib://-1.-1.-1/-1" remain="remain" streamstatus="play"/>-->
       
-      <p id="text1">文字列と文字列と文字列</p>
-      <p id="text2">眠いーーーーーーー寝たいーーーー</p>
-      <p id="text3">何かキターーーーーーー</p>
-      <p id="text4">いろいろ誤魔化して表示してます orz</p>
-      <p id="text5">まだ撮影してないとか間に合うのか</p>
-      <p id="text6">という感じのテストです</p>
-      <!-- 24pxで79文字ぐらい -->
+      <p id="text1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, </p>
+      <p id="text2"> sed do eiusmod tempor incididunt ut labore </p>
+      <p id="text3">et dolore magna aliqua</p>
+      <p id="text4">Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+      <p id="text5">laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p id="text6"> Duis aute irure dolor in reprehenderit in voluptate velit </p>
       <p id="button1" onkeydown="onButtonPressed();">
-	<![CDATA[決定ボタンを押すと戻って欲しい]]>
+	<![CDATA[ This will quit ]]>
       </p>
     </div>
   </body>
