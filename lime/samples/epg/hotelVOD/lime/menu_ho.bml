@@ -12,7 +12,7 @@
 
 <style><![CDATA[
 	body{
-		clut:url(../img/default.clt);
+	
 		background-color-index:0;
 	}
 
@@ -59,7 +59,7 @@ color-index:2;
        top:0px;left:0px;
 }
 
-.pp2 {	width:350px;
+.pp2 {	width:300px;
         height:240px;
         top:24px;
         left:0px;
@@ -114,7 +114,8 @@ if(name==1){
 }else if(name==4){
      browser.launchDocument("play_m10074.bml", "cut");
 }else if(name==5){
-     browser.launchDocument("http://kawamori.github.com/LIME-Book/lime/samples/jpegtest/classic/slideshow.xml", "cut");
+           browser.launchDocument("play_chingai.bml", "cut");
+}else if(name==6){      browser.launchDocument("play_bunny.bml", "cut");
 }else {browser.launchDocument("../top.bml", "cut");}
 
 }
@@ -141,9 +142,9 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 				<!--<object type="image/X-arib-png" data="../img/new.png" />-->
 				</div>
 				<div class='p_one' style="top:0;left:130px">
-					<p class='pp1h' style="top:0;left:0px;">m10040 小泉里子のスタイルゴルフ</p>
-				<p class='pp2' style="top:24px;left:0px">小泉里子のスタイルゴルフ 小泉里子のスタイルゴルフ 小泉里子のスタイルゴルフ 小泉里子のスタイルゴルフ <br />
-<p class='pp3'>2011年／・・・企画／42分</p></p>
+					<p class='pp1h' style="top:0;left:0px;">m10040 E-motion Earth</p>
+				<p class='pp2' style="top:24px;left:0px"> Earth in motion. <br />
+<p class='pp3'>2011/OKI (c)/4</p></p>
 
 				</div>
 			</div>
@@ -156,9 +157,9 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 		</div>
 
 		<div class='p_one' style="top:0;left:130px">
-					<p class='pp1h'  style="top:0;left:0px;">m10053  長崎萠のコスプレ大辞典</p>
-					<p class='pp2'  style="top:24px;left:0px">長崎萠のコスプレ大辞典 長崎萠のコスプレ大辞典 長崎萠のコスプレ大辞典 長崎萠のコスプレ大辞典 長崎萠のコスプレ大辞典 長崎萠のコスプレ大辞典 <br />
-<p class='pp3'>2011年／・・・企画／42分</p></p>
+					<p class='pp1h'  style="top:0;left:0px;">m10053  World</p>
+					<p class='pp2'  style="top:24px;left:0px"> World.World.World.World.World.World.World.  <br />
+<p class='pp3'>2012/OKI (c)/42 min</p></p>
 		</div>
 </div>
 
@@ -167,9 +168,9 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 				<object type='image/jpeg' data='../ho/h1003.jpg'  style="top:10px;left:10px;width:120px;height:90px"/>
 			</div>
 	<div class='p_one'  style="top:0;left:130px">
-		<p class='pp1h'  style="top:0;left:0px;">m10065  Beauty 太極拳 </p>
-		<p class='pp2' style="top:24px;left:0px">Beauty 太極拳  Beauty 太極拳  Beauty 太極拳  Beauty 太極拳  Beauty 太極拳  Beauty 太極拳 Beauty 太極拳  Beauty 太極拳  Beauty 太極拳  Beauty 太極拳  Beauty 太極拳  <br />
-<p class='pp3'>2011年／・・・企画／42分</p></p>
+		<p class='pp1h'  style="top:0;left:0px;">m10065  Beautiful Japan </p>
+		<p class='pp2' style="top:24px;left:0px">Japan   <br />
+<p class='pp3'>2011 /OKI (c)/10 min</p></p>
 				</div>
 			</div>
 
@@ -178,9 +179,9 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 			<object type='image/jpeg' data='../ho/h1004.jpg'  style="top:10px;left:10px;width:120px;height:90px"/>
 		</div>
 		<div class='p_one' style="top:0;left:130px">
-			<p class='pp1h'  style="top:0;left:0px;">m10074  くつろぎの宿　癒しの美湯女紀行<br />福島スペシャル</p>
-			<p class='pp2'  style="top:24px;left:0px">くつろぎの宿　癒しの美湯女紀行 福島スペシャル くつろぎの宿　<br />
-<p class='pp3'>2011年／・・・企画／42分</p></p>
+			<p class='pp1h'  style="top:0;left:0px;">m10074  Your Singapore <br/>  </p>
+			<p class='pp2'  style="top:24px;left:0px">　Singapore<br />
+<p class='pp3'>2011/Singapore Travel /10m</p></p>
 				</div>
 			</div>
 
@@ -190,9 +191,9 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 			<object type='image/jpeg' data='../ho/h1005.jpg'  style='top:10px;left:10px;width:122px;height:90px;' />
 		</div>
 		<div class='p_one'  style="top:0;left:130px">
-			<p class='pp1h' style="top:0;left:0px;">m10098  PARIS AIR SHOW</p>
-			<p class='pp2'  style="top:24px;left:0px"> PARIS AIR SHOW PARIS AIR SHOW PARIS AIR SHOW PARIS AIR SHOW PARIS AIR SHOW PARIS AIR SHOW PARIS AIR SHOW PARIS AIR SHOW PARIS AIR SHOW PARIS AIR SHOW<br />
-<p class='pp3' >2011年／・・・企画／42分</p></p>
+			<p class='pp1h' style="top:0;left:0px;">m10098  Chingay Festival</p>
+			<p class='pp2'  style="top:24px;left:0px"> Singapore Chingay Festival<br />
+<p class='pp3' >2011/Singapore /10</p></p>
 				</div>
 			</div>
 <div id="6" class='l_ln' style="top:323px;left:470px;nav-index:5;nav-up:3;nav-down:5;nav-right:5;nav-left:4;" >
@@ -200,9 +201,12 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 				<object type='image/jpeg' data='../ho/h1006.jpg'  style='top:10px;left:10px;width:122px;height:90px;' />
 		</div>
 		<div class='p_one'  style="top:0;left:130px">
-		<p class='pp1h'  style="top:0;left:0px;">m10059 江ノ電が走った100年</p>
-		<p class='pp2'  style="top:24px;left:0px">江ノ電が走った100年江ノ電が走った100年江ノ電が走った100年江ノ電が走った100年江ノ電が走った100年江ノ電が走った100年江ノ電が走った100年<br/>
-<p class='pp3'  style="">2011年／・・・企画／42分</p></p>
+		<p class='pp1h'  style="top:0;left:0px;">m10059 Big Buck Bunny</p>
+		<p class='pp2'  style="top:24px;left:0px"><![CDATA[Big Buck Bunny meets three bullying 
+rodents, Frank (the leader of the
+rodents), Rinky and Gamera. 
+]]> <br/>
+<p class='pp3'  style="">2008/ Blender Foundation/10 m</p></p>
 				</div>
 			</div>
 
