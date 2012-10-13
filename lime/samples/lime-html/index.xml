@@ -44,7 +44,7 @@ body {}
 </p> <br/>
 
 <p class="link3" style="top:250px;left:100px;">
-<a class="link3" style="top:0px;left:0px;nav-index:3;nav-up:2;nav-down:4;" href="welcome.xml">Ateneo</a><br/>
+<a class="link3" style="top:0px;left:0px;nav-index:3;nav-up:2;nav-down:4;" href="hello2.xml">Hello World (old XML style) </a><br/>
 </p> <br/>
 
 
