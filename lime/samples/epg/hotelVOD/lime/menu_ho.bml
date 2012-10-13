@@ -114,9 +114,8 @@ if(name==1){
 }else if(name==4){
      browser.launchDocument("play_m10074.bml", "cut");
 }else if(name==5){
-           browser.launchDocument("play_chingai.bml", "cut");
-}else if(name==6){      browser.launchDocument("play_bunny.bml", "cut");
-}else {browser.launchDocument("../top.bml", "cut");}
+           browser.launchDocument("play_chingay.bml", "cut");
+}else {browser.launchDocument("play_bunny.bml", "cut");}
 
 }
 	]]></script>
