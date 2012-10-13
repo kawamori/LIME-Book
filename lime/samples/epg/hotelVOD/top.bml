@@ -1,10 +1,7 @@
-<?xml version="1.0" encoding="EUC-JP" ?>
-<!DOCTYPE bml PUBLIC
-  "-//IPTVF CDN:2008//DTD BML Document for IPTV//JA"
-  "http://www.iptvforum.jp/CDN/DTD/bml_100_0_iptv.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
 <?bml bml-version="100.0" ?>
-
-<bml>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <title>VOD Main Page</title>
 
