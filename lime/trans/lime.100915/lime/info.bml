@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<!--
+============================================================
+Copyright (C)2009, NTT Plala Inc. All rights reserved.
+Copyright(C) Nippon Telegraph and Telephone Corporation 2010
+============================================================
+-->
+<bml>
+<head>
+<title>PLALA DTV PORTAL Solicitation</title>
+<style><![CDATA[
+body{background-color-index:0;resolution:960x540;display-aspect-ratio:16v9;used-key-list:basic;clut:url(images/dtvbml.clt);}
+p.clocktext{font-size:16px;width:16px;height:16px;color-index:7;grayscale-color-index:171 162;}
+p.temaIconSub{font-size:16px;color-index:7;grayscale-color-index:171 162;}
+.btn{width:256px;height:32px;}
+p.pbtn{font-size:20px;color-index:7;grayscale-color-index:171 167;text-align:center;}
+p.mtxt{width:700px;height:192px;font-size:20px;line-height:24px;color-index:173;grayscale-color-index:169 154;}
+div.mplt{left:12px;top:50px;width:700px;height:192px;}
+div.base{left:120px;top:110px;width:720px;height:310px;visibility:hidden;}
+]]></style>
+<script src="../scripts/common.ecm"/>
+<script src="../scripts/plalainfo.ecm"/>
+<script><![CDATA[
+var gFcsId="";
+var gFcsTbl=new Array();
+var gDrmId="";
+function onload(){
+	gState.bmltype=99;
+	if(!gState.init()){
+		var errArr=getErrors();
+		var idx=errArr.length-1;
+		lockScreen();
+		setErrTxt("エラー","\r\n"+setErrMsg(errArr[idx]));
+		unlockScreen();
+		return;
+	}
+	gState.param_crid="";
+	gState.param_displayType="";
+	lockScreen();
+	var ret=browser.getDocManagementStat();
+	if(ret!=1){
+		setErrTxt("エラー","\r\n"+setErrMsg(getBmlErr("107","19")));
+		return;
+	}
+	gDrmId=getDRMID("marlin_iptv_es");
+	if(gDrmId==null||String(gDrmId)=="NaN"){
+		setErrTxt("エラー","\r\n"+setErrMsg(getBmlErr("107","29")));
+		return;
+	}
+	gDrmId=gDrmId.toLowerCase();
+	if(gDrmId.indexOf("0x")==0)gDrmId=gDrmId.substring(2);	// DrmId check
+	
+	if(drmidCheck(gDrmId,"")=="NG"){
+		var errArr=getErrors();
+		var idx=errArr.length-1;
+		if(String(errArr[idx].type).charAt(1)==6){
+			browser.launchDocument(gState.getUrl("drmid_err.bml")+"&drmerr="+errArr[idx].message,"cut");
+		}
+		lockScreen();
+		setErrTxt("エラー","\r\n"+setErrMsg(errArr[idx]));
+		unlockScreen();
+		return;
+	}
+	showElem("txt");
+	showElem("websitejpg");
+	showElem("btn1");
+	showElem("title");
+	btnFocus("","btn1");
+	unlockScreen();
+}
+function setErrTxt(tit,txt){
+	setText("errMsg1",txt);
+	hideElem("txt");
+	hideElem("websitejpg");
+	hideElem("btn1");
+	hideElem("title");
+	showElem("errScr1");
+	setFcs("default");
+}
+function onunload(){}
+function btnFocus(pId,nId){
+	if(pId!="")hideElem(pId+"F");
+	if(pId.substring(0,3)=="btn")setTxtCol(pId+"Txt",7,"171 167");
+	if(nId.substring(0,3)=="btn")setTxtCol(nId+"Txt",0,"189 191");
+	showElem(nId+"F");
+	setFcs(nId);
+	gFcsId=nId;
+}
+function keyDown(){
+	var code=document.currentEvent.keyCode;
+	var id=document.currentEvent.target.id;
+	if(code==18){
+		if(id=="btn1"){
+			romSound(7);
+			lockScreen();
+			hideElem("txt");
+			hideElem("websitejpg");
+			hideElem("btn1");
+			hideElem("title");
+			hideElem("btn1F");
+			unlockScreen();
+			gState.launchDocument("subscribe.bml");
+		}
+	}
+}
+]]></script>
+</head>
+<body id="body" onload="onload();" onunload="onunload();">
+<div id="basebox" style="width:960px;height:540px;">
+	<object id="bg" type="image/X-arib-png" data="images/bg_00.png" style="width:960px;height:540px;"/>
+	<object id="logo" type="image/X-arib-png" data="images/logo.png" style="width:270px;height:62px;"/>
+	<object id="temaIcon" type="image/X-arib-png" data="images/pos-home.png" style="left:269px;top:37px;width:110px;height:25px;visibility:hidden;"/>
+	<object id="temaIconSub" type="image/X-arib-png" data="images/pos-2nd.png" style="left:379px;top:37px;width:150px;height:25px;visibility:hidden;"/>
+	<p id="temaIconSub_t" class="temaIconSub" style="left:403px;top:42px;width:128px;height:16px;"><![CDATA[]]></p>
+</div>
+<div id="clock" style="left:706px;top:41px;width:192px;height:16px;">
+	<p id="clock0" class="clocktext"><![CDATA[]]></p>
+	<p id="clock1" class="clocktext" style="left:16px;"><![CDATA[]]></p>
+	<p id="clock2" class="clocktext" style="left:32px;"><![CDATA[]]></p>
+	<p id="clock3" class="clocktext" style="left:48px;"><![CDATA[]]></p>
+	<p id="clock4" class="clocktext" style="left:64px;width:32px;"><![CDATA[]]></p>
+	<p id="clock5" class="clocktext" style="left:100px;width:32px;"><![CDATA[]]></p>
+	<p id="clock6" class="clocktext" style="left:120px;"><![CDATA[]]></p>
+	<p id="clock7" class="clocktext" style="left:136px;width:8px;"><![CDATA[]]></p>
+	<p id="clock8" class="clocktext" style="left:144px;"><![CDATA[]]></p>
+</div>
+<div id="title" style="left:120px;top:110px;width:720px;height:35px;background-color-index:30;visibility:hidden;">
+	<p style="left:12px;top:6px;width:696px;height:24px;text-align:center;color-index:7;grayscale-color-index:171 163;"><![CDATA[申込み方法]]></p>
+</div>
+<div style="left:135px;top:170px;width:695px;height:260px;">
+	<object id="websitejpg" type="image/jpeg" data="trial_jpg/website.jpg" style="left:275px;width:420px;height:260px;visibility:hidden;"/>
+	<p id="txt" style="top:1px;width:240px;height:220px;font-size:16px;line-height:22px;color-index:173;grayscale-color-index:169 154;visibility:hidden;"><![CDATA[■パソコンから
+お申込みの場合はこちら
+http://www.hikaritv.net
+
+■お電話でのお問い合わせ
+ひかりＴＶカスタマーセンター
+０１２０−００１１４４
+[営業時間]
+10:00〜21:00（年中無休）]]></p>
+</div>
+<div id="btn1" onkeydown="keyDown();" class="btn" style="left:127px;top:401px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/bt_ko_detail01.png" class="btn"/>
+	<object id="btn1F" type="image/X-arib-png" data="images/bt_ko_detail01-f.png" class="btn" style="visibility:hidden;"/>
+	<p id="btn1Txt" style="left:0px;top:6px;width:240px;height:20px;font-size:20px;text-align:center;color-index:7;grayscale-color-index:171 167;"><![CDATA[戻 る]]></p>
+</div>
+<div id="errScr1" class="base">
+	<div class="mplt">
+		<p id="errMsg1" class="mtxt" style="text-align:center;"><![CDATA[]]></p>
+	</div>
+</div>
+<div id="default" style="width:2px;height:2px;nav-index:0;" onkeydown="dummyFocus();"/>
+<div id="loading2" style="left:290px;top:233px;width:380px;height:74px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/load2.png" style="width:380px;height:74px;"/>
+</div>
+</body>
+</bml>

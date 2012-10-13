@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<!--
+============================================================
+Copyright (C)2009, NTT Plala Inc. All rights reserved.
+Copyright(C) Nippon Telegraph and Telephone Corporation 2010
+============================================================
+-->
+<bml>
+<head>
+<title>PLALA DTV PORTAL Startup</title>
+<style><![CDATA[
+body{background-color-index:0;resolution:960x540;display-aspect-ratio:16v9;used-key-list:basic;clut:url(images/dtvbml.clt);}
+p.clocktext{width:16px;height:16px;font-size:16px;color-index:7;grayscale-color-index:171 162;}
+p.temaIconSub{font-size:16px;color-index:7;grayscale-color-index:171 162;}
+p.pbtn{font-size:20px;color-index:7;grayscale-color-index:171 167;text-align:center;}
+]]></style>
+<script src="../scripts/plalastartup.ecm"/>
+<script src="../scripts/common_startup.ecm"/>
+<script><![CDATA[
+function setReturnData(nowState,nextState){}
+var gScreenState=0;
+
+var gInitFlg=false;
+if(gState.login_flg!=""&&checkUser()!=1){
+	InitHome();
+	gInitFlg=true;
+}else{
+	getElementById("iptv").streamStatus="stop";
+	hideElem("iptv");
+}
+
+function onload(){
+	gState.bmltype=0;
+	if(!gState.init()){
+		var errArr=getErrors();
+		var idx=errArr.length-1;
+		setErrScr("\r\n"+setErrMsg(errArr[idx]));
+		return;
+	}
+	gState.param_crid="";
+	gState.param_displayType="";
+	gState.fromTop=false;
+	clearReturnOnQuery();
+	if(!initProc())return;
+	
+	// お試しユーザー判定
+	if(checkUser()==1){
+		gState.launchDocument("subscribe.bml");
+		return;
+	}
+	lockScreen();
+	showElem("iptv");
+	getElementById("iptv").streamStatus="play";
+	hideElem("loading2");
+	showElem("temaIcon");
+	if(showNotice()){if(!gInitFlg)InitHome();}
+	unlockScreen();
+	gPlaySound=true;
+}
+function onunload(){}
+
+function setErrScr(msg){
+	lockScreen();
+	hideElem("loading2");
+	setText("errMsg",msg);
+	if(getElementById("iptv").streamStatus=="play")getElementById("iptv").streamStatus="stop";
+	hideElem("iptv");
+	setImg("bg","images/bg_00.png");
+	showElem("errScr");
+	unlockScreen();
+}
+function CheckAVStream(){
+	if(isNaN(gParadeList.checkStage))return;
+	var nextTime=NaN;
+	if(isNaN(gParadeList.movChkTime)) return;
+	if(getElementById("iptv").streamStatus=="play"){
+		lockScreen();
+		gParadeList.playMovie=true;
+		showElem("guide_d01");
+		showElem("iptv");
+		hideElem("parade_img");
+		unlockScreen();
+	} else{
+		lockScreen();
+		gParadeList.playMovie=false;
+		if(gParadeList.playFullscr==true)gParadeList.window();
+		setImg("parade_img",gParadeList.defImg);
+		showElem("parade_img");
+		hideElem("guide_d01");
+		hideElem("iptv");
+		unlockScreen();
+	}
+	gParadeList.checkStage++;
+	if(gParadeList.checkStage==1||gParadeList.checkStage==2||gParadeList.checkStage==3||gParadeList.checkStage==4) nextTime=1000;
+	else if(gParadeList.checkStage==5||gParadeList.checkStage==6||gParadeList.checkStage==7) nextTime=10000;
+	else gParadeList.checkStage=NaN;
+	if(!isNaN(nextTime)){
+		gParadeList.movChkTime=browser.setInterval("CheckAVStream();",nextTime,1);
+	}
+}
+function ShowHome(){
+	var tmpstr;
+	var tmparr;
+	var tmparr2;
+	var num;
+	var date;
+	var i;
+	gParadeList.totalCount=NaN;
+	gParadeList.stopTimer();
+	gState.scupkey=null;
+	gState.scdownkey=null;
+	gState.dButton=TopDButton;
+	gState.allHidden=ClearVideoTop;
+	gState.inited=false;
+
+	if(!gInitFlg)InitHome();
+
+	gParadeList.getJpgVis();
+	gParadeList.window();
+	showElem("vdtop");
+
+	if(gParadeList.noFcChg==false){
+		gParadeList.mode="menu";
+		gParadeList.menuidx="bt_m_tv";
+		gPlaySound=false;
+		menu_focus("bt_m_tv");
+		setFcs("pa_focus");
+	}
+	gParadeList.noFcChg=false;
+
+	if(!isNaN(gParadeList.firstTimer))gParadeList.stopTimer();
+	gParadeList.firstTimer=browser.setInterval("InitParade();",gParadeList.firstTime,1);
+
+	//現在の動画再生状態をチェック
+	if(gMltCstDisableImg[ gState.linetype ])gParadeList.defImg=gMltCstDisableImg[ gState.linetype ];
+	else gParadeList.defImg="images/img_defalt01.png";
+	gParadeList.checkStage=0;
+	PlayVideo();
+	gParadeList.movChkTime=browser.setInterval("CheckAVStream();",15000,1);
+}
+function TopVideoFullScr(){
+	getElementById("basebox").normalStyle.top="-540px";
+	getElementById("clock").normalStyle.top="-540px";
+	getElementById("shortcut").normalStyle.top="-540px";
+	this.jpgClear();
+	var elm=getElementById("iptv");
+	elm.normalStyle.left="0px";
+	elm.normalStyle.top="0px";
+	elm.normalStyle.width="960px";
+	elm.normalStyle.height="540px";
+	gParadeList.playFullscr=true;
+}
+function TopVideoWindow(){
+	getElementById("basebox").normalStyle.top="0px";
+	getElementById("clock").normalStyle.top="41px";
+	getElementById("shortcut").normalStyle.top="471px";
+	getElementById("vdtop").normalStyle.top="0px";
+	this.setJpgVis();
+	var elm=getElementById("iptv");
+	elm.normalStyle.left="240px";
+	elm.normalStyle.top="85px";
+	elm.normalStyle.width="480px";
+	elm.normalStyle.height="270px";
+	if(!isNaN(gParadeList.displaynum)&&gParadeList.displaynum!=0)showElem("mask_"+gParadeList.displaynum);
+	gParadeList.mode="menu";
+	gParadeList.menuIdx="bt_m_tv";
+	gPlaySound=false;
+	menu_focus("bt_m_tv");
+	setFcs("pa_focus");
+	hideElem("pa_scrl");
+	if(!isNaN(this.fullScrTimer)){
+		browser.clearTimer(this.fullScrTimer);
+		this.fullScrTimer=NaN;
+	}
+	if(isNaN(gParadeList.scrolltimer)&&isNaN(gParadeList.firstTimer)&&gParadeList.inited==true){
+		gParadeList.scrolltimer=browser.setInterval("ExecParadeScrool();", gParadeList.scrollTime ,1);
+	}
+	hideElem("fullscrDbtn");
+	gParadeList.playFullscr=false;
+}
+function PlayVideo(){
+	gParadeList.playMovie=true;
+	showElem("guide_d01");
+	hideElem("loading2");
+	showElem("iptv");
+	hideElem("parade_img");
+	getElementById("iptv").streamStatus="play";
+}
+function StopVideo(){
+	gParadeList.playMovie=false;
+	if(gParadeList.playFullscr==true)gParadeList.window();
+	setImg("parade_img",gParadeList.defImg);
+	showElem("parade_img");
+	hideElem("guide_d01");
+	getElementById("iptv").streamStatus="stop";
+	hideElem("iptv");
+}
+
+
+/* トップ画面処理ここまで */
+]]></script>
+<bevent>
+<beitem id="DataButtonPressed" type="DataButtonPressed" onoccur="dataButtonPressed();" subscribe="subscribe"/>
+</bevent>
+</head>
+<body id="body" onload="onload();" onunload="onunload();">
+<div style="width:960px;height:540px;">
+	<object id="iptv" type="application/X-arib-mpeg2-tts" data="arib://7780.0064.0064" remain="remain" style="left:240px;top:85px;width:480px;height:270px;" streamstatus="play"/>
+</div>
+<div id="basebox" style="width:960px;height:540px;">
+	<object id="bg" type="image/X-arib-png" data="images/bg_00.png" style="width:960px;height:540px;"/>
+	<object id="logo" type="image/X-arib-png" data="images/logo.png" style="width:270px;height:62px;"/>
+	<object id="temaIcon" type="image/X-arib-png" data="images/pos-home.png" style="left:269px;top:37px;width:110px;height:25px;visibility:hidden;"/>
+	<object id="temaIconSub" type="image/X-arib-png" data="images/pos-2nd.png" style="left:379px;top:37px;width:150px;height:25px;visibility:hidden;"/>
+	<p id="temaIconSub_t" class="temaIconSub" style="left:403px;top:42px;width:128px;height:16px;"><![CDATA[]]></p>
+</div>
+<div id="clock" style="left:706px;top:41px;width:192px;height:16px;">
+	<p id="clock0" class="clocktext"><![CDATA[]]></p>
+	<p id="clock1" class="clocktext" style="left:16px;"><![CDATA[]]></p>
+	<p id="clock2" class="clocktext" style="left:32px;"><![CDATA[]]></p>
+	<p id="clock3" class="clocktext" style="left:48px;"><![CDATA[]]></p>
+	<p id="clock4" class="clocktext" style="left:64px;width:32px;"><![CDATA[]]></p>
+	<p id="clock5" class="clocktext" style="left:100px;width:32px;"><![CDATA[]]></p>
+	<p id="clock6" class="clocktext" style="left:120px;"><![CDATA[]]></p>
+	<p id="clock7" class="clocktext" style="left:136px;width:8px;"><![CDATA[]]></p>
+	<p id="clock8" class="clocktext" style="left:144px;"><![CDATA[]]></p>
+</div>
+<div id="shortcut" style="left:627px;top:-540px;width:286px;height:36px;">
+	<object id="scbtn" type="image/X-arib-png" data="images/bt_s_bk.png" style="width:70px;height:36px;visibility:hidden;" onkeydown="sckey();"/>
+</div>
+<div id="errScr" style="left:120px;top:110px;width:720px;height:310px;visibility:hidden;">
+	<div style="left:12px;top:50px;width:700px;height:216px;">
+		<p id="errMsg" style="width:700px;height:216px;font-size:20px;text-align:center;line-height:24px;color-index:173;grayscale-color-index:169 154;"><![CDATA[]]></p>
+	</div>
+</div>
+
+<!--ホーム-->
+<div id="vdimg" style="width:960px;height:540px;">
+	<object id="parade_img" type="image/X-arib-png" data="images/img_defalt01.png" style="left:240px;top:85px;width:480px;height:270px;visibility:hidden;"/>
+	<object id="parade_img_0" type="image/jpeg" data="images/noimage_01.jpg" style="left:86px;top:98px;width:112px;height:63px;visibility:hidden;"/>
+	<object id="parade_img_1" type="image/jpeg" data="images/noimage_01.jpg" style="left:86px;top:167px;width:112px;height:63px;visibility:hidden;"/>
+	<object id="parade_img_2" type="image/jpeg" data="images/noimage_01.jpg" style="left:86px;top:236px;width:112px;height:63px;visibility:hidden;"/>
+	<object id="parade_img_3" type="image/jpeg" data="images/noimage_01.jpg" style="left:86px;top:305px;width:112px;height:63px;visibility:hidden;"/>
+	<object id="parade_img_4" type="image/jpeg" data="images/noimage_01.jpg" style="left:86px;top:374px;width:112px;height:63px;visibility:hidden;"/>
+</div>
+<div id="vdtop" style="top:-540px;width:960px;height:540px;">
+	<div id="pa_scrl" style="left:82px;width:120px;height:540px;visibility:hidden;">
+		<object type="image/X-arib-png" data="images/pa_scrlup.png" style="top:73px;width:120px;height:20px;"/>
+		<object type="image/X-arib-png" data="images/pa_scrldn.png" style="top:441px;width:120px;height:20px;"/>
+	</div>
+	<div id="pa_focus" style="left:60px;top:90px;width:164px;height:78px;" onkeydown="keydown();"/>
+	<div id="pa_0" style="left:60px;top:90px;width:164px;height:78px;visibility:hidden;">
+		<object id="mask_0" type="image/X-arib-png" data="images/pa_msk.png" style="left:19px;top:4px;width:126px;height:70px;visibility:hidden;"/>
+		<object id="icon_0" type="image/X-arib-png" data="images/icon_video.png" style="left:25px;top:52px;width:20px;height:20px;visibility:hidden;"/>
+	</div>
+	<div id="pa_1" style="left:60px;top:159px;width:164px;height:78px;visibility:hidden;">
+		<object id="mask_1" type="image/X-arib-png" data="images/pa_msk.png" style="left:19px;top:4px;width:126px;height:70px;visibility:hidden;"/>
+		<object id="icon_1" type="image/X-arib-png" data="images/icon_video.png" style="left:25px;top:52px;width:20px;height:20px;visibility:hidden;"/>
+	</div>
+	<div id="pa_2" style="left:60px;top:228px;width:164px;height:78px;visibility:hidden;">
+		<object id="mask_2" type="image/X-arib-png" data="images/pa_msk.png" style="left:19px;top:4px;width:126px;height:70px;visibility:hidden;"/>
+		<object id="icon_2" type="image/X-arib-png" data="images/icon_video.png" style="left:25px;top:52px;width:20px;height:20px;visibility:hidden;"/>
+	</div>
+	<div id="pa_3" style="left:60px;top:297px;width:164px;height:78px;visibility:hidden;">
+		<object id="mask_3" type="image/X-arib-png" data="images/pa_msk.png" style="left:19px;top:4px;width:126px;height:70px;visibility:hidden;"/>
+		<object id="icon_3" type="image/X-arib-png" data="images/icon_video.png" style="left:25px;top:52px;width:20px;height:20px;visibility:hidden;"/>
+	</div>
+	<div id="pa_4" style="left:60px;top:366px;width:164px;height:78px;visibility:hidden;">
+		<object id="mask_4" type="image/X-arib-png" data="images/pa_msk.png" style="left:19px;top:4px;width:126px;height:70px;visibility:hidden;"/>
+		<object id="icon_4" type="image/X-arib-png" data="images/icon_video.png" style="left:25px;top:52px;width:20px;height:20px;visibility:hidden;"/>
+	</div>
+	<p id="text1" style="left:240px;top:392px;width:480px;height:20px;font-size:20px;color-index:7;grayscale-color-index:170 162;"><![CDATA[]]></p>
+	<p id="text2" style="left:240px;top:416px;width:480px;height:48px;font-size:20px;line-height:24px;color-index:171;grayscale-color-index:169 159;"><![CDATA[]]></p>
+	<object id="guide_d01" type="image/X-arib-png" data="images/guide_d01.png" style="left:60px;top:481px;width:150px;height:22px;visibility:hidden;"/>
+	<object id="bg_homeinfo" type="image/X-arib-png" data="images/bg_homeinfo.png" style="left:233px;top:482px;width:600px;height:22px;"/>
+	<object type="image/X-arib-png" data="images/bt_infod.png" style="left:773px;top:481px;width:61px;height:24px;"/>
+	<p id="newinfo" style="left:244px;top:483px;width:480px;height:20px;font-size:20px;color-index:173;grayscale-color-index:15 160;"><![CDATA[]]></p>
+	<object id="fcbtn" type="image/X-arib-png" data="images/bt_m_tv-f.png" style="left:-960px;top:0px;width:150px;height:56px;"/>
+</div>
+<div id="fullscrDbtn" style="width:960px;height:540px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/guide_d02.png" style="left:62px;top:459px;width:125px;height:43px;"/>
+</div>
+<!--ホームここまで-->
+
+<div id="finPop" style="left:180px;top:118px;width:600px;height:310px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/bg_popup.png" style="width:600px;height:310px;"/>
+	<object type="image/X-arib-png" data="images/bg_puttl.png" style="left:27px;top:26px;width:546px;height:24px;"/>
+	<p style="left:40px;top:28px;width:520px;height:20px;font-size:20px;color-index:7;grayscale-color-index:171 163;text-align:center;"><![CDATA[ご注意]]></p>
+	<p style="left:40px;top:60px;width:520px;height:168px;font-size:20px;line-height:24px;color-index:173;grayscale-color-index:169 154;text-align:center;"><![CDATA[
+「ひかりＴＶ」の設定を行うにあたって
+古い情報を初期化します。
+
+サービスを再起動してください。]]></p>
+</div>
+
+<div id="pop" style="left:180px;top:118px;width:600px;height:310px;visibility:hidden;">
+	<object type="image/X-arib-png" data="images/bg_popup.png" style="width:600px;height:310px;"/>
+	<object id="titBase" type="image/X-arib-png" data="images/bg_puttl.png" style="left:27px;top:26px;width:546px;height:24px;"/>
+	<object id="pbtn0" type="image/X-arib-png" data="images/bt_2.png" style="top:239px;width:156px;height:36px;visibility:hidden;" onkeydown="popkey();"/>
+	<object id="pbtn1" type="image/X-arib-png" data="images/bt_2.png" style="top:239px;width:156px;height:36px;visibility:hidden;" onkeydown="popkey();"/>
+	<object id="pbtn2" type="image/X-arib-png" data="images/bt_2.png" style="top:239px;width:156px;height:36px;visibility:hidden;" onkeydown="popkey();"/>
+	<p id="ptitle" style="left:40px;top:28px;width:520px;height:20px;font-size:20px;color-index:7;grayscale-color-index:171 163;text-align:center;"><![CDATA[]]></p>
+	<p id="ptext" style="left:40px;top:60px;width:520px;height:168px;font-size:20px;line-height:24px;color-index:173;grayscale-color-index:169 154;text-align:center;"><![CDATA[]]></p>
+	<p id="ptext2" style="left:40px;top:60px;width:520px;height:168px;font-size:20px;line-height:24px;color-index:173;grayscale-color-index:169 154;"><![CDATA[]]></p>
+	<p id="pbtn0t" class="pbtn" style="top:247px;width:140px;height:20px;"><![CDATA[]]></p>
+	<p id="pbtn1t" class="pbtn" style="top:247px;width:140px;height:20px;"><![CDATA[]]></p>
+	<p id="pbtn2t" class="pbtn" style="top:247px;width:140px;height:20px;"><![CDATA[]]></p>
+</div>
+
+<div id="default" style="width:2px;height:2px;nav-index:0;" onkeydown="dummyFocus();"/>
+<div id="loading2" style="left:290px;top:233px;width:380px;height:74px;">
+	<object type="image/X-arib-png" data="images/load2.png" style="width:380px;height:74px;"/>
+</div>
+</body>
+</bml>

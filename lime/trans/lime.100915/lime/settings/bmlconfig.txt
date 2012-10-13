@@ -1,0 +1,62 @@
+################################################################################
+# 配信ステータスアイコンで 配信予定のX/Y- と 終了間近の-X/Y を計算する日数
+DELIVERY_ICON_DAY_NUM=10
+
+# サービス未契約ページURL
+PROMOTION_URI=./info.bml
+
+#最低視聴年齢と検索IDのマップ
+PARENTAL_MAP=0:G
+PARENTAL_MAP=1:G
+PARENTAL_MAP=2:G
+PARENTAL_MAP=3:G
+PARENTAL_MAP=4:G
+PARENTAL_MAP=5:G
+PARENTAL_MAP=6:G
+PARENTAL_MAP=7:G
+PARENTAL_MAP=8:G
+PARENTAL_MAP=9:G
+PARENTAL_MAP=10:G
+PARENTAL_MAP=11:G
+PARENTAL_MAP=12:PG-12
+PARENTAL_MAP=13:PG-12
+PARENTAL_MAP=14:PG-12
+PARENTAL_MAP=15:R-15
+PARENTAL_MAP=16:R-15
+PARENTAL_MAP=17:R-15
+PARENTAL_MAP=18:R-18
+PARENTAL_MAP=19:R-18
+PARENTAL_MAP=20:R-20
+
+# 通信エージェントURL
+AGENT_URI=http://192.168.1.214:18300/agent/
+
+# BML向け検索I/F URL
+META_SEARCH_URI=http://192.168.1.215:18300/bmif/mdb
+
+# サービス事業者ID
+IP_SERVICE_PROVIDER_ID=01
+
+# CRIDの接頭辞
+CRID_PREFIX=crid://plala.iptvf.jp/
+
+# デモ端末を示すISPID
+ISPID_DEMO=005
+
+# 基本登録削除用署名
+REMOVE_SIGNATURE==abcdeaaaaaaaaaaaaaaaaaaaa=
+
+# 基本登録削除用証明書URL
+REMOVE_CERTIFICATES_URL=http://aaaa
+
+# 基本登録削除用DRMサーバURL
+REMOVE_DRM_SERVER_URL=http://aaaa
+
+# プランコード生成用CRIDの接頭辞
+PLAN_CRID_PREFIX=crid://plala.iptvf.jp/plan/
+
+#お試し端末を示すISPID
+ISPID_TRIAL=101
+
+#お試しホームVODプログラムURL
+TRIAL_HOME_PROGRAM_URL=http://bbbb

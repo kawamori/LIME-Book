@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+	<title>MENU</title>
+	<style><![CDATA[
+	p{font-family:'丸ゴシック';font-size:16px;color-index:0;}
+		p:focus {background-color-index:5;}
+		p:active {background-color-index:6;}
+	]]></style>
+	<script ><![CDATA[
+		function launchBml() {
+			var id = document.currentFocus.id;
+			return(id ? browser.launchDocument('http://cdn.iptvf.jp/'+id+'/bml/startup.bml','cut')
+                                  : false);
+		}
+	]]></script>
+</head>
+<body style="background-color-index:7">
+	<div style="top:0px;left:0px;width:960px;height:280px;">
+		<p id="title" style="top:0px;left:0px;width:320px;height:20px;">- MENU -</p>
+		<p id="lab-jpn"     style="top: 30px;left:30px;width:300px;height:20px;nav-index:0;nav-up:6;nav-down:1;" onclick="launchBml();">1.JAPANESE</p>
+		<p id="lab-eng"     style="top: 60px;left:30px;width:300px;height:20px;nav-index:1;nav-up:0;nav-down:2;" onclick="launchBml();">2.ENGLISH</p>
+		<p id="SgDemo"      style="top:120px;left:30px;width:300px;height:20px;nav-index:2;nav-up:1;nav-down:3;" onclick="launchBml();">3.SgDemo</p>
+		<p id="SgPrototype" style="top:150px;left:30px;width:300px;height:20px;nav-index:3;nav-up:2;nav-down:4;" onclick="launchBml();">4.SgPrototype</p>
+		<p id="romsound"    style="top:180px;left:30px;width:300px;height:20px;nav-index:4;nav-up:3;nav-down:5;" onclick="launchBml();">5.RomsoundTest</p>
+		<p id="testgame"    style="top:210px;left:30px;width:300px;height:20px;nav-index:5;nav-up:4;nav-down:6;" onclick="launchBml();">6.TestGame</p>
+		<p id="hyphenation" style="top:240px;left:30px;width:300px;height:20px;nav-index:6;nav-up:5;nav-down:0;" onclick="launchBml();">7.HyphenationTest</p>
+	</div>
+</body>
+</bml>
