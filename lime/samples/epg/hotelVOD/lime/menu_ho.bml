@@ -108,9 +108,9 @@ function launch(){
 if(name==1){
      browser.launchDocument("play_m10040.bml", "cut");
   }else if(name==2){
-     browser.launchDocument("play_m10053.bml", "cut");
+     browser.launchDocument("play_interop1.bml", "cut");
 }else if(name==3){
-     browser.launchDocument("play_m10065.bml", "cut");
+     browser.launchDocument("play_bunny.bml", "cut");
 }else if(name==4){
      browser.launchDocument("play_m10074.bml", "cut");
 }else if(name==5){
@@ -156,9 +156,9 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 		</div>
 
 		<div class='p_one' style="top:0;left:130px">
-					<p class='pp1h'  style="top:0;left:0px;">m10053  World</p>
-					<p class='pp2'  style="top:24px;left:0px"> World.World.World.World.World.World.World.  <br />
-<p class='pp3'>2012/OKI (c)/42 min</p></p>
+					<p class='pp1h'  style="top:0;left:0px;">ITU IPTV Inerop Event</p>
+					<p class='pp2'  style="top:24px;left:0px"> International Telecommunication Union (ITU) First IPTV Interop Event. World's only Interoperable IPTV Standard in action <br />
+<p class='pp3'>2010/ITU /5 min</p></p>
 		</div>
 </div>
 
@@ -167,9 +167,12 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 				<object type='image/jpeg' data='../ho/h1003.jpg'  style="top:10px;left:10px;width:120px;height:90px"/>
 			</div>
 	<div class='p_one'  style="top:0;left:130px">
-		<p class='pp1h'  style="top:0;left:0px;">m10065  Beautiful Japan </p>
-		<p class='pp2' style="top:24px;left:0px">Japan   <br />
-<p class='pp3'>2011 /OKI (c)/10 min</p></p>
+		<p class='pp1h'  style="top:0;left:0px;">m10065 Big Buck Bunny </p>
+		<p class='pp2' style="top:24px;left:0px"><![CDATA[Big Buck Bunny meets three bullying 
+rodents, Frank (the leader of the
+rodents), Rinky and Gamera. 
+]]>   <br />
+<p class='pp3'>2008/ Blender Foundation/10 m</p></p>
 				</div>
 			</div>
 
@@ -201,10 +204,7 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 		</div>
 		<div class='p_one'  style="top:0;left:130px">
 		<p class='pp1h'  style="top:0;left:0px;">m10059 Big Buck Bunny</p>
-		<p class='pp2'  style="top:24px;left:0px"><![CDATA[Big Buck Bunny meets three bullying 
-rodents, Frank (the leader of the
-rodents), Rinky and Gamera. 
-]]> <br/>
+		<p class='pp2'  style="top:24px;left:0px">bbbb <br/>
 <p class='pp3'  style="">2008/ Blender Foundation/10 m</p></p>
 				</div>
 			</div>
