@@ -18,7 +18,7 @@
 
 		var urlList = new Array();
 		
-		urlList[0] = "news/index.xml";
+		urlList[0] = "epg/hotelVOD/top.bml";
 		urlList[1] = "video/video.xml";
 		urlList[2] = "epg/index.xml";
 	        urlList[3] = "system/index.xml";
@@ -30,7 +30,7 @@
 		urlList[9] = "hybrid/index.xml";
 		urlList[10] = "kamakura/simple-epg/startup.bml";
 		urlList[11] = "test.html";
-		urlList[12] = "epg/hotelVOD/top.bml";
+		urlList[12] = "";
 		
 
 //var base = "http://localhost/";
@@ -93,7 +93,7 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 
 
 
-<div style="left:188px; top:510px; width:32px;height:15px;">
+<div style="left:188px; top:150px; width:32px;height:15px;">
 <object type="image/X-arib-png" data="images/graphic_new_transparent3.png" style="left:0;top:0;width:32px;height:15px;"/>
 </div>
 
