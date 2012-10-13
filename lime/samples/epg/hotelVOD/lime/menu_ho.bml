@@ -137,7 +137,7 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 	<div class='inner3'>
 			<div id="1" class='l_ln' style='top:70px;left:0;nav-index:0;nav-down:2;nav-right:1;'  onclick="launch();">
 				<div class='pp_left'  style="top:0;left:0"> 
-				<object type="image/jpeg" data="../ho/h1001.jpg" style="top:10px;left:10px;width:120px;height:90px"/>
+				<object type="image/jpeg" data="../ho/sun-earth.jpg" style="top:10px;left:10px;width:120px;height:90px"/>
 				<!--<object type="image/X-arib-png" data="../img/new.png" />-->
 				</div>
 				<div class='p_one' style="top:0;left:130px">
@@ -151,7 +151,7 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 	
 <div id="2" class='l_ln' style="top:70px;left:470px;nav-index:1;nav-up:1;nav-down:3;nav-right:1;nav-left:0"  onclick="launch();">
 		<div class='pp_left'  style="top:0;left:0">
-				<object type='image/jpeg' data='../ho/h1002.jpg' style="top:10px;left:10px;width:120px;height:90px"/>
+				<object type='image/jpeg' data='../ho/iptv-interop1.jpg' style="top:10px;left:10px;width:120px;height:90px"/>
 				<object type="image/X-arib-png" data="../img/new.png" />
 		</div>
 
@@ -164,7 +164,7 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 
 <div id="3" class='l_ln'  style="top:197px;left:0px;nav-index:2;nav-up:0;nav-down:4;nav-right:3;nav-left:2"  onclick="launch();">
 			<div class='pp_left'  style="top:0;left:0">
-				<object type='image/jpeg' data='../ho/h1003.jpg'  style="top:10px;left:10px;width:120px;height:90px"/>
+				<object type='image/jpeg' data='../ho/bbb-logo.jpg'  style="top:10px;left:10px;width:120px;height:90px"/>
 			</div>
 	<div class='p_one'  style="top:0;left:130px">
 		<p class='pp1h'  style="top:0;left:0px;">m10065 Big Buck Bunny </p>
@@ -178,7 +178,7 @@ rodents), Rinky and Gamera.
 
 <div id="4" class='l_ln'   style="top:197px;left:470px;nav-index:3;nav-up:1;nav-down:5;nav-right:4;nav-left:2"  onclick="launch();">
 		<div class='pp_left'   style="top:0;left:0">
-			<object type='image/jpeg' data='../ho/h1004.jpg'  style="top:10px;left:10px;width:120px;height:90px"/>
+			<object type='image/jpeg' data='../ho/yoursingapore.jpg'  style="top:10px;left:10px;width:120px;height:90px"/>
 		</div>
 		<div class='p_one' style="top:0;left:130px">
 			<p class='pp1h'  style="top:0;left:0px;">m10074  Your Singapore <br/>  </p>
@@ -190,11 +190,12 @@ rodents), Rinky and Gamera.
 
 <div id="5" class='l_ln' style="top:323px;left:0px;nav-index:4;nav-up:2;nav-down:4;nav-right:5;nav-left:4;"  onclick="launch();">
 		<div class='pp_left' style="top:0;left:0">
-			<object type='image/jpeg' data='../ho/h1005.jpg'  style='top:10px;left:10px;width:122px;height:90px;' />
+			<object type='image/jpeg' data='../ho/chingay.jpg'  style='top:10px;left:10px;width:122px;height:90px;' />
 		</div>
 		<div class='p_one'  style="top:0;left:130px">
 			<p class='pp1h' style="top:0;left:0px;">m10098  Chingay Festival</p>
-			<p class='pp2'  style="top:24px;left:0px"> Singapore Chingay Festival<br />
+			<p class='pp2'  style="top:24px;left:0px">
+Held every February, the annual Chingay Parade in Singapore is unique. 'Chingay' in Hokkien means the 'art of costume and masquerade'.  <br />
 <p class='pp3' >2011/Singapore /10</p></p>
 				</div>
 			</div>
@@ -203,7 +204,7 @@ rodents), Rinky and Gamera.
 				<object type='image/jpeg' data='../ho/h1006.jpg'  style='top:10px;left:10px;width:122px;height:90px;' />
 		</div>
 		<div class='p_one'  style="top:0;left:130px">
-		<p class='pp1h'  style="top:0;left:0px;">m10059 Big Buck Bunny</p>
+		<p class='pp1h'  style="top:0;left:0px;"> </p>
 		<p class='pp2'  style="top:24px;left:0px">bbbb <br/>
 <p class='pp3'  style="">2008/ Blender Foundation/10 m</p></p>
 				</div>
