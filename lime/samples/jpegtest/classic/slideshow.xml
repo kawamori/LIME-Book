@@ -20,7 +20,7 @@ var preLoad;
 
 function onload(){
     position=0;
-    	preLoad = new Array(22);
+    	preLoad = new Array(23);
     	
 
 
@@ -50,14 +50,14 @@ preLoad[18] = "RENE_magritte-M1.jpg";
 preLoad[19] = "magritte-the-mysteries-of-the-horizon.jpg";
 preLoad[20] = "the-false-mirror-1928.jpg";
 preLoad[21] = "magritte-artbook.jpg";
-
+preLoad[22]  = "origin-of-the-world.jpg";
 
 /*
 for (var i=0 ; i<21; i++) {
    	 preLoad[i] = "images/pic" + i + ".JPG";
 }*/
 
-caption = new Array(22);
+caption = new Array(23);
 
 caption[0]="";
 caption[1]="";
@@ -81,7 +81,7 @@ caption[18]="";
 caption[19]="";
 caption[20]="";
 caption[21]="";
-
+caption[22]="";
 startShow();
 }
 
@@ -95,7 +95,7 @@ function restartShow() {
 }
         
 function forward() {
-    if (position < 21) {
+    if (position < 22) {
             position++;
     } else {
         position = 0;
