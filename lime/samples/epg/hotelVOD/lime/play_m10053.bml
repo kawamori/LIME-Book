@@ -105,8 +105,10 @@ function refresh(){ browser.reloadActiveDocument();}
 <object type="image/X-arib-png" data="../images/return-button.png" style="left:0;top:0;width:34px;height:34px;" accesskey="Y" onclick="goback();"/>
 </div>
 
+<!--
 <p id="p01" class="button" style="left:250px;color-index:7;background-color-index:1;" onclick="refresh();"  accesskey="R">Reload</p>
 
 <p id="display" style=""><![CDATA[]]></p>
+-->
 </body>
 </bml>
