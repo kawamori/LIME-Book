@@ -17,7 +17,7 @@
 	}
 
 :focus	{background-color-index:72;}
-:blur	{background-color-index:7;}
+
 
 .vender_top {
         height:70px;
