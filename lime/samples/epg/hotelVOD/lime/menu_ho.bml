@@ -17,7 +17,7 @@
 	}
 
 div     {background-color-index:7; color-index:0;}
-:focus	{background-color-index:72;}
+div:focus	{background-color-index:72;}
 
 
 .vender_top {
