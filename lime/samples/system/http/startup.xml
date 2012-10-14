@@ -33,7 +33,7 @@ alert("hello");
 	var url = "http://kawamori.github.com/LIME-Book/lime/samples/startup.bml";
 	alert(" retrieving data from "+ url);
 
-browser.launchDocument(url,"cut");
+/* browser.launchDocument(url,"cut");*/
 
 /*	var ret = browser.transmitTextDataOverIP(url,val,"EUC-JP");*/
 	/*if( ret[0] == 1 ){
@@ -63,6 +63,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 
 <p id="display" style="top:100px;left:250px"><![CDATA[]]></p>
+
 <p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
  
  
