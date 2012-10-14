@@ -32,18 +32,13 @@ alert("hello");
 
 	var val="";
 
-	alert(" retrieving data from "+ url);
-
-/* browser.launchDocument(url,"cut");*/
-
+	alert(" retrieving data from "+ url2);
 
 }
 
 function changeText(){ 
-/*browser.launchDocument(url,"cut");*/
 
-
-var ret = browser.transmitTextDataOverIP(url2,val,"EUC-JP");*/
+var ret = browser.transmitTextDataOverIP(url2,val,"EUC-JP");
 	
 	if( ret[0] == 1 ){
 		alert("Returned value: " + ret[2]);
