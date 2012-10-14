@@ -66,11 +66,11 @@ color-index:2;
         left:0px;
 	font-size:16px;
 	color-index:0;
-	background-color-index:1;
+	background-color-index:7;
 }
 
 .pp3 {	top:75px;
-        left:160px;
+        left:100px;
 width:322px;
         height:112px;
 	margin-top:2px;
@@ -138,8 +138,8 @@ if(name==1){
 			</div>
 			<div class='p_one' style="top:0;left:130px">
 				<p class='pp1h' style="top:0;left:0px;">m10040 E-motion Earth</p>
-				<p class='pp2' style="top:24px;left:0px"> Earth in motion. <br />
-                                <p class='pp3'>2011/OKI (c)/4</p></p>
+				<p class='pp2' style="top:24px;left:0px"> Earth in motion.</p><br/>
+                                <p class='pp3'>2011/OKI (c)/4</p>
 			</div>
 		</div>
 	
@@ -151,8 +151,8 @@ if(name==1){
 
 		<div class='p_one' style="top:0;left:130px">
 					<p class='pp1h'  style="top:0;left:0px;">ITU IPTV Inerop Event</p>
-					<p class='pp2'  style="top:24px;left:0px"> International Telecommunication Union (ITU) First IPTV Interop Event. World's only Interoperable IPTV Standard in action <br />
-<p class='pp3'>2010/ITU /5 min</p></p>
+					<p class='pp2'  style="top:24px;left:0px"> International Telecommunication Union (ITU) First IPTV Interop Event. World's only Interoperable IPTV Standard in action </p><br/>
+<p class='pp3'>2010/ITU /5 min</p>
 		</div>
 </div>
 
@@ -169,6 +169,7 @@ rodents), Rinky and Gamera.
 				<p class='pp3'>2008/ Blender Foundation/10 m</p>
 				</div>
 			</div>
+
 			<div id="4" class='l_ln'   style="top:197px;left:470px;nav-index:3;nav-up:1;nav-down:5;nav-right:4;nav-left:2"  onclick="launch();">
 				<div class='pp_left'   style="top:0;left:0">
 					<object type='image/jpeg' data='../ho/yoursingapore.jpg'  style="top:10px;left:10px;width:120px;height:90px"/>
@@ -188,8 +189,8 @@ rodents), Rinky and Gamera.
 		<div class='p_one'  style="top:0;left:130px">
 			<p class='pp1h' style="top:0;left:0px;">m10098  Chingay Festival</p>
 			<p class='pp2'  style="top:24px;left:0px">
-Held every February, the annual Chingay Parade in Singapore is unique. 'Chingay' in Hokkien means the 'art of costume and masquerade'.  <br />
-<p class='pp3' >2011/Singapore /10</p></p>
+Held every February, the annual Chingay Parade in Singapore is unique. 'Chingay' in Hokkien means the 'art of costume and masquerade'. </p> <br/>
+<p class='pp3' >2011/Singapore /10</p>
 				</div>
 			</div>
 <div id="6" class='l_ln' style="top:323px;left:470px;nav-index:5;nav-up:3;nav-down:5;nav-right:5;nav-left:4;" >
@@ -198,8 +199,8 @@ Held every February, the annual Chingay Parade in Singapore is unique. 'Chingay'
 		</div>
 		<div class='p_one'  style="top:0;left:130px">
 		<p class='pp1h'  style="top:0;left:0px;"> </p>
-		<p class='pp2'  style="top:24px;left:0px">bbbb <br/>
-<p class='pp3'  style="">2008/ Blender Foundation/10 m</p></p>
+		<p class='pp2'  style="top:24px;left:0px">bbbb</p> <br/>
+<p class='pp3'  style="">2008/ Blender Foundation/10 m</p>
 				</div>
 			</div>
 
