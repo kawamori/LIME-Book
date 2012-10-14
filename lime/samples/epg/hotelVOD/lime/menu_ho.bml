@@ -69,10 +69,10 @@ color-index:2;
 	background-color-index:7;
 }
 
-.pp3 {	top:75px;
+.pp3 {	top:175px;
         left:100px;
-width:322px;
-        height:112px;
+        width:322px;
+        height:20px;
 	margin-top:2px;
         font-size:12px;
        color-index:1;
@@ -111,13 +111,15 @@ if(name==1){
      browser.launchDocument("play_m10040.bml", "cut");
   }else if(name==2){
      browser.launchDocument("play_interop1.bml", "cut");
-}else if(name==3){
+  }else if(name==3){
      browser.launchDocument("play_bunny.bml", "cut");
-}else if(name==4){
+  }else if(name==4){
      browser.launchDocument("play_m10074.bml", "cut");
-}else if(name==5){
-           browser.launchDocument("play_chingay.bml", "cut");
-}else if(name==6){browser.launchDocument("play_bunny.bml", "cut");}
+  }else if(name==5){ 
+     browser.launchDocument("play_chingay.bml", "cut");
+  }else if(name==6){
+     browser.launchDocument("play_bunny.bml", "cut");
+  }
 
 }
 	]]></script>
