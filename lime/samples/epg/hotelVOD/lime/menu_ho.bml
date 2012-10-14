@@ -16,6 +16,7 @@
 		background-color-index:0;
 	}
 
+div     {background-color-index:7; color-index:0;}
 :focus	{background-color-index:72;}
 
 
