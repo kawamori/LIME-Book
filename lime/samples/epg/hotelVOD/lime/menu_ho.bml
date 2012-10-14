@@ -16,8 +16,8 @@
 		background-color-index:0;
 	}
 
-div:focus	{background-color-index:72;}
-div:blur	{background-color-index:7;}
+:focus	{background-color-index:72;}
+:blur	{background-color-index:7;}
 
 .vender_top {
         height:70px;
@@ -127,12 +127,6 @@ if(name==1){
 
 <!---
 
-m10040  小泉里子のスタイルゴルフ    カルチャー   ゴルフ
-m10053  長崎萠のコスプレ大辞典     カルチャー   コスプレマニア
-m10065  Beauty 太極拳      カルチャー   健康・体操
-m10074  くつろぎの宿　癒しの美湯女紀行　福島スペシャル カルチャー   旅行
-m10098  PARIS AIR SHOW  カルチャー   飛行機
-
 -->
 	<div class='inner3'>
 			<div id="1" class='l_ln' style='top:70px;left:0;nav-index:0;nav-down:2;nav-right:1;'  onclick="launch();">
@@ -144,10 +138,8 @@ m10098  PARIS AIR SHOW  カルチャー   飛行機
 					<p class='pp1h' style="top:0;left:0px;">m10040 E-motion Earth</p>
 				<p class='pp2' style="top:24px;left:0px"> Earth in motion. <br />
 <p class='pp3'>2011/OKI (c)/4</p></p>
-
 				</div>
 			</div>
-
 	
 <div id="2" class='l_ln' style="top:70px;left:470px;nav-index:1;nav-up:1;nav-down:3;nav-right:1;nav-left:0"  onclick="launch();">
 		<div class='pp_left'  style="top:0;left:0">

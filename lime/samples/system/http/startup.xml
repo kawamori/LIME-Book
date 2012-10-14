@@ -33,9 +33,9 @@ alert("hello");
 	var url = "http://kawamori.github.com/LIME-Book/lime/samples/startup.bml";
 	alert(" retrieving data from "+ url);
 
-browser.launchDocument(url);
+browser.launchDocument(url,"cut");
 
-//	var ret = browser.transmitTextDataOverIP(url,val,"EUC-JP");
+/*	var ret = browser.transmitTextDataOverIP(url,val,"EUC-JP");*/
 	/*if( ret[0] == 1 ){
 		alert("Returned value: " + ret[2]);
 	}else{
@@ -43,7 +43,7 @@ browser.launchDocument(url);
 	}
 */
 
-alert(ret);
+/*alert(ret);*/
 
 }
 
