@@ -15,7 +15,7 @@
 
 <script><![CDATA[
 
-
+	var url = "http://kawamori.github.com/LIME-Book/lime/samples/startup.bml";
 
 function alert(str){
 	var obj = document.getElementById("display");
@@ -30,12 +30,13 @@ function main(){
 alert("hello");
 
 	var val="";
-	var url = "http://kawamori.github.com/LIME-Book/lime/samples/startup.bml";
+
 	alert(" retrieving data from "+ url);
 
 /* browser.launchDocument(url,"cut");*/
 
 /*	var ret = browser.transmitTextDataOverIP(url,val,"EUC-JP");*/
+	
 	/*if( ret[0] == 1 ){
 		alert("Returned value: " + ret[2]);
 	}else{
@@ -46,6 +47,8 @@ alert("hello");
 /*alert(ret);*/
 
 }
+
+function changeText(){ browser.launchDocument(url,"cut");}
 
 function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
