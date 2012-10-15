@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="EUC-JP"?>
 <!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA"
 	"http://www.arib.or.jp/B24/DTD/bml_1_1.dtd">
-<?bml bml-version="3.0" ?>
+<?bml bml-version="100.0" ?>
 <bml>
 <head>
-<title>template for BS</title>
+<title>Uke MNG</title>
 
 <style><![CDATA[
 	body{
