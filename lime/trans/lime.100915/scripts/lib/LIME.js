@@ -2193,6 +2193,8 @@ BML.Builder = (function() {
   };
   /** ARIB/IPTVFJにおけるDTD(publicID/systemID)とBML Versionの対応を定義した配列集合． @name DTD_DECLARATIONS @type Array<Array<String>> */
   var DTD_DECLARATIONS    = [
+  	['', '', '100.0'], // IPTVFJv.1 HTML
+  	['-//IPTVF CDN:2008//DTD BML Document for IPTV//JA', 'http://www.iptvforum.jp/CDN/DTD/bml_100_0_iptv.dtd', '100.0'], // IPTVFJv.1
     ['-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA', 'http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd', '100.0'], // IPTVFJ
     ['+//ARIB STD-B24:1999//DTD BML Document//JA',          'http://www.arib.or.jp/B24/DTD/bml_1_1.dtd',      '3.0'],   // B-14
     ['-//ARIB//DTD BML Document//JA',                       'http://www.arib.or.jp/B24/DTD/bml_1_0.dtd',      '1.0'],   // B-24

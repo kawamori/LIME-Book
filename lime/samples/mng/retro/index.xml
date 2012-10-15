@@ -20,8 +20,8 @@
 		var urlList = new Array();
 		urlList[0] = "horse-ride.xml";
 		urlList[1] = "betty.bml";
-		urlList[2] = "";
-		urlList[3] = "";
+		urlList[2] = "orange-kubrick.bml";
+		urlList[3] = "uke.bml";
 		urlList[4] = "";
 		urlList[5] = "";
 		urlList[6] = "";
@@ -61,10 +61,10 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 		onclick="jump();">Betty Page:13 393KB</p>
 		
 		<p id="2" class="button" style="top:110px;nav-index:2;nav-up:1;nav-down:3;"
-		onclick="jump();"></p>
+		onclick="jump();">orange-kubrick: 10 561</p>
 		
 		<p id="3" class="button" style="top:140px;nav-index:3;nav-up:2;nav-down:4;"
-		onclick="jump();"></p>
+		onclick="jump();">Uke 7 - 159KB</p>
 		
 		
 		<p id="4" class="button" style="top:170px;nav-index:4;nav-up:3;nav-down:5;"

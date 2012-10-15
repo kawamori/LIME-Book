@@ -4,15 +4,14 @@
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
-<title>Nicole Kidman smiles</title>
+<title>Orange</title>
 
 <style><![CDATA[
 	body{
-		clut:url(kidman.clt);
+		clut:url(orange-kubrick.clt);
 		background-color-index:7;
 	}
 ]]></style>
-
 
 <script ><![CDATA[
 
@@ -22,10 +21,12 @@ function goback(){ browser.launchDocument("index.xml", "cut");	}
 </head>
 <body>
 <div style="left:0px; top:0px; width:960px; height:540px">
-<object type="image/X-arib-mng" data="kidman2.mng" style="left:0;top:0;width:500px;height:281px;" streamstatus="play" />
+<object type="image/X-arib-mng" data="orange.mng" style="left:0;top:0;width:499px;height:299px;" streamstatus="play"/>
 </div>
 
+
 <p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
 
 </body>
 </bml>
