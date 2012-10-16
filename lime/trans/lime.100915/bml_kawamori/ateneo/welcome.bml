@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="EUC-JP" ?>
-<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<!DOCTYPE bml PUBLIC
+  "-//IPTVF CDN:2008//DTD BML Document for IPTV//JA"
+  "http://www.iptvforum.jp/CDN/DTD/bml_100_0_iptv.dtd">
 <?bml bml-version="100.0" ?>
 <bml>
  <head>
