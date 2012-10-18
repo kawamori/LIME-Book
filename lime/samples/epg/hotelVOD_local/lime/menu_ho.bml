@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<!--	
+	<link rel="stylesheet" href="style.css" type="text/css">
+-->
+
+<style><![CDATA[
+	body{
+	
+		background-color-index:0;
+	}
+
+div     {background-color-index:7; color-index:0;}
+div:focus	{background-color-index:72;}
+
+
+.vender_top {
+        height:70px;
+	width:926px;
+}
+
+.inner3 {top:10px;
+        left:17px;
+	width:930px;
+        height:540px;
+	background-color-index:0;
+font-size:8px;
+}
+
+.l_ln { 
+	width:453px;
+	height:116px;
+	background-color-index:7;
+        color-index:1;
+}
+
+.pp_left {
+	width:122px;
+        height:112px;
+}
+
+.p_one {
+	width:356px;
+	height:112px;
+color-index:2;
+}
+
+
+.pp1h {	width:316px;
+        height:24px;
+	font-size:18px;
+        color-index:4;
+	background-color-index:8;
+       top:0px;left:0px;
+}
+
+.pp2 {	width:300px;
+        height:240px;
+        top:24px;
+        left:0px;
+	font-size:16px;
+	color-index:0;
+	background-color-index:7;
+}
+
+.pp3 {	top:98px;
+        left:100px;
+        width:322px;
+        height:20px;
+	margin-top:2px;
+        font-size:12px;
+       color-index:1;
+}
+
+.v_back, .v_pre, .v_next, .v_play {
+	width:120px;
+	height:60px;
+	margin-top:10px;
+}
+
+.icon {top:10px;left:10px;width:120px;height:90px;}
+
+.button {top:0px;left:0px;height:60px;width:120px;}
+.v_back { height:100px;width:180px; }
+.v_play { height:100px;width:180px; }
+.v_next { margin-left:10px; }
+
+
+
+]]></style>
+
+
+
+<script ><![CDATA[
+
+	
+function goback(){ browser.launchDocument("../top.bml", "cut");	}
+
+function launch(){
+
+    var e = document.currentEvent;
+    var name = e.target.id;
+
+if(name==1){
+     browser.launchDocument("play_m10040.bml", "cut");
+  }else if(name==2){
+     browser.launchDocument("play_interop1.bml", "cut");
+  }else if(name==3){
+     browser.launchDocument("play_bunny.bml", "cut");
+  }else if(name==4){
+     browser.launchDocument("play_m10074.bml", "cut");
+  }else if(name==5){ 
+     browser.launchDocument("play_chingay.bml", "cut");
+  }else if(name==6){
+     browser.launchDocument("play_bunny.bml", "cut");
+  }
+
+}
+	]]></script>
+</head>
+
+<body>
+
+<!--<div class='contents'>-->
+
+<!---
+
+-->
+	<div class='inner3'>
+			<div id="1" class='l_ln' style='top:70px;left:0;nav-index:0;nav-down:2;nav-right:1;'  onclick="launch();">
+			<div class='pp_left'  style="top:0;left:0"> 
+				<object type="image/jpeg" data="../ho/sun-earth.jpg" style="top:10px;left:10px;width:120px;height:90px"/>
+				<!--<object type="image/X-arib-png" data="../img/new.png" />-->
+			</div>
+			<div class='p_one' style="top:0;left:130px">
+				<p class='pp1h' style="top:0;left:0px;">m10040 E-motion Earth</p>
+				<p class='pp2' style="top:24px;left:0px"> Earth in motion.</p><br/>
+                                <p class='pp3'>2011/OKI (c)/4</p>
+			</div>
+		</div>
+	
+               <div id="2" class='l_ln' style="top:70px;left:470px;nav-index:1;nav-up:1;nav-down:3;nav-right:1;nav-left:0"  onclick="launch();">
+		<div class='pp_left'  style="top:0;left:0">
+				<object type='image/jpeg' data='../ho/iptv-interop1.jpg' style="top:10px;left:10px;width:120px;height:90px"/>
+				<object type="image/X-arib-png" data="../img/new.png" />
+		</div>
+
+		<div class='p_one' style="top:0;left:130px">
+					<p class='pp1h'  style="top:0;left:0px;">ITU IPTV Inerop Event</p>
+					<p class='pp2'  style="top:24px;left:0px"> International Telecommunication Union (ITU) First IPTV Interop Event. World's only Interoperable IPTV Standard in action </p><br/>
+<p class='pp3'>2010/ITU /5 min</p>
+		</div>
+</div>
+
+		<div id="3" class='l_ln'  style="top:197px;left:0px;nav-index:2;nav-up:0;nav-down:4;nav-right:3;nav-left:2"  onclick="launch();">
+			<div class='pp_left'  style="top:0;left:0">
+				<object type='image/jpeg' data='../ho/bbb-logo.jpg'  style="top:10px;left:10px;width:120px;height:90px"/>
+			</div>
+			<div class='p_one'  style="top:0;left:130px">
+				<p class='pp1h'  style="top:0;left:0px;">m10065 Big Buck Bunny </p>
+				<p class='pp2' style="top:24px;left:0px"><![CDATA[Big Buck Bunny meets three bullying 
+rodents, Frank (the leader of the
+rodents), Rinky and Gamera. 
+]]>   <br/></p>
+				<p class='pp3'>2008/ Blender Foundation/10 m</p>
+				</div>
+			</div>
+
+			<div id="4" class='l_ln'   style="top:197px;left:470px;nav-index:3;nav-up:1;nav-down:5;nav-right:4;nav-left:2"  onclick="launch();">
+				<div class='pp_left'   style="top:0;left:0">
+					<object type='image/jpeg' data='../ho/yoursingapore.jpg'  style="top:10px;left:10px;width:120px;height:90px"/>
+				</div>
+				<div class='p_one' style="top:0;left:130px">
+					<p class='pp1h'  style="top:0;left:0px;">m10074  Your Singapore <br/></p>
+					<p class='pp2'  style="top:24px;left:0px">　Singapore<br/></p>
+                                        <p class='pp3'>2011/Singapore Travel /10m</p>
+				</div>
+			</div>
+
+
+<div id="5" class='l_ln' style="top:323px;left:0px;nav-index:4;nav-up:2;nav-down:4;nav-right:5;nav-left:4;"  onclick="launch();">
+		<div class='pp_left' style="top:0;left:0">
+			<object type='image/jpeg' data='../ho/chingay.jpg'  style='top:10px;left:10px;width:122px;height:90px;' />
+		</div>
+		<div class='p_one'  style="top:0;left:130px">
+			<p class='pp1h' style="top:0;left:0px;">m10098  Chingay Festival</p>
+			<p class='pp2'  style="top:24px;left:0px">
+Held every February, the annual Chingay Parade in Singapore is unique. 'Chingay' in Hokkien means the 'art of costume and masquerade'. </p> <br/>
+<p class='pp3' >2011/Singapore /10</p>
+				</div>
+			</div>
+<div id="6" class='l_ln' style="top:323px;left:470px;nav-index:5;nav-up:3;nav-down:5;nav-right:5;nav-left:4;" >
+		<div class='pp_left'  style="top:0;left:0">
+				<object type='image/jpeg' data='../ho/h1006.jpg'  style='top:10px;left:10px;width:122px;height:90px;' />
+		</div>
+		<div class='p_one'  style="top:0;left:130px">
+		<p class='pp1h'  style="top:0;left:0px;"> </p>
+		<p class='pp2'  style="top:24px;left:0px">bbbb</p> <br/>
+<p class='pp3'  style="">2008/ Blender Foundation/10 m</p>
+				</div>
+			</div>
+
+<!-- buttons  -->
+
+       <div class='v_back' style="top:470px;left:17px;height:64px;width:128px;background-color-index:1;">
+                 <object class="button" style="top:2px;left:2px;height:60px;width:120px;" type="image/X-arib-png" data="../img/b_back.png" accesskey="R" onclick="goback();"/>
+          </div>
+
+		<div class='v_next' style="top:470px;left:817px;height:70px;width:126px;">
+                    <object class="button" style="top:0px;left:0px;height:60px;width:120px;" accesskey="B" type="image/X-arib-png" data="../img/b_next_b.png"/></div>
+		<div class='v_pre' style="top:470px;left:570px;height:70px;width:126px;"><object  class="button" style="top:0px;left:0px;height:60px;width:120px;"  type="image/X-arib-png" data="../img/b_pre_b.png"/></div>
+
+</div>
+
+<!--</div>-->
+
+	<div class='vender_top' style="top:0px;left:17px;height:70px;width:926px;">
+	<object type="image/X-arib-png" data="../img/t_houga.png" style="top:0;left:0;height:70px;	width:926px;"/>
+	</div>
+</body>
+</bml>
+
+
+
+

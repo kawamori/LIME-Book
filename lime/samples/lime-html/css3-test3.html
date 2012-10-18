@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?bml bml-version="100.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>Resizable Boxes in LIME</title>
+		<style>
+			#resizable {
+				margin-bottom: 100px;
+			}
+			
+			#resizable div {
+				padding: 5px 10px;
+				border: 1px #999 solid;
+				height: 40px;
+				width: 300px;
+				background-color: red;
+				-webkit-transition: height 0.3s ease-in-out, background-color 0.3s;
+				-o-transition: height 0.3s ease-in-out, background-color 0.3s;
+				-moz-transition: height 0.3s ease-in-out, background-color 0.3s;
+				transition: height 0.3s ease-in-out, background-color 0.3s;
+            }
+
+            #resizable div:hover {
+				background-color: blue;
+				height: 100px;
+				
+				-webkit-transition: height 0.6s ease-in-out, background-color 0.6s;
+				-o-transition: height 0.6s ease-in-out, background-color 0.6s;
+				-moz-transition: height 0.6s ease-in-out, background-color 0.6s;
+				transition: height 0.6s ease-in-out, background-color 0.6s;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Resizable Boxes</h1>
+		<div id="resizable">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</body>
+</bml>

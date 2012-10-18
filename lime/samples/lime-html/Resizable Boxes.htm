@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Resizable Boxes</title>
+		<style>
+			#resizable {
+				margin-bottom: 100px;
+			}
+			
+			#resizable div {
+				padding: 5px 10px;
+				border: 1px #999 solid;
+				height: 40px;
+				width: 300px;
+				background-color: red;
+				-webkit-transition: height 0.3s ease-in-out, background-color 0.3s;
+				-o-transition: height 0.3s ease-in-out, background-color 0.3s;
+				-moz-transition: height 0.3s ease-in-out, background-color 0.3s;
+				transition: height 0.3s ease-in-out, background-color 0.3s;
+            }
+
+            #resizable div:hover {
+				background-color: blue;
+				height: 100px;
+				
+				-webkit-transition: height 0.6s ease-in-out, background-color 0.6s;
+				-o-transition: height 0.6s ease-in-out, background-color 0.6s;
+				-moz-transition: height 0.6s ease-in-out, background-color 0.6s;
+				transition: height 0.6s ease-in-out, background-color 0.6s;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Resizable Boxes</h1>
+		<div id="resizable">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</body>
+</html>

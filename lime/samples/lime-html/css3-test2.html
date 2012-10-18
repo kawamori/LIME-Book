@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?bml bml-version="100.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>Spinning Div</title>
+		<style>
+			#spin {
+				width: 400px;
+				border: 2px #600 solid;
+				-webkit-transition: -webkit-transform 3s ease-in;
+				margin-top: 150px;
+			}
+				.h1 {font-size:36px;}
+		</style>
+	</head>
+	<body>
+		<p class="h1">Spinning Div</p>
+		<div id="spin" onclick="this.style.webkitTransform='rotate(360deg)'">
+			This div will do a spin when clicked the first time!
+		</div>
+	</body>
+</bml>

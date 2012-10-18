@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<title>Spinning Div</title>
+		<style>
+			#spin {
+				width: 400px;
+				border: 2px #600 solid;
+				-webkit-transition: -webkit-transform 3s ease-in;
+				margin-top: 150px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Spinning Div</h1>
+		<div id="spin" onclick="this.style.webkitTransform='rotate(360deg)'">
+			This div will do a spin when clicked the first time!
+		</div>
+	</body>
+</html>

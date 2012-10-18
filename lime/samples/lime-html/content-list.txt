@@ -1,0 +1,28 @@
+    [H.264 HD Contents]
+                ==============================================================
+                nickname        file path
+                ==============================================================
+                world           /moviebox/oki/h264-hd-tts/world_out.mp4
+                earth           /moviebox/oki/h264-hd-tts/earth_out.mp4
+                japan           /moviebox/oki/h264-hd-tts/japan_out.mp4
+                penguin         /moviebox/oki/h264-hd-tts/penguin_out.mp4
+                monkey          /moviebox/oki/h264-hd-tts/monkey_out.mp4
+                whitebear       /moviebox/oki/h264-hd-tts/whitebear_out.mp4
+                sanjya_matsuri  /moviebox/hotel/sanjya_matsuri_1080i_out.mp4
+                sanjya_matsuri  /moviebox/hotel/sanjya_matsuri_720p_out.mp4
+                ==============================================================
+
+                [H.264 SD Contents]
+                ==============================================================
+                nickname        file path
+                ==============================================================
+                penguin         /moviebox/oki/h264-sd-tts/penguin_sd_2m_out.mp4
+                sanjya_matsuri  /moviebox/hotel/sanjya_matsuri_480i_out.mp4
+                sample          /moviebox/hotel/sample.mp4
+
+
+ /moviebox/ntt-at/h264-hd-tts/big_buck_bunny-at.mp4
+ /moviebox/snow-festa/iptvmessage_out.mp4
+ /moviebox/snow-festa/itu_iptv_gva_vo_corr_out.mp4
+ /moviebox/snow-festa/singapore_chingay_festival_2011_out.mp4
+ /moviebox/snow-festa/yoursingapore_out.mp4
