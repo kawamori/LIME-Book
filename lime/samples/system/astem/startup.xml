@@ -37,16 +37,17 @@ function alert(str){
 function main(){
 
 alert("hello");
-
+    
 	var val='id=PJ_LimeDemo&lines=3';
     var val2="";
-	alert(" retrieving data from "+ url2);
+    var vCode='Shift_JIS';
+	alert(" retrieving data from "+ url2+ " as "+vCode);
 
 }
 
 function changeText(){ 
 
-var ret = browser.transmitTextDataOverIP(url2,val2,"UTF-8");
+var ret = browser.transmitTextDataOverIP(url2,val2,vCode);
 	
 	if( ret[0] == 1 ){
 		alert("Returned value: " + ret[2]);
