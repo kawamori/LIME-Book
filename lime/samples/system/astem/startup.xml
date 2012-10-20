@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title>License Test</title>
+<style><![CDATA[
+	.button {width:140px;height:32px;}
+	p:focus {background-color-index:2;}
+	p.button {text-align:center;color-index:0;line-height:30px;}
+	#display	{background-color-index:16;color-index:7;
+		top:30px;left:30px;width:600px;height:400px;}
+]]></style>
+
+
+<script><![CDATA[
+
+var eventID;
+ var sLines;
+            
+            
+	var url = "http://talk.astem-co.co.jp/AtNet/DpTxt/display/PJ_LimeDemo/3";
+	var url2 = "http://talk.astem-co.co.jp/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
+
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+
+
+
+
+function main(){
+
+alert("hello");
+
+	var val='id=PJ_LimeDemo&lines=3';
+    var val2="";
+	alert(" retrieving data from "+ url);
+
+}
+
+function changeText(){ 
+
+var ret = browser.transmitTextDataOverIP(url,val2,"EUC-JP");
+	
+	if( ret[0] == 1 ){
+		alert("Returned value: " + ret[2]);
+	}else{
+		alert("Transmission failed");
+	}
+
+alert(ret);
+
+}
+
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
+
+
+]]></script>
+
+</head>
+<body style="background-color-index:7;">
+
+		<p id="p01" class="button" style="top:10;left:0:color-index:0;nav-index:0;nav-up:1;nav-down:1;" onclick="main();">Button1</p>
+
+
+		<p id="p02" class="button"  style="top:50;left:0;nav-index:1;nav-up:0;nav-down:0" onclick="changeText();">Button2</p>
+
+
+
+<p id="display" style="top:100px;left:250px"><![CDATA[]]></p>
+
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+ 
+ 
+</body>
+</bml>
