@@ -51,10 +51,12 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 <body>
 		
 <p id="display" style="top:20px;left:50px;width:350px;height:400px;"><![CDATA[ Sample LIME code ]]></p>
-		
-        <p id="0" class="button" style="top:100px;nav-index:0;nav-down:1"
-		onclick="jump();">EPG - links to videos</p>
 
+<div style="top:0px;left:0px;width:600px;height:500px;>
+
+        <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
+		onclick="jump();">EPG - links to videos</p>
+	</div>
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
 		onclick="jump();">Video Test</p>
 		
@@ -89,7 +91,7 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 		onclick="jump();">Graphics test</p>
 		<p id="12" class="button" style="top:510px;nav-index:12;nav-up:11;nav-down:12;"
 		onclick="jump();">News</p>
-	
+
 
 
 
