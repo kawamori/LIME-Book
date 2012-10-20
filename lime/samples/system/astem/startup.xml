@@ -36,13 +36,13 @@ alert("hello");
 
 	var val='id=PJ_LimeDemo&lines=3';
     var val2="";
-	alert(" retrieving data from "+ url);
+	alert(" retrieving data from "+ url2);
 
 }
 
 function changeText(){ 
 
-var ret = browser.transmitTextDataOverIP(url,val2,"EUC-JP");
+var ret = browser.transmitTextDataOverIP(url2,val2,"EUC-JP");
 	
 	if( ret[0] == 1 ){
 		alert("Returned value: " + ret[2]);
