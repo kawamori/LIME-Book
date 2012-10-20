@@ -15,12 +15,16 @@
 
 <script><![CDATA[
 
+var vHost = '175.41.244.154';
 var eventID;
  var sLines;
             
             
 	var url = "http://talk.astem-co.co.jp/AtNet/DpTxt/display/PJ_LimeDemo/3";
-	var url2 = "http://talk.astem-co.co.jp/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
+	var url2 = "http://"+ vHost+ "/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
+	
+	var url3 = "http://talk.astem-co.co.jp/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
+	
 
 function alert(str){
 	var obj = document.getElementById("display");
