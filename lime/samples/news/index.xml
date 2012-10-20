@@ -18,8 +18,8 @@
 	<script ><![CDATA[
 
 		var urlList = new Array();
-		urlList[0] = "itu-test/video.xml";
-		urlList[1] = "mccann/startup.xml";
+		urlList[0] = "statup.xml";
+		urlList[1] = "";
 		urlList[2] = "PinP/video.xml";
 		urlList[3] = "MNG-Video/startup.xml";
 		urlList[4] = "caption/bml/startup.bml";
@@ -57,10 +57,10 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 			
 		
         <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();">ITU Media test</p>
+		onclick="jump();">Otaku News</p>
 
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();">McCann Tests</p>
+		onclick="jump();"></p>
 		
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
 		onclick="jump();">PinP test</p>
