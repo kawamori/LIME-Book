@@ -40,7 +40,8 @@ alert("hello");
     
 	var val='id=PJ_LimeDemo&lines=3';
     var val2="";
-    var vCode='Shift_JIS';
+    var vCode='EUC-JP';
+    /*Shift_JIS*/
 	alert(" retrieving data from "+ url2+ " as "+vCode);
 
 }
