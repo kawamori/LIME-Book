@@ -18,7 +18,7 @@
 	<script ><![CDATA[
 
 		var urlList = new Array();
-		urlList[0] = "statup.xml";
+		urlList[0] = "startup.xml";
 		urlList[1] = "";
 		urlList[2] = "PinP/video.xml";
 		urlList[3] = "MNG-Video/startup.xml";
@@ -57,7 +57,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 			
 		
         <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();">Otaku News</p>
+		onclick="jump();">News</p>
 
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
 		onclick="jump();"></p>
