@@ -25,7 +25,7 @@
 		urlList[4] = "nvram/write-nvram.xml";
 		urlList[5] = "nvram/checkparental-test.xml";
 		urlList[6] = "astem/startup.xml";
-		urlList[7] = "";
+		urlList[7] = "xmltest/bml/startup.xml";
 		urlList[8] = "";
 		urlList[9] = "";
 		urlList[10] = "";
@@ -78,7 +78,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">ASTEM Talk Test</p>
 		
 		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
-		onclick="jump();"></p>
+		onclick="jump();">XMLtest</p>
 		
 				 <p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
 		onclick="jump();"></p>
