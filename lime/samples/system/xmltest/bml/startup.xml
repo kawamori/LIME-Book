@@ -13,7 +13,7 @@
        #display	{ font-size:20px;  background-color-index:16; color-index:7;font-size:16px;top:40px;left:460px;width:480px;height:440px;}
 
 ]]></style>
-<script src="../scripts/xmltest.js"/>
+<script src="../scripts/xmltest.ecm"/>
 <script src="../scripts/xparse.ecm"/>
 <script src="../scripts/mycommon.ecm"/> <!-- added by Kawamori -->
 <script><![CDATA[
