@@ -10,14 +10,20 @@
 		clut:url(../images/default.clt);
 	}
 
-       #display	{ font-size:20px;  background-color-index:16; color-index:7;font-size:16px;top:400px;left:460px;width:480px;height:440px;}
+       #display	{ font-size:20px;  background-color-index:16; color-index:7;font-size:16px;top:40px;left:460px;width:480px;height:440px;}
 
 ]]></style>
-<script src="../scripts/common.ecm"/>
+<script src="../scripts/xmltest.js"/>
 <script src="../scripts/xparse.ecm"/>
 <script src="../scripts/mycommon.ecm"/> <!-- added by Kawamori -->
 <script><![CDATA[
 
+	
+
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
 
 var offset;
 var origin;
@@ -214,8 +220,8 @@ function dataKey(){
 
 
 </div>
-<!--
+
  <p id="display" style=""><![CDATA[]]></p>
--->
+
 </body>
 </bml>
