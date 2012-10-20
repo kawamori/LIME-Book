@@ -20,11 +20,6 @@
 
 	
 
-function alert(str){
-	var obj = document.getElementById("display");
-	obj.firstChild.data += str + "\r\n";
-}
-
 var offset;
 var origin;
 
