@@ -46,7 +46,7 @@ alert("hello");
 
 function changeText(){ 
 
-var ret = browser.transmitTextDataOverIP(url2,val2,"EUC-JP");
+var ret = browser.transmitTextDataOverIP(url2,val2,"UTF-8");
 	
 	if( ret[0] == 1 ){
 		alert("Returned value: " + ret[2]);
