@@ -11,6 +11,7 @@
 	}
 
        #display	{ font-size:20px;  background-color-index:16; color-index:7;font-size:16px;top:40px;left:60px;width:880px;height:440px;}
+       #
 
 ]]></style>
 <script src="../scripts/xmltest.js"/>
@@ -67,7 +68,8 @@ function alert(str){
 	var obj = document.getElementById("display");
 	obj.firstChild.data += str + "\r\n";
 }
-
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
+function refresh(){ browser.reloadActiveDocument();}
 
 ]]></script>
 
@@ -81,6 +83,13 @@ function alert(str){
 
 
  <p id="display" style=""><![CDATA[]]></p>
+
+
+
+<p style="top:520px;left:700px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+ 
+ 
+<p id="p01" class="button" style="top:520px;left:840px;height:36px;width:64px;background-color-index:1;" onclick="refresh();"  accesskey="R">Reload</p>
 
 </body>
 </bml>

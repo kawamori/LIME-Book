@@ -4,9 +4,9 @@
 var gVodURL = "http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts";
 //var gVodLength = 730;	// Show VOD Time [100msec] ex.10=1sec, 300=30sec
 var gVodLength = 12150;
-var gCaptionXML_bad = "../scripts/htmlsample2.html";
-//var gCaptionXML_bad = "http://nec.iptvf.jp/hello/bml/Shenzhen/aIPTV/scripts/tagalog.xml";
-var gCaptionXML_good = "../scripts/htmlsample1.html";
+//var gCaptionXML_bad = "../scripts/htmlsample2.html";
+var gCaptionXML_bad = "../scripts/tagalog.xml";
+//var gCaptionXML_good = "../scripts/htmlsample1.html";
 //var gCaptionXML_good = "http://nec.iptvf.jp/hello/bml/Shenzhen/aIPTV/scripts/chinese.xml";
 
 var gCaption_bad = new Array();
@@ -47,11 +47,10 @@ function loadXML(xmlFile, captionArray){
 	if(array[0] == 1){
 		var rootObj = Xparse(str);
 
-		if(rootObj.contents[0].name == "html"){
+		if(rootObj.contents[0].name == "tt"){
 			if(rootObj.contents[0].contents[0].name == "body"){
-			/*	if(rootObj.contents[0].contents[0].contents[0].name == "div"){*/
-					
-					for(var i=0; i<rootObj.contents[0].contents[0].contents[0].contents.length; i++){
+			if(rootObj.contents[0].contents[0].contents[0].name == "div"){
+										for(var i=0; i<rootObj.contents[0].contents[0].contents[0].contents.length; i++){
 						if(rootObj.contents[0].contents[0].contents[0].contents[i].name == "p"){
 							for (var pname in rootObj.contents[0].contents[0].contents[0].contents[i].attributes){
 								if(startEndFlag == 0){
@@ -66,7 +65,7 @@ function loadXML(xmlFile, captionArray){
 							captionCounter++;
 						} /*  end of if <p> */
 					}/*  end of for <p> */
-			/*	}  end of if <div> */
+			}  	/*end of if <div> */
 			}
 		}
 	}
