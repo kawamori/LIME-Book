@@ -13,8 +13,9 @@ body {}
   .link0 {font-size:24px;position:absolute;width:400px;height:30px;z-index:2;}
  .link1 {font-size:24px;position:absolute;width:300px;height:30px;z-index:3;}
  .link2 {font-size:24px; position:absolute;width:300px;height:30px;z-index:4;}
-  .link3 {font-size:24px; position:absolute;width:300px;height:30px;z-index:5;}
-    .link3 {font-size:24px; position:absolute;width:300px;height:30px;z-index:6;}
+ .link3 {font-size:24px; position:absolute;width:300px;height:30px;z-index:5;}
+ .link4 {font-size:24px; position:absolute;width:300px;height:30px;z-index:6;}
+ .link5 {font-size:24px; position:absolute;width:300px;height:30px;z-index:7;}
  :focus {color-index:1;}
  :blur {color-index:7}
  
@@ -48,10 +49,14 @@ body {}
 </p> <br/>
 
 
-<p class="link3" style="top:300px;left:100px;">
-<a class="link3" style="top:0px;left:0px;nav-index:4;nav-up:3;" href="ajax-test/06/wave.html">AJAX-like (for PC)</a><br/>
+<p class="link4" style="top:300px;left:100px;">
+<a class="link4" style="top:0px;left:0px;nav-index:4;nav-up:3;nav-down:5;" href="ajax-test/06/wave.html">AJAX-like (for PC)</a><br/>
 </p> <br/>
 
+
+<p class="link5" style="top:350px;left:100px;">
+<a class="link5" style="top:0px;left:0px;nav-index:5;nav-up:4;" href="paris/mylittleparis.html">My Little Paris</a><br/>
+</p> <br/>
 </body>
 
 </bml>

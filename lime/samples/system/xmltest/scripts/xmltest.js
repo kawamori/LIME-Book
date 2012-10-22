@@ -2,19 +2,19 @@
 
 
 var gVodURL = "http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts";
-//var gVodLength = 730;	// Show VOD Time [100msec] ex.10=1sec, 300=30sec
+/*var gVodLength = 730;	// Show VOD Time [100msec] ex.10=1sec, 300=30sec*/
 var gVodLength = 12150;
-//var gCaptionXML_bad = "../scripts/htmlsample2.html";
+/*var gCaptionXML_bad = "../scripts/htmlsample2.html";*/
 var gCaptionXML_bad = "../scripts/tagalog.xml";
-//var gCaptionXML_good = "../scripts/htmlsample1.html";
-//var gCaptionXML_good = "http://nec.iptvf.jp/hello/bml/Shenzhen/aIPTV/scripts/chinese.xml";
+/*var gCaptionXML_good = "../scripts/htmlsample1.html";*/
+/*var gCaptionXML_good = "http://nec.iptvf.jp/hello/bml/Shenzhen/aIPTV/scripts/chinese.xml";*/
 
 var gCaption_bad = new Array();
 var gCaption_good = new Array();
 
 
 /*************************  共通基礎関数  *******************************/
-// 処理補助
+/* 処理補助*/
 function getElementById(id){return document.getElementById(id);}
 function showElem(id){getElementById(id).normalStyle.visibility="visible";}
 function hideElem(id){getElementById(id).normalStyle.visibility="hidden";}
@@ -28,11 +28,17 @@ function unlockScreen(){browser.unlockScreen();}
 * 戻り値： なし
 ****************************************************************/ 
 function loadXML(xmlFile, captionArray){
-//modified by Kawamori
+/*modified by Kawamori*/
 
-	// 外部字幕ファイル
+	/* 外部字幕ファイル*/
 	var array = browser.transmitTextDataOverIP(xmlFile, "" , "EUC-JP");
-
+	
+/*	if( array[0] == 1 ){
+		return ;
+	}else{
+		return("Transmission failed");
+	}
+*/
 
 	// 改行コード除去
 	var str = deleteLineFeed(array[2]);
