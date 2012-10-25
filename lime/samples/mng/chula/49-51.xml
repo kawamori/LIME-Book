@@ -36,7 +36,7 @@ function goback(){ browser.launchDocument("index.xml", "cut");	}
 	
 	
 </div>
-</div>
+
 
 </body>
 </bml>
