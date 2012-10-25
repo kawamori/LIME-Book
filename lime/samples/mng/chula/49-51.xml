@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Chula Test</title>
+
+<style><![CDATA[
+	body{
+		clut:url(default.clt);
+		background-color-index:7;
+	}
+		.chick {
+		width:160px; height:88px; top:50px; left:50px;
+	}
+	
+]]></style>
+
+<script ><![CDATA[
+
+function goback(){ browser.launchDocument("index.xml", "cut");	}
+
+		]]></script>
+</head>
+<body>
+
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+
+<div style="width:960px;height:540px;">
+	<object class="chick" data="51.mng" type="image/X-arib-mng" streamstatus="play"/>
+	<object class="chick" data="51_big.mng" type="image/X-arib-mng" streamstatus="play" style="width:324;height:180px;top:340px;left:110px;"/>
+	
+	
+	<object class="chick" data="49.mng" type="image/X-arib-mng" style="top:40px;left:610px;" streamstatus="play"/>
+	<object class="chick" data="49_big.mng" type="image/X-arib-mng" streamstatus="play" style="width:324;height:180px;top:340px;left:610px;"/>
+	
+	
+</div>
+</div>
+
+</body>
+</bml>
+

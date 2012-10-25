@@ -6,6 +6,7 @@
 	<title>MNG Tests</title>
 	<style>
 		<![CDATA[
+		
 			p {height:16px;color-index:7;grayscale-color-index:15 15}
 			
 			p:focus{background-color-index:1}
@@ -19,7 +20,7 @@
 
 		var urlList = new Array();
 		urlList[0] = "1.bml";
-		urlList[1] = "";
+		urlList[1] = "49-51.xml";
 		urlList[2] = "";
 		urlList[3] = "";
 		urlList[4] = "";
@@ -58,7 +59,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 		onclick="jump();">Sign Language 1: 185KB</p>
 
 		<p id="1" class="button" style="top:80px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();"></p>
+		onclick="jump();">Sign Language  Samples</p>
 		
 		<p id="2" class="button" style="top:110px;nav-index:2;nav-up:1;nav-down:3;"
 		onclick="jump();">Bow</p>
