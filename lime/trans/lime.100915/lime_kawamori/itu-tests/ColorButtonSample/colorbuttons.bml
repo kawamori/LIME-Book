@@ -33,10 +33,10 @@ function print(msg){
 <p  id="text" style="left:220px;top:23px;width:500px; height:150px"><![CDATA[ Please push one of the color buttons]]></p>
 
 <div style="left:0px; top:0px; width:960px; height:540px">
-  <object class="button" id="red"  type="image/jpeg" data="../images/red-focus.jpg"   style="left:90px;top:460px;"  onclick="pushedButton();" accesskey="R"/>
-  <object class="button"  id="green"  type="image/jpeg" data="../images/green-focus.jpg"   style="left:300px;top:460px;"  onclick="pushedButton();"  accesskey="G"/>
-  <object class="button"  id="blue"  type="image/jpeg" data="../images/blue-focus.jpg" style="left:714px;top:460px;" onclick="pushedButton();" accesskey="B"/>
-  <object class="button" id="yellow"   type="image/jpeg" data="../images/yellow-focus.jpg"   style="left:505px;top:460px;" onclick="pushedButton();" accesskey="Y"/>
+  <object class="button" id="red"  type="image/jpeg" data="images/red-focus.jpg"   style="left:90px;top:460px;"  onclick="pushedButton();" accesskey="R"/>
+  <object class="button"  id="green"  type="image/jpeg" data="images/green-focus.jpg"   style="left:300px;top:460px;"  onclick="pushedButton();"  accesskey="G"/>
+  <object class="button"  id="blue"  type="image/jpeg" data="images/blue-focus.jpg" style="left:714px;top:460px;" onclick="pushedButton();" accesskey="B"/>
+  <object class="button" id="yellow"   type="image/jpeg" data="images/yellow-focus.jpg"   style="left:505px;top:460px;" onclick="pushedButton();" accesskey="Y"/>
 </div>
 </body>
 </bml>
