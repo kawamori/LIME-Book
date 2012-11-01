@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC   "-//IPTVF CDN:2008//DTD BML Document for IPTV//JA" "http://www.iptvforum.jp/CDN/DTD/bml_100_0_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title> Color Button Sample --- ITU-T H.762 (Lightweight Interactive Multimedia Environment)</title>
+<style><![CDATA[
+p	{width:100px;height:100px;text-align:center;background-color-index:0;color-index:7;font-size:20px}
+.button {width:150px;height:50px;}
+]]></style>
+<script><![CDATA[
+	
+function pushedButton(){
+	var evt = document.currentEvent;
+	var name = evt.target.id;
+
+print("The "+name+ " button was pushed");
+
+	}
+
+function print(msg){
+	document.getElementById("text").firstChild.data = msg;
+}
+
+]]></script>
+</head>
+<body id="body" style="background-color-index:0;">
+
+<p  id="text" style="left:220px;top:23px;width:500px; height:150px"><![CDATA[ Please push one of the color buttons]]></p>
+
+<div style="left:0px; top:0px; width:960px; height:540px">
+  <object class="button" id="red"  type="image/jpeg" data="../images/red-focus.jpg"   style="left:90px;top:460px;"  onclick="pushedButton();" accesskey="R"/>
+  <object class="button"  id="green"  type="image/jpeg" data="../images/green-focus.jpg"   style="left:300px;top:460px;"  onclick="pushedButton();"  accesskey="G"/>
+  <object class="button"  id="blue"  type="image/jpeg" data="../images/blue-focus.jpg" style="left:714px;top:460px;" onclick="pushedButton();" accesskey="B"/>
+  <object class="button" id="yellow"   type="image/jpeg" data="../images/yellow-focus.jpg"   style="left:505px;top:460px;" onclick="pushedButton();" accesskey="Y"/>
+</div>
+</body>
+</bml>
