@@ -18,18 +18,18 @@ var Left   = document.getElementById("left");
 var Down   = document.getElementById("down");
 
 // When Focused 
-function focusUp()    {	Up.data="../images/up-focus.jpg";}
-function focusCenter(){	Center.data="../images/center-focus.jpg";}
-function focusRight() {	Right.data="../images/right-focus.jpg";}
-function focusLeft()  {	Left.data="../images/left-focus.jpg";}
-function focusDown()  {	Down.data="../images/down-focus.jpg";}
+function focusUp()    {	Up.data="images/up-focus.jpg";}
+function focusCenter(){	Center.data="images/center-focus.jpg";}
+function focusRight() {	Right.data="images/right-focus.jpg";}
+function focusLeft()  {	Left.data="images/left-focus.jpg";}
+function focusDown()  {	Down.data="images/down-focus.jpg";}
 
 // When Un-Focused
-function blurUp()    {	Up.data="../images/up-unfocus.jpg";}
-function blurCenter(){	Center.data="../images/center-unfocus.jpg";}
-function blurRight() {	Right.data="../images/right-unfocus.jpg";}
-function blurLeft()  {	Left.data="../images/left-unfocus.jpg";}
-function blurDown()  {	Down.data="../images/down-unfocus.jpg";}
+function blurUp()    {	Up.data="images/up-unfocus.jpg";}
+function blurCenter(){	Center.data="images/center-unfocus.jpg";}
+function blurRight() {	Right.data="images/right-unfocus.jpg";}
+function blurLeft()  {	Left.data="images/left-unfocus.jpg";}
+function blurDown()  {	Down.data="images/down-unfocus.jpg";}
 
 ]]></script>
 
@@ -39,23 +39,23 @@ function blurDown()  {	Down.data="../images/down-unfocus.jpg";}
 <p id="title"> This is a test
 </p>
 <div  style="left:400px;top:50px;width:141px;height:149px;border-style:solid;border-width:2px;nav-index:1;nav-up:1;nav-down:0;nav-left:4;nav-right:2;" onfocus="focusUp();" onblur="blurUp();">
-	<object  id="up" style="left:0px;top:0px;width:141px;height:149px;" type="image/jpeg" data="../images/up-unfocus.jpg"/>
+	<object  id="up" style="left:0px;top:0px;width:141px;height:149px;" type="image/jpeg" data="images/up-unfocus.jpg"/>
 </div>
 
 <div  style="left:425px;top:220px;width:96px;height:105px;border-style:solid;border-width:2px;nav-index:0;nav-up:1;nav-right:2;nav-left:4;nav-down:3" onfocus="focusCenter();" onblur="blurCenter();">
-	<object  id="center" style="left:0px;top:0px;width:96px;height:105px;" type="image/jpeg" data="../images/center-focus.jpg"/>
+	<object  id="center" style="left:0px;top:0px;width:96px;height:105px;" type="image/jpeg" data="images/center-focus.jpg"/>
 </div>
 
 <div  style="left:540px;top:200px;width:150px;height:142px;nav-index:2;nav-up:1;nav-down:3;nav-right:2;nav-left:0;"  onfocus="focusRight();" onblur="blurRight();">
-<object  id="right" type="image/jpeg" data="../images/right-unfocus.jpg" style="left:0px;top:0px;width:150px;height:142px;"/>
+<object  id="right" type="image/jpeg" data="images/right-unfocus.jpg" style="left:0px;top:0px;width:150px;height:142px;"/>
 </div>
 
 <div  style="left:250px;top:200px;width:150px;height:142px;nav-index:4;nav-up:1;nav-down:3;nav-right:0;nav-left:4;"  onfocus="focusLeft();" onblur="blurLeft();">
-<object  id="left" type="image/jpeg" data="../images/left-unfocus.jpg"   style="left:0px;top:0px;width:150px;height:142px;"/>
+<object  id="left" type="image/jpeg" data="images/left-unfocus.jpg"   style="left:0px;top:0px;width:150px;height:142px;"/>
 </div>
 
 <div  style="left:400px;top:350px;width:141px;height:149px;nav-index:3;nav-up:0;nav-down:5;nav-right:2;nav-left:4;"  onfocus="focusDown();" onblur="blurDown();"> 
-<object  id="down" type="image/jpeg" data="../images/down-unfocus.jpg"   style="left:0px;top:0px;width:141px;height:149px;"/>
+<object  id="down" type="image/jpeg" data="images/down-unfocus.jpg"   style="left:0px;top:0px;width:141px;height:149px;"/>
 </div>
 
 </body>
