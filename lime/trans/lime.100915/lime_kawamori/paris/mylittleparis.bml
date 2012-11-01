@@ -23,6 +23,7 @@ body {background-color-index:7;}
 </head>
 <body>
 
+<p id="hello"> Hello </p>
 			
 	<div style="width:960px;height:540px;top:0px;left:0px">
 	
