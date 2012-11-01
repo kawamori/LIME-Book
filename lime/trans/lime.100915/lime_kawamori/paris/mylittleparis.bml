@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+
+<head>
+	<title>My Little Paris</title>
+	<!--
+<link  href="css/base.css" rel="stylesheet"/>-->
+<style>
+body {background-color-index:7;}
+
+    #image {position:absolute;top:0px;left:0px;width:150px;height:110px;zIndex:0;}
+    .banner {position:absolute;top:0px;left:616px;width:355px;height:92px;zIndex:3;}
+     #hello {color:blue;color-index:4;position:absolute;font-size:24px;top:400px;left:100px;width:260px;height:72px;}  
+	 #bt5 {position:absolute;top:100px;left:516px;width:444px;height:114px;zIndex:3;}
+ #bt6 {position:absolute;top:0px;left:60px;width:444px;height:114px;zIndex:3;}
+  .read {position:absolute;top:140px;left:100px;width:690px;height:286px;}
+ #wedding {position:absolute;top:434px;left:100px;width:768px;height:114px;}
+ p:focus {background-color-index:1;border-margin:2px;}
+ p:blur {background-color-index:98;}
+</style>
+</head>
+<body>
+
+			
+	<div style="width:960px;height:540px;top:0px;left:0px">
+	
+	
+	<object class="banner" type="image/jpeg" data="media/btInscription.jpg"/>
+
+	
+	<object id="image"  type="image/jpeg" data="media/my-little-paris-logo.jpg"/>
+
+	
+	<object class="read"  type="image/jpeg" data="media/inconnu-ecrit.jpg"/>
+	
+   <object id="wedding"  type="image/jpeg" data="media/bandeau_wedding.jpg"/>
+
+	<!--
+	<object id="bt5"  type="image/jpeg" data="media/btinscription5.jpg"/>
+
+	<object id="bt6"  type="image/jpeg" data="media/btbox6.jpg"/>
+-->
+	</div>
+	<a href="inconnu-ecrit-text.html">
+	<p id="bannerLink" style="top:66px;left:734px;width:150px;height:4px;color-index:2;nav-index:0;nav-down:1;"></p></a>
+    <p id="readLink" style="top:410px;left:688px;width:84px;height:4px;color-index:2;font-size:36px;nav-index:1;nav-down:2;nav-up:0"></p>
+ <p id="weddingLink" style="color-index:2;font-size:36px;top:522px;left:250px;width:60px;height:4px;nav-index:2;nav-up:1">woo</p>
+
+	</body>
+</bml>

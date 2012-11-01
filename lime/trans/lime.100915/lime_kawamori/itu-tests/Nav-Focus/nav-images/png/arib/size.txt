@@ -1,0 +1,10 @@
+Size of cPNG collected is about 1/5 of the original PNG.
+
+(+ 2889 1880  3899  2495  4069  2677   4115    2747  3824   2479)
+31074
+
+Original PNG 147036
+(/ 147036.0 31074)
+4.731801506082255
+
+

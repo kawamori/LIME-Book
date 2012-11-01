@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC   "-//IPTVF CDN:2008//DTD BML Document for IPTV//JA" "http://www.iptvforum.jp/CDN/DTD/bml_100_0_iptv.dtd">
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title>Startup for LIME</title>
+
+<style><![CDATA[
+    body {
+        background-color-index:0;
+        display-aspect-ratio:6v9;
+    }
+
+]]>
+</style>
+<script><![CDATA[
+
+function onload() {
+browser.launchDocument("lime/nav-focus-image_0.lime", "cut");
+}
+
+]]></script>
+
+</head>
+<body id="body" onload="onload();">
+</body>
+</bml>

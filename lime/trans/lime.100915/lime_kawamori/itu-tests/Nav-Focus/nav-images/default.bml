@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA" "bml_1_0.dtd">
+<?bml bml-version="1.0" ?>
+<bml>
+<head>
+<title>template for BS</title>
+
+<style><![CDATA[
+	body{
+		clut:url(default.clt);
+		background-color-index:7;
+	}
+]]></style>
+
+</head>
+<body>
+<div style="left:0px; top:0px; width:960px; height:540px">
+<object type="image/X-arib-png" data="center-focus.png" style="left:0;top:0;width:191px;height:210px;"/>
+<object type="image/X-arib-png" data="center-unfocus.png" style="left:25px;top:25px;width:191px;height:210px;"/>
+<object type="image/X-arib-png" data="down-focus.png" style="left:50px;top:50px;width:282px;height:298px;"/>
+<object type="image/X-arib-png" data="down-unfocus.png" style="left:75px;top:75px;width:282px;height:298px;"/>
+<object type="image/X-arib-png" data="left-focus.png" style="left:100px;top:100px;width:300px;height:284px;"/>
+<object type="image/X-arib-png" data="left-unfocus.png" style="left:125px;top:125px;width:300px;height:284px;"/>
+<object type="image/X-arib-png" data="refdesign2.png" style="left:150px;top:150px;width:1280px;height:779px;"/>
+<object type="image/X-arib-png" data="right-focus.png" style="left:175px;top:175px;width:300px;height:284px;"/>
+<object type="image/X-arib-png" data="right-unfocus.png" style="left:0;top:0;width:300px;height:284px;"/>
+<object type="image/X-arib-png" data="up-focus.png" style="left:25px;top:25px;width:282px;height:298px;"/>
+<object type="image/X-arib-png" data="up-unfocus.png" style="left:50px;top:50px;width:282px;height:298px;"/>
+
+</div>
+</body>
+</bml>
+
