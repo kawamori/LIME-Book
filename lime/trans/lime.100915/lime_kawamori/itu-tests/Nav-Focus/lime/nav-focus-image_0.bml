@@ -6,7 +6,7 @@
 <head>
 <title>Navigation and Focus Sample: Version 0 -- Simplistic and Primitive</title>
 <style><![CDATA[
-	
+	#title {color-index:1;top:10px;left:10px;height:30px;width:300px;}
 ]]></style>
 
 <script><![CDATA[
@@ -36,6 +36,8 @@ function blurDown()  {	Down.data="../images/down-unfocus.jpg";}
 </head>
 <body>
 
+<p id="title"> This is a test
+</p>
 <div  style="left:400px;top:50px;width:141px;height:149px;border-style:solid;border-width:2px;nav-index:1;nav-up:1;nav-down:0;nav-left:4;nav-right:2;" onfocus="focusUp();" onblur="blurUp();">
 	<object  id="up" style="left:0px;top:0px;width:141px;height:149px;" type="image/jpeg" data="../images/up-unfocus.jpg"/>
 </div>
