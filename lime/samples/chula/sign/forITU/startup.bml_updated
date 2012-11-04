@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "bml_100_0_iptv.dtd">
+<?bml bml-version="100.0"?>
+<bml>
+<head>
+	<title>Finger Spelling System for IPTV</title>
+	<style>
+		<![CDATA[
+			body{background-image:url('media/bg.jpg');clut:url('default.clt');}
+			p {color-index:1;text-align:center;}
+			.num_button {width:116px;height:48px}
+			.alphabet_button {width:45px;height:45px}
+			.signpic {top:10px;left:10px;width:160px;height:90px;}
+			.signchar {width:45px;height:45px;top:170px;left:70px;}
+			#large_frame:focus{left:280px;}
+			#large_frame:blur{left:-400px;}
+			div:focus{background-color-index:15;}
+		]]>
+	</style>
+	
+	<script><![CDATA[
+
+	]]></script>
+
+</head>
+
+<body>
+	
+	
+	<div id="small_frame1" style="width:192px;height:220px;top:25px;" onkeydown="small_frame_keypress();" >
+		<object id="sign1_pic" class="signpic" data="" type="image/X-arib-mng" streamstatus="play"/>
+		<object id="sign1_char" class="signchar" data="" type="image/jpeg" />
+	</div>
+
+	
+	<div id="small_frame2" style="left:192px;width:192px;height:220px;top:25px;" onkeydown="small_frame_keypress();">
+		<object id="sign2_pic" class="signpic" data="" type="image/X-arib-mng" streamstatus="play"/>
+		<object id="sign2_char" class="signchar" data="" type="image/jpeg" />
+	</div>
+	
+	<div id="small_frame3" style="left:384px;width:192px;height:220px;top:25px;" onkeydown="small_frame_keypress();">
+		<object id="sign3_pic" class="signpic" data="" type="image/X-arib-mng" streamstatus="play"/>
+		<object id="sign3_char" class="signchar" data="" type="image/jpeg" />
+	</div>
+	
+	<div id="small_frame4" style="left:576px;width:192px;height:220px;top:25px;" onkeydown="small_frame_keypress();">
+		<object id="sign4_pic" class="signpic" data="" type="image/X-arib-mng" streamstatus="play"/>
+		<object id="sign4_char" class="signchar" data="" type="image/jpeg" />
+	</div>
+	
+	<div id="small_frame5" style="left:768px;width:192px;height:220px;top:25px;" onkeydown="small_frame_keypress();">
+		<object id="sign5_pic" class="signpic" data="" type="image/X-arib-mng" streamstatus="play"/>
+		<object id="sign5_char" class="signchar" data="" type="image/jpeg" />
+	</div>
+
+	<div id="pronunciation" style="width:245px;height:235px;top:283px;left:464px;background-color-index:64"  >
+		 <object id="pronunce_button" class="alphabet_button" data="" type="image/jpeg" style="top:5px;left:95px"/>
+		 <p id="pronunce_text" style="width:205px;height:150px;top:100px;left:20px"><![CDATA[]]></p>
+	</div>
+	<div id="num" style="top:280px;width:408px;height:238px;left:20px;" onkeydown="num_keypress();">
+		<object id="num1_button" class="num_button" data="media/button1_pressed.jpg" type="image/jpeg" style="top:20px;left:20px"/>
+		<object id="num2_button" class="num_button" data="media/button2_up.jpg" type="image/jpeg" style="top:70px;left:20px"/>
+		<object id="num3_button" class="num_button" data="media/button3_up.jpg" type="image/jpeg" style="top:120px;left:20px"/>
+		<object id="num4_button" class="num_button" data="media/button4_up.jpg" type="image/jpeg" style="top:170px;left:20px"/>
+		
+		<object id="num5_button" class="num_button" data="media/button5_up.jpg" type="image/jpeg" style="top:20px;left:146px"/>
+		<object id="num6_button" class="num_button" data="media/button6_up.jpg" type="image/jpeg" style="top:70px;left:146px"/>
+		<object id="num7_button" class="num_button" data="media/button7_up.jpg" type="image/jpeg" style="top:120px;left:146px"/>
+		<object id="num8_button" class="num_button" data="media/button8_up.jpg" type="image/jpeg" style="top:170px;left:146px"/>
+		
+		<object id="num9_button" class="num_button" data="media/button9_up.jpg" type="image/jpeg" style="top:20px;left:272px"/>
+		<object id="num10_button" class="num_button" data="media/button10_up.jpg" type="image/jpeg" style="top:70px;left:272px"/>
+		<object id="num0_button" class="num_button" data="media/button0_up.jpg" type="image/jpeg" style="top:120px;left:272px"/>
+	</div>
+	
+	<div id="alphabet" style="top:280px;width:195px;height:238px;left:745px;" onkeydown="alphabet_keypress();">
+	
+		
+		 <object id="alpha1_button" class="alphabet_button" data="" type="image/jpeg" style="top:5px;left:20px"/>
+		 <object id="alpha2_button" class="alphabet_button" data="" type="image/jpeg" style="top:51px;left:20px"/>
+		 <object id="alpha3_button" class="alphabet_button" data="" type="image/jpeg" style="top:96px;left:20px"/>
+		 <object id="alpha4_button" class="alphabet_button" data="" type="image/jpeg" style="top:141px;left:20px"/>
+		 
+		 <object id="alpha5_button" class="alphabet_button" data="" type="image/jpeg" style="top:5px;left:75px"/>
+		 <object id="alpha6_button" class="alphabet_button" data="" type="image/jpeg" style="top:51px;left:75px"/>
+		 <object id="alpha7_button" class="alphabet_button" data="" type="image/jpeg" style="top:96px;left:75px"/>
+		 <object id="alpha8_button" class="alphabet_button" data="" type="image/jpeg" style="top:141px;left:75px"/>
+		 
+		 <object id="alpha9_button" class="alphabet_button" data="" type="image/jpeg" style="top:5px;left:130px"/>
+		 <object id="alpha10_button" class="alphabet_button" data="" type="image/jpeg" style="top:51px;left:130px"/>
+	     <object id="alpha11_button" class="alphabet_button" data="" type="image/jpeg" style="top:96px;left:130px"/>
+		 <object id="alpha12_button" class="alphabet_button" data="" type="image/jpeg" style="top:141px;left:130px"/>
+		 <object id="alpha13_button" class="alphabet_button" data="" type="image/jpeg" style="top:186px;left:130px"/>
+		  
+	</div>
+	
+	<div id="large_frame" class="frame" style="top:60px;left:-400px;width:400px;height:400px;" onkeydown="large_frame_keypress()">
+		<object data="media/big_frame.jpg" type="image/jpeg" style="width:400px;height:400px;"/>
+		<p id="dbug" style="width:205px;height:150px;top:170px;left:100px;color-index:0;text-align:center;"><![CDATA[No Input Alphabet]]></p>
+		<object id="large_frame_alpha_button" class="alphabet_button" data="" type="image/jpeg" style="top:300px;left:170px"/>
+		
+		<object id="large_frame_sign_pic" style="width:325px;height:182px;top:39px;left:39px" data="" type="image/X-arib-mng" streamstatus="play"/>
+	</div>
+  
+	
+</body>
