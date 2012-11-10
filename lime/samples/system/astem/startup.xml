@@ -16,10 +16,12 @@
 <script><![CDATA[
 
 var vHost = '175.41.244.154';
+var pHost = '175.41.243.162';
 var eventID;
  var sLines;
             
-    var url ="http://sns.astem-co.co.jp/eucconvert.php?PJ_LimeDemo";     
+ /*   var url ="http://sns.astem-co.co.jp/eucconvert.php?PJ_LimeDemo";     */
+    var url ="http://"+pHost+"/eucconvert.php?PJ_LimeDemo";
 	var url1 = "http://talk.astem-co.co.jp/AtNet/DpTxt/display/PJ_LimeDemo/3";
 	var url2 = "http://"+ vHost+ "/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
 	
