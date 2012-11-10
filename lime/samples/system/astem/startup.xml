@@ -19,8 +19,8 @@ var vHost = '175.41.244.154';
 var eventID;
  var sLines;
             
-            
-	var url = "http://talk.astem-co.co.jp/AtNet/DpTxt/display/PJ_LimeDemo/3";
+    var url ="http://sns.astem-co.co.jp/eucconvert.php";     
+	var url1 = "http://talk.astem-co.co.jp/AtNet/DpTxt/display/PJ_LimeDemo/3";
 	var url2 = "http://"+ vHost+ "/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
 	
 	var url3 = "http://talk.astem-co.co.jp/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
@@ -48,7 +48,7 @@ alert("hello");
 
 function changeText(){ 
 
-var ret = browser.transmitTextDataOverIP(url2,val2,vCode);
+var ret = browser.transmitTextDataOverIP(url+"?"+val,val2,vCode);
 	
 	if( ret[0] == 1 ){
 		alert("Returned value: " + ret[2]);
