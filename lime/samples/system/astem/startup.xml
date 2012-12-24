@@ -52,7 +52,7 @@ function startCounter(){
 
 function changeText(){ 
 
-	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&lines=1000&lastMsgNo=0&ofsStTime=2000","EUC-JP");
+	var ret = browser.transmitTextDataOverIP(url3,"id=ZT1_LIME_TEST&lines=1000&lastMsgNo=0&ofsStTime=2000","EUC-JP");
 	
 	if( ret[0] == 1 ){
 		alert( cnt +" : " + ret[2] );
@@ -63,6 +63,7 @@ function changeText(){
 	
 	
 cnt++;
+
 }
 
 function goback(){ browser.launchDocument("../index.xml", "cut");	}
@@ -85,7 +86,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 -->
 
-<p id="display" style="top:280px;left:0px"><![CDATA[]]></p>
+<p id="display" style="top:280px;left:20px"><![CDATA[]]></p>
 
 
 
