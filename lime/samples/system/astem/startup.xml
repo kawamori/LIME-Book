@@ -3,63 +3,66 @@
 
 <bml>
 <head>
-<title>License Test</title>
+<title>Caption Test</title>
 <style><![CDATA[
 	.button {width:140px;height:32px;}
 	p:focus {background-color-index:2;}
 	p.button {text-align:center;color-index:0;line-height:30px;}
-	#display	{background-color-index:16;color-index:7;
-		top:30px;left:30px;width:600px;height:400px;}
+	#display	{background-color-index:80;color-index:7;text-align:left;font-size:24px;
+		top:30px;left:30px;width:960px;height:280px;}
 ]]></style>
 
 
 <script><![CDATA[
 
+var cnt = 0;
+var CounterID = NaN;
+
 var vHost = '175.41.244.154';
-var pHost = '175.41.243.162';
+var pHost = '175.41.243.162'; 
+/* sns.astem-co.co.jp */
 var eventID;
  var sLines;
             
- /*   var url ="http://sns.astem-co.co.jp/eucconvert.php?PJ_LimeDemo";     */
+            /* sns.astem-co.co.jp/eucconvert.php?PJ_LimeDemo"*/
     var url ="http://"+pHost+"/eucconvert.php?PJ_LimeDemo";
-	var url1 = "http://talk.astem-co.co.jp/AtNet/DpTxt/display/PJ_LimeDemo/3";
+	var url1 = "http://sns.astem-co.co.jp/test2.php";
 	var url2 = "http://"+ vHost+ "/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
 	
-	var url3 = "http://talk.astem-co.co.jp/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
-	
+	var url3 = "http://"+ pHost +"/eucconvert.php?id=ZT1_LIME_TEST&lines=2";
+	var url4 = "http://"+ pHost +"/eucconvert2.php";
+
+/*?id=ZT1_LIME_TEST&lines=1000&lastMsgNo=0&ofsStTime=0*/
+
+/*var ret = browser.transmitTextDataOverIP(url2,"","EUC-JP");*/
+
+var msg =ret[2];
 
 function alert(str){
 	var obj = document.getElementById("display");
-	obj.firstChild.data += str + "\r\n";
+	obj.firstChild.data = str+"\r\n" ;
 }
 
 
-
-
-function main(){
-
-alert("hello");
-    
-	var val='id=PJ_LimeDemo&lines=3';
-    var val2="";
-    var vCode='EUC-JP';
-    /*Shift_JIS*/
-	alert(" retrieving data from "+ url+ " as "+vCode);
-
+function startCounter(){
+	if(!isNaN(CounterID)){	browser.clearTimer(CounterID);} else {	
+	CounterID = browser.setInterval("changeText();", 2000, 0);
+	}
 }
 
 function changeText(){ 
 
-var ret = browser.transmitTextDataOverIP(url,val2,vCode);
+	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&lines=1000&lastMsgNo=0&ofsStTime=2000","EUC-JP");
 	
 	if( ret[0] == 1 ){
-		alert("Returned value: " + ret[2]);
+		alert( cnt +" : " + ret[2] );
 	}else{
-		alert("Transmission failed");
+		alert("Transmission failed"+cnt);
 	}
-
-alert(ret);
-
+	
+	
+	
+cnt++;
 }
 
 function goback(){ browser.launchDocument("../index.xml", "cut");	}
@@ -68,18 +71,26 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 ]]></script>
 
 </head>
-<body style="background-color-index:7;">
+<body onload="" style="background-color-index:7;">
 
-		<p id="p01" class="button" style="top:10;left:0:color-index:0;nav-index:0;nav-up:1;nav-down:1;" onclick="main();">Button1</p>
+	<div style="top:0px;left:0px;width:960px;height:540px;visibility:visible;">
+		<object id="vod" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/earth_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
+	</div>
+	
 
+		<p id="p01" class="button" style="top:10px;left:790px;color-index:0;background-color-index:1;font-size:24px;width:160px;nav-index:0;nav-up:1;nav-down:1;" accessKey="R" onclick="startCounter();">Start Caption</p>
 
+<!--
 		<p id="p02" class="button"  style="top:50;left:0;nav-index:1;nav-up:0;nav-down:0" onclick="changeText();">Button2</p>
 
+-->
+
+<p id="display" style="top:280px;left:0px"><![CDATA[]]></p>
 
 
-<p id="display" style="top:100px;left:250px"><![CDATA[]]></p>
 
-<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+<p style="top:0px;left:0px;height:36px;width:64px;background-color-index:4;" accesskey="Y" onclick="goback();">Back </p>
  
  
 </body>
