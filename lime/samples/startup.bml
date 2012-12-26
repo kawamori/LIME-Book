@@ -92,7 +92,7 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 
 
 
-<div style="left:188px; top:150px; width:32px;height:15px;">
+<div style="left:188px; top:240px; width:32px;height:15px;">
 <object type="image/X-arib-png" data="images/graphic_new_transparent3.png" style="left:0;top:0;width:32px;height:15px;"/>
 </div>
 
