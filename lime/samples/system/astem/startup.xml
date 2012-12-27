@@ -9,7 +9,7 @@
 	p:focus {background-color-index:2;}
 	p.button {text-align:center;color-index:0;line-height:30px;}
 	#display	{background-color-index:80;color-index:7;text-align:left;font-size:24px;
-		top:30px;left:30px;width:960px;height:280px;}
+		top:30px;left:30px;width:560px;height:36px;}
 ]]></style>
 
 
@@ -29,7 +29,7 @@ var eventID;
 	var url1 = "http://sns.astem-co.co.jp/test2.php";
 	var url2 = "http://"+ vHost+ "/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
 	
-	var url3 = "http://"+ pHost +"/eucconvert.php?id=ZT1_LIME_TEST&lines=2";
+	var url3 = "http://"+ pHost +"/eucconvert.php?id=ZT1_LIME_TEST&lines=50";
 	var url4 = "http://"+ pHost +"/eucconvert2.php";
 
 /*?id=ZT1_LIME_TEST&lines=1000&lastMsgNo=0&ofsStTime=0*/
@@ -52,7 +52,7 @@ function startCounter(){
 
 function changeText(){ 
 
-	var ret = browser.transmitTextDataOverIP(url3,"id=ZT1_LIME_TEST&lines=1000&lastMsgNo=0&ofsStTime=2000","EUC-JP");
+	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 1000*cnt + "&timeSpan=2000","EUC-JP");
 	
 	if( ret[0] == 1 ){
 		alert( cnt +" : " + ret[2] );
@@ -86,7 +86,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 -->
 
-<p id="display" style="top:280px;left:20px"><![CDATA[]]></p>
+<p id="display" style="top:480px;left:200px"><![CDATA[]]></p>
 
 
 
