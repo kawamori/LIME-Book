@@ -55,7 +55,8 @@ function changeText(){
 	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 2000*cnt + "&timeSpan=2000","EUC-JP");
 	
 	if( ret[0] == 1 ){
-		alert( cnt +" : " + ret[2] );
+	/*	alert( cnt +" :  " + ret[2] );*/
+	alert("   " + ret[2] );
 	}else{
 		alert("Transmission failed"+cnt);
 	}
@@ -72,16 +73,16 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 ]]></script>
 
 </head>
-<body onload="" style="background-color-index:7;">
+<body onload="startCounter();" style="background-color-index:7;">
 
 	<div style="top:0px;left:0px;width:960px;height:540px;visibility:visible;">
 		<object id="vod" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/earth_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
 	</div>
 	
 
+<!--
 		<p id="p01" class="button" style="top:10px;left:790px;color-index:0;background-color-index:1;font-size:24px;width:160px;nav-index:0;nav-up:1;nav-down:1;" accessKey="R" onclick="startCounter();">Start Caption</p>
 
-<!--
 		<p id="p02" class="button"  style="top:50;left:0;nav-index:1;nav-up:0;nav-down:0" onclick="changeText();">Button2</p>
 
 -->
