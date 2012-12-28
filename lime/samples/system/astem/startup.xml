@@ -9,7 +9,7 @@
 	p:focus {background-color-index:2;}
 	p.button {text-align:center;color-index:0;line-height:30px;}
 	#display	{background-color-index:80;color-index:7;text-align:left;font-size:24px;
-		top:30px;left:30px;width:660px;height:38px;}
+		top:30px;width:700px;height:38px;}
 ]]></style>
 
 
@@ -46,13 +46,13 @@ function alert(str){
 
 function startCounter(){
 	if(!isNaN(CounterID)){	browser.clearTimer(CounterID);} else {	
-	CounterID = browser.setInterval("changeText();", 1000, 0);
+	CounterID = browser.setInterval("changeText();", 2000, 0);
 	}
 }
 
 function changeText(){ 
 
-	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 1000*cnt + "&timeSpan=1000","EUC-JP");
+	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 2000*cnt + "&timeSpan=2000","EUC-JP");
 	
 	if( ret[0] == 1 ){
 		alert( cnt +" : " + ret[2] );
@@ -86,7 +86,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 -->
 
-<p id="display" style="top:480px;left:200px"><![CDATA[]]></p>
+<p id="display" style="top:480px;left:80px"><![CDATA[]]></p>
 
 
 
