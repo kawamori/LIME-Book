@@ -52,7 +52,7 @@ function startCounter(){
 
 function changeText(){ 
 
-	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 1000*cnt + "&timeSpan=2000","EUC-JP");
+	var ret = browser.transmitTextDataOverIP(url3,"id=ZT1_LIME_TEST&startTime="+ 1000*cnt + "&timeSpan=2000","EUC-JP");
 	
 	if( ret[0] == 1 ){
 		alert( cnt +" : " + ret[2] );
