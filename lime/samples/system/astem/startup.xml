@@ -9,7 +9,7 @@
 	p:focus {background-color-index:2;}
 	p.button {text-align:center;color-index:0;line-height:30px;}
 	#display	{background-color-index:80;color-index:7;text-align:left;font-size:24px;
-		top:30px;width:700px;height:38px;}
+		top:30px;width:700px;height:48px;}
 ]]></style>
 
 
@@ -86,7 +86,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 -->
 
-<p id="display" style="top:480px;left:80px"><![CDATA[]]></p>
+<p id="display" style="top:480px;left:130px"><![CDATA[]]></p>
 
 
 
