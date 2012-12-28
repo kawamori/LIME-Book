@@ -46,13 +46,13 @@ function alert(str){
 
 function startCounter(){
 	if(!isNaN(CounterID)){	browser.clearTimer(CounterID);} else {	
-	CounterID = browser.setInterval("changeText();", 2000, 0);
+	CounterID = browser.setInterval("changeText();", 1000, 0);
 	}
 }
 
 function changeText(){ 
 
-	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 1000*cnt + "&timeSpan=2000","EUC-JP");
+	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 1000*cnt + "&timeSpan=1000","EUC-JP");
 	
 	if( ret[0] == 1 ){
 		alert( cnt +" : " + ret[2] );
