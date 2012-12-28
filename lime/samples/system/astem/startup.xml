@@ -9,7 +9,7 @@
 	p:focus {background-color-index:2;}
 	p.button {text-align:center;color-index:0;line-height:30px;}
 	#display	{background-color-index:80;color-index:7;text-align:left;font-size:24px;
-		top:30px;left:30px;width:560px;height:36px;}
+		top:30px;left:30px;width:660px;height:38px;}
 ]]></style>
 
 
