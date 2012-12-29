@@ -8,8 +8,8 @@
 	.button {width:140px;height:32px;}
 	p:focus {background-color-index:2;}
 	p.button {text-align:center;color-index:0;line-height:30px;}
-	#display	{background-color-index:80;color-index:7;text-align:left;font-size:24px;
-		top:30px;width:700px;height:48px;}
+	#display	{color-index:7;text-align:left;font-size:24px;
+		top:30px;width:700px;height:50px;}
 ]]></style>
 
 
@@ -23,7 +23,12 @@ var pHost = '175.41.243.162';
 /* sns.astem-co.co.jp */
 var eventID;
  var sLines;
-            
+         
+         
+       /* var gline = document.getElementById("display");*/
+        var obj = document.getElementById("display");
+        /*var gBcolor =;*/
+           
             /* sns.astem-co.co.jp/eucconvert.php?PJ_LimeDemo"*/
     var url ="http://"+pHost+"/eucconvert.php?PJ_LimeDemo";
 	var url1 = "http://sns.astem-co.co.jp/test2.php";
@@ -39,7 +44,7 @@ var eventID;
 var msg =ret[2];
 
 function alert(str){
-	var obj = document.getElementById("display");
+
 	obj.firstChild.data = str+"\r\n" ;
 }
 
@@ -54,10 +59,19 @@ function changeText(){
 
 	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 2000*cnt + "&timeSpan=2000","EUC-JP");
 	
+	var tLen = ret[2].length * 26;
+	
 	if( ret[0] == 1 ){
 	/*	alert( cnt +" :  " + ret[2] );*/
-	alert("   " + ret[2] );
-	}else{
+	alert("   "+ ret[2] );
+        obj.normalStyle.backgroundColorIndex = 80;
+        obj.normalStyle.width= tLen;
+        obj.normalStyle.left = (960 - tLen)/2;
+       
+ if (ret[2].length < 1) {
+     obj.normalStyle.backgroundColorIndex = 8;
+             	
+}	}else{
 		alert("Transmission failed"+cnt);
 	}
 	
@@ -87,13 +101,14 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 -->
 
-<p id="display" style="top:480px;left:130px"><![CDATA[]]></p>
+<p id="display" style="top:480px;left:130px;"><![CDATA[]]></p>
 
 
-
+<!--
 
 <p style="top:0px;left:0px;height:36px;width:64px;background-color-index:4;" accesskey="Y" onclick="goback();">Back </p>
  
+ -->
  
 </body>
 </bml>
