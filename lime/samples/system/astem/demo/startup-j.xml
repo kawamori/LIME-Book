@@ -5,6 +5,7 @@
 <head>
 <title>Caption Test</title>
 <style><![CDATA[
+	
 	.button {width:140px;height:32px;}
 	p:focus {background-color-index:2;}
 	p.button {text-align:center;color-index:0;line-height:30px;}
@@ -81,7 +82,15 @@ cnt++;
 
 }
 
-function goback(){ browser.launchDocument("../index.xml", "cut");	}
+
+function handler(){
+	var evt = document.currentEvent;
+	var kcode =evt.keyCode;
+	
+	if (kcode == 19){goback();}
+	
+}
+function goback(){ browser.launchDocument("../startup.xml", "cut");	}
 
 
 
@@ -105,11 +114,10 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 <p id="display" style="top:480px;left:130px;"><![CDATA[]]></p>
 
 
-<!--
 
-<p style="top:0px;left:0px;height:36px;width:64px;background-color-index:4;" accesskey="Y" onclick="goback();">Back </p>
+
+<p style="top:0px;left:0px;height:1px;width:1px;background-color-index:8;nav-index:0;" onkeydown="handler();" onkeyup="handler();" onclick="handler();"><![CDATA[]]></p>
  
- -->
  
 </body>
 </bml>

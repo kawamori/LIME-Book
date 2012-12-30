@@ -18,8 +18,8 @@
 	<script ><![CDATA[
 
 		var urlList = new Array();
-		urlList[0] = "demo/statup-e.xml";
-		urlList[1] = "demo/statup-j.xml";
+		urlList[0] = "demo/startup-e.xml";
+		urlList[1] = "demo/startup-j.xml";
 		urlList[2] = "";
 		urlList[3] = " ";
 		urlList[4] = " ";
