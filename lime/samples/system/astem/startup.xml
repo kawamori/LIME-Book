@@ -3,7 +3,7 @@
 
 <bml>
 <head>
-	<title>System test</title>
+	<title>ASTEM Talk Demo</title>
 	<style>
 		<![CDATA[
 			p {height:16px;color-index:7;grayscale-color-index:15 15}
@@ -52,7 +52,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 </head>
 <body>
 		
-<p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ Some System-related Tests ]]></p>
+<p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ ASTEM Talk Captioning Demo ]]></p>
 		
 			
 		
