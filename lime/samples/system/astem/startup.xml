@@ -3,113 +3,103 @@
 
 <bml>
 <head>
-<title>Caption Test</title>
-<style><![CDATA[
-	.button {width:140px;height:32px;}
-	p:focus {background-color-index:2;}
-	p.button {text-align:center;color-index:0;line-height:30px;}
-	#display	{color-index:7;text-align:left;font-size:24px;
-		top:30px;width:700px;height:50px;}
-]]></style>
-
-
-<script><![CDATA[
-
-var cnt = 0;
-var CounterID = NaN;
-
-var vHost = '175.41.244.154';
-var pHost = '175.41.243.162'; 
-/* sns.astem-co.co.jp */
-var eventID;
- var sLines;
-         
-         
-       /* var gline = document.getElementById("display");*/
-        var obj = document.getElementById("display");
-        /*var gBcolor =;*/
-           
-            /* sns.astem-co.co.jp/eucconvert.php?PJ_LimeDemo"*/
-    var url ="http://"+pHost+"/eucconvert.php?PJ_LimeDemo";
-	var url1 = "http://sns.astem-co.co.jp/test2.php";
-	var url2 = "http://"+ vHost+ "/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
-	
-	var url3 = "http://"+ pHost +"/eucconvert.php?id=ZT1_LIME_TEST&lines=50";
-	var url4 = "http://"+ pHost +"/eucconvert2.php";
-
-/*?id=ZT1_LIME_TEST&lines=1000&lastMsgNo=0&ofsStTime=0*/
-
-/*var ret = browser.transmitTextDataOverIP(url2,"","EUC-JP");*/
-
-var msg =ret[2];
-
-function alert(str){
-
-	obj.firstChild.data = str+"\r\n" ;
-}
-
-
-function startCounter(){
-	if(!isNaN(CounterID)){	browser.clearTimer(CounterID);} else {	
-	CounterID = browser.setInterval("changeText();", 2000, 0);
+	<title>System test</title>
+	<style>
+		<![CDATA[
+			p {height:16px;color-index:7;grayscale-color-index:15 15}
+			
+			p:focus{background-color-index:1}
+			.button {top:180px;left:250px;width:250px;height:28px;}
+			.bgm {
+		width:300px; height:300px; top:10px; left:10px;
 	}
+		]]>
+	</style>
+	<script ><![CDATA[
+
+		var urlList = new Array();
+		urlList[0] = "demo/statup-e.xml";
+		urlList[1] = "demo/statup-j.xml";
+		urlList[2] = "";
+		urlList[3] = " ";
+		urlList[4] = " ";
+		urlList[5] = " ";
+		urlList[6] = " ";
+		urlList[7] = " ";
+		urlList[8] = "";
+		urlList[9] = "";
+		urlList[10] = "";
+		urlList[11] = "";
+		urlList[12] = "";
+		
+
+//var base = "http://localhost/";
+//var base = "http://127.0.0.1/";
+var base = "";
+
+function jump(){
+	var url = urlList[document.currentEvent.target.id]
+	
+		browser.launchDocument(base + url);
 }
 
-function changeText(){ 
 
-	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 2000*cnt + "&timeSpan=2000","EUC-JP");
-	
-	var tLen = ret[2].length * 26;
-	
-	if( ret[0] == 1 ){
-	/*	alert( cnt +" :  " + ret[2] );*/
-	alert("   "+ ret[2] );
-        obj.normalStyle.backgroundColorIndex = 80;
-        obj.normalStyle.width= tLen;
-        obj.normalStyle.left = (960 - tLen)/2;
-       
- if (ret[2].length < 1) {
-     obj.normalStyle.backgroundColorIndex = 8;
-             	
-}	}else{
-		alert("Transmission failed"+cnt);
-	}
-	
-	
-	
-cnt++;
-
-}
 
 function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
-
-
-]]></script>
+		]]></script>
 
 </head>
-<body onload="startCounter();" style="background-color-index:7;">
+<body>
+		
+<p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ Some System-related Tests ]]></p>
+		
+			
+		
+        <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
+		onclick="jump();">ASTEM Talk Demo English</p>
 
-	<div style="top:0px;left:0px;width:960px;height:540px;visibility:visible;">
-		<object id="vod" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/ntt-ev/h264-sd-tts/Docu-white-E_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
-	</div>
+		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
+		onclick="jump();">ASTEM Talk Demo Japanese</p>
+		
+		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
+		onclick="jump();"></p>
+		
+		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
+		onclick="jump();"></p>
+		
+		
+		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
+		onclick="jump();"></p>
+
+	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
+		onclick="jump();"></p>
+   <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
+		onclick="jump();"></p>
+		
+		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
+		onclick="jump();"></p>
+		
+				 <p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
+		onclick="jump();"></p>
+				
+				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
+		onclick="jump();"></p>
+		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
+		onclick="jump();"></p>
+
+		<p id="11" class="button" style="top:480px;nav-index:11;nav-up:10;nav-down:12;"
+		onclick="jump();"></p>
+		<p id="12" class="button" style="top:510px;nav-index:12;nav-up:11;nav-down:12;"
+		onclick="jump();"></p>
 	
-<!-- http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/ntt-ev/h264-sd-tts/Docu-white-J_out.mp4&protocol=http_tts -->
-<!--
-		<p id="p01" class="button" style="top:10px;left:790px;color-index:0;background-color-index:1;font-size:24px;width:160px;nav-index:0;nav-up:1;nav-down:1;" accessKey="R" onclick="startCounter();">Start Caption</p>
-
-		<p id="p02" class="button"  style="top:50;left:0;nav-index:1;nav-up:0;nav-down:0" onclick="changeText();">Button2</p>
-
--->
-
-<p id="display" style="top:480px;left:130px;"><![CDATA[]]></p>
 
 
-<!--
 
-<p style="top:0px;left:0px;height:36px;width:64px;background-color-index:4;" accesskey="Y" onclick="goback();">Back </p>
- 
- -->
- 
+
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
 </body>
 </bml>
+
+
