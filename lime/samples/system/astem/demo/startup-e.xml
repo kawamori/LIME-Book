@@ -34,7 +34,7 @@ var eventID;
 	var url1 = "http://sns.astem-co.co.jp/test2.php";
 	var url2 = "http://"+ vHost+ "/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
 	
-	var url3 = "http://"+ pHost +"/eucconvert.php?id=ZT1_LIME_TEST&lines=50";
+	var url3 = "http://"+ pHost +"/eucconvert.php?id=ZT1_LIME_TEST_EN&lines=50";
 	var url4 = "http://"+ pHost +"/eucconvert2.php";
 
 /*?id=ZT1_LIME_TEST&lines=1000&lastMsgNo=0&ofsStTime=0*/
