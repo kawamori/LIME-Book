@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Slideshow</title>
+<style><![CDATA[
+  body {
+    resolution:960x540;
+    display-aspect-ratio:16v9;
+ 	 }
+	p {background-color-index:2;}
+	#text {background-color-index:0;font-size:16px;}
+	.button	{top:490px;height:24px;width:85px;text-align:center; border-style:solid;border-width:2px;}
+]]></style>
+
+<script><![CDATA[
+var timer
+var position;
+var preLoad;
+
+function onload(){
+
+	GE("bgm").streamStatus="play";
+	browser.setInterval("BGMrp();",18000,0);
+	
+    position=0;
+    	preLoad = new Array(6);
+    	
+    	
+
+
+
+
+
+preLoad[0] = "IMG_1014.JPG";
+preLoad[1] = "IMG_1028.JPG";
+preLoad[2] = "IMG_1029.JPG";
+preLoad[3] = "IMG_1032.JPG";
+preLoad[4] = "IMG_1033.JPG";
+preLoad[5] = "IMG_1045.JPG";
+
+
+/*
+for (var i=0 ; i<8; i++) {
+   	 preLoad[i] = "images/pic" + i + ".JPG";
+}*/
+
+caption = new Array(6);
+
+caption[0]="Oiso";
+caption[1]="Oiso";
+caption[2]="Oiso 大磯";
+caption[3]="おおいそ";
+caption[4]="";
+caption[5]="";
+
+
+startShow();
+}
+
+function startShow() {
+        timer = setTimeout("forward()", 7000);
+}
+
+function restartShow() {
+    browser.clearTimer(timer);
+    startShow();
+}
+        
+function forward() {
+    if (position < 5) {
+            position++;
+    } else {
+        position = 0;
+    }
+
+    $("img").data = preLoad[position];
+    $("text").firstChild.data= caption[position];
+    timer = setTimeout("forward()", 7000);
+}
+
+function onunload(){
+	browser.clearTimer(timer);
+}
+
+function $(id) {
+		return document.getElementById(id);
+	}
+
+function setTimeout(code,delay){
+         return   browser.setInterval(code,delay,1);
+        }
+
+
+function GE(id){
+	return document.getElementById(id);
+}
+function BGMrp(){
+	GE("bgm").streamStatus="stop";
+	GE("bgm").streamStatus="play";
+}
+
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
+]]></script>
+</head>
+
+<body onload="onload();">
+
+<div>
+	<object id="bgm" data="audio/genghis-attenborough__wave-guitar-1.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
+</div>
+
+<div id="imageBox" style="top:50px;left:50px;width:910px;height:440px;">
+<object id="img" style="top:0px;left:0px;width:648px;height:432px" data="" type="image/jpeg"/>
+<p id="text" style="top:0px;left:660px;width:280px;height:480px;color-index:7"><![CDATA[]]></p>
+</div>
+
+<p id="blue" class="button" style="left:10px; background-color-index:4;" onclick="startShow();" accesskey="B">Start</p>
+<p id="red" class="button" style="left:110px;background-color-index:1;"	onclick="onunload();" accesskey="R">Stop</p>
+<p id="green" class="button" style="left:210px;background-color-index:2;" onclick="restartShow();" accesskey="G">Restart</p>
+
+<p id="yellow" class="button" style="left:810px;background-color-index:3;" onclick="goback();" accesskey="Y">Back</p>
+
+</body>
+</bml>
