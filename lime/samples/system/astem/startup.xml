@@ -20,7 +20,7 @@
 		var urlList = new Array();
 		urlList[0] = "demo/startup-e.xml";
 		urlList[1] = "demo/startup-j.xml";
-		urlList[2] = "";
+		urlList[2] = "demo/startup-j-font.xml";
 		urlList[3] = " ";
 		urlList[4] = " ";
 		urlList[5] = " ";
@@ -63,7 +63,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 		onclick="jump();">ASTEM Talk Demo Japanese</p>
 		
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
-		onclick="jump();"></p>
+		onclick="jump();">Variable Font Demo Japanese</p>
 		
 		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
 		onclick="jump();"></p>

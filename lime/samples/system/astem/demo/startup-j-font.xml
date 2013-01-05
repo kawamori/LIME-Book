@@ -7,10 +7,10 @@
 <style><![CDATA[
 	
 	.button {width:140px;height:32px;}
-	p:focus {background-color-index:2;}
+	p:focus {background-color-index:82;}
 	p.button {text-align:center;color-index:0;line-height:30px;}
-	#display	{color-index:3;text-align:left;font-size:36px;
-		top:30px;width:700px;}
+	#display	{color-index:3;text-align:left;padding-top:5px;padding-left:5px;padding-right:5px;padding-bottom:5px;font-size:24px;
+		top:30px;height:26px;width:700px;}
 ]]></style>
 
 
@@ -18,7 +18,9 @@
 
 var cnt = 0;
 var CounterID = NaN;
-
+var tArr = Array();
+var lNum= Number();
+var fSize;
 var vHost = '175.41.244.154';
 var pHost = '175.41.243.162'; 
 /* sns.astem-co.co.jp */
@@ -28,6 +30,8 @@ var eventID;
          
        /* var gline = document.getElementById("display");*/
  var obj = document.getElementById("display");
+/* fSize =36;*/
+
         /*var gBcolor =;*/
            
             /* sns.astem-co.co.jp/eucconvert.php?PJ_LimeDemo"*/
@@ -42,7 +46,7 @@ var eventID;
 
 /*var ret = browser.transmitTextDataOverIP(url2,"","EUC-JP");*/
 
-var msg =ret[2];
+
 
 function alert(str){
 
@@ -58,23 +62,48 @@ function startCounter(){
 
 function changeText(){ 
 
-
+fSize=parseInt(obj.normalStyle.fontSize);
+ var lineLen = fSize * 15;
 	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 2000*cnt + "&timeSpan=2000","EUC-JP");
+
+var msg =ret[2];
+		var txt = ret[2];
+		
+	tArr= txt.split('\n');
+	tPos = txt.indexOf('\n');
+	tTailLen= txt.length - tPos;
+    lNum = tArr.length;
 	
-	var tLen = ret[2].length * 38;
+	
+if(tPos >0){
+   if(tTailLen>tPos){tLen=tTailLen * fSize;}else{tLen=tPos *fSize;}
+}
+
+	/*
+var tLen = abs(ret[2].length -tPos) * fSize;
+
+*/
+/*
+if(tArr[1]>0){
+	if (tArr[1].length>tArr[2].length){ tLen= tArr[1].length * fSize;}    else{tLen=tArr[2].length * fSize;}
+	} else if (tArr[1]) {tLen = tArr[1].length * fSize;}
+else {tLen=tPos*fSize;}	*/ 
+
 	
 	if( ret[0] == 1 ){
 	/*	alert( cnt +" :  " + ret[2] );*/
-	alert(" "+ ret[2]);
-        obj.normalStyle.backgroundColorIndex = 80;
-       
-        if (tLen< 960){
-         obj.normalStyle.width= tLen;
-         obj.normalStyle.left = (960 - tLen)/2;
-         obj.normalStyle.height=38;
-        }else { obj.normalStyle.width=750;
-                obj.normalStyle.left = 130;
-                obj.normalStyle.height=78;}
+	alert(""+ msg);
+	
+	  obj.normalStyle.backgroundColorIndex = 80;
+        obj.normalStyle.width= tLen +10;
+
+	    if (lNum<3){
+      
+         obj.normalStyle.left = (960 - tLen)/2;    
+         obj.normalStyle.height=fSize+10;
+        }else {  
+         obj.normalStyle.left = (960- tLen/2)/2; 
+                obj.normalStyle.height=fSize*2+10;}
        
  if (ret[2].length < 1) {
      obj.normalStyle.backgroundColorIndex = 8;
@@ -89,7 +118,6 @@ cnt++;
 
 }
 
-
 function handler(){
 	var evt = document.currentEvent;
 	var kcode =evt.keyCode;
@@ -100,6 +128,18 @@ function handler(){
 function goback(){ browser.launchDocument("../startup.xml", "cut");	}
 
 
+
+function chgSmall(){ obj.normalStyle.fontSize=24;}
+
+function chgMedium(){obj.normalStyle.fontSize=30;}
+function chgLarge(){ obj.normalStyle.fontSize=36;}
+
+function abs(a){
+ if (a<0){
+v= a * -1;}else { v = a;}
+
+return v;
+}
 
 ]]></script>
 
@@ -125,6 +165,14 @@ function goback(){ browser.launchDocument("../startup.xml", "cut");	}
 
 <p style="top:0px;left:0px;height:1px;width:1px;background-color-index:8;nav-index:0;" onkeydown="handler();" onkeyup="handler();" onclick="handler();"><![CDATA[]]></p>
  
+
+ <p class="button" style="top:10px;left:10px;height:36px;width:64px;color-index:1;font-size:24pt;" accesskey="R" onclick="chgSmall();">S</p>
+
+<p class="button" style="top:10px;left:74px;height:36px;width:64px;color-index:2;font-size:24pt;" accesskey="G" onclick="chgMedium();">M</p>
+
+<p class="button" style="top:10px;left:138px;height:36px;width:64px;color-index:3;font-size:24pt;" accesskey="Y" onclick="chgLarge();">L</p>
+
+
  
 </body>
 </bml>
