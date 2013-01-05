@@ -68,17 +68,18 @@ var msg =ret[2];
 	
 if(tPos >0){
    if(tTailLen>tPos){tLen=tTailLen * fSize;}else{tLen=tPos *fSize;}
-}
+}else{tLen=1;}
 
 	
 	if( ret[0] == 1 ){
-	/*	alert( cnt +" :  " + ret[2] );*/
-	alert(""+ msg);
-	
+ if (tPos < 0) {
+     obj.normalStyle.backgroundColorIndex = 8;
+             	             	} 
+             	             	
 	  obj.normalStyle.backgroundColorIndex = 80;
-        obj.normalStyle.width= tLen +10;
+      obj.normalStyle.width= tLen +10;
 
-	    if (lNum<3){
+	 if (lNum<3){
       
          obj.normalStyle.left = (960 - tLen)/2;    
          obj.normalStyle.height=fSize+10;
@@ -86,10 +87,10 @@ if(tPos >0){
          obj.normalStyle.left = (960- tLen/2)/2; 
                 obj.normalStyle.height=fSize*2+10;}
        
- if (tPos < 0) {
-     obj.normalStyle.backgroundColorIndex = 8;
-             	
-}	}else{
+
+             	  alert(""+ msg);
+
+	}else{
 		alert("Transmission failed"+cnt);
 	}
 	
@@ -102,6 +103,10 @@ function handler(){
 	var kcode =evt.keyCode;
 	
 	if (kcode == 19){goback();}
+	else if (keycode == 22){chgSmall();}
+	else if (keycode == 23){chgMedium();}
+	else if (keycode == 24){chgLarge();}
+	
 	
 }
 function goback(){ browser.launchDocument("../startup.xml", "cut");	}
