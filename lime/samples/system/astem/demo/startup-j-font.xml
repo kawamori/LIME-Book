@@ -101,7 +101,7 @@ function handler(){
 	var kcode =evt.keyCode;
 	
 	if (kcode == 19){goback();}
-	else if (keycode == 22){obj.normalStyle.fontSize=24;}
+	else if (keycode == 22){}
 	else if (keycode == 23){obj.normalStyle.fontSize=30;}
 	else if (keycode == 24){obj.normalStyle.fontSize=36;}
 	}
@@ -109,7 +109,7 @@ function handler(){
 function goback(){ browser.launchDocument("../startup.xml", "cut");	}
 
 
-function chgSmall(){ }
+function chgSmall(){ obj.normalStyle.fontSize=24;}
 
 function chgMedium(){obj.normalStyle.fontSize=30;}
 function chgLarge(){ obj.normalStyle.fontSize=36;}
@@ -135,14 +135,18 @@ function chgLarge(){ obj.normalStyle.fontSize=36;}
 <p id="display" style="top:400px;left:130px;"><![CDATA[]]></p>
 
 
- <p class="button" style="top:10px;left:10px;height:36px;width:64px;color-index:1;font-size:24pt;" accesskey="R" onkeydown="handler();" onkeyup="handler();" onclick="handler();">S</p>
+<p class="button" style="top:1px;left:1px;height:1px;width:1px;color-index:3;font-size:24pt;" accesskey="B" onclick="goback();"></p>
 
-<p class="button" style="top:10px;left:74px;height:36px;width:64px;color-index:2;font-size:24pt;" accesskey="G" onkeydown="handler();" onkeyup="handler();" onclick="handler();">M</p>
 
-<p class="button" style="top:10px;left:138px;height:36px;width:64px;color-index:3;font-size:24pt;" accesskey="Y" onkeydown="handler();" onkeyup="handler();" onclick="handler();">L</p>
+ <p class="button" style="top:10px;left:10px;height:36px;width:64px;color-index:1;font-size:24pt;" accesskey="R" onclick="chgSmall();">S</p>
+
+<p class="button" style="top:10px;left:74px;height:36px;width:64px;color-index:2;font-size:24pt;" accesskey="G"  onclick="chgMedium();">M</p>
+
+<p class="button" style="top:10px;left:138px;height:36px;width:64px;color-index:3;font-size:24pt;" accesskey="Y" onclick="chgLarge();">L</p>
 
 <p style="top:0px;left:0px;height:1px;width:1px;background-color-index:8;nav-index:0;" onkeydown="handler();" onkeyup="handler();" onclick="handler();"><![CDATA[]]></p>
- 
+
+
 
  
 </body>
