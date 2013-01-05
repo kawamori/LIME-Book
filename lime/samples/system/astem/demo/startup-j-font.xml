@@ -54,7 +54,7 @@ function startCounter(){
 function changeText(){ 
 
 fSize=parseInt(obj.normalStyle.fontSize);
- var lineLen = fSize * 15;
+
 	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 2000*cnt + "&timeSpan=2000","EUC-JP");
 
 var msg =ret[2];
@@ -79,13 +79,13 @@ if(tPos >0){
       obj.normalStyle.width= tLen +10;
          obj.normalStyle.left = (960 - tLen)/2;    
          obj.normalStyle.height=fSize+10;
-        }else {  
+        } else {  
       obj.normalStyle.backgroundColorIndex = 80;
       obj.normalStyle.width= tLen +10;
-         obj.normalStyle.left = (960- tLen/2)/2; 
-                obj.normalStyle.height=fSize*2+10;}
+      obj.normalStyle.left = (960- tLen/2)/2; 
+      obj.normalStyle.height=fSize*2+10;
+      }
        
-
              	  alert(""+ msg);
 
 	}else{
@@ -104,11 +104,10 @@ function handler(){
 	else if (keycode == 22){chgSmall();}
 	else if (keycode == 23){chgMedium();}
 	else if (keycode == 24){chgLarge();}
-	
-	
-}
-function goback(){ browser.launchDocument("../startup.xml", "cut");	}
+	else{return;}
+	}
 
+function goback(){ browser.launchDocument("../startup.xml", "cut");	}
 
 
 function chgSmall(){ obj.normalStyle.fontSize=24;}
