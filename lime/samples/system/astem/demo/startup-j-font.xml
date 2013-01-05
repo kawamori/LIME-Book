@@ -101,15 +101,15 @@ function handler(){
 	var kcode =evt.keyCode;
 	
 	if (kcode == 19){goback();}
-	else if (keycode == 22){chgSmall();}
-	else if (keycode == 23){chgMedium();}
-	else if (keycode == 24){chgLarge();}
+	else if (keycode == 22){obj.normalStyle.fontSize=24;}
+	else if (keycode == 23){obj.normalStyle.fontSize=30;}
+	else if (keycode == 24){obj.normalStyle.fontSize=36;}
 	}
 
 function goback(){ browser.launchDocument("../startup.xml", "cut");	}
 
 
-function chgSmall(){ obj.normalStyle.fontSize=24;}
+function chgSmall(){ }
 
 function chgMedium(){obj.normalStyle.fontSize=30;}
 function chgLarge(){ obj.normalStyle.fontSize=36;}
