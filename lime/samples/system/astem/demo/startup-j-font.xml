@@ -68,22 +68,20 @@ var msg =ret[2];
 	
 if(tPos >0){
    if(tTailLen>tPos){tLen=tTailLen * fSize;}else{tLen=tPos *fSize;}
-}else{tLen=1;}
+}else{tLen=0;}
 
 	
 	if( ret[0] == 1 ){
- if (tPos < 0) {
-     obj.normalStyle.backgroundColorIndex = 8;
-             	             	} 
-             	             	
-	  obj.normalStyle.backgroundColorIndex = 80;
+         if (tPos <= 0) {
+           obj.normalStyle.backgroundColorIndex = 8;
+     	} else if (lNum <3){
+      	  obj.normalStyle.backgroundColorIndex = 80;
       obj.normalStyle.width= tLen +10;
-
-	 if (lNum<3){
-      
          obj.normalStyle.left = (960 - tLen)/2;    
          obj.normalStyle.height=fSize+10;
         }else {  
+      obj.normalStyle.backgroundColorIndex = 80;
+      obj.normalStyle.width= tLen +10;
          obj.normalStyle.left = (960- tLen/2)/2; 
                 obj.normalStyle.height=fSize*2+10;}
        
