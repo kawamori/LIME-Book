@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title>Caption Test</title>
+<style><![CDATA[
+	.button {width:140px;height:32px;}
+	p:focus {background-color-index:2;}
+	p.button {text-align:center;color-index:0;line-height:30px;}
+	#display	{color-index:7;text-align:left;font-size:24px;
+		top:30px;width:700px;height:50px;}
+]]></style>
+
+
+<script><![CDATA[
+
+var cnt = 0;
+var CounterID = NaN;
+
+var vHost = '175.41.244.154';
+var pHost = '175.41.243.162'; 
+/* sns.astem-co.co.jp */
+var eventID;
+ var sLines;
+         
+         
+       /* var gline = document.getElementById("display");*/
+        var obj = document.getElementById("display");
+        /*var gBcolor =;*/
+           
+            /* sns.astem-co.co.jp/eucconvert.php?PJ_LimeDemo"*/
+    var url ="http://"+pHost+"/eucconvert.php?PJ_LimeDemo";
+	var url1 = "http://sns.astem-co.co.jp/test2.php";
+	var url2 = "http://"+ vHost+ "/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
+	
+	var url3 = "http://"+ pHost +"/eucconvert.php?id=ZT1_LIME_TEST_EN&lines=50";
+	var url4 = "http://"+ pHost +"/eucconvert2.php";
+
+/*?id=ZT1_LIME_TEST&lines=1000&lastMsgNo=0&ofsStTime=0*/
+
+/*var ret = browser.transmitTextDataOverIP(url2,"","EUC-JP");*/
+
+var msg =ret[2];
+
+function alert(str){
+
+	obj.firstChild.data = str+"\r\n" ;
+}
+
+
+function startCounter(){
+	if(!isNaN(CounterID)){	browser.clearTimer(CounterID);} else {	
+	CounterID = browser.setInterval("changeText();", 2000, 0);
+	}
+}
+
+function changeText(){ 
+
+	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST_EN&startTime="+ 2000*cnt + "&timeSpan=2000","EUC-JP");
+	
+	var tLen = ret[2].length * 26;
+	
+	if( ret[0] == 1 ){
+	/*	alert( cnt +" :  " + ret[2] );*/
+	alert("   "+ ret[2] );
+        obj.normalStyle.backgroundColorIndex = 80;
+        obj.normalStyle.width= tLen;
+        obj.normalStyle.left = (960 - tLen)/2;
+       
+ if (ret[2].length < 1) {
+     obj.normalStyle.backgroundColorIndex = 8;
+             	
+}	}else{
+		alert("Transmission failed"+cnt);
+	}
+	
+	
+	
+cnt++;
+
+}
+
+
+
+function handler(){
+	var evt = document.currentEvent;
+	var kcode =evt.keyCode;
+	
+	if (kcode == 19){goback();}
+	
+}
+
+function goback(){ browser.launchDocument("../startup.xml", "cut");	}
+
+
+
+]]></script>
+
+</head>
+<body onload="startCounter();" style="background-color-index:7;">
+
+	<div style="top:0px;left:0px;width:960px;height:540px;visibility:visible;">
+		<object id="vod" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/ntt-ev/h264-sd-tts/Docu-white-E_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
+	</div>
+	
+<!-- http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/ntt-ev/h264-sd-tts/Docu-white-J_out.mp4&protocol=http_tts -->
+<!--
+		<p id="p01" class="button" style="top:10px;left:790px;color-index:0;background-color-index:1;font-size:24px;width:160px;nav-index:0;nav-up:1;nav-down:1;" accessKey="R" onclick="startCounter();">Start Caption</p>
+
+		<p id="p02" class="button"  style="top:50;left:0;nav-index:1;nav-up:0;nav-down:0" onclick="changeText();">Button2</p>
+
+-->
+
+<p id="display" style="top:480px;left:130px;"><![CDATA[]]></p>
+
+
+<p style="top:0px;left:0px;height:1px;width:1px;background-color-index:8;nav-index:0;" onkeydown="handler();" onkeyup="handler();" onclick="handler();"><![CDATA[]]></p>
+ 
+ 
+</body>
+</bml>
