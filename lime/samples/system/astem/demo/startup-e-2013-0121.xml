@@ -16,7 +16,6 @@
 
 <script><![CDATA[
 
-var tOffset=5000;
 var cnt = 0;
 var CounterID = NaN;
 var tArr = Array();
@@ -47,8 +46,6 @@ function alert(str){
 
 
 function startCounter(){
-/*   */
-browser.sleep(tOffset);
 	if(!isNaN(CounterID)){	browser.clearTimer(CounterID);} else {	
 	CounterID = browser.setInterval("changeText();", 2000, 0);
 	}

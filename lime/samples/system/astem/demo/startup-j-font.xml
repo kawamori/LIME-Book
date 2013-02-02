@@ -21,6 +21,7 @@ var CounterID = NaN;
 var tArr = Array();
 var lNum= Number();
 var fSize;
+var cID; /* caption ID */
 var vHost = '175.41.244.154';
 var pHost = '175.41.243.162'; 
 var obj = document.getElementById("display");
@@ -30,6 +31,8 @@ var obj = document.getElementById("display");
 	var url1 = "http://sns.astem-co.co.jp/test2.php";
 	var url2 = "http://"+ vHost+ "/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
 	
+	/*ZT1_LIME_TEST_EN*/
+	/*ZT1_LIME_TEST */
 	var url3 = "http://"+ pHost +"/eucconvert.php?id=ZT1_LIME_TEST&lines=50";
 	var url4 = "http://"+ pHost +"/eucconvert2.php";
 
@@ -54,8 +57,9 @@ function startCounter(){
 function changeText(){ 
 
 fSize=parseInt(obj.normalStyle.fontSize);
+cID="ZT1_LIME_TEST";
 
-	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 2000*cnt + "&timeSpan=2000","EUC-JP");
+	var ret = browser.transmitTextDataOverIP(url4,"id="+cID+"&startTime="+ 2000*cnt + "&timeSpan=2000","EUC-JP");
 
 var msg =ret[2];
 		var txt = ret[2];

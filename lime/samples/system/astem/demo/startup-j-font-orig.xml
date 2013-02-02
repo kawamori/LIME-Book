@@ -16,7 +16,6 @@
 
 <script><![CDATA[
 
-var tOffset=5000;
 var cnt = 0;
 var CounterID = NaN;
 var tArr = Array();
@@ -47,8 +46,6 @@ function alert(str){
 
 
 function startCounter(){
-/*   */
-browser.sleep(tOffset);
 	if(!isNaN(CounterID)){	browser.clearTimer(CounterID);} else {	
 	CounterID = browser.setInterval("changeText();", 2000, 0);
 	}
@@ -58,7 +55,7 @@ function changeText(){
 
 fSize=parseInt(obj.normalStyle.fontSize);
 
-	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST_EN&startTime="+ 2000*cnt + "&timeSpan=2000","EUC-JP");
+	var ret = browser.transmitTextDataOverIP(url4,"id=ZT1_LIME_TEST&startTime="+ 2000*cnt + "&timeSpan=2000","EUC-JP");
 
 var msg =ret[2];
 		var txt = ret[2];
@@ -79,12 +76,12 @@ if(tPos >0){
            obj.normalStyle.backgroundColorIndex = 8;
      	} else if (lNum <3){
       	  obj.normalStyle.backgroundColorIndex = 80;
-      obj.normalStyle.width= (tLen +10)/2;
+      obj.normalStyle.width= tLen +10;
          obj.normalStyle.left = (960 - tLen)/2;    
          obj.normalStyle.height=fSize+10;
         } else {  
       obj.normalStyle.backgroundColorIndex = 80;
-      obj.normalStyle.width= (tLen +10)/2;
+      obj.normalStyle.width= tLen +10;
       obj.normalStyle.left = (960- tLen/2)/2; 
       obj.normalStyle.height=fSize*2+10;
       }
