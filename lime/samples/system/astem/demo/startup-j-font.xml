@@ -113,6 +113,11 @@ function handler(){
 function goback(){ browser.launchDocument("../startup.xml", "cut");	}
 
 
+function chgID(){
+if(cID=="ZT1_LIME_TEST"){cID="ZT1_LIME_TEST_EN";}else{cID="ZT1_LIME_TEST";}
+
+}
+
 function chgSmall(){ obj.normalStyle.fontSize=24;}
 
 function chgMedium(){obj.normalStyle.fontSize=30;}
@@ -142,7 +147,7 @@ function chgLarge(){ obj.normalStyle.fontSize=36;}
 <p class="button" style="top:1px;left:1px;height:1px;width:1px;color-index:3;font-size:24pt;" accesskey="B" onclick="goback();"></p>
 
 
- <p class="button" style="top:10px;left:10px;height:36px;width:64px;color-index:1;font-size:24pt;" accesskey="R" onclick="chgSmall();">S</p>
+ <p class="button" style="top:10px;left:10px;height:36px;width:64px;color-index:1;font-size:24pt;" accesskey="R" onclick="chgID();">EN</p>
 
 <p class="button" style="top:10px;left:74px;height:36px;width:64px;color-index:2;font-size:24pt;" accesskey="G"  onclick="chgMedium();">M</p>
 
