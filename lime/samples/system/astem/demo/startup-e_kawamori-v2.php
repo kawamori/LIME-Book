@@ -37,7 +37,7 @@ var CounterID = NaN;
 var tArr = Array();
 var lNum= Number();
 var fSize;
-var tWidth=200;
+
 var cID='ZT1_LIME_TEST';
 
 var vHost = '175.41.244.154';
@@ -77,7 +77,7 @@ function startCounter()
 function chgID(){
 
 if(cID=="ZT1_LIME_TEST") {cID="ZT1_SNOWFES_JP";}else{cID="ZT1_LIME_TEST";}
-/*lg.firstChild.data = cID;*/
+lg.firstChild.data = cID;
 }
 
 function changeText()
@@ -112,8 +112,7 @@ function changeText()
 		tLen=0;
 	}
 
-	tWidth= cID=="ZT1_LIME_TEST" ? (tLen +10)/2 :(tLen +10);	
-
+	
 	if( ret[0] == 1 )
 	{
 		if (tPos <= 0)
@@ -123,15 +122,15 @@ function changeText()
 		else if (lNum <3)
 		{
 			obj.normalStyle.backgroundColorIndex = 80;
-			obj.normalStyle.width= tWidth;
-			obj.normalStyle.left = 200;    
+			obj.normalStyle.width= (tLen +10);
+			obj.normalStyle.left = (960 - tLen)/2;    
 			obj.normalStyle.height=fSize+10;
 		}
 		else
 		{  
 			obj.normalStyle.backgroundColorIndex = 80;
-			obj.normalStyle.width= tWidth;
-			obj.normalStyle.left = 200; 
+			obj.normalStyle.width= (tLen +10);
+			obj.normalStyle.left = (960- tLen/2)/2; 
 			obj.normalStyle.height=fSize*2+10;
 		}
        
@@ -189,7 +188,7 @@ function chgLarge(){ obj.normalStyle.fontSize=36;}
 
 <p class="button" style="top:1px;left:1px;height:1px;width:1px;color-index:3;font-size:24pt;" accesskey="B" onclick="goback();"></p>
 
-<p class="button" id="clang" style="top:10px;left:10px;height:36px;width:1px;color-index:1;font-size:24pt;" accesskey="R" onclick="chgID();"><![CDATA[]]></p>
+<p class="button" id="clang" style="top:10px;left:10px;height:36px;width:300px;color-index:1;font-size:24pt;" accesskey="R" onclick="chgID();"><![CDATA[]]></p>
 
 <p class="button" style="top:10px;left:74px;height:36px;width:1px;color-index:2;font-size:24pt;" accesskey="G"  onclick="chgSmall();"></p>
 
