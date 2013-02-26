@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Sample LIME content 1 </title>
+<meta>Developed based on the Template startup.bml version 1.00 by Art Developers Corporation
+Template startup.bml version 1.00 (Copyright 2008 by Art Developers Corporation)
+Sample LIME content, (Copyright 2010, NTT)
+
+</meta>
+<style>
+<![CDATA[
+
+body { 	resolution:960x540;
+	display-aspect-ratio:16v9;
+	background-color-index:186; 
+	clut:url(images/default.clt); 
+	background-image:url(whitebackground.jpg);
+}
+
+
+]]>
+</style>
+<script>
+<![CDATA[
+// =================== Javascript to control navigation  =============================
+var gD = 2;
+browser.setInterval(changeImage,3000);
+function SG(g,d)
+{
+	if (g == 0){
+		if (d){
+			setData("s10", "admu.jpg");
+			getStyle("video").width = (parseInt(getStyle("stream").width,10) * 5 / 8) + "px";
+			getStyle("video").height = (parseInt(getStyle("stream").height,10) * 5 / 8) + "px";
+			setVisible("video");
+			setVisible("s101");		
+			setVisible("s103");
+			setVisible("s104");
+			setVisible("msg1");
+			setVisible("msg2");
+			setData("s100", "verticalpanel.jpg");
+			setData("s104","horizontalpanel3.jpg");
+			hide("s21");
+			hide("s22");
+			hide("s50");
+			hide("s51");
+			hide("s52");
+			setData("s8", "textBox1.png");
+			getStyle("s8").top = "365px";
+			getStyle("s8").height = "150px";
+		
+			getStyle("s3").top = "0px";
+			
+		}
+	} else if (g == 1){
+		if (d){
+	setData("s11", "Streamviewfocus.jpg");}
+
+	} else if (g == 2){
+		if (d){
+			setData("s12", "Map.jpg");			
+		}
+	} else if (g == 3){
+		if (d){
+				
+		}
+	} else if (g == 4){
+		if (d){
+			
+			getStyle("video").width = (parseInt(getStyle("stream").width,10) * 3 / 8) + "px";
+			getStyle("video").height = (parseInt(getStyle("stream").height,10) * 3 / 8) + "px";
+			hide("video");
+			hide("s101");
+			hide("msg1");
+			hide("msg2");
+			hide("s103");
+			hide("s104");
+			setVisible("s50");
+			setVisible("s51");
+			setVisible("s52");
+			
+		}
+	} else if (g == 5){
+		if (d){
+			setData("s11", "Streamview.jpg");
+		}
+	} else if (g == 6){
+		if (d){
+			setData("s12", "Mapfocus.jpg");
+		}
+	} else if (g == 7){
+		if (d){
+			setData("s11", "Streamviewfocus.jpg");
+			}
+	} else if (g == 8){
+		if (d){
+			setData("s12", "Mapfocus.jpg");
+		}
+	} else if (g == 9){
+		if (d){
+			setData("s104","horizontalpanel_select3.jpg");	
+		}
+	} else if (g == 10){
+		if (d){
+			
+		}
+
+	}
+	
+		
+		
+		
+}
+function setParam(p)// setParam
+{
+	var p2i = new Array(2,3,4,5,6,7,8,9);
+	var p2k = new Array(
+		Array(1,0,0,0,0,0,0,0),
+		Array(1,0,1,0,0,0,0,0),
+		Array(1,0,1,1,0,0,1,1),
+		Array(1,1,1,1,1,1,0,0),
+		Array(0,1,0,0,0,0,0,0),
+		Array(0,1,0,0,1,1,1,1),
+		Array(0,1,0,0,1,0,0,0),
+		Array(0,0,0,1,0,0,0,0),
+		Array(0,0,0,0,0,1,0,0),
+		Array(0,0,0,0,0,0,1,0),
+		Array(0,0,0,0,0,0,0,1));
+	var n,i;
+	for (n=0; n<p2i.length; n++){
+		if (p2i[n] == p){
+			break;
+		}
+	}
+	browser.lockScreen();
+	for (i=0; i<11; i++){
+		SG(i,p2k[i][n]);
+	}
+	browser.unlockScreen();
+	gD = p;
+}
+
+function load()
+{
+	getObject("mono").focus();
+//	setInterval(changeImage,3000);
+	setParam(2);
+	
+}
+function keyDown() // key down
+{
+	var k = document.currentEvent.keyCode;
+	if(k == 1){
+		if (gD == 2){
+			playSound(9);
+			setParam(4);
+		}
+		else if (gD == 3){
+			playSound(9);
+			setParam(4);
+		}
+		else if (gD == 4){
+			playSound(9);
+			setParam(6);
+		}
+		else if (gD == 6){
+			playSound(9);
+			setParam(4);
+		}
+		else if (gD == 8){
+			playSound(9);
+			if (getObject("s100").data == "verticalpanel3.jpg"){
+				setData("s100","verticalpanel1.jpg");
+			}
+		}
+		else {
+			playSound(9);
+		}
+	}
+	else if(k == 2){
+		if (gD == 2){
+			playSound(9);
+			setParam(6);
+		}
+		else if (gD == 3){
+			playSound(9);
+			setParam(4);
+		}
+		else if (gD == 4){
+			playSound(9);
+			setParam(6);
+		}
+		else if (gD == 6){
+			playSound(9);
+			setParam(4);
+		}
+		else if (gD == 8){
+			playSound(9);
+			if (getObject("s100").data == "verticalpanel1.jpg"){
+				setData("s100","verticalpanel3.jpg");
+			}
+		}
+		else {
+			playSound(9);
+		}
+	}
+	else if(k == 18){
+		if (getObject("s104").data == "horizontalpanel_select3.jpg"){
+			
+			
+		
+		}
+		else if (getObject("s103").data == "horizontalpanel_select2.jpg"){
+			
+			
+		
+		}
+		
+		else if (getObject("s101").data == "horizontalpanel_select1.jpg"){
+			
+			
+		
+		}
+		else if (gD == 2){
+			playSound(7);
+			setParam(5);
+		}
+		else if (gD == 3){
+			playSound(7);
+			setParam(7);
+		}
+		else if (gD == 4){
+			playSound(7);
+			setParam(5);
+		}
+		else if (gD == 6){
+			playSound(7);
+			setParam(7);
+		}
+		else if (gD == 8){
+			playSound(11);
+			setParam(9);
+		}
+	
+		else {
+			playSound(7);
+		}
+	}
+	else if(k == 19){
+		playSound(9);
+	}
+	else if(k == 21){
+		if (getObject("s50").normalStyle.visibility == "visible"){
+		playSound(9);
+		setVisible("s53");
+		}
+	}
+	else if(k == 24){
+		if (getObject("s50").normalStyle.visibility == "visible"){
+		playSound(9);
+		setVisible("s54");
+		}		
+	}
+	else if(k == 22){
+		if (getObject("s50").normalStyle.visibility == "visible"){
+		playSound(9);
+		setVisible("s55");
+		}
+	}
+	else if(k == 3){
+		playSound(9);
+		if (getObject("s11").data == "Streamviewfocus.jpg"){
+			setParam(8);
+		}
+		else if(getObject("s104").data == "horizontalpanel_select3.jpg"){
+			
+			setData("s103","horizontalpanel_select2.jpg");
+			setData("s104","horizontalpanel3.jpg");
+			
+		}
+		else if(getObject("s103").data == "horizontalpanel_select2.jpg"){
+			
+			setData("s101","horizontalpanel_select1.jpg");
+			setData("s103","horizontalpanel2.jpg");
+			
+		}
+		else if(getObject("s101").data == "horizontalpanel_select1.jpg"){
+			
+			setData("s100","verticalpanel1.jpg");
+			setData("s101","horizontalpanel1.jpg");
+			
+		}
+	
+	}
+	else if(k == 4){
+		playSound(9);
+		
+		if (getObject("s104").data == "horizontalpanel_select3.jpg"){
+			setParam(2);
+		}
+		else if(getObject("s101").data == "horizontalpanel_select1.jpg"){
+			
+			setData("s103","horizontalpanel_select2.jpg");
+			setData("s101","horizontalpanel1.jpg");
+			
+		}
+		else if(getObject("s103").data == "horizontalpanel_select2.jpg"){
+			
+			setData("s104","horizontalpanel_select3.jpg");
+			setData("s103","horizontalpanel2.jpg");
+			
+		}
+		else if(getObject("s100").data != "verticalpanel.jpg"){
+			
+			setData("s100","verticalpanel.jpg");
+			setData("s101","horizontalpanel_select1.jpg");
+			
+		}
+	}
+	
+
+
+
+}
+function keyUp()//key up
+{
+	var k = document.currentEvent.keyCode;
+	if(k == 18){
+		if (gD == 5){
+			setParam(2);
+		}
+		else if (gD == 7){
+			setParam(3);
+		}
+		else if (gD == 9){
+	
+		}
+		else if (getObject("s104").data == "horizontalpanel_select3.jpg"){
+			playSound(7);
+			launchURL("hbautista3.bml");
+		
+		}
+		else if (getObject("s103").data == "horizontalpanel_select2.jpg"){
+			playSound(7);
+			launchURL("hbautista2.bml");
+		
+		}
+		
+		else if (getObject("s101").data == "horizontalpanel_select1.jpg"){
+			playSound(7);
+			launchURL("hbautista.bml");
+		
+		}
+	}
+	else if(k == 19){
+		launchURL("../evacuation_centers.bml");
+	}
+	else if(k == 21){
+		if (getObject("s50").normalStyle.visibility == "visible"){
+			playSound(9);
+			hide("s53");
+		}
+	}
+	else if(k == 24){
+		if (getObject("s50").normalStyle.visibility == "visible"){
+			playSound(9);
+		hide("s54");
+		}		
+	}
+	else if(k == 22){
+		if (getObject("s50").normalStyle.visibility == "visible"){
+		playSound(9);
+		hide("s55");
+		}
+	}
+	else if(k == 3){
+		
+	
+	}
+	else if(k == 4){
+		
+	}
+	
+	
+}
+function getObject(o)//getObject
+{
+	return document.getElementById(o);
+}
+function setData(o, d)//setData
+{
+	getObject(o).data = d;
+}
+function getStyle(o)//getStyle
+{
+	return getObject(o).normalStyle;
+}
+function setText(o, s)//setText
+{
+	getObject(o).firstChild.data = s;
+}
+function setVisible(o)//setVisible
+{
+	getObject(o).normalStyle.visibility = "visible";
+}
+function hide(o)//hide
+{
+	getObject(o).normalStyle.visibility = "hidden";
+}
+function playSound(n)//playSound
+{
+	browser.playRomSound("romsound://" + n + "");
+}
+function launchURL(u)//launchURL
+{
+	browser.launchDocument(u, "cut");
+}
+
+function changeImage(){
+	browser.unlockScreen();
+	if (getObject("msg1").data == "msg1.jpg"){
+		
+		getObject("msg1").data = "msg2.jpg";
+	}
+	else if(getObject("msg1").data == "msg2.jpg"){
+		
+		getObject("msg1").data = "msg1.jpg";
+	}
+
+
+}
+
+]]>
+</script>
+</head>
+<body id="body" onload="load();">
+	
+	<div id="mono" style="width:960px; height:540px;" onkeyup="keyUp();" onkeydown="keyDown();">
+		<object id="s4" style="left:637px; top:9px; width:299px; height:102px;" data="roundText_title.png" type="image/X-arib-png"/> <!-- title -->
+	<!-- Use graphics for title, rather than text -->	
+		<p id="s5" style="background-color-index:8; grayscale-color-index:18 17; left:670px; top:40px; width:288px; height:75px; line-height:40px;"><![CDATA[ ADMU IPTV CHANNEL ]]></p>
+		<!-- <object id="s5" style="left:658px; top:36px; width:288px; height:60px;"  data="text_t.png" type="image/X-arib-png"><p><![CDATA[2nd Page]]></p></object> -->
+				
+		<object id="s8" style="left:20px; top:365px; width:600px; height:150px;" data="textFrameRect.png" type="image/X-arib-png"/> <!-- Text frame -->
+				
+		<p id="s9" style="background-color-index:8; grayscale-color-index:18 17; left:36px; top:370px; width:576px; height:140px; line-height:28px;"><![CDATA[]]></p>
+		<object id="s10" style="left:658px; top:282px; width:320px; height:240px;" data="admu.jpg" type="image/jpeg"/>
+
+		<!-- buttons --> 
+		<object id="s3" style="left:0px; top:0px; width:1500px; height:100px;" data="Header.jpg" type="image/jpeg"/>
+		<object id="s99" style="left:750px; top:92px; width:25px; height:540px;" data="gold.jpg" type="image/jpeg"/>
+		<object id="s100" style="left:15px; top:100px; width:250px; height:540px;" data="verticalpanel.jpg" type="image/jpeg"/>
+		<object id="s101" style="left:175px; top:420px; width:350px; height:180px;" data="horizontalpanel1.jpg" type="image/jpeg"/>
+		
+	    <object id="s103" style="left:360px; top:420px; width:350px; height:180px;" data="horizontalpanel2.jpg" type="image/jpeg"/>
+		<object id="s104" style="left:545px; top:420px; width:350px; height:180px;" data="horizontalpanel3.jpg" type="image/jpeg"/>
+		 
+		 
+		 <object id="s50" style="left:160px; top:110px; width:960px; height:540px; visibility:hidden;" data="evc.jpg" type="image/jpeg"/>
+		 <object id="s51" style="left:770px; top:250px; width:960px; height:540px; visibility:hidden " data="LEGEND.jpg" type="image/jpeg"/>
+
+ <object id="s52" style="left:740px; top:420px; width:960px; height:100px; visibility:hidden;" data="Floodmap.jpg" type="image/jpeg"/>
+
+
+
+
+<!--FLOOD MAPS-->
+ 
+<object id="s53" style="left:160px; top:110px; width:960px; height:540px; visibility:hidden;" data="10m.jpg" type="image/jpeg"/>
+<object id="s54" style="left:160px; top:110px; width:960px; height:540px; visibility:hidden;" data="13m.jpg" type="image/jpeg"/>
+<object id="s55" style="left:160px; top:110px; width:960px; height:540px; visibility:hidden;" data="15m.jpg" type="image/jpeg"/>
+
+<!--MESSAGES-->
+ <object id="msg1" style="left:763px; top:200px; width:960px; height:540px;" data="msg1.jpg" type="image/jpeg"/>
+ <object id="msg2" style="left:763px; top:370px; width:960px; height:540px;" data="msg2.jpg" type="image/jpeg"/>
+
+<!-- button_blur_1.png-->
+		<object id="s11" style="left:763px; top:110px; width:300px; height:60px;" data="Streamviewfocus.jpg" type="image/jpeg"/>
+		<object id="s12" style="left:763px; top:145px; width:300px; height:60px;" data="Map.jpg" type="image/jpeg"/> 
+		
+		
+		
+
+	<!--	<object id="s21" style="left:390px; top:23px; width:210px; height:190px; visibility:hidden;" data="3_210_190.png" type="image/X-arib-png"/> Text pad -->
+			<object id="s21" style="left:390px; top:23px; width:210px; height:190px; visibility:hidden;" data="roundTextPad_small.png" type="image/X-arib-png"/>
+		<p id="s22" style="background-color-index:8; grayscale-color-index:18 17; text-align:center; font-size:20px; left:395px; top:28px; width:200px; height:180px; visibility:hidden;">
+		<![CDATA[    
+		
+		Ad
+		Majorem
+		Dei
+		Gloriam
+	    
+	    ]]></p>
+	</div>
+	<div id="stream" style="left:140px; top:0px; width:920px; height:500px;">
+<!-- 
+Video tag: URL to the manifest file of the video file is to be put here.
+-->
+		<object id="video" type="application/X-arib-contentPlayControl" data="http://cdn.iptvf.jp/cpc/2013022318084720000/2013022318084720000_ST.cpc" streamstatus="pause" style="left:20px; top:100px;width:600px; height:337px;" />
+		
+	</div>
+	
+	
+</body>
+</bml>

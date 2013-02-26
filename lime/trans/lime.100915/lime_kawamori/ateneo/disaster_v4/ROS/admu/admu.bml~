@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Homepage</title>
+<meta>Developed based on the Template startup.bml version 1.00 by Art Developers Corporation
+Template startup.bml version 1.00 (Copyright 2008 by Art Developers Corporation)
+Sample LIME content, (Copyright 2010, NTT)
+
+</meta>
+<style>
+<![CDATA[
+
+body { 	
+	resolution:960x540;
+	display-aspect-ratio:16v9;
+	background-color-index:200; 
+	background-image:url(whitebackground.jpg);
+	background-repeat:no-repeat;
+}
+
+]]>
+</style>
+
+
+
+<script>
+<![CDATA[
+// =================== Javascript to control navigation  =============================
+var gD = 2;
+function SG(g,d)
+{
+	if (g == 0)
+	{
+		if (d)
+		{
+				
+		}
+	} 
+	
+	else if (g == 1)
+	{
+		if (d)
+		{
+			setData("s15", "button_focus_1.jpg");		
+			setVisible("s20");
+			hide("s21");
+			hide("s22");
+			hide("s23");
+			hide("s24");
+			hide("s26");
+			hide("s27");
+			hide("s28");
+			hide("s29");
+			hide("s30");
+			hide("s31");
+		}
+	} 
+	
+	else if (g == 2)
+	{
+		if (d)
+		{
+			setData("s16", "button_blur_2.jpg");	
+		}
+	}
+
+	else if (g == 3)
+	{
+		if (d)
+		{
+			setData("s17", "button_blur_3.jpg");
+		
+		}
+	} 
+	
+	else if (g == 4)
+	{
+		if (d)
+		{
+			
+		}
+	} 
+	
+	
+	else if (g == 5)
+	{
+		if (d)
+		{
+			setData("s15", "button_blur_1.jpg");
+		
+		}
+	} 
+	
+	else if (g == 6)
+	{
+		if (d)
+		{
+			setData("s16", "button_focus_2.jpg");
+
+			hide("s20");
+			setVisible("s21");
+			hide("s22");
+			hide("s23");
+			hide("s24");
+			hide("s26");
+			hide("s27");
+			hide("s28");
+			hide("s29");
+			hide("s30");
+			hide("s31");
+		}
+		
+	} 
+	
+	else if (g == 7)
+	{
+		if (d)
+		{
+			setData("s15", "button_select_1.jpg");
+		
+		}
+	} 
+	
+	else if (g == 8)
+	{
+		if (d)
+		{
+			setData("s16", "button_select_2.jpg");
+		}
+	}
+
+	else if (g == 9)
+	{
+		if (d)
+		{
+			setData("s17", "button_focus_3.jpg");
+			hide("s20");
+			hide("s21");
+			setVisible("s22");
+			hide("s23");
+			hide("s24");
+			setVisible("s26"); //Big Photo
+			setVisible("s27"); //focus_mini_1
+			setVisible("s28"); //mini_2
+			setVisible("s29"); //mini_3
+			setVisible("s30"); //mini_4
+			setVisible("s31"); //mini_5
+			setData("s27","focus_mini_1.jpg"); 
+			}
+	} 
+	
+	else if (g == 10)
+	{
+		if (d)
+		{
+			setData("s17", "button_select_3.jpg");
+		
+		}
+		
+	}
+	
+	else if (g == 11)
+	{
+		if (d)
+		{
+			setData("s18", "button_blur_4.jpg");
+		
+		}
+	}
+	
+	else if (g == 12)
+	{
+		if (d)
+		{
+			setData("s19", "button_blur_5.jpg");
+		
+		}
+	}
+	else if (g == 13)
+	{
+		if (d)
+		{
+			setData("s19", "button_focus_5.jpg");
+			hide("s20");
+			hide("s21");
+			hide("s22");
+			hide("s23");
+			setVisible("s24");
+			hide("s26");
+			hide("s27");
+			hide("s28"); 
+			hide("s29"); 
+			hide("s30"); 
+			hide("s31"); 
+		}
+	}
+	else if (g == 14)
+	{
+		if (d)
+		{
+			setData("s18", "button_focus_4.jpg");
+			hide("s20");
+			hide("s21");
+			hide("s22");
+			setVisible("s23");
+			hide("s24");
+			hide("s26");
+			hide("s27");
+			hide("s28"); 
+			hide("s29"); 
+			hide("s30"); 
+			hide("s31"); 
+		}
+	}
+	else if (g == 15)
+	{
+		if (d)
+		{
+			setData("s19", "button_select_5.jpg");
+			
+		}
+	}
+	else if (g == 16)
+	{
+		if (d)
+		{
+			setData("s18", "button_select_4.jpg");
+		
+		}
+	}
+}
+
+
+function setParam(p)// setParam
+{
+	var p2i = new Array(2,3,4,5,6,7,8,9,10,11,12,13);
+	var p2k = new Array(
+						Array(1,0,0,0,0,0,0,0,0,0,0,0),
+						Array(1,0,0,0,0,0,0,0,0,0,0,0),
+						Array(1,0,1,1,1,0,1,1,0,0,0,0),
+						Array(1,1,1,1,1,1,0,0,0,1,0,0),
+						Array(0,1,0,0,0,0,0,0,0,0,0,0),
+						Array(0,1,1,0,1,1,1,1,0,1,0,0),
+						Array(0,1,0,0,0,0,0,0,0,1,0,0),
+						Array(0,0,0,1,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,1,0,0,0,0,0,0),
+						Array(0,0,1,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,1,0,0,0,0),
+						Array(1,0,1,0,0,0,1,0,0,1,0,0),
+						Array(1,0,1,0,1,0,1,0,0,1,0,0),
+						Array(0,0,0,0,0,0,1,0,0,0,0,0),
+						Array(0,0,0,0,1,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,1,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,1),
+			
+						);
+	var n,i;
+	for (n=0; n<p2i.length; n++){
+		if (p2i[n] == p){
+			
+			break;
+			
+		}
+	}
+	browser.lockScreen();
+	for (i=0; i<17; i++){
+		SG(i,p2k[i][n]);
+	}
+	browser.unlockScreen();
+	gD = p;
+}
+
+function load()
+{
+	getObject("mono").focus();
+	setParam(2);
+}
+
+function keyDown() // key down
+{
+	var k = document.currentEvent.keyCode;
+	
+	if(k == 1){
+		if (gD == 2){
+			playSound(9);
+			setParam(8);
+		}
+		
+		else if (gD == 3){
+			playSound(9);
+			setParam(4);
+		}
+		
+		else if (gD == 4){
+			playSound(9);
+			setParam(11);
+		}
+		
+		else if (gD == 6){
+			playSound(9);
+			setParam(4);
+		}
+		else if (gD == 8){
+			playSound(9);
+			setParam(6);
+		}
+		else if (gD == 10){
+			playSound(9);
+		}
+		else if (gD == 11){
+			playSound(9);
+			setParam(2);
+		}
+		else {
+			playSound(9);
+		}
+	}
+	else if(k == 2){
+		if (gD == 2){
+			playSound(9);
+			setParam(11);
+		}
+		else if (gD == 3){
+			playSound(9);
+			setParam(8);
+		}
+		else if (gD == 4){
+			playSound(9);
+			setParam(6);
+		}
+		else if (gD == 6){
+			playSound(9);
+			setParam(8);
+		}
+		else if (gD == 8){
+			playSound(9);
+			setParam(2);
+		}
+		else if (gD == 11){
+			playSound(9);
+			setParam(4);
+		}
+		else {
+			playSound(9);
+		}
+	}
+	
+	else if(k == 4){
+		if (getObject("s17").data == "button_focus_3.jpg"){
+			if (getObject("s27").data == "focus_mini_1.jpg") {
+				setData("s28","focus_mini_2.jpg"); 
+				setData("s27","mini_1.jpg"); 
+				setData("s26","photo_2.jpg");
+			}
+			
+			else if(getObject("s28").data == "focus_mini_2.jpg") {
+				setData("s29","focus_mini_3.jpg"); 
+				setData("s28","mini_2.jpg"); 
+				setData("s26","photo_3.jpg");
+			}
+			
+			else if(getObject("s29").data == "focus_mini_3.jpg") {
+				setData("s30","focus_mini_4.jpg"); 
+				setData("s29","mini_3.jpg"); 
+				setData("s26","photo_4.jpg");
+			}
+			
+			else if(getObject("s30").data == "focus_mini_4.jpg") {
+				setData("s31","focus_mini_5.jpg"); 
+				setData("s30","mini_4.jpg"); 
+				setData("s26","photo_5.jpg");
+			}	
+
+			else if(getObject("s31").data == "focus_mini_5.jpg") {
+				setData("s27","focus_mini_1.jpg"); 
+				setData("s31","mini_5.jpg"); 
+				setData("s26","photo_1.jpg");
+			}	
+		}
+	}
+	
+	else if(k == 3){
+		if (getObject("s17").data == "button_focus_3.jpg"){
+			
+			playSound(9);
+
+			if (getObject("s27").data == "focus_mini_1.jpg") {
+				setData("s31","focus_mini_5.jpg"); 
+				setData("s27","mini_1.jpg"); 
+				setData("s26","photo_5.jpg");
+			}
+
+			else if (getObject("s31").data == "focus_mini_5.jpg") {
+				setData("s30","focus_mini_4.jpg"); 
+				setData("s31","mini_5.jpg"); 
+				setData("s26","photo_4.jpg");
+			}
+
+			else if (getObject("s30").data == "focus_mini_4.jpg") {
+				setData("s29","focus_mini_3.jpg"); 
+				setData("s30","mini_4.jpg"); 
+				setData("s26","photo_3.jpg");
+			}
+
+			else if (getObject("s29").data == "focus_mini_3.jpg") {
+				setData("s28","focus_mini_2.jpg"); 
+				setData("s29","mini_3.jpg"); 
+				setData("s26","photo_2.jpg");
+			}
+			
+			else if (getObject("s28").data == "focus_mini_2.jpg") {
+				setData("s27","focus_mini_1.jpg"); 
+				setData("s28","mini_2.jpg"); 
+				setData("s26","photo_1.jpg");
+			}
+
+		}
+
+
+	}
+	
+}
+
+function keyUp()//key up
+{
+	var k = document.currentEvent.keyCode;
+	if(k == 18){
+		if (gD == 5){
+			launchURL("EC/evacuation_centers.bml");
+		}
+		else if (gD == 7){
+			
+			launchURL("ROS/ros.bml");
+		}
+		else if (gD == 12){
+			setParam(8);
+		}
+		else if (gD == 13){
+			setParam(6);
+		}
+		else if (gD == 9){
+			setParam(4);
+		}
+		
+	}
+	else if(k == 19){
+		playSound(7);
+		launchURL("../ros.bml");
+	}
+}
+
+
+function getObject(o)//getObject
+{
+	return document.getElementById(o);
+}
+function setData(o, d)//setData
+{
+	getObject(o).data = d;
+}
+function getStyle(o)//getStyle
+{
+	return getObject(o).normalStyle;
+}
+function setText(o, s)//setText
+{
+	getObject(o).firstChild.data = s;
+}
+function setVisible(o)//setVisible
+{
+	getObject(o).normalStyle.visibility = "visible";
+}
+function hide(o)//hide
+{
+	getObject(o).normalStyle.visibility = "hidden";
+}
+function playSound(n)//playSound
+{
+	browser.playRomSound("romsound://" + n + "");
+}
+function launchURL(u)//launchURL
+{
+	browser.launchDocument(u, "cut");
+}
+]]>
+</script>
+</head>
+
+
+  
+<body id="body" onload="load();">
+	
+	<div id="mono" style="width:960px; height:540px;" onkeyup="keyUp();" onkeydown="keyDown();">
+	
+		
+
+	<!-- Use graphics for title, rather than text -->	
+	   
+		<object id="s27" style="left:150px; top:0px; width:200px; height:900px;" data="gold.jpg" type="image/jpeg"/>
+		<object id="s14" style="left:0px; top:0px; width:1500px; height:900px;" data="Header.jpg" type="image/jpeg"/>	    							
+				
+	<!-- buttons --> 
+		
+		
+	
+		
+		<object id="s15" style="left:0px; top:150px; width:223px; height:40px;" data="button_focus_1.jpg" type="image/jpeg"/> 
+		<object id="s16" style="left:0px; top:180px; width:240px; height:40px;" data="button_blur_2.jpg" type="image/jpeg"/>
+		<object id="s17" style="left:0px; top:210px; width:240px; height:40px;" data="button_blur_3.jpg" type="image/jpeg"/>
+		<object id="s18" style="left:0px; top:240px; width:240px; height:40px;" data="button_blur_4.jpg" type="image/jpeg"/>
+		<object id="s19" style="left:0px; top:270px; width:500px; height:50px;" data="button_blur_5.jpg" type="image/jpeg"/>		
+		<object id="s20" style="left:200px; top:150px; width:999px; height:999px; visibility:hidden;" data="data_1.jpg" type="image/jpeg"/>
+		<object id="s21" style="left:200px; top:150px; width:999px; height:999px; visibility:hidden;" data="data_2.jpg" type="image/jpeg"/>
+		<object id="s22" style="left:200px; top:150px; width:999px; height:999px; visibility:hidden;" data="data_3.jpg" type="image/jpeg"/>
+		<object id="s23" style="left:200px; top:150px; width:999px; height:999px; visibility:hidden;" data="data_4.jpg" type="image/jpeg"/>
+		<object id="s24" style="left:200px; top:150px; width:999px; height:999px; visibility:hidden;" data="data_5.jpg" type="image/jpeg"/>
+		<object id="s25" style="left:300px; top:110px; width:999px; height:999px;" data="Title.jpg" type="image/jpeg"/>
+		
+		<object id="s26" style="left:400px; top:160px; width:999px; height:999px; visibility:hidden;" data="photo_1.jpg" type="image/jpeg"/>
+		<object id="s27" style="left:240px; top:390px; width:999px; height:999px; visibility:hidden;" data="mini_1.jpg" type="image/jpeg"/>
+		<object id="s28" style="left:370px; top:390px; width:999px; height:999px; visibility:hidden;" data="mini_2.jpg" type="image/jpeg"/>
+		<object id="s29" style="left:500px; top:390px; width:999px; height:999px; visibility:hidden;" data="mini_3.jpg" type="image/jpeg"/>
+		<object id="s30" style="left:630px; top:390px; width:999px; height:999px; visibility:hidden;" data="mini_4.jpg" type="image/jpeg"/>
+		<object id="s31" style="left:760px; top:390px; width:999px; height:999px; visibility:hidden;" data="mini_5.jpg" type="image/jpeg"/>
+
+				
+		
+		
+		</div>
+
+	
+	
+</body>
+</bml>
