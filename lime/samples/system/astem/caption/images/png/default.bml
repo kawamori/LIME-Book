@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA"
+	"http://www.arib.or.jp/B24/DTD/bml_1_1.dtd">
+<?bml bml-version="3.0" ?>
+<bml>
+<head>
+<title>template for BS</title>
+
+<style><![CDATA[
+	body{
+		clut:url(default.clt);
+		background-color-index:7;
+	}
+]]></style>
+
+</head>
+<body>
+<div style="left:0px; top:0px; width:960px; height:540px">
+<object type="image/X-arib-png" data="bg.png" style="left:0;top:0;width:960px;height:540px;"/>
+<object type="image/X-arib-png" data="ColorButton_01.png" style="left:25px;top:25px;width:100px;height:25px;"/>
+<object type="image/X-arib-png" data="ColorButton_02.png" style="left:50px;top:50px;width:100px;height:25px;"/>
+<object type="image/X-arib-png" data="ColorButton_03.png" style="left:75px;top:75px;width:100px;height:25px;"/>
+<object type="image/X-arib-png" data="ColorButton_04.png" style="left:100px;top:100px;width:100px;height:25px;"/>
+<object type="image/X-arib-png" data="NowLoading.png" style="left:125px;top:125px;width:960px;height:65px;"/>
+
+</div>
+</body>
+</bml>
+
