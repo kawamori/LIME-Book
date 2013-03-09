@@ -15,7 +15,7 @@
 
 <script><![CDATA[
 
-var vHost = "213.186.62.212";
+var vHost = "136.187.116.172";
 
 /*
 "95.154.207.5";*/
@@ -40,7 +40,7 @@ var eventID;
             
             
 	var url = "http://talk.astem-co.co.jp/AtNet/DpTxt/display/PJ_LimeDemo/3";
-	var url2 = "http://"+ vHost+ "/index.html";
+	var url2 = "http://"+ vHost+ "/things/100.rdf";
 	
 	var url3 = "http://talk.astem-co.co.jp/AtNet/DpTxt/Refresh5?id=PJ_LimeDemo&lines=3";
 	

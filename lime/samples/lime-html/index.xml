@@ -16,6 +16,7 @@ body {}
  .link3 {font-size:24px; position:absolute;width:300px;height:30px;z-index:5;}
  .link4 {font-size:24px; position:absolute;width:300px;height:30px;z-index:6;}
  .link5 {font-size:24px; position:absolute;width:300px;height:30px;z-index:7;}
+ .link6 {font-size:24px; position:absolute;width:300px;height:30px;z-index:8;}
  :focus {color-index:1;}
  :blur {color-index:7}
  
@@ -55,8 +56,14 @@ body {}
 
 
 <p class="link5" style="top:350px;left:100px;">
-<a class="link5" style="top:0px;left:0px;nav-index:5;nav-up:4;" href="paris/index.html">My Little Paris</a><br/>
+<a class="link5" style="top:0px;left:0px;nav-index:5;nav-up:4;nav-down:6;" href="paris/index.html">My Little Paris</a><br/>
 </p> <br/>
+
+
+<p class="link6" style="top:400px;left:100px;">
+<a class="link6" style="top:0px;left:0px;nav-index:6;nav-up:5;" href="lime-hello.html">HTML root test</a><br/>
+</p> <br/>
+
 </body>
 
 </bml>
