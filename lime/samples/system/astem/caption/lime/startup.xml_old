@@ -5,22 +5,10 @@
 <bml>
 <head>
 <title>aIPTV</title>
-<style><![CDATA[
-	body{
-		clut:url(../images/default.clt);
-	}
 
-       #display	{ font-size:20px;  background-color-index:16; color-index:7;font-size:16px;top:400px;left:460px;width:480px;height:440px;}
-
-]]></style>
 <script src="../scripts/common.ecm"/>
 <script src="../scripts/xparse.ecm"/>
-<script src="../scripts/mycommon.ecm"/> <!-- added by Kawamori -->
 <script><![CDATA[
-
-
-var offset;
-var origin;
 
 var vodTimerID = NaN;
 var fullscreenFlag = 0;
@@ -32,7 +20,6 @@ function onload(){
 	// XMLファイルの読み込み
 	loadXML(gCaptionXML_bad, gCaption_bad);
 	loadXML(gCaptionXML_good, gCaption_good);
-
 
 	var video = getElementById("video");
 	video.data = gVodURL;
@@ -46,16 +33,10 @@ function onload(){
 	hideElem("loading");
 
 	video.streamStatus="play";
-
-  origin = new Date();
-
-  offset=30;
-
 	if( !isNaN(vodTimerID) ){
 		browser.clearTimer(vodTimerID);
 		vodTimerID = NaN;
 	}
-
 	vodTimerID = browser.setInterval("checkTime();", 500, 0);
 }
 
@@ -69,24 +50,12 @@ function onunload(){
 }
 
 function checkTime(){
-
-var video = getElementById("video");
-
-// added by Kawamori
-var now = new Date();
-
-var pos=parseInt(browser.subDate(now,origin,0))/100;
-	
- var myStreamPosition = pos; 
-
-//printd(pos+": ");
-
-	if (gVodLength-2 <= myStreamPosition) {
+	var video = getElementById("video");
+	if (gVodLength-2 <= video.streamPosition) {
 		video.streamStatus="stop";
 		video.data = gVodURL;
 		video.streamStatus="play";
 	}
-
 
 	// 字幕選択フラグにより表示する字幕を切り替える
 	var captionArray;
@@ -102,9 +71,7 @@ var pos=parseInt(browser.subDate(now,origin,0))/100;
 	var flag = 0;	// captionフラグ
 
 	for (i=0; i < captionArray.length; i++) {
-
-		if ((Number(captionArray[i][1])) <= myStreamPosition*100 && (Number(captionArray[i][0])) >= myStreamPosition*100) { 
-//printd(" :"+captionArray[0][0]);
+		if ((Number(captionArray[i][0])) <= video.streamPosition*100 && (Number(captionArray[i][1])) >= video.streamPosition*100) {
 			caption.firstChild.data = "["+captionArray[i][2]+"]";
 			caption_full.firstChild.data = "[["+captionArray[i][2]+"]]";
 			flag = 1;
@@ -113,7 +80,7 @@ var pos=parseInt(browser.subDate(now,origin,0))/100;
 	}
 	if (flag == 0) {
 		caption.firstChild.data = "--";
-		caption_full.firstChild.data = "--------"; 
+		caption_full.firstChild.data = "----";
 	}
 }
 
@@ -183,27 +150,18 @@ function dataKey(){
 </head>
 <body id="body" style="used-key-list:basic data-button numeric-tuning;" onload="onload();" onunload="onunload();">
 <div id="basebox" style="width:960px;height:540px;background-color-index:30">
-<!-- modified by Kawamori for Aquos Jan. 2 2012-->
 
-        <object id="bg" type="image/X-arib-png" data="../images/bg.png"  style="left:0px; top:0px; width:960px; height:540px; nav-index:0;" onkeydown="keydown();"/>
-        <object id="colorButton_B" type="image/X-arib-png" data="../images/ColorButton_01.png" style="left:5px; top:510px; width:100px; height:25px;" />
-	<object id="colorButton_R"  type="image/X-arib-png" data="../images/ColorButton_02.png" style="left:110px; top:510px; width:100px; height:25px;" />
-	<object id="colorButton_G"  type="image/X-arib-png" data="../images/ColorButton_03.png" style="left:215px; top:510px; width:100px; height:25px;" />
-	<object id="colorButton_Y"  type="image/X-arib-png" data="../images/ColorButton_04.png" style="left:320px; top:510px; width:100px; height:25px;" />
-
-
-<!--
 	<object id="bg" type="image/jpeg" data="../images/bg.jpg" style="left:0px; top:0px; width:960px; height:540px; nav-index:0;" onkeydown="keydown();" />
 
 	<object id="colorButton_B" type="image/jpeg" data="../images/ColorButton_01.jpg" style="left:5px; top:510px; width:100px; height:25px;" />
 	<object id="colorButton_R" type="image/jpeg" data="../images/ColorButton_02.jpg" style="left:110px; top:510px; width:100px; height:25px;" />
 	<object id="colorButton_G" type="image/jpeg" data="../images/ColorButton_03.jpg" style="left:215px; top:510px; width:100px; height:25px;" />
 	<object id="colorButton_Y" type="image/jpeg" data="../images/ColorButton_04.jpg" style="left:320px; top:510px; width:100px; height:25px;" />
--->
+	
 	<p id="colorButton_B_caption" style="font-size:16px; color-index:7; grayscale-color-index:7 72; text-align:center; left:5px; top:513px; width:100px; height:16px;">Full</p>
 	<p id="colorButton_R_caption" style="font-size:16px; color-index:7; grayscale-color-index:7 72; text-align:center; left:110px; top:513px; width:100px; height:16px;">変換ON/OFF</p>
 
-	<p id="captionMode" style="font-size:16px; color-index:7; grayscale-color-index:7 72; text-align:center; left:800px; top:513px; width:150px; height:16px;"><![CDATA[ ]]></p> <!-- modified by Kawamori-->
+	<p id="captionMode" style="font-size:16px; color-index:7; grayscale-color-index:7 72; text-align:center; left:800px; top:513px; width:150px; height:16px;"><![CDATA[]]></p>
 
 
 	<!-- ビデオと字幕をボタン類より上に表示させるためにボタン類より後ろで定義 -->
@@ -212,12 +170,8 @@ function dataKey(){
 	<p id="caption" style="font-size:16px; color-index:0; grayscale-color-index:0 65; text-align:center; left:5px; top:415px; width:624px; height:25px; visibility:visible"><![CDATA[]]></p>
 	<p id="caption_full" style="font-size:30px; color-index:7; grayscale-color-index:7 72; text-align:center; left:0px; top:500px; width:960px; height:40px; visibility:hidden"><![CDATA[]]></p>
 
-	<object id="loading" type="image/X-arib-png" data="../images/NowLoading.jpg" style="left:0px; top:237px; width:960px; height:65px; visibility:visible"/>
-
-
+	<object id="loading" type="image/jpeg" data="../images/NowLoading.jpg" style="left:0px; top:237px; width:960px; height:65px; visibility:visible"/>
 </div>
-
- <p id="display" style=""><![CDATA[]]></p>
 
 </body>
 </bml>
