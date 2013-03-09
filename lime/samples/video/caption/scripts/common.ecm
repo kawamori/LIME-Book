@@ -1,7 +1,7 @@
 /**************************  共通データ  ********************************/
 
 
-var gVodURL = "http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts";
+var gVodURL = "http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/ntt-ev/h264-sd-tts/Docu-white-J_out.mp4&protocol=http_tts";
 //var gVodLength = 730;	// Show VOD Time [100msec] ex.10=1sec, 300=30sec
 var gVodLength = 12150;
 var gCaptionXML_bad = "../scripts/caption_bad_tagalog.xml";
