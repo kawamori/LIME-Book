@@ -28,7 +28,7 @@
 		urlList[7] = "chula/sign/startup.xml";
 		urlList[8] = "mng/index.xml";
 		urlList[9] = "hybrid/index.xml";
-		urlList[10] = "kamakura/simple-epg/startup.bml";
+		urlList[10] = "kamakura/index.xml";
 		urlList[11] = "test.html";
 		urlList[12] = "news/index.xml";
 		
