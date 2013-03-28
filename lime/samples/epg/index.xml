@@ -24,7 +24,7 @@
 		urlList[3] = "lab_mio/lab_mio/bml/startup.bml";
 		urlList[4] = "plala-new/startup.xml";
 		urlList[5] = "hotelVOD/top.bml";
-		urlList[6] = "";
+		urlList[6] = "nexcoop/top.bml";
 		urlList[7] = "";
 		urlList[8] = "";
 		urlList[9] = "";
@@ -75,7 +75,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
 		onclick="jump();">hotel VOD</p>
    <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
-		onclick="jump();"></p>
+		onclick="jump();">NEXCOOP VOD</p>
 		
 		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
 		onclick="jump();"></p>

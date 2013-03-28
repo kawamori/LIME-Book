@@ -45,7 +45,7 @@ function jump(){
 
 
 
-function goback(){ browser.launchDocument("../index.xml", "cut");	}
+function goback(){ browser.launchDocument("index.xml", "cut");	}
 
 		]]></script>
 

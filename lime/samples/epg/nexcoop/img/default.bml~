@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA"
+	"http://www.arib.or.jp/B24/DTD/bml_1_1.dtd">
+<?bml bml-version="3.0" ?>
+<bml>
+<head>
+<title>template for BS</title>
+
+<style><![CDATA[
+	body{
+		clut:url(default.clt);
+		background-color-index:7;
+	}
+]]></style>
+
+</head>
+<body>
+<div style="left:0px; top:0px; width:960px; height:540px">
+<object type="image/X-arib-png" data="t_ca.png" style="left:0;top:0;width:930px;height:70px;"/>
+<object type="image/X-arib-png" data="t_help.png" style="left:25px;top:25px;width:926px;height:70px;"/>
+<object type="image/X-arib-png" data="t_hotel1.png" style="left:50px;top:50px;width:926px;height:70px;"/>
+<object type="image/X-arib-png" data="t_hotel2.png" style="left:75px;top:75px;width:926px;height:70px;"/>
+<object type="image/X-arib-png" data="t_hotel3.png" style="left:100px;top:100px;width:926px;height:70px;"/>
+<object type="image/X-arib-png" data="t_houga.png" style="left:125px;top:125px;width:926px;height:70px;"/>
+<object type="image/X-arib-png" data="t_idol.png" style="left:150px;top:150px;width:926px;height:70px;"/>
+<object type="image/X-arib-png" data="t_news.png" style="left:175px;top:175px;width:926px;height:70px;"/>
+<object type="image/X-arib-png" data="t_pay.png" style="left:0;top:0;width:926px;height:70px;"/>
+<object type="image/X-arib-png" data="t_variety.png" style="left:25px;top:25px;width:926px;height:70px;"/>
+<object type="image/X-arib-png" data="t_youga.png" style="left:50px;top:50px;width:926px;height:70px;"/>
+<object type="image/X-arib-png" data="title.png" style="left:75px;top:75px;width:1024px;height:78px;"/>
+<object type="image/X-arib-png" data="title11.png" style="left:100px;top:100px;width:656px;height:50px;"/>
+<object type="image/X-arib-png" data="b_back.png" style="left:125px;top:125px;width:120px;height:60px;"/>
+<object type="image/X-arib-png" data="b_next.png" style="left:150px;top:150px;width:120px;height:60px;"/>
+<object type="image/X-arib-png" data="b_next_b.png" style="left:175px;top:175px;width:120px;height:60px;"/>
+<object type="image/X-arib-png" data="b_play.png" style="left:0;top:0;width:180px;height:60px;"/>
+<object type="image/X-arib-png" data="b_pre.png" style="left:25px;top:25px;width:120px;height:60px;"/>
+<object type="image/X-arib-png" data="b_pre_b.png" style="left:50px;top:50px;width:120px;height:60px;"/>
+<object type="image/X-arib-png" data="m_ad.png" style="left:75px;top:75px;width:246px;height:120px;"/>
+<object type="image/X-arib-png" data="m_an.png" style="left:100px;top:100px;width:120px;height:120px;"/>
+<object type="image/X-arib-png" data="m_ca.png" style="left:125px;top:125px;width:120px;height:120px;"/>
+<object type="image/X-arib-png" data="m_h1.png" style="left:150px;top:150px;width:120px;height:120px;"/>
+<object type="image/X-arib-png" data="m_h2.png" style="left:175px;top:175px;width:120px;height:120px;"/>
+<object type="image/X-arib-png" data="m_h3.png" style="left:0;top:0;width:120px;height:120px;"/>
+<object type="image/X-arib-png" data="m_ho.png" style="left:25px;top:25px;width:246px;height:120px;"/>
+<object type="image/X-arib-png" data="m_hp.png" style="left:50px;top:50px;width:120px;height:120px;"/>
+<object type="image/X-arib-png" data="m_id.png" style="left:75px;top:75px;width:120px;height:120px;"/>
+<object type="image/X-arib-png" data="m_nw.png" style="left:100px;top:100px;width:120px;height:120px;"/>
+<object type="image/X-arib-png" data="m_va.png" style="left:125px;top:125px;width:120px;height:120px;"/>
+<object type="image/X-arib-png" data="m_yo.png" style="left:150px;top:150px;width:246px;height:120px;"/>
+<object type="image/X-arib-png" data="ok.png" style="left:175px;top:175px;width:16px;height:16px;"/>
+<object type="image/X-arib-png" data="t_adult.png" style="left:0;top:0;width:926px;height:70px;"/>
+<object type="image/X-arib-png" data="t_anime.png" style="left:25px;top:25px;width:926px;height:70px;"/>
+
+</div>
+</body>
+</bml>
+
