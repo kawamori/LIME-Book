@@ -28,7 +28,7 @@ function goback(){ browser.launchDocument("menu_ho.bml", "cut");	}
 function pressView(){
 /*	var vodUri = "m10040.ast";
 	if (vodUri == '') return;*/
-	browser.launchIPTVContent("http://portal.miyagi.flets-east.jp:8080/test/servlet/mkmeta?cid=20111215082958774miyagi1&roll=off", 'menu_ho.bml', 0);
+	browser.launchIPTVContent("http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/oki/h264-hd-tts/earth_out.mp4&protocol=http_tts", 'menu_ho.bml', 0);
 //browser.launchDocument("menu_ho.bml", "cut");
 }
 
