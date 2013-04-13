@@ -22,7 +22,7 @@
 		urlList[1] = "demo/startup-j.xml";
 		urlList[2] = "demo/startup-j-font.xml";
 		urlList[3] = "caption/lime/startup.xml";
-		urlList[4] = " ";
+		urlList[4] = "demo/startup-load.xml";
 		urlList[5] = " ";
 		urlList[6] = " ";
 		urlList[7] = " ";
@@ -70,7 +70,7 @@ function goback(){ browser.launchDocument("index.xml", "cut");	}
 		
 		
 		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
-		onclick="jump();"></p>
+		onclick="jump();">New LOAD Version</p>
 
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
 		onclick="jump();"></p>
