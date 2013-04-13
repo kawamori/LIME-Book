@@ -49,7 +49,7 @@ function alert(str){
 }
 
 function onLoad(){
-        var video = getElementById("vod");
+        var video = document.getElementById("vod");
         video.streamStatus="play";
         startCounter();
         }
