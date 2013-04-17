@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?bml bml-version="100.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<bml xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>Test Sites</title>
+	<style>
+		<![CDATA[
+                        body { background-image: url("images/wallpaper_LQ.jpg");}
+			p {height:16px;color-index:15;grayscale-color-index:15 15}
+			
+			p:focus{background-color-index:80;color-index:7;}
+			.button {top:180px;left:221px;width:429px;height:28px;}
+			
+		]]>
+	</style>
+	<script ><![CDATA[
+
+		var urlList = new Array();
+		
+		urlList[0] = "epg/hotelVOD/top.bml";
+		urlList[1] = "video/video.xml";
+		urlList[2] = "epg/index.xml";
+	        urlList[3] = "system/index.xml";
+		urlList[4] = "games/top.xml";
+		urlList[5] = "jpegtest/index.xml";
+		urlList[6] = "text/richmen/startup.xml";
+		urlList[7] = "chula/sign/startup.xml";
+		urlList[8] = "mng/index.xml";
+		urlList[9] = "hybrid/index.xml";
+		urlList[10] = "kamakura/index.xml";
+		urlList[11] = "test.html";
+		urlList[12] = "news/index.xml";
+		
+
+//var base = "http://localhost/";
+//var base = "http://127.0.0.1/";
+var base = "";
+
+   function jump(){
+	var url = urlList[document.currentEvent.target.id]
+	
+		browser.launchDocument(base + url);
+}
+	
+function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lime-iptv-portal/bml/startup.bml", "cut");	}
+
+		]]></script>
+
+</head>
+<body>
+		
+<p id="display" style="top:20px;left:50px;width:350px;height:400px;"><![CDATA[ Sample LIME code ]]></p>
+
+        <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
+		onclick="jump();">EPG - links to videos</p>
+		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
+		onclick="jump();">Video Test</p>
+		
+		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
+		onclick="jump();">EPG Sample</p>
+		
+		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
+		onclick="jump();">system test</p>
+		
+		
+		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
+		onclick="jump();">Game-like</p>
+
+	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
+		onclick="jump();">JPEG</p>
+		
+   <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
+		onclick="jump();">Rich Men (Chinese text)</p>
+		
+		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
+		onclick="jump();"> Chula Sign Language </p>
+		
+				 <p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
+		onclick="jump();">MNG</p>
+				
+				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
+		onclick="jump();">Hybrid </p>
+		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
+		onclick="jump();">Kamakura</p>
+
+		<p id="11" class="button" style="top:480px;nav-index:11;nav-up:10;nav-down:12;"
+		onclick="jump();">Graphics test</p>
+		<p id="12" class="button" style="top:510px;nav-index:12;nav-up:11;nav-down:12;"
+		onclick="jump();">News</p>
+
+
+
+
+<div style="left:188px; top:240px; width:32px;height:15px;">
+<object type="image/X-arib-png" data="images/graphic_new_transparent3.png" style="left:0;top:0;width:32px;height:15px;"/>
+</div>
+
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+</body>
+</bml>
+
+
