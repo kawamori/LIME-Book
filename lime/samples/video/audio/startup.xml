@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head  xmlns="http://www.w3.org/1999/xhtml">
+<title>Audio Overlay test</title>
+
+<style><![CDATA[
+
+
+]]></style>
+
+<script><![CDATA[
+function myload(){
+	GE("bgm").streamStatus="play";
+
+	browser.setInterval("BGMrp();",31000,0);
+
+}
+
+function GE(id){
+	return document.getElementById(id);
+}
+function BGMrp(){
+	GE("bgm").streamStatus="stop";
+	GE("bgm").streamStatus="play";
+}
+
+function goback(){ browser.launchDocument("../video.xml", "cut");	}
+
+]]></script>
+</head>
+<body  xmlns="http://www.w3.org/1999/xhtml" onload="myload();">
+<p> </p>
+<div>
+	<object id="bgm" data="media/disney.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
+</div>
+
+<div style="top:100px;left:300px;width:460px;height:302px;background-color-index:1;">	
+	<object id="vod" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts" streamstatus="play" style="top:10px;left:10px;width:360px;height:202px;visibility:visible;" />
+	</div>
+
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+</body>
+</bml>
+
