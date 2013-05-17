@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <?bml bml-version="100.0" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--
 ====================================================================
 ====================================================================
@@ -15,8 +14,7 @@ body{
 	resolution:960x540;
 	used-key-list:basic data-button numeric-tuning;
 	display-aspect-ratio:16v9;
-	clut:url(common.clt);
-	background-image: url("background.jpg");
+
 }
 .full{
 	left:0px;
@@ -31,12 +29,11 @@ p.subtitle{left:20px; top:50px;width:270px;height:140px;line-height:18px;font-si
 
 
 </style>
-<!--
-<bevent>
-	<beitem id="dbtnp" type="DataButtonPressed" onoccur="DButtonPress();" subscribe="subscribe" />
-	<beitem id="MediaStopped" type="MediaStopped" onoccur="MediaStopped();" object_id="Video"/>
-</bevent>
--->
+	<script ><![CDATA[
+
+function goback(){ browser.launchDocument("../../index.xml", "cut");	}
+
+		]]></script>
 
 </head>
 <body id="body">
@@ -50,7 +47,7 @@ p.subtitle{left:20px; top:50px;width:270px;height:140px;line-height:18px;font-si
 <!--
 <div id="L" style="left:48px;">-->
 	<div id="L1" class="bbase" style="left:48px;top:10px;">
-		<object class="balloonpng" type="image/X-arib-png" data="balloon3L.png"></object> <!-- 511 x 397 -->
+		<object class="balloonpng" type="image/X-arib-png" data="balloon3L.png"></object> 
 		<p id="L1txt"  class="subtitle">test</p>
 	</div>
 	<!--
@@ -99,6 +96,11 @@ p.subtitle{left:20px; top:50px;width:270px;height:140px;line-height:18px;font-si
 <!--
 <div id="key_on" onkeydown="keydown();" style="left:0px;top:0px;width:1px;height:1px;nav-index:1"/>-->
 
+
+
+
+
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
 </body>
 
 </html>
