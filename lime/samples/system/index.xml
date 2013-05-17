@@ -27,7 +27,7 @@
 		urlList[6] = "astem/startup.xml";
 		urlList[7] = "xmltest/bml/startup.xml";
 		urlList[8] = "../video/nico/nicostartup-j.html";
-		urlList[9] = "konya/balloon/startup.html";
+		urlList[9] = "konya/balloon/startup.xml";
 		urlList[10] = "";
 		urlList[11] = "";
 		urlList[12] = "";
