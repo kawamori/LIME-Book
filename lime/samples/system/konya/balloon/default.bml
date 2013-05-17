@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA" "bml_1_0.dtd">
+<?bml bml-version="1.0" ?>
+<bml>
+<head>
+<title>template for BS</title>
+
+<style><![CDATA[
+	body{
+		clut:url(default.clt);
+		background-color-index:7;
+	}
+]]></style>
+
+</head>
+<body>
+<div style="left:0px; top:0px; width:960px; height:540px">
+<object type="image/X-arib-png" data="balloon5R.png" style="left:0;top:0;width:270px;height:140px;"/>
+<object type="image/X-arib-png" data="balloon3L.png" style="left:25px;top:25px;width:270px;height:140px;"/>
+<object type="image/X-arib-png" data="balloon3R.png" style="left:50px;top:50px;width:270px;height:140px;"/>
+<object type="image/X-arib-png" data="balloon4L.png" style="left:75px;top:75px;width:270px;height:140px;"/>
+<object type="image/X-arib-png" data="balloon4R.png" style="left:100px;top:100px;width:270px;height:140px;"/>
+<object type="image/X-arib-png" data="balloon5L.png" style="left:125px;top:125px;width:270px;height:140px;"/>
+
+</div>
+</body>
+</bml>
+
