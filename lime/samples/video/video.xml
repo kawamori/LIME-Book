@@ -27,7 +27,7 @@
 		urlList[6] = "nico/nicostartup-j.html";
 		urlList[7] = "audio/startup.xml";
 		urlList[8] = "audio/aiff-test.xml";
-		urlList[9] = "";
+		urlList[9] = "http://lime.jgn-x.jp/cgi-bin/computex_so/startover.cgi";
 		urlList[10] = "";
 		urlList[11] = "";
 		urlList[12] = "";
@@ -84,7 +84,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">AIFF Overlay</p>
 				
 				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
-		onclick="jump();"></p>
+		onclick="jump();">Computex 2013</p>
 		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
 		onclick="jump();"></p>
 
