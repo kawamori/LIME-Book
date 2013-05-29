@@ -37,6 +37,7 @@ var myid;
 var prev;
 
 
+
 function load(){
 /*alert("onload");*/
     position=1;
