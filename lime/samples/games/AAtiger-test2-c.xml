@@ -40,7 +40,10 @@ var prev;
 function load(){
 /*alert("onload");*/
     position=1;
-	forward();
+     position=1;
+    /* timer = setTimeout("forward()", 1000);*/
+    timer  = browser.setInterval("forward();", 1000, 0);
+/*	forward();*/
 }
 
 function restartShow() {

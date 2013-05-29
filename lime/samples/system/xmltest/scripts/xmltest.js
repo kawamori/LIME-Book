@@ -5,7 +5,7 @@ var gVodURL = "http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/m
 /*var gVodLength = 730;	// Show VOD Time [100msec] ex.10=1sec, 300=30sec*/
 var gVodLength = 12150;
 /*var gCaptionXML_bad = "../scripts/htmlsample2.html";*/
-var gCaptionXML_bad = "../scripts/tagalog.xml";
+var gCaptionXML_bad = "../scripts/caption_bad_tagalog.xml";
 /*var gCaptionXML_good = "../scripts/htmlsample1.html";*/
 /*var gCaptionXML_good = "http://nec.iptvf.jp/hello/bml/Shenzhen/aIPTV/scripts/chinese.xml";*/
 
@@ -13,8 +13,8 @@ var gCaption_bad = new Array();
 var gCaption_good = new Array();
 
 
-/*************************  ¶¦ÄÌ´ğÁÃ´Ø¿ô  *******************************/
-/* ½èÍıÊä½õ*/
+/*************************  ¶¦ÄÌ´ğÁÃ´Ø¿E *******************************/
+/* ½èÍıÊä½E/
 function getElementById(id){return document.getElementById(id);}
 function showElem(id){getElementById(id).normalStyle.visibility="visible";}
 function hideElem(id){getElementById(id).normalStyle.visibility="hidden";}
@@ -23,14 +23,14 @@ function lockScreen(){browser.lockScreen();}
 function unlockScreen(){browser.unlockScreen();}
 
 /****************************************************************  
-* µ¡¡¡Ç½¡§ XML»úËë¥Õ¥¡¥¤¥ë¤òÆÉ¤ß¹ş¤ßÇÛÎó¤Ë³ÊÇ¼¤¹¤ë
-* °ú¡¡¿ô¡§ XML¥Õ¥¡¥¤¥ë¥Ñ¥¹¡¢»úËëÇÛÎó
-* Ìá¤êÃÍ¡§ ¤Ê¤·
+* µ¡¡¡Ç½¡§ XML»úËEÕ¥¡¥¤¥EòÆÉ¤ß¹ş¤ßÇÛÎó¤Ë³ÊÇ¼¤¹¤E
+* °ú¡¡¿ô¡§ XML¥Õ¥¡¥¤¥EÑ¥¹¡¢»úËEÛÎE
+* Ìá¤EÍ¡§ ¤Ê¤·
 ****************************************************************/ 
 function loadXML(xmlFile, captionArray){
 /*modified by Kawamori*/
 
-	/* ³°Éô»úËë¥Õ¥¡¥¤¥ë*/
+	/* ³°Éô»úËEÕ¥¡¥¤¥E/
 	var array = browser.transmitTextDataOverIP(xmlFile, "" , "EUC-JP");
 	
 /*	if( array[0] == 1 ){
@@ -40,7 +40,7 @@ function loadXML(xmlFile, captionArray){
 	}
 */
 
-	// ²ş¹Ô¥³¡¼¥É½üµî
+	// ²ş¹Ô¥³¡¼¥É½EE
 	var str = deleteLineFeed(array[2]);
 
 	var captionCounter = 0;
@@ -79,9 +79,9 @@ function loadXML(xmlFile, captionArray){
 
 
 /****************************************************************  
-* µ¡¡¡Ç½¡§ ²ş¹Ô¥³¡¼¥É¤Îºï½ü 
+* µ¡¡¡Ç½¡§ ²ş¹Ô¥³¡¼¥É¤ÎºEE
 * °ú¡¡¿ô¡§ Ê¸¸À
-* Ìá¤êÃÍ¡§ ²ş¹Ô¥³¡¼¥É¤Ê¤·¤ÎÊ¸¸À
+* Ìá¤EÍ¡§ ²ş¹Ô¥³¡¼¥É¤Ê¤·¤ÎÊ¸¸À
 ****************************************************************/ 
 function deleteLineFeed(myLen) {
 	var newLen = "";  
@@ -97,8 +97,8 @@ function deleteLineFeed(myLen) {
 
 /****************************************************************  
 * µ¡¡¡Ç½¡§ »ş´Ö¥Õ¥©¡¼¥Ş¥Ã¥È¤òÊÑ´¹ 
-* °ú¡¡¿ô¡§ ¥¯¥í¥Ã¥¯¥¿¥¤¥à
-* Ìá¤êÃÍ¡§ msec
+* °ú¡¡¿ô¡§ ¥¯¥úÁÃ¥¯¥¿¥¤¥E
+* Ìá¤EÍ¡§ msec
 ****************************************************************/ 
 // Clock-time to msec
 function clockTime2msec( strTime ) {
