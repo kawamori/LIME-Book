@@ -23,7 +23,7 @@
 		urlList[2] = "demo/startup-j-font.xml";
 		urlList[3] = "caption/lime/startup.xml";
 		urlList[4] = "demo/startup-load.xml";
-		urlList[5] = "ttml/startup_SNOWFES_APP_EN.php";
+		urlList[5] = "ttml/startup.xml";
 		urlList[6] = " ";
 		urlList[7] = " ";
 		urlList[8] = "";
