@@ -1,0 +1,262 @@
+/**************************  共通データ  ********************************/
+var gVodLength = 12150;
+var gCaptionXML_good = ""
+
+// ----------------------------------------------------
+// SubTitle-Node
+// 字幕データ１件
+function SbtNode(tsSt, tsEn)
+{
+     this.sType = "SbtNode";
+     this.tsSt = tsSt;
+     this.tsEn = tsEn;
+     this.nTextCnt = 0;
+     this.nTextPos = 0;
+}
+
+// ---------------  字幕処理制御変数-1  -----------------
+var nItvMlSec = 100;
+var sFirstPos = "begin=";
+var sLastPos = "end=";
+var saTTML = new Array();
+var claSbtNode = new Array();
+var nCntTrue = 0;
+
+// ---------------  字幕処理制御変数-2  -----------------
+var tsBackSec = -1;
+var bVideoNotPlay = true;
+var nOfsBaseMlSec = -1;
+var nClearTotalMlSec = 0;
+var nTtmlTargetPos = 0;
+var nCurMlSec = 0;
+var dtBase = null;
+
+// ----------------------------------------------------
+
+/*************************  共通基礎関数  *******************************/
+// 処理補助
+function getElementById(id){return document.getElementById(id);}
+function showElem(id){getElementById(id).normalStyle.visibility="visible";}
+function hideElem(id){getElementById(id).normalStyle.visibility="hidden";}
+function romSound(id){browser.playRomSound("romsound://"+id);}
+function lockScreen(){browser.lockScreen();}
+function unlockScreen(){browser.unlockScreen();}
+
+/****************************************************************  
+* 機　能： XML字幕ファイルを読み込み配列に格納する
+* 引　数： XMLファイルパス、字幕配列
+* 戻り値： なし
+****************************************************************/ 
+function loadXML(xmlFile){
+
+	//alert("loadXML_1");
+
+	// 外部字幕ファイル
+	var array = browser.transmitTextDataOverIP(xmlFile, "" , "EUC-JP");
+	//alert("loadXML_2");
+	//return;
+	var nCntTmp = 0;
+	vInitTtmls();
+	
+	//alert("loadXML_3");
+	saTTML = array[2].split("\n");
+
+	//alert("loadXML_4");
+	var i, j, k;
+	i = j = k = 0;
+	
+	//alert("loadXML_5");
+	for(i = 0; i < saTTML.length; i++)
+	{
+		if (bStartsWith(saTTML[i], "<p begin="))
+			nCntTmp++;
+	}
+	//alert("loadXML_6");
+	claSbtNode = new Array(nCntTmp);
+	//alert("loadXML_7");
+
+	// ------------------------------------------------------
+	var eCurStat = 0;	// 0:None, 2:Entered, 7:Exited
+	var clSbtNode = null;
+	//alert("loadXML_8");
+
+	// XMLをパースして開始時間、終了時間、表示文字列を配列に格納
+	if(array[0] != 1){
+		return;
+	}
+	
+	//alert("loadXML_9");
+	for(i = 0; i < saTTML.length; i++)
+	{
+		if (eCurStat == 0)
+		{
+			// 字幕の先頭をひっ掛ける
+			
+			// 先頭かをチェック
+			if (bStartsWith(saTTML[i], "<p begin="))
+			{
+				clSbtNode = sbtnMakSbtNode(saTTML[i]);
+				clSbtNode.nTextPos = i + 1;
+				claSbtNode[nCntTrue++] = clSbtNode;
+				eCurStat = 2;
+				continue;
+			}
+
+			// 先頭以外は、全て無視する
+		}
+		else if (eCurStat == 2)
+		{
+			// 字幕テキストを拾う
+
+			// 先ずは、字幕テキストの終了をチェック
+			if (bStartsWith(saTTML[i], "</p>"))
+			{
+				eCurStat = 0;
+				continue;
+			}
+
+			// 字幕テキストが３行以上になる時はエラーとする。
+			if (this.nTextCnt > 1)
+			{
+				vSeqError("字幕テキストが３行以上");
+				return;
+			}
+
+			clSbtNode.nTextCnt++;
+		}
+	}
+	//alert("loadXML_A");
+
+}
+
+
+function vInitTtmls() {
+	saTTML = new Array();
+	claSbtNode = new Array();
+	nCntTrue = 0;
+}
+
+function vSeqError(str) {
+	vInitTtmls();
+}
+
+function sbtnMakSbtNode(str) {
+	
+	var tsSt, tsEn;
+	var nFirstPos, nLastPos;
+	var sFirstTm, sLastTm;
+
+	nFirstPos = str.indexOf(sFirstPos) + sFirstPos.length + 1;
+	sFirstTm = str.substring(nFirstPos, nFirstPos + 11 - 0);
+	tsSt = nMlSecFromStr(sFirstTm);
+	nLastPos = str.indexOf(sLastPos) + sLastPos.length + 1;
+	sLastTm = str.substring(nLastPos, nLastPos + 11 - 0);
+	tsEn = nMlSecFromStr(sLastTm);
+
+	return(new SbtNode(tsSt, tsEn));
+}
+
+/****************************************************************  
+* 機　能： 時間フォーマットを変換 
+* 引　数： TTML-string : "00:00:23.00"
+* 戻り値： Num : msec
+****************************************************************/ 
+// Clock-time to msec
+// 
+function nMlSecFromStr(strTime) {
+
+//printd(" clock: "+strTime);
+
+	var fSec = 0;
+	// Search separator between hour to minute
+	var sep1 = strTime.indexOf( ':' );
+	// Search separator between minute to second
+	var sep2 = strTime.lastIndexOf( ':' );
+	var sep3 = strTime.lastIndexOf( '.' );
+	if( sep1 > 0 && sep2 > 0 ) {
+		var hour = Number( strTime.substring( 0, sep1 ) );
+		var min = Number( strTime.substring( sep1+1, sep2 ) );
+		var sec = Number( strTime.substring( sep2+1, sep3) );
+		var msec = Number( strTime.substring( sep3+1 ) ) * 10;
+		fSec = (hour * 60 + min) * 60 + sec;
+		fSec *= 1000;
+		fSec += msec;
+	} //printd(" fSec: "+fSec);
+	return fSec;
+}
+
+
+/****************************************************************  
+* 機　能： 時間フォーマットを変換 
+* 引　数： Date型
+* 戻り値： sec
+****************************************************************/ 
+// Clock-time to sec
+function nMlSecFromDate(dt) {
+	var fSec = 0;
+
+	var sTm = dt.toString().substring(11, 18);
+	var hour, min, sec;
+	hour = Number(sTm.substring(0, 1));
+	min = Number(sTm.substring(3, 4));
+	sec = Number(sTm.substring(6, 7));
+	
+	fSec = (hour * 60 + min) * 60 + sec;
+	return fSec;
+}
+
+/****************************************************************  
+* 機　能： 字幕表示判定
+* 引　数： nNowTotalMilliSec
+* 戻り値： vaRet[]
+			vaRet[0] = 1:正常（文字表示）、-1:データ無し
+			vaRet[1] = 正常時、字幕消去時刻（トータルミリ秒）
+			vaRet[2] = 表示文字列
+****************************************************************/ 
+// Clock-time to msec
+// Date
+function vaFetchTtml(nNowTotalMilliSec) {
+
+//printd(" clock: "+strTime);
+
+	var vaRet = new Array(3);
+	vaRet[0] = -1;
+	vaRet[1] = 0;
+	vaRet[2] = "";
+	var i;
+	
+	//alert("vaFetchTtml_1");
+	// 全件表示済の時は、「データ無し」で戻る。
+	if (nTtmlTargetPos >= nCntTrue)
+	{
+		return vaRet;
+	}
+	
+	//alert("vaFetchTtml_2");
+	// Target-Node 取得
+	var clSbtNode = claSbtNode[nTtmlTargetPos];
+	
+	
+	//alert("vaFetchTtml_3");
+	//alert("vaFetchTtml_31[" + clSbtNode.tsSt.toString()
+	//		 + ", " + nNowTotalMilliSec.toString() + "]");
+	// データ表示タイミングが来たかＣＨＫ
+	if (clSbtNode.tsSt <= nNowTotalMilliSec)
+	{
+		//alert("vaFetchTtml_4");
+		vaRet[0] = 1;
+		vaRet[1] = clSbtNode.tsEn;
+		
+		//alert("vaFetchTtml_41");
+		//alert("vaFetchTtml_471 [" + clSbtNode.nTextCnt.toString());
+		for(i = 0; i < clSbtNode.nTextCnt; i++)
+		{
+			vaRet[2] += saTTML[clSbtNode.nTextPos + i];
+			vaRet[2] += "\n";
+		}
+		//alert("vaFetchTtml_472 [" + clSbtNode.nTextCnt.toString());
+		nTtmlTargetPos++;
+	}
+	return vaRet;
+}
+

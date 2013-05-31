@@ -1,0 +1,81 @@
+//Some utility functions to make things easier
+
+var	sRetPage = "../startup_Test3.xml";
+//var	sRetPage = "http://lime.jgn-x.jp/bml/Kaleidoscope/htb/top.php";
+
+
+//----------------------------------------------------------------
+
+function bStartsWith0(sTarget, sPattern)	{
+	if (sTarget.length < sPattern.length)
+		return false;
+		
+	var i = 0;
+	for(i = 0; i < sPattern.length; i++)
+	{
+		if (sTarget.charAt(i) != sPattern.charAt(i))
+			return false;
+	}
+	return true;
+}
+
+function bStartsWith(sTarget, sPattern)	{
+	if (sTarget.length < sPattern.length)
+		return false;
+	
+	var sLeft = sTarget.substring(0, sPattern.length - 0);
+	if (sLeft != sPattern)
+		return false;
+	return true;
+}
+
+//----------------------------------------------------------------
+/*
+function println(str,display){
+	var obj = document.getElementById(display);
+	obj.firstChild.data += str + "\r\n";
+}
+
+function print(str,display){
+	var obj = document.getElementById(display);
+	obj.firstChild.data = str ;
+}
+
+
+function printd(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str ;
+}
+
+
+function printlnd(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+
+
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+
+function $(id) {
+		return document.getElementById(id);
+	}
+
+function setTimeout(code,delay){
+         return   browser.setInterval(code,delay,1);
+        }
+        
+
+function replace(str,reg,replaced){
+
+return str.substring(0,str.indexOf(reg)) + replaced +str.substring(str.indexOf(reg)+reg.length,str.lastIndexOf(""));
+
+}
+
+function clearTimeout(timerID){
+ browser.clearTimer( timerID );
+}
+*/
+
