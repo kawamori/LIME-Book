@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<?bml bml-version="100.0"?>
+<bml>
+ <head>
+  <title>Test text</title>
+  <style>
+   <![CDATA[
+   body {resolution:960x540; }
+    .base{background-color-index: 4;}
+      #draw{width:160px; height:120px; left:200px; top:100px; background-color-index:1;}
+      .point {width:1px; height:1px;background-color-index:7;}
+        #pt {width:2px; height:2px;background-color-index:2;}    
+#display	{ font-size:20px;  background-color-index:8; color-index:7;font-size:16px;top:0px;left:0px;width:80px;height:40px;}
+   ]]>
+  </style>
+<script><![CDATA[
+/*
+ background-image: url("./images/medekikuTitle_englishHD.jpg")*/
+ 
+
+function goback(){ browser.launchDocument("index.xml", "cut");	}
+
+function handler()
+{
+	var evt = document.currentEvent;
+	var kcode =evt.keyCode;
+	
+	if (kcode == 19){goback();}
+	else if (keycode == 22){}
+	else if (keycode == 23){obj.normalStyle.fontSize=30;}
+	else if (keycode == 24){obj.normalStyle.fontSize=36;}
+}
+]]></script>
+
+ </head>
+ <body onload="drawPt();">
+ 
+ 
+ 
+ 
+ <div id="basebox" style="width:960px;height:540px;top:0px;left:0px;background-color-index:30">
+<object id="Lf" class="balloonpng" style="width:960px;height:540px;top:0px;left:0px;" type="image/jpeg" data="images/BG-medekikuTitle_englishHD.jpg"></object>
+</div>
+
+
+
+<div id="basebox" style="width:960px;height:540px;top:0px;left:0px;background-color-index:0;visibility:hidden;">
+<object style="width:702px;height:472px;top:30px;left:128px;" type="image/jpeg" data="images/Logo_medekikuTitle_japanSD.jpg"></object>
+</div>
+
+
+
+ 
+<p style="top:0px;left:0px;height:1px;width:1px;background-color-index:8;nav-index:0;" onkeydown="handler();" onkeyup="handler();" onclick="handler();"><![CDATA[]]></p>
+
+
+<p style="top:420px;left:240px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="">西日本にお住まいの方は青ボタンを</p>
+ 
+ 
+<p id="p01" class="button" style="top:520px;left:700px;height:36px;width:64px;background-color-index:1;" onclick=""  accesskey="R">西日本にお住まいの方は青ボタンを</p>
+
+ 
+<p style="top:0px;left:0px;height:1px;width:1px;background-color-index:8;nav-index:0;" onkeydown="handler();" onkeyup="handler();" onclick="handler();"><![CDATA[]]></p>
+
+
+<p id="display" style=""><![CDATA[]]></p>
+
+ </body>
+</bml>
