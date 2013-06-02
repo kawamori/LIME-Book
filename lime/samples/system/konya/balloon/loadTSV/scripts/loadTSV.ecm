@@ -1,0 +1,8 @@
+﻿/**************************  Common Data  ********************************/
+var tsvFile="http://192.168.1.6/limeDemo/konya/data/spore20.tsv";
+
+function printEnv(){
+var str ="This is from ECMASCRIPT";
+
+return str;
+}

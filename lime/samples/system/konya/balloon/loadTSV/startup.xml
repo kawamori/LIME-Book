@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title>Bubble Caption</title>
+
+<style><![CDATA[
+	
+	.button {width:140px;height:32px;}
+	p:focus {background-color-index:82;}
+	p.button {text-align:center;color-index:0;line-height:30px;}
+	
+	.balloonpng {left:5px;top:5px;width:270px;height:140px;}
+.bbase {width:560px;height:410px;position:absolute;}
+p.subtitle{left:10px; top:10px;width:250px;height:140px;line-height:18px;font-size:20px;position:absolute;}
+
+#posBalloon {left:336px;top:194px;}
+
+	#display	{color-index:1;text-align:left;padding-top:5px;padding-left:5px;padding-right:5px;padding-bottom:5px;font-size:24px;
+	top:10px;height:126px;width:700px;}
+	#caption	{left:15px; top:35px;width:250px;height:140px;line-height:18px;font-size:18px;position:absolute;}
+	
+]]></style>
+
+<script src="scripts/loadTSV.ecm"/>
+
+<script><![CDATA[
+
+alert("env"+printEnv());
+
+alert("TSV="+tsvFile);
+
+var gVodURL = 
+"http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/snow-festa/yoursingapore_out.mp4&protocol=http_tts";
+//var gVodLength = 730;	// Show VOD Time [100msec] ex.10=1sec, 300=30sec
+var gVodLength = 12150;
+
+var tsvFile="http://192.168.1.6/limeDemo/konya/data/spore20.tsv";
+alert("TSV="+tsvFile);
+var gCaption_bad = new Array();
+var gCaption_good = new Array();
+var lines = new Array();
+
+var yUnit = parseInt(135);/* (ie. 540/4)*/
+var xUnit = parseInt(240);/* (i.e. 960/4)*/
+
+var offset;
+var origin;
+var captionArray= new Array();
+var captionCounter = 0;
+
+var vodTimerID = NaN;
+var fullscreenFlag = 0;
+var captionSelectFlag = 0;
+var caption_full = document.getElementById("caption_full");
+var cap = document.getElementById("caption");
+
+/****************************************************************  
+* 機　能： 時間フォーマットを変換 
+* 引　数： クロックタイム
+* 戻り値： msec
+****************************************************************/ 
+// Clock-time to msec
+function clockTime2msec( strTime ) {
+
+//printd(" clock: "+strTime);
+
+	var fSec = 0;
+	// Search separator between hour to minute
+	var sep1 = strTime.indexOf( ':' );
+	// Search separator between minute to second
+	var sep2 = strTime.lastIndexOf( ':' );
+	var sep3 = strTime.lastIndexOf( '.' );
+	if( sep1 > 0 && sep2 > 0 ) {
+		var hour = Number( strTime.substring( 0, sep1 ) );
+		var min = Number( strTime.substring( sep1+1, sep2 ) );
+		var sec = Number( strTime.substring( sep2+1, sep3) );
+		var msec = Number( strTime.substring( sep3+1 ) )*10;
+		fSec = hour*3600.0 + min*60.0 + sec;
+		fSec *= 1000;
+		fSec += msec;
+	} //printd(" fSec: "+fSec);
+	return fSec;
+
+}
+
+
+/****************************************************************  
+* 機　能： 改行コードの削除 
+* 引　数： 文言
+* 戻り値： 改行コードなしの文言
+****************************************************************/ 
+function deleteLineFeed(myLen) {
+	var newLen = "";  
+	for(var i=0; i<myLen.length; i++){
+		text = myLen.substring(i, i+1);
+
+		if(text != "\n" && text != "\r"){
+			newLen += myLen.substring(i, i+1);
+		}
+	}
+	return(newLen);
+}
+
+ 
+  
+
+
+
+function setBalloon(para){
+
+var cRN = document.getElementById("Rn").normalStyle;
+var cLN = document.getElementById("Ln").normalStyle;
+var cRE = document.getElementById("Re").normalStyle;
+var cLE=  document.getElementById("Le").normalStyle;
+var cRF = document.getElementById("Rf").normalStyle;
+var cLF=  document.getElementById("Lf").normalStyle;
+var cND=  document.getElementById("Nd").normalStyle;
+
+
+if (para == "Rn") {
+cRN.visibility="visible";
+cLN.visibility="hidden";
+cRE.visibility="hidden";
+cLE.visibility="hidden";
+cRF.visibility="hidden";
+cLF.visibility="hidden";
+cND.visibility="hidden";
+}else if (para == "Ln") 
+{cRN.visibility="hidden";
+cLN.visibility="visible";
+cRE.visibility="hidden";
+cLE.visibility="hidden";
+cRF.visibility="hidden";
+cLF.visibility="hidden";
+cND.visibility="hidden";}
+else if (para == "Re") 
+{cRN.visibility="hidden";
+cLN.visibility="hidden";
+cRE.visibility="visible";
+cLE.visibility="hidden";
+cRF.visibility="hidden";
+cLF.visibility="hidden";
+cND.visibility="hidden";}
+else if (para == "Le") {
+cRN.visibility="hidden";
+cLN.visibility="hidden";
+cRE.visibility="hidden";
+cLE.visibility="visible";
+cRF.visibility="hidden";
+cLF.visibility="hidden";
+cND.visibility="hidden";}
+else if (para == "Rf") 
+{cRN.visibility="hidden";
+cLN.visibility="hidden";
+cRE.visibility="hidden";
+cLE.visibility="hidden";
+cRF.visibility="visible";
+cLF.visibility="hidden";
+cND.visibility="hidden";}
+else if (para == "Lf") {
+cRN.visibility="hidden";
+cLN.visibility="hidden";
+cRE.visibility="hidden";
+cLE.visibility="hidden";
+cRF.visibility="hidden";
+cLF.visibility="visible";
+cND.visibility="hidden";}
+else {cRN.visibility="hidden";
+cLN.visibility="hidden";
+cRE.visibility="hidden";
+cLE.visibility="hidden";
+cRF.visibility="hidden";
+cLF.visibility="hidden";
+cND.visibility="hidden";}
+}
+
+function putBalloon(cLoc){
+var bPos= document.getElementById("posBalloon").normalStyle;
+	var lpos = parseInt(cLoc.split("")[0]);
+	var rpos = parseInt(cLoc.split("")[1]);
+
+bPos.top=  (parseInt(lpos)-1)*yUnit +"px";
+bPos.left= (parseInt(rpos)-1)*xUnit +"px";
+
+}
+
+
+function checkTime(){
+
+var video = document.getElementById("video");
+var now = new Date();
+
+
+/*
+
+	if (gVodLength-2 <= myStreamPosition) {
+		video.streamStatus="stop";
+		video.data = gVodURL;
+		video.streamStatus="play";
+	}
+*/	
+	
+var pos=parseInt(browser.subDate(now,origin,0))/100;
+	
+ var myStreamPosition = pos; 
+ 
+
+
+
+	for(j=0;j<lines.length;j++){
+		captionArray[i]=  Array(7);
+		}
+		
+		for(i=0;i<lines.length;i++){
+		var tt= lines[i].split("\t");
+		var startTimeMsec=clockTime2msec(tt[1]);
+		var endTimeMsec=clockTime2msec(tt[2]);
+		var cText = tt[6];
+		var cLoc=  tt[3]; 
+
+	var cDir = tt[4];
+	var cEmo=  tt[5];
+	var cPos =cDir.toString()+cEmo.toString();
+		captionArray[captionCounter]=Array(startTimeMsec,endTimeMsec,cText,cLoc,cDir,cEmo,cPos);
+		captionCounter++;	}
+			/*alert(captionArray[1][3]);*/
+/*	alert(captionArray[i][1]+"<="+ myStreamPosition*100);*/
+		
+		for (i=0; i < lines.length; i++) {
+		
+/*alert((Number(captionArray[i][0]) <= myStreamPosition*100) && (Number(captionArray[i][1]) >= myStreamPosition*100));*/
+		if ((Number(captionArray[i][0]) <= myStreamPosition*100) && (Number(captionArray[i][1]) >= myStreamPosition*100)) { 
+			caption_full.firstChild.data = ""+captionArray[i][2]+"";
+			showCaption(captionArray[i][2]);
+			putBalloon(captionArray[i][3]);
+		    setBalloon(captionArray[i][6]);
+				break;
+		}
+	}
+}
+
+
+
+function fetchTSV(){
+
+var array = browser.transmitTextDataOverIP(tsvFile, "" , "EUC-JP");
+
+}
+
+
+function onmyload(){
+
+ origin = new Date();
+
+	vodTimerID = browser.setInterval("checkTime();", 1000, 0);
+     
+var array = browser.transmitTextDataOverIP(tsvFile, "" , "EUC-JP");
+
+if(array[0] == 1){
+		lines = array[2].split("\n");
+	
+   } else {alert("communication failed:"+tsvFile+"="+array[0]+":"+array[1]+">>\n");}
+   	
+}
+
+
+
+/*
+
+
+
+function changeText()
+{ 
+
+
+	
+	
+	var cStart =tField[1];
+	var cLoc=tField[3];
+	var cDir = tField[4];
+	var cEmo= tField[5];
+	var cPos =cDir.toString()+cEmo.toString();
+	
+	putBalloon(cLoc);
+	msg=tField[6].split('"');
+		
+	tArr= txt.split('\n');
+	tPos = txt.indexOf('\n');
+	tTailLen= txt.length - tPos;
+	lNum = tArr.length;
+	
+	
+	if(tPos >0)
+	{
+		if(tTailLen>tPos)
+		{
+			tLen=tTailLen * fSize;
+		}
+		else
+		{
+			tLen=tPos *fSize;
+		}
+	}
+	else
+	{
+		tLen=0;
+	}
+
+	tWidth= cID=="ZT1_LIME_TEST" ? (tLen +10)/2 :(tLen +10);	
+
+	if( ret[0] == 1 )
+	{
+		if (tPos <= 0)
+		{
+			obj.normalStyle.backgroundColorIndex = 8;
+		}
+		else if (lNum <3)
+		{
+			obj.normalStyle.backgroundColorIndex = 8;
+			obj.normalStyle.width= tWidth;
+			obj.normalStyle.left = 200;    
+			obj.normalStyle.height=fSize+10;
+		}
+		else
+		{  
+			obj.normalStyle.backgroundColorIndex = 8;
+			obj.normalStyle.width= tWidth;
+			obj.normalStyle.left = 200; 
+			obj.normalStyle.height=fSize*2+10;
+		}
+       
+        showCaption(msg+"\n");
+       setBalloon(cPos);
+        
+	
+	
+	}
+	else
+	{
+		alert("Transmission failed"+cnt+" E:"+ret[0]);
+	}
+	cnt++;
+}
+
+
+*/
+
+
+function showCaption(str)
+{
+	cap.firstChild.data = str+"\r\n" ;
+}
+
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str+"\r\n";
+}
+function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lime-iptv-portal/bml/startup.bml", "cut");	}
+function refresh(){ browser.reloadActiveDocument();}
+
+]]></script>
+</head>
+<body id="body" style="used-key-list:basic data-button numeric-tuning;" onload="onmyload();" onunload="onunload();">
+<div id="basebox" style="width:960px;height:540px;background-color-index:30">
+
+
+	<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/snow-festa/yoursingapore_out.mp4&protocol=http_tts" style="left:0px;top:0px;width:960px;height:540px;" streamstatus="play" />
+	</div>
+	
+	
+	<!-- balloons  -->
+
+<div id="posBalloon" class="bbase" >
+<object id="Lf" class="balloonpng" style="visibility:hidden" type="image/X-arib-png" data="balloon4L.png"></object>
+<object id="Rf" class="balloonpng"  style="visibility:hidden" type="image/X-arib-png" data="balloon4R.png"></object>
+<object id="Re" class="balloonpng" style="visibility:hidden" type="image/X-arib-png" data="balloon5R.png"></object>
+<object id="Le" class="balloonpng" style="visibility:hidden" type="image/X-arib-png" data="balloon5L.png"></object>
+<object id="Nd" class="balloonpng" style="visibility:hidden" type="image/X-arib-png" data="balloon5R.png"></object>
+
+<object id="Rn" class="balloonpng" type="image/X-arib-png" data="balloon3R.png" style="visibility:hidden"></object>
+
+
+<object id="Ln" class="balloonpng"style="visibility:hidden" type="image/X-arib-png" data="balloon3L.png"></object>
+
+
+<!--  -->
+
+	<p id="caption"  class="subtitle"><![CDATA[]]></p>
+	
+	<p id="caption_full" style="font-size:30px; color-index:7; grayscale-color-index:7 72; text-align:center; left:0px; top:500px; width:960px; height:40px;"><![CDATA[]]></p>
+</div>
+<p style="top:520px;left:700px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+ 
+ 
+<p id="p01" class="button" style="top:520px;left:840px;height:36px;width:64px;background-color-index:1;" onclick="refresh();"  accesskey="R">Reload</p>
+	
+	
+ <p id="display" style=""><![CDATA[]]></p>
+
+
+</body>
+</bml>

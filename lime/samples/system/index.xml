@@ -28,7 +28,7 @@
 		urlList[7] = "xmltest/bml/startup.xml";
 		urlList[8] = "../video/nico/nicostartup-j.html";
 		urlList[9] = "konya/balloon/startup.xml";
-		urlList[10] = "";
+		urlList[10] ="konya/balloon/loadTSV/startup.xml";
 		urlList[11] = "";
 		urlList[12] = "";
 		
@@ -86,7 +86,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
 		onclick="jump();">Konya Test</p>
 		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
-		onclick="jump();"></p>
+		onclick="jump();">Konya TSV Test</p>
 
 		<p id="11" class="button" style="top:480px;nav-index:11;nav-up:10;nav-down:12;"
 		onclick="jump();"></p>
