@@ -16,8 +16,7 @@
 <script><![CDATA[
 /*
  background-image: url("./images/medekikuTitle_englishHD.jpg")*/
-
-
+ 
 
 function goback(){ browser.launchDocument("index.xml", "cut");	}
 
@@ -38,18 +37,28 @@ function handler()
  
  
  
+ 
+ <div id="basebox" style="width:960px;height:540px;top:0px;left:0px;background-color-index:30">
+<object id="Lf" class="balloonpng" style="width:960px;height:540px;top:0px;left:0px;" type="image/jpeg" data="images/BG-medekikuTitle_englishHD.jpg"></object>
+</div>
 
-<div id="basebox" style="width:960px;height:540px;top:0px;left:0px;background-color-index:0;">
+
+
+<div id="basebox" style="width:960px;height:540px;top:0px;left:0px;background-color-index:0;visibility:hidden;">
 <object style="width:702px;height:472px;top:30px;left:128px;" type="image/jpeg" data="images/Logo_medekikuTitle_japanSD.jpg"></object>
 </div>
 
+
+
+ 
+<p style="top:0px;left:0px;height:1px;width:1px;background-color-index:8;nav-index:0;" onkeydown="handler();" onkeyup="handler();" onclick="handler();"><![CDATA[]]></p>
 
 
 <p style="top:340px;left:130px;height:50px;width:264px;background-color-index:4;color-index:7;"  accesskey="B" onclick="">西日本にお住まいの方は青ボタンを押して下さい。</p>
  
 <p id="p01" class="button" style="top:340px;left:590px;height:50px;width:264px;background-color-index:1;color-index:7;"  onclick=""  accesskey="R">東日本にお住まいの方は赤ボタンを押して下さい。</p>
 
-
+ 
 <p style="top:0px;left:0px;height:1px;width:1px;background-color-index:8;nav-index:0;" onkeydown="handler();" onkeyup="handler();" onclick="handler();"><![CDATA[]]></p>
 
 
