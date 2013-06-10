@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
 <?bml bml-version="100.0" ?>
 
 <bml>
 <head>
-	<title>launchDocumentTest 2</title>
+	<title>Overview</title>
 <style><![CDATA[
   body {
     resolution:960x540;
