@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Slideshow</title>
+<style><![CDATA[
+  body {
+    resolution:960x540;
+    display-aspect-ratio:16v9;
+ 	 }
+	p {background-color-index:2;}
+	#text {background-color-index:0;font-size:16px;}
+	.button	{top:490px;height:24px;width:85px;text-align:center; border-style:solid;border-width:2px;}
+]]></style>
+
+<script><![CDATA[
+var timer
+var position;
+var preLoad;
+
+function onload(){
+    position=0;
+    	preLoad = new Array(10);
+    	
+
+
+	GE("bgm").streamStatus="play";
+	browser.setInterval("BGMrp();",33800,0);
+
+    	
+preLoad[0] = "WHOslide002.jpg";
+preLoad[1] = "WHOslide003.jpg";
+preLoad[2] = "WHOslide004.jpg";
+preLoad[3] = "WHOslide005.jpg";
+
+
+/*
+for (var i=0 ; i<8; i++) {
+   	 preLoad[i] = "images/pic" + i + ".JPG";
+}*/
+
+caption = new Array(10);
+
+caption[0]="Shopps";
+caption[1]="Les Hauts de Cologny";
+caption[2]="Houses of Cologny";
+caption[3]="City hall of Cologny";
+
+startShow();
+}
+
+function startShow() {
+        timer = setTimeout("forward()", 10000);
+}
+
+function restartShow() {
+    browser.clearTimer(timer);
+    startShow();
+}
+        
+function forward() {
+    if (position < 5) {
+            position++;
+    } else {
+        position = 0;
+    }
+
+    $("img").data = preLoad[position];
+    $("text").firstChild.data= caption[position];
+    timer = setTimeout("forward()", 10000);
+}
+
+function onunload(){
+	browser.clearTimer(timer);
+}
+
+function $(id) {
+		return document.getElementById(id);
+	}
+
+function setTimeout(code,delay){
+         return   browser.setInterval(code,delay,1);
+        }
+
+function GE(id){
+	return document.getElementById(id);
+}
+
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
+]]></script>
+</head>
+
+<body onload="onload();">
+
+<div id="imageBox" style="top:50px;left:50px;width:910px;height:522px">
+<object id="img" style="top:0px;left:0px;width:696px;height:522px" data="WHOslide002.jpg" type="image/jpeg"/>
+<p id="text" style="top:0px;left:500px;width:440px;height:480px;color-index:7"><![CDATA[Cologny]]></p>
+</div>
+
+<p id="blue" class="button" style="left:10px; background-color-index:4;" onclick="startShow();" accesskey="B">Start</p>
+<p id="red" class="button" style="left:110px;background-color-index:1;"	onclick="onunload();" accesskey="R">Stop</p>
+<p id="green" class="button" style="left:210px;background-color-index:2;" onclick="restartShow();" accesskey="G">Restart</p>
+
+<p id="yellow" class="button" style="left:810px;background-color-index:3;" onclick="goback();" accesskey="Y">Back</p>
+
+</body>
+</bml>
