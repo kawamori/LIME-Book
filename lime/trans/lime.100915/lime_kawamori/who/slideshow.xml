@@ -3,7 +3,7 @@
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
-<title>Slideshow</title>
+<title>WHO Test</title>
 <style><![CDATA[
   body {
     resolution:960x540;
