@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="EUC-JP" ?>
-<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
 <?bml bml-version="100.0" ?>
 
 <bml>
@@ -27,7 +26,7 @@ urlList[3] = "WHOslide-legal.bml";
 
 //var base = "http://localhost/";
 //var base = "http://127.0.0.1/";
-var base = "";
+var base = "./";
 
 
 
@@ -43,7 +42,7 @@ function jump(){
 
 <div id="imageBox" style="top:9px;left:132px;width:960px;height:540px">
 
-<object id="img" style="top:0px;left:0px;width:696px;height:522px" data="WHOslide002.jpg" type="image/jpeg"/>
+<object id="img" style="top:0px;left:0px;width:696px;height:522px" data="WHOslide010.jpg" type="image/jpeg"/>
 
 
 
