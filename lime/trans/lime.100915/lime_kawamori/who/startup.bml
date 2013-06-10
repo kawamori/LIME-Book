@@ -3,7 +3,7 @@
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
-<title>Slideshow</title>
+<title>WHO Test</title>
 <style><![CDATA[
   body {
     resolution:960x540;
@@ -22,23 +22,12 @@ var preLoad;
 function onload(){
     position=0;
     	preLoad = new Array(10);
-    	
+    	    	
+preLoad[0] = "WHOslide002.jpg";
+preLoad[1] = "WHOslide003.jpg";
+preLoad[2] = "WHOslide004.jpg";
+preLoad[3] = "WHOslide005.jpg";
 
-
-	GE("bgm").streamStatus="play";
-	browser.setInterval("BGMrp();",33800,0);
-
-    	
-preLoad[0] = "120428_175304.jpg";
-preLoad[1] = "120428_181449.jpg";
-preLoad[2] = "120428_175727.jpg";
-preLoad[3] = "120428_180141.jpg";
-preLoad[4] = "120428_180225.jpg";
-preLoad[5] = "120428_181832.jpg";
-preLoad[6] = "120428_182211.jpg";
-preLoad[7] = "120428_182317.jpg";
-preLoad[8] = "120428_182602.jpg";
-preLoad[9] = "120428_182916.jpg";
 
 /*
 for (var i=0 ; i<8; i++) {
@@ -51,13 +40,6 @@ caption[0]="Shopps";
 caption[1]="Les Hauts de Cologny";
 caption[2]="Houses of Cologny";
 caption[3]="City hall of Cologny";
-caption[4]="City hall of Cologny";
-caption[5]="The temple and a house";
-caption[6]="view of the other side of Lake Leman";
-caption[7]="view of auberges of Cologny (seen from the lakeside)";
-caption[8]="\nMartin Bodmer Museum: It is a Swiss \n heritage site of national significance.\n The library was established by Martin Bodmer\n and is famous as the home of the Bodmer Papyri.\n Some of these papyri are among the oldest\n remaining copies of the New Testament.\n Some manuscripts are written in Greek,\n others in Coptic (e.g. Papyrus Bodmer III).\n The first of the manuscripts was purchased\n in 1956. It also houses a copy of the Gutenberg\n Bible. Martin Bodmer (November 13, 1899 - March 22,\n 1971) was a Swiss bibliophile, scholar and collector.";
-
-caption[9]=" Temple de Cologny: Construit au XVIII eme siecle,\n son clocher en est sa particularite. Ancienne eglise\n  Saint-Jacques, le temple a conserve un caractere\n  gothique. En 1684, le clocher est exhausse. \n En 1730, la nef, le toit et le clocher sont \n  reconstruits. La voite est etablie par B.\n  Revillod et M.Turrettini.";
 
 startShow();
 }
@@ -72,7 +54,7 @@ function restartShow() {
 }
         
 function forward() {
-    if (position < 9) {
+    if (position < 5) {
             position++;
     } else {
         position = 0;
@@ -98,11 +80,6 @@ function setTimeout(code,delay){
 function GE(id){
 	return document.getElementById(id);
 }
-function BGMrp(){
-	GE("bgm").streamStatus="stop";
-	GE("bgm").streamStatus="play";
-}
-
 
 function goback(){ browser.launchDocument("../index.xml", "cut");	}
 ]]></script>
@@ -110,13 +87,8 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 <body onload="onload();">
 
-<div>
-	<object id="bgm" data="audio/oceanwavescrushing.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
-</div>
-
-
-<div id="imageBox" style="top:50px;left:50px;width:910px;height:440px;">
-<object id="img" style="top:0px;left:0px;width:640px;height:480px" data="120428_175304.jpg" type="image/jpeg"/>
+<div id="imageBox" style="top:10px;left:50px;width:910px;height:530px">
+<object id="img" style="top:0px;left:0px;width:696px;height:522px" data="WHOslide002.jpg" type="image/jpeg"/>
 <p id="text" style="top:0px;left:500px;width:440px;height:480px;color-index:7"><![CDATA[Cologny]]></p>
 </div>
 
