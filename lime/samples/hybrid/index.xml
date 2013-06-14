@@ -20,7 +20,7 @@
 		var urlList = new Array();
 		urlList[0] = "trans/bml.100915/bml_kawamori/list.bml";
 		urlList[1] = "index.html";
-		urlList[2] = "";
+		urlList[2] = "trans/lime.100915/lime/index.xhtml?../lime_kawamori/who/startup.bml";
 		urlList[3] = "";
 		urlList[4] = "";
 		urlList[5] = "";
@@ -35,7 +35,7 @@
 
 //var base = "http://localhost/";
 //var base = "http://127.0.0.1/";
-var base = "http://kawamori.github.com/LIME-Book/lime/";
+var base = ""http://kawamori.github.io/LIME-Book/lime/";
 
 function jump(){
 	var url = urlList[document.currentEvent.target.id]
@@ -63,7 +63,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">LIME-HTML</p>
 		
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
-		onclick="jump();"></p>
+		onclick="jump();">Patient Security</p>
 		
 		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
 		onclick="jump();"></p>
