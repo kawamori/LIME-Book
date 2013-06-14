@@ -45,7 +45,7 @@ function jump(){
 
 <object id="img" style="top:0px;left:0px;width:696px;height:522px" data="WHOslide030.jpg" type="image/jpeg"/>
 
-<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts" streamstatus="play"
+<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts" streamstatus="pause"
 style="left:50px;top:290px;width:270px;height:152px;visibility:visible;"></object>
 
 <p  class="button" id="0" style="top:105px;left:10px;width:50px;height:10px;;nav-index:0;nav-up:3;nav-down:1;" onclick="jump();"></p>

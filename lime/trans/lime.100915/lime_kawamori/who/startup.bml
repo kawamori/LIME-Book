@@ -22,7 +22,7 @@
 		urlList[0] = "WHOslide-overview.bml";
 		urlList[1] = "WHOslide-structure.bml";
 		urlList[2] = "WHOslide-start.bml";
-urlList[3] = "WHOslide-legal.bml";	
+                urlList[3] = "WHOslide-legal.bml";	
 
 //var base = "http://localhost/";
 //var base = "http://127.0.0.1/";

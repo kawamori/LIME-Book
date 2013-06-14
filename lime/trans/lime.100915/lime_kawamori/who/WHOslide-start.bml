@@ -27,7 +27,7 @@ urlList[3] = "WHOslide-legal.bml";
 
 //var base = "http://localhost/";
 //var base = "http://127.0.0.1/";
-var base = "./";
+var base = "";
 
 
 
