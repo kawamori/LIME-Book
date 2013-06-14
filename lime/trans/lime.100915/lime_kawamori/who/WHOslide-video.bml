@@ -4,7 +4,7 @@
 
 <bml>
 <head>
-	<title>Start the Course</title>
+	<title>Overview</title>
 <style><![CDATA[
   body {
     resolution:960x540;
@@ -20,14 +20,14 @@
 	<script ><![CDATA[
 
 		var urlList = new Array();
-		urlList[0] = "WHOslide-video.bml";
+		urlList[0] = "WHOslide-overview.bml";
 		urlList[1] = "WHOslide-structure.bml";
 		urlList[2] = "WHOslide-start.bml";
 urlList[3] = "WHOslide-legal.bml";	
 
 //var base = "http://localhost/";
 //var base = "http://127.0.0.1/";
-var base = "./";
+var base = "";
 
 
 
@@ -43,11 +43,12 @@ function jump(){
 
 <div id="imageBox" style="top:9px;left:132px;width:960px;height:540px">
 
-<object id="img" style="top:0px;left:0px;width:696px;height:522px" data="WHOslide005.jpg" type="image/jpeg"/>
+<object id="img" style="top:0px;left:0px;width:696px;height:522px" data="WHOslide030.jpg" type="image/jpeg"/>
 
+<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts" streamstatus="play"
+style="left:50px;top:290px;width:270px;height:152px;visibility:visible;"></object>
 
-
-<p  class="button" id="0" style="top:105px;left:8px;width:90px;height:10px;;nav-index:0;nav-up:3;nav-down:1;" onclick="jump();"></p>
+<p  class="button" id="0" style="top:105px;left:10px;width:50px;height:10px;;nav-index:0;nav-up:3;nav-down:1;" onclick="jump();"></p>
 <p class="button"  id="1" style="top:125px;left:10px;width:110px;height:10px;nav-index:1;nav-up:0;nav-down:2;" onclick="jump();"></p>
 
 <p class="button"  id="2" style="top:150px;left:5px;width:110px;height:15px;nav-index:2;nav-up:1;nav-down:3;" onclick="jump();"></p>
