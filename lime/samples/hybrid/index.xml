@@ -35,7 +35,7 @@
 
 //var base = "http://localhost/";
 //var base = "http://127.0.0.1/";
-var base = ""http://kawamori.github.io/LIME-Book/lime/";
+var base = "http://kawamori.github.io/LIME-Book/lime/";
 
 function jump(){
 	var url = urlList[document.currentEvent.target.id]
