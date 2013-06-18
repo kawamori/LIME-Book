@@ -17,6 +17,7 @@ body {}
  .link4 {font-size:24px; position:absolute;width:300px;height:30px;z-index:6;}
  .link5 {font-size:24px; position:absolute;width:300px;height:30px;z-index:7;}
  .link6 {font-size:24px; position:absolute;width:300px;height:30px;z-index:8;}
+ .link7 {font-size:24px; position:absolute;width:300px;height:30px;z-index:9;}
  :focus {color-index:1;}
  :blur {color-index:7}
  
@@ -61,7 +62,11 @@ body {}
 
 
 <p class="link6" style="top:400px;left:100px;">
-<a class="link6" style="top:0px;left:0px;nav-index:6;nav-up:5;" href="paris/oliverinparis.html">OliverinParis</a><br/>
+<a class="link6" style="top:0px;left:0px;nav-index:6;nav-up:5;;nav-down:7;" href="paris/oliverinparis.html">OliverinParis</a><br/>
+</p> <br/>
+
+<p class="link7" style="top:450px;left:100px;">
+<a class="link7" style="top:0px;left:0px;nav-index:7;nav-up:6;" href="news/news.html">News</a><br/>
 </p> <br/>
 
 </body>
