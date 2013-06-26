@@ -1,0 +1,52 @@
+﻿Content-Type:multipart/mixed;boundary="THIS_STRING_SEPARATES"
+Content-Length:1369
+Content-Location:
+
+--THIS_STRING_SEPARATES
+Content-Type:application/X-arib-resourceList
+Content-Location:resource.bin
+Content-Length:48
+
+  / Z  FL-NOENC.eri  ｻ U   ﾌRTP.nci
+--THIS_STRING_SEPARATES
+Content-Type:text/xml;charset="UTF-8"
+Content-Location:FL-NOENC.eri
+Content-Length:533
+
+<?xml version="1.0" encoding="UTF-8"?>
+<eri>
+    <header>
+        <date>20100125</date>
+        <time>184137</time>
+        <encryption>0</encryption>
+    </header>
+    <startup>
+        <content_title>test</content_title>
+        <duration>000000</duration>
+        <start>http://192.168.1.4/00114.MTS</start>
+    </startup>
+    <es_info>
+        <video_info resolution='1' coding ='h264'/>
+        <audio_info es_number='1' mode='stereo'>
+            <audio_title>a</audio_title>
+        </audio_info>
+        <caption_info number='1' language='ja'/>
+    </es_info>
+</eri>
+
+--THIS_STRING_SEPARATES
+Content-Type:text/xml;charset="UTF-8"
+Content-Location:RTP.nci
+Content-Length:204
+
+<?xml version="1.0" encoding="UTF-8"?>
+<nci>
+    <header>
+        <date>20100125</date>
+        <time>184137</time>
+    </header>
+    <protocol>http_tts</protocol>
+    <http_server stalling='on' time_seek='on'/>
+</nci>
+
+--THIS_STRING_SEPARATES--
