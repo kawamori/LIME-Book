@@ -18,7 +18,7 @@
 	<script ><![CDATA[
 
 		var urlList = new Array();
-		urlList[0] = "itu-test/video.xml";
+		urlList[0] = "media/video13.xml";
 		urlList[1] = "mccann/startup.xml";
 		urlList[2] = "PinP/video.xml";
 		urlList[3] = "MNG-Video/startup.xml";
@@ -28,7 +28,7 @@
 		urlList[7] = "audio/startup.xml";
 		urlList[8] = "audio/aiff-test.xml";
 		urlList[9] = "http://lime.jgn-x.jp/cgi-bin/computex_so/startover.cgi";
-		urlList[10] = "media/video13.xml";
+		urlList[10] = "itu-test/video.xml";
 		urlList[11] = "";
 		urlList[12] = "";
 		
@@ -57,7 +57,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 			
 		
         <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();">ITU Media test</p>
+		onclick="jump();">Everio VOD</p>
 
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
 		onclick="jump();">McCann Tests</p>
@@ -86,7 +86,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
 		onclick="jump();">Computex 2013</p>
 		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
-		onclick="jump();">Everio VOD</p>
+		onclick="jump();">ITU Media test</p>
 
 		<p id="11" class="button" style="top:480px;nav-index:11;nav-up:10;nav-down:12;"
 		onclick="jump();"></p>
