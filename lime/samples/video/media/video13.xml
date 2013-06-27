@@ -8,6 +8,7 @@
       p {left:150px;top:200px;width:70px;height:74px;color-index:4;}
     .image {position:absolute;left:50px;top:200px;width:70px;height:74px;}
      #link {color:blue;color-index:4;nav-index:0;}  
+     #hello {color-index:7;top:500px;left:100px;width:200px;height:74px;}
    </style>
    <script><![CDATA[
 
@@ -34,8 +35,7 @@ function goback(){ browser.launchDocument("../video.xml", "cut");	}
 		<object id="vod" type="application/X-arib-contentPlayControl" data="http://192.168.1.6/resolvecontent?contents_path=test3.m2ts&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
 	</div>
 	-->
-	<p id="hello">Hello, world!!!
-	</p>
+	<p id="hello"> Videos by JVC Everio GZ-HM450</p>
 	
 	<div class="image">
 	<object class="image" style="top:0px;left:0px" type="image/jpeg" data="images/small-lime.JPG"/>
