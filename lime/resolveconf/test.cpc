@@ -23,7 +23,7 @@ Content-Length:533
     <startup>
         <content_title>VFJP9900005</content_title>
         <duration>000000</duration>
-        <start>http://173.254.19.154:21/00114.MTS</start>
+        <start>http://173.254.19.154/00114.MTS</start>
     </startup>
     <es_info>
         <video_info resolution='1' coding ='h264'/>
