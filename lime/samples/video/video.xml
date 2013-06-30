@@ -29,7 +29,7 @@
 		urlList[8] = "audio/aiff-test.xml";
 		urlList[9] = "http://lime.jgn-x.jp/cgi-bin/computex_so/startover.cgi";
 		urlList[10] = "itu-test/video.xml";
-		urlList[11] = "http://iptv.oesf-global.org/public_html/iptv/index.html";
+		urlList[11] = "http://173.254.19.154/public_html/iptv/index.html";
 		urlList[12] = "";
 		
 
