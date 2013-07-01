@@ -15,8 +15,7 @@
  	p:blur {background-color-index:8;color-index:1;}
 	#text {background-color-index:0;font-size:16px;}
 	.button	{height:24px;width:85px;text-align:center; }
-		#display	{background-color-index:16;color-index:7;text-align:left;padding-top:5px;padding-left:5px;padding-right:5px;padding-bottom:5px;font-size:18px;
-	top:100px;height:126px;width:700px;}
+	#display{background-color-index:16;color-index:7;text-align:left;padding-top:5px;padding-left:5px;padding-right:5px;padding-bottom:5px;font-size:18px;	top:100px;height:126px;width:700px;}
 	
 ]]></style>
 	<script ><![CDATA[
@@ -25,16 +24,6 @@ var obj;
 
 
 var fullscreenFlag = 0;
-
-/*
-		var urlList = new Array();
-		urlList[0] = "WHOslide-overview.bml";
-		urlList[1] = "WHOslide-structure.bml";
-		urlList[2] = "WHOslide-start.bml";
-urlList[3] = "WHOslide-legal.bml";	
-*/
-//var base = "http://localhost/";
-//var base = "http://127.0.0.1/";
 var base = "";
 
 obj = document.getElementById("display");
@@ -44,11 +33,6 @@ function alert(str)
 	obj.firstChild.data = str+"\r\n" ;
 }
 
-function load(){
-/*
-alert("hello");*/
-
-}
 
 function goback(){ browser.launchDocument("WHOslide-start.bml", "cut");	}
 
@@ -61,28 +45,26 @@ function keydown(){
 	var keyCode = String(document.currentEvent.keyCode);
 
 	if (keyCode == "19") {
-		// back key
+		/* back key*/
 		goback();
 		
 	} else if (keyCode == "22") {
-		// red key
+		/* red key*/
 		
 		browser.lockScreen();
 	
 		var video = document.getElementById("video");
 		
-
-		
 		if (fullscreenFlag == 1) {
-			// ビデオ表示サイズ縮小
+			/* ビデオ表示サイズ縮小*/
 			video.normalStyle.left = "182";
 			video.normalStyle.top = "299";
 			video.normalStyle.width = "270";
 			video.normalStyle.height = "152";
-						fullscreenFlag = 0;
+			fullscreenFlag = 0;
 
 		} else {
-			// ビデオフルスクリーン化
+			/* ビデオフルスクリーン化*/
 			video.normalStyle.left = "0";
 			video.normalStyle.top = "0";
 			video.normalStyle.width = "960";
@@ -92,32 +74,29 @@ function keydown(){
 		}
 		browser.unlockScreen();
 	} else if (keyCode == "21") {
-		// blue key
-		//Unimplemented
+		/* blue key
+		Unimplemented */
 	} else if (keyCode == "23") {
-		// green key
-		// 
+		/* green key */
+		 
 		gonext();
 		
 	} else if (keyCode == "24") {
-		// yellow key
+		/* yellow key*/
 		gohome();
 		
 	}
 }
 		]]></script>
 
-
 </head>
-<body onload="load();">
+<body>
 
 <div id="imageBox" style="top:0px;left:0;width:960px;height:540px">
 
 <object id="bg" style="top:9px;left:132px;width:696px;height:522px;nav-index:0;" onkeydown="keydown();" data="WHOslide030.jpg" type="image/jpeg"/>
 
-<object id="video" type="application/X-arib-contentPlayControl" data="http://kawamori.github.com/LIME-Book/lime/resolveconf/who-ps.cpc" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
-	" streamstatus="pause"
-style="top:299px;left:182px;width:270px;height:152px;visibility:visible;"></object>
+<object id="video" type="application/X-arib-contentPlayControl" data="http://kawamori.github.com/LIME-Book/lime/resolveconf/who-ps.cpc" streamstatus="play" style="top:299px;left:182px;width:270px;height:152px;visibility:visible;"></object>
 
 </div>		
 
