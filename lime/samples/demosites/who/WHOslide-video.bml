@@ -115,7 +115,8 @@ function keydown(){
 
 <object id="bg" style="top:9px;left:132px;width:696px;height:522px;nav-index:0;" onkeydown="keydown();" data="WHOslide030.jpg" type="image/jpeg"/>
 
-<object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts" streamstatus="pause"
+<object id="video" type="application/X-arib-contentPlayControl" data="http://kawamori.github.com/LIME-Book/lime/resolveconf/who-ps.cpc" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
+	" streamstatus="pause"
 style="top:299px;left:182px;width:270px;height:152px;visibility:visible;"></object>
 
 </div>		
