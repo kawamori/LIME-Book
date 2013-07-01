@@ -15,11 +15,15 @@
  	p:blur {background-color-index:8;color-index:1;}
 	#text {background-color-index:0;font-size:16px;}
 	.button	{height:24px;width:85px;text-align:center; }
+		#display	{background-color-index:16;color-index:7;text-align:left;padding-top:5px;padding-left:5px;padding-right:5px;padding-bottom:5px;font-size:18px;
+	top:100px;height:126px;width:700px;}
 	
 ]]></style>
 	<script ><![CDATA[
 
-var vodTimerID = NaN;
+var obj;
+
+
 var fullscreenFlag = 0;
 
 /*
@@ -33,19 +37,24 @@ urlList[3] = "WHOslide-legal.bml";
 //var base = "http://127.0.0.1/";
 var base = "";
 
+obj = document.getElementById("display");
 
-/*
-function jump(){
-	var url = urlList[document.currentEvent.target.id]
-	
-		browser.launchDocument(base + url);
+function alert(str)
+{
+	obj.firstChild.data = str+"\r\n" ;
 }
-*/
+
+function load(){
+/*
+alert("hello");*/
+
+}
 
 function goback(){ browser.launchDocument("../../startup.xml", "cut");	}
 
 
 function keydown(){
+
 	var keyCode = String(document.currentEvent.keyCode);
 
 	if (keyCode == "19") {
@@ -54,31 +63,28 @@ function keydown(){
 		
 	} else if (keyCode == "21") {
 		// blue key
+		
 		browser.lockScreen();
-		var video = getElementById("video");
-		/*
-		var caption = getElementById("caption");
-		var caption_full = getElementById("caption_full");*/
+	
+		var video = document.getElementById("video");
+		
+
 		
 		if (fullscreenFlag == 1) {
 			// ビデオ表示サイズ縮小
-			video.normalStyle.left = "5";
-			video.normalStyle.top = "55";
-			video.normalStyle.width = "624";
-			video.normalStyle.height = "351";
-/*
-			caption_full.normalStyle.visibility = "hidden";
-			caption.normalStyle.visibility = "visible";*/
-			fullscreenFlag = 0;
+			video.normalStyle.left = "182";
+			video.normalStyle.top = "299";
+			video.normalStyle.width = "270";
+			video.normalStyle.height = "152";
+						fullscreenFlag = 0;
+
 		} else {
 			// ビデオフルスクリーン化
 			video.normalStyle.left = "0";
 			video.normalStyle.top = "0";
 			video.normalStyle.width = "960";
 			video.normalStyle.height = "540";
-/*
-			caption.normalStyle.visibility = "hidden";
-			caption_full.normalStyle.visibility = "visible";*/
+			
 			fullscreenFlag = 1;
 		}
 		browser.unlockScreen();
@@ -97,26 +103,19 @@ function keydown(){
 
 
 </head>
-<body>
+<body onload="load();">
 
-<div id="imageBox" style="top:9px;left:132px;width:960px;height:540px">
+<div id="imageBox" style="top:0px;left:0;width:960px;height:540px">
 
-<object id="bg" style="top:0px;left:0px;width:696px;height:522px;nav-index:0;" onkeydown="keydown();" data="WHOslide030.jpg" type="image/jpeg"/>
+<object id="bg" style="top:9px;left:132px;width:696px;height:522px;nav-index:0;" onkeydown="keydown();" data="WHOslide030.jpg" type="image/jpeg"/>
 
 <object id="video" type="application/X-arib-contentPlayControl" data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts" streamstatus="pause"
-style="left:50px;top:290px;width:270px;height:152px;visibility:visible;"></object>
-
-<!--
-<p  class="button" id="0" style="top:105px;left:10px;width:50px;height:10px;;nav-index:0;nav-up:3;nav-down:1;" onclick="jump();"></p>
-<p class="button"  id="1" style="top:125px;left:10px;width:110px;height:10px;nav-index:1;nav-up:0;nav-down:2;" onclick="jump();"></p>
-
-<p class="button"  id="2" style="top:150px;left:5px;width:110px;height:15px;nav-index:2;nav-up:1;nav-down:3;" onclick="jump();"></p>
-
-<p class="button"  id="3" style="top:174px;left:8px;width:125px;height:15px;nav-index:3;nav-up:2;nav-down:0;" onclick="jump();"></p>
--->
-
+style="top:299px;left:182px;width:270px;height:152px;visibility:visible;"></object>
 
 </div>		
+
+
+<p id="display" style="background-color-index:8;"><![CDATA[]]></p>
 
 </body>
 </bml>
