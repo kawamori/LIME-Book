@@ -18,7 +18,7 @@
 
 		var urlList = new Array();
 		
-		urlList[0] = "trans/lime.100915/lime_kawamori/who/startup.bml";
+		urlList[0] = "demosites/who/startup.bml";
 		urlList[1] = "video/video.xml";
 		urlList[2] = "epg/hotelVOD/top.bml";
 	    urlList[3] = "system/index.xml";
