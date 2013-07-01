@@ -18,7 +18,7 @@
 
 		var urlList = new Array();
 		
-		urlList[0] = "demosites/who/startup.bml";
+		urlList[0] = "demosites/index.xml";
 		urlList[1] = "video/video.xml";
 		urlList[2] = "epg/hotelVOD/top.bml";
 	        urlList[3] = "system/index.xml";
@@ -53,7 +53,7 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 <p id="display" style="top:20px;left:50px;width:350px;height:400px;"><![CDATA[ Sample LIME code ]]></p>
 
         <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();">Patient Safety</p>
+		onclick="jump();">Demo Sites</p>
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
 		onclick="jump();">Video Tests</p>
 		
