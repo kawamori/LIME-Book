@@ -18,19 +18,19 @@
 
 		var urlList = new Array();
 		
-		urlList[0] = "epg/hotelVOD/top.bml";
+		urlList[0] = "demosites/who/startup.bml";
 		urlList[1] = "video/video.xml";
-		urlList[2] = "epg/index.xml";
+		urlList[2] = "epg/hotelVOD/top.bml";
 	        urlList[3] = "system/index.xml";
 		urlList[4] = "games/top.xml";
-		urlList[5] = "jpegtest/index.xml";
-		urlList[6] = "text/richmen/startup.xml";
-		urlList[7] = "chula/sign/startup.xml";
+		urlList[5] = "epg/index.xml";
+		urlList[6] = "";
+		urlList[7] = "jpegtest/index.xml";
 		urlList[8] = "mng/index.xml";
 		urlList[9] = "hybrid/index.xml";
-		urlList[10] = "kamakura/index.xml";
-		urlList[11] = "test.html";
-		urlList[12] = "news/index.xml";
+		urlList[10] = "text/richmen/startup.xml";
+		urlList[11] = "chula/sign/startup.xml";
+		urlList[12] = "kamakura/index.xml";
 		
 
 //var base = "http://localhost/";
@@ -53,12 +53,12 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 <p id="display" style="top:20px;left:50px;width:350px;height:400px;"><![CDATA[ Sample LIME code ]]></p>
 
         <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();">EPG - links to videos</p>
+		onclick="jump();">Patient Safety</p>
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();">Video Test</p>
+		onclick="jump();">Video Tests</p>
 		
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
-		onclick="jump();">EPG Sample</p>
+		onclick="jump();">EPG - links to videos</p>
 		
 		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
 		onclick="jump();">system test</p>
@@ -68,13 +68,13 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 		onclick="jump();">Game-like</p>
 
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
-		onclick="jump();">JPEG</p>
+		onclick="jump();">EPG Samples</p>
 		
    <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
-		onclick="jump();">Rich Men (Chinese text)</p>
+		onclick="jump();"></p>
 		
 		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
-		onclick="jump();"> Chula Sign Language </p>
+		onclick="jump();"> JPEG Tests </p>
 		
 				 <p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
 		onclick="jump();">MNG</p>
@@ -82,13 +82,12 @@ function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lim
 				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
 		onclick="jump();">Hybrid </p>
 		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
-		onclick="jump();">Kamakura</p>
+		onclick="jump();">Rich Men (Chinese text)</p>
 
 		<p id="11" class="button" style="top:480px;nav-index:11;nav-up:10;nav-down:12;"
-		onclick="jump();">Graphics test</p>
+		onclick="jump();">Chula Sign Language</p>
 		<p id="12" class="button" style="top:510px;nav-index:12;nav-up:11;nav-down:12;"
-		onclick="jump();">News</p>
-
+		onclick="jump();">Kamakura</p>
 
 
 
