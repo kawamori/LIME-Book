@@ -50,8 +50,11 @@ alert("hello");*/
 
 }
 
-function goback(){ browser.launchDocument("../../startup.xml", "cut");	}
+function goback(){ browser.launchDocument("WHOslide-start.bml", "cut");	}
 
+function gonext(){ browser.launchDocument("WHOslide-check.bml", "cut");	}
+
+function gohome(){ browser.launchDocument("startup.bml", "cut");	}
 
 function keydown(){
 
@@ -61,8 +64,8 @@ function keydown(){
 		// back key
 		goback();
 		
-	} else if (keyCode == "21") {
-		// blue key
+	} else if (keyCode == "22") {
+		// red key
 		
 		browser.lockScreen();
 	
@@ -88,15 +91,18 @@ function keydown(){
 			fullscreenFlag = 1;
 		}
 		browser.unlockScreen();
-	} else if (keyCode == "22") {
-		// red key
+	} else if (keyCode == "21") {
+		// blue key
 		//Unimplemented
 	} else if (keyCode == "23") {
 		// green key
-		// Unimplemented
+		// 
+		gonext();
+		
 	} else if (keyCode == "24") {
 		// yellow key
-		// Unimplemented
+		gohome();
+		
 	}
 }
 		]]></script>
