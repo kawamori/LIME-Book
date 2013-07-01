@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+	<title>launchDocumentTest 2</title>
+<style><![CDATA[
+  body {
+    resolution:960x540;
+    display-aspect-ratio:16v9;
+    background-color-index:14;
+ 	 }
+
+ .box 	{height:24px;width:24px;text-align:center; }
+ 	p:focus {background-color-index:82;color-index:1;}
+ 	p:blur {background-color-index:8;color-index:1;}
+	#text {background-color-index:0;font-size:16px;}
+	.button	{height:24px;width:85px;text-align:center; background-color-index:4; }
+	#display	{background-color-index:16;color-index:7;text-align:left;padding-top:5px;padding-left:5px;padding-right:5px;padding-bottom:5px;font-size:18px;
+	top:10px;height:126px;width:700px;}
+	
+]]></style>
+	<script ><![CDATA[
+
+		var urlList = new Array();
+		urlList[0] = "WHOslide-overview.bml";
+		urlList[1] = "WHOslide-structure.bml";
+		urlList[2] = "WHOslide-start.bml";
+urlList[3] = "WHOslide-legal.bml";	
+
+//var base = "http://localhost/";
+//var base = "http://127.0.0.1/";
+var base = "./";
+
+
+var obj = document.getElementById("display");
+
+
+function goback(){ browser.launchDocument("WHOslide-start.bml", "cut");	}
+
+function alert(str)
+{
+	obj.firstChild.data = str+"\r\n" ;
+}
+
+function submit(){
+	var id = String(document.currentEvent.target.id);
+
+alert("answer is "+id);
+
+}
+
+function showAnswers(){
+
+alert("Answers are \n1=F;\n....\n5=T\n");
+
+}
+
+function jump(){
+	var url = urlList[document.currentEvent.target.id]
+	
+		browser.launchDocument(base + url);
+}
+		]]></script>
+
+</head>
+<body>
+
+<div id="imageBox" style="top:9px;left:132px;width:960px;height:540px">
+
+<object id="img" style="top:0px;left:0px;width:696px;height:522px" data="WHOslide034.jpg" type="image/jpeg"/>
+
+
+
+<p class="box" id="1t" style="top:185px;left:24px;nav-index:0;nav-up:3;nav-down:1;nav-right:5;" onclick="submit();"></p>
+<p class="box"  id="2t" style="top:220px;left:24px;nav-index:1;nav-up:0;nav-down:2;nav-right:6;" onclick="submit();"></p>
+<p class="box"  id="3t" style="top:252px;left:24px;nav-index:2;nav-up:1;nav-down:3;nav-right:7;" onclick="submit();"></p>
+<p class="box"  id="4t" style="top:286px;left:24px;nav-index:3;nav-up:2;nav-down:4;nav-right:8;" onclick="submit();"></p>
+<p class="box"  id="5t" style="top:318px;left:24px;nav-index:4;nav-up:3;nav-down:0;nav-right:9;" onclick="submit();"></p>
+
+<p  class="box" id="1f" style="top:185px;left:56px;nav-index:5;nav-up:9;nav-down:6;nav-left:0;" onclick="submit();"></p>
+<p class="box"  id="2f" style="top:220px;left:56px;nav-index:6;nav-up:5;nav-down:7;nav-left:1;" onclick="submit();"></p>
+<p class="box"  id="3f" style="top:252px;left:56px;nav-index:7;nav-up:6;nav-down:8;nav-left:2;" onclick="submit();"></p>
+<p class="box"  id="4f" style="top:286px;left:56px;nav-index:8;nav-up:7;nav-down:9;nav-left:3;" onclick="submit();"></p>
+<p class="box"  id="5f" style="top:318px;left:56px;nav-index:9;nav-up:8;nav-down:5;nav-left:4;" onclick="submit();"></p>
+
+</div>		
+
+
+<p class="button" style="top:300px;left:760px;background-color-index:8;" accesskey="B" onclick="showAnswers();"><![CDATA[]]></p>
+
+
+<p id="p01" class="button" style="left:250px;color-index:7;background-color-index:8;"  accesskey="R" onclick="goback();"></p>
+
+
+<p id="display" style="background-color-index:8"><![CDATA[]]></p>
+</body>
+</bml>
+
+
