@@ -56,19 +56,23 @@ function keydown(){
 		var video = document.getElementById("video");
 		
 		if (fullscreenFlag == 1) {
+browser.lockScreen();
 			/* ビデオ表示サイズ縮小*/
 			video.normalStyle.left = "182";
 			video.normalStyle.top = "299";
 			video.normalStyle.width = "270";
 			video.normalStyle.height = "152";
+browser.unlockScreen();
 			fullscreenFlag = 0;
 
 		} else {
 			/* ビデオフルスクリーン化*/
+browser.lockScreen();
 			video.normalStyle.left = "0";
 			video.normalStyle.top = "0";
 			video.normalStyle.width = "960";
 			video.normalStyle.height = "540";
+browser.unlockScreen();
 			
 			fullscreenFlag = 1;
 		}
