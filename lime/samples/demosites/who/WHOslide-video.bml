@@ -59,25 +59,24 @@ function keydown(){
 browser.lockScreen();
 			/* ビデオ表示サイズ縮小*/
 
-                        video.streamStatus='pause';
 			video.normalStyle.left = "182";
 			video.normalStyle.top = "299";
 			video.normalStyle.width = "270";
 			video.normalStyle.height = "152";
 browser.unlockScreen();
-video.streamStatus='play';
+
 			fullscreenFlag = 0;
 
 		} else {
 			/* ビデオフルスクリーン化*/
 browser.lockScreen();
-video.streamStatus='pause';
+
 			video.normalStyle.left = "0";
 			video.normalStyle.top = "0";
 			video.normalStyle.width = "960";
 			video.normalStyle.height = "540";
 browser.unlockScreen();
-video.streamStatus='play';
+
 			
 			fullscreenFlag = 1;
 		}
