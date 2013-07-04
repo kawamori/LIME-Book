@@ -38,7 +38,8 @@ function keydown(){
 	}
 	var next = Index;
 	if( prev != next ){	
-	document.getElementById("b"+0).data = dir+"who-banner"+next+".jpg";
+	document.getElementById("b"+next).normalStyle.visibility = "visible"; 
+	document.getElementById("b"+prev).normalStyle.visibility = "hidden"; 
   /*  document.getElementById("b"+0).data = dir+"dengue"+prev+".png";*/
 	}
 }
@@ -52,7 +53,12 @@ function keydown(){
 
 <div style="left:80px;top:60px;width:796px;height:34px;nav-index:0;" onkeydown="keydown();">
 	<div class="button" style="left:0px;">
-		<object id="b0" class="button" type="image/jpeg" data="who-banner0.jpg"/>
+		<object id="b0" class="button" type="image/jpeg" style="visibility:visible" data="who-banner0.jpg"/>
+		<object id="b1" class="button" type="image/jpeg" style="visibility:hidden" data="who-banner1.jpg"/>
+		<object id="b2" class="button" type="image/jpeg" style="visibility:hidden" data="who-banner2.jpg"/>
+		<object id="b3" class="button" type="image/jpeg" style="visibility:hidden" data="who-banner3.jpg"/>
+		<object id="b4" class="button" type="image/jpeg" style="visibility:hidden" data="who-banner4.jpg"/>
+		<object id="b5" class="button" type="image/jpeg" style="visibility:hidden" data="who-banner5.jpg"/>				
 </div>
 </div>
 
