@@ -9,7 +9,7 @@
 <title/>
 <style><![CDATA[
 body{ clut:url(images/buttons/dengueInfo/default.clt); 
-      background-color-index:7;}
+      background-color-index:52;}
 	.button {left:0;top:0;width:769px;height:249px;}
 	p.button {text-align:center;
 	          color-index:0;
@@ -22,8 +22,8 @@ body{ clut:url(images/buttons/dengueInfo/default.clt);
 
 
 var Index = 0;
-var image ="button1.png";
-var dir = "images/buttons/";
+var image ="who-banner0.png";
+var dir = "./";
 
 
 function keydown(){
@@ -31,14 +31,14 @@ function keydown(){
 	var prev = Index;
 
 	if( code == 3 ){
-		if(--Index < 0) {Index = 4;}
+		if(--Index < 0) {Index = 5;}
 	}
 	else if( code == 4){	
-		if(++Index > 4) {Index = 0;}
+		if(++Index > 5) {Index = 0;}
 	}
 	var next = Index;
 	if( prev != next ){	
-	document.getElementById("b"+0).data = dir+"dengue"+next+".png";
+	document.getElementById("b"+0).data = dir+"who-banner"+next+".jpg";
   /*  document.getElementById("b"+0).data = dir+"dengue"+prev+".png";*/
 	}
 }
@@ -50,7 +50,7 @@ function keydown(){
 <object type="image/jpeg" data="who-ps-banner.jpg" style="left:0px; top:0px; width:960px; height:540px"/>
 </div>
 
-<div style="left:190px;top:260px;width:796px;height:32px;nav-index:0;" onkeydown="keydown();">
+<div style="left:80px;top:60px;width:796px;height:34px;nav-index:0;" onkeydown="keydown();">
 	<div class="button" style="left:0px;">
 		<object id="b0" class="button" type="image/jpeg" data="who-banner0.jpg"/>
 </div>
