@@ -20,7 +20,7 @@
 		var urlList = new Array();
 		urlList[0] = "who/startup.bml";
 		urlList[1] = "islam/index.xml";
-		urlList[2] = "who/who-banners.xml";
+		urlList[2] = "who/info-banners.xml";
 		urlList[3] = "";
 		urlList[4] = "";
 		urlList[5] = "nico/nicostartup.html";
