@@ -22,7 +22,7 @@
 		urlList[1] = "islam/index.xml";
 		urlList[2] = "who/info-banners.xml";
 		urlList[3] = "paris/index.xml";
-		urlList[4] = "";
+		urlList[4] = "../lime-html/paris/index.html";
 		urlList[5] = "nico/nicostartup.html";
 		urlList[6] = "nico/nicostartup-j.html";
 		urlList[7] = "audio/startup.xml";
@@ -70,7 +70,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		
 		
 		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
-		onclick="jump();"></p>
+		onclick="jump();">My Little Paris</p>
 
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
 		onclick="jump();"></p>
