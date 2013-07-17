@@ -8,6 +8,8 @@
       p {left:150px;top:200px;width:70px;height:74px;color-index:4;}
     .image {position:absolute;left:50px;top:200px;width:70px;height:74px;}
      #link {color:blue;color-index:4;nav-index:0;}  
+        
+      #hello {left:150px;top:500px;width:370px;height:40px;color-index:4;}  
    </style>
    <script><![CDATA[
 
@@ -26,15 +28,10 @@ function goback(){ browser.launchDocument("index.xml", "cut");	}
 
 
 	<div style="top:0px;left:0px;width:960px;height:540px;visibility:visible;">
-		<object id="vod" type="application/X-arib-contentPlayControl" data="http://kawamori.github.com/LIME-Book/lime/resolveconf/testrtpc.cpc" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
+		<object id="vod" type="application/X-arib-contentPlayControl" data="http://kawamori.github.com/LIME-Book/lime/resolveconf/testrtsp.cpc" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;" />
 	</div>
 
 	<p id="hello">Gare de Lyon, Paris 	</p>
-	
-	<div class="image">
-	<object class="image" style="top:0px;left:0px" type="image/jpeg" data="images/small-lime.JPG"/>
-	</div>
-	
 	
 	<p style="top:0px;left:0px;height:1px;width:1px;background-color-index:8;nav-index:0;" onkeydown="handler();" onkeyup="handler();" onclick="handler();"><![CDATA[]]></p>
  
