@@ -3,13 +3,15 @@
 
 <bml>
 <head>
-	<title>Video-related testst</title>
+	<title>System test</title>
 	<style>
 		<![CDATA[
-			p {height:16px;color-index:7;grayscale-color-index:15 15}
+		body {clut:url(default.clt);background-color-index:7;}
+			p {height:16px;color-index:0;grayscale-color-index:15 15}
 			
-			p:focus{background-color-index:1}
-			.button {top:180px;left:250px;width:250px;height:28px;}
+			p:focus{background-color-index:1;width:15px;height:15px;}
+			p:blur {background-color-index:4;width:10px;height:10px;}
+			.button {width:10px;height:10px;font-size:16px;}
 			.bgm {
 		width:300px; height:300px; top:10px; left:10px;
 	}
@@ -18,19 +20,12 @@
 	<script ><![CDATA[
 
 		var urlList = new Array();
-		urlList[0] = "who/startup.bml";
-		urlList[1] = "islam/index.xml";
-		urlList[2] = "who/info-banners.xml";
-		urlList[3] = "paris/index.xml";
-		urlList[4] = "";
-		urlList[5] = "nico/nicostartup.html";
-		urlList[6] = "nico/nicostartup-j.html";
-		urlList[7] = "audio/startup.xml";
-		urlList[8] = "audio/aiff-test.xml";
-		urlList[9] = "http://lime.jgn-x.jp/cgi-bin/computex_so/startover.cgi";
-		urlList[10] = "itu-test/video.xml";
-		urlList[11] = "http://173.254.19.154/public_html/iptv/lime/startup.xml";
-		urlList[12] = "";
+		urlList[0] = "video.html";
+		urlList[1] = "video2.html";
+		urlList[2] = "video3.html";
+		urlList[3] = "video4.html";
+		urlList[4] = "video5.html";
+	
 		
 
 //var base = "http://localhost/";
@@ -45,33 +40,37 @@ function jump(){
 
 
 
-function goback(){ browser.launchDocument("../startup.bml", "cut");	}
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 		]]></script>
 
 </head>
 <body>
-		
-<p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ Some Video-related Tests ]]></p>
-		
+
+<div style="left:0px; top:0px; width:960px; height:540px">
+<object type="image/X-arib-png" data="Map-of-Paris-France_fit.png" style="left:200px;top:0;width:752px;height:539px;"/>
+</div>
+		<!--
+<p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ Some System-related Tests ]]></p>
+		-->
 			
 		
-        <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();">WHO Patient Safety</p>
-
-		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();">Otsuka Masjid</p>
-		
-		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
-		onclick="jump();">WHO Banners</p>
-		
-		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
-		onclick="jump();">Paris Clips</p>
-		
-		
-		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
+        <p id="0" class="button" style="left: 730px;top:365px;nav-index:0;nav-down:0;nav-up:1;nav-left:4;nav-right:1;"
 		onclick="jump();"></p>
 
+		<p id="1" class="button" style="left:682px;top:320px;nav-index:1;nav-down:0;nav-up:2;nav-left:2;nav-right:0;"
+		onclick="jump();"></p>
+		
+		<p id="2" class="button" style="left:644px;top:281px;nav-index:2;nav-up:2;nav-down:3;nav-left:3;nav-right:1;"
+		onclick="jump();"></p>
+		
+		<p id="3" class="button" style="left:616px;top:343px;nav-index:3;nav-up:2;nav-down:4;nav-left:4;nav-right:2;"
+		onclick="jump();"></p>
+		
+		<p id="4" class="button" style="left:610px;top:367px;nav-index:4;nav-up:3;nav-down:0;nav-left:4;nav-right:0;"
+		onclick="jump();"></p>
+
+<!--
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
 		onclick="jump();"></p>
    <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
@@ -93,7 +92,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		<p id="12" class="button" style="top:510px;nav-index:12;nav-up:11;nav-down:12;"
 		onclick="jump();"></p>
 	
-
+-->
 
 
 

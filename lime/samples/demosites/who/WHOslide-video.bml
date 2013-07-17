@@ -104,7 +104,7 @@ browser.unlockScreen();
 
 <object id="bg" style="top:9px;left:132px;width:696px;height:522px;nav-index:0;" onkeydown="keydown();" data="WHOslide030.jpg" type="image/jpeg"/>
 
-<object id="video" type="application/X-arib-contentPlayControl" data="http://kawamori.github.com/LIME-Book/lime/resolveconf/who-ps.cpc" streamstatus="play" style="top:299px;left:182px;width:270px;height:152px;visibility:visible;"></object>
+<object id="video" type="application/X-arib-contentPlayControl" data="http://219.101.45.66/pcs/resolvecontent?contents_path=/moviebox/ntt-ev/h264-sd-tts/chap_01_eng_out.mp4&protocol=http_tts" streamstatus="play" style="top:299px;left:182px;width:270px;height:152px;visibility:visible;"></object>
 
 </div>		
 

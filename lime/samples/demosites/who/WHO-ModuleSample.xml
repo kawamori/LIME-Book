@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA" "bml_1_0.dtd">
+<?bml bml-version="1.0" ?>
+<bml>
+<head>
+<title>pop-up text</title>
+<!--	border-style:solid;border-width:2px;-->
+<style><![CDATA[
+
+body { background-color-index:52;
+used-key-list:basic numeric-tuning;}
+	*	{font-size:20px;}
+	#count	{left:110px;width:40px;height:20px;
+		border-style:solid;border-width:2px;}
+	#popup	{left:30px;top:30px;width:104px;height:176px;visibility:hidden;
+		background-color-index:79;}
+		
+	.toggled	{left:0px;width:600px;height:476px;visibility:hidden;
+		background-color-index:79;}
+	#toggled0	{left:30px;top:162px;width:600px;height:176px;visibility:hidden;
+		background-color-index:79;}
+		
+	#toggled1	{left:30px;top:212px;width:600px;height:260px;visibility:hidden;
+		background-color-index:79;}
+		
+				
+	#toggled2	{left:30px;top:262px;width:600px;height:161px;visibility:hidden;
+		background-color-index:79;}
+		
+				
+	#toggled3	{left:30px;top:312px;width:600px;height:260px;visibility:hidden;
+		background-color-index:79;}
+		
+				
+	#toggled4	{left:30px;top:132px;width:600px;height:419px;visibility:hidden;
+		background-color-index:79;}
+		
+		
+	#status	{top:30px;width:400px;height:20px;
+		color-index:7;background-color-index:79;}
+	.button	{width:400px;height:42px;text-align:center;grayscale-color-index:171 167;}
+	.text	{width:382px;height:20px;text-align:center;grayscale-color-index:171 167;}
+	:focus	{background-color-index:55;color-index:0}
+	p:blur   {background-color-index:48;color-index:0;grayscale-color-index:171 167;}
+	.all
+	{
+		left:    0px;
+		top:     0px;
+		width: 960px;
+		height:540px;
+	}
+	
+	#display	{   font-size:16px;
+    color-index:7;
+        background-color-index:16;text-align:left;font-size:16px;
+		top:350px;width:700px;height:190px;left:200px}
+]]></style>
+
+<script><![CDATA[
+
+var newFoc;
+var currentFIdx;
+
+function keepFocus(){ newFoc =document.currentFocus.id;
+                      currentFIdx=newFoc.split("")[7];
+}
+
+
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+
+function enter(){
+	var obj = document.getElementById("toggled"+currentFIdx);
+	obj.firstChild.normalStyle.visibility = "visible";
+	obj.firstChild.focus();
+	
+}
+
+
+
+function toggle(){
+
+	var obj = document.getElementById("toggled"+currentFIdx);
+	obj.firstChild.normalStyle.visibility = "hidden";
+
+	obj = document.getElementById(newFoc);
+	obj.focus();
+}
+
+]]></script>
+
+</head>
+<body>
+
+
+<div style="left:0px; top:0px; width:960px; height:540px">
+<object type="image/jpeg" data="images/who-ps-banner.jpg" style="left:0px; top:0px; width:960px; height:540px"/>
+</div>
+
+<div style="left:80px; top:60px; width:796px; height:34px;nav-index:0;" >
+		<object id="b0" style="left:0px; top:0px; width:796px; height:34px;"  type="image/jpeg" data="images/who-banner0.jpg"/>
+</div>
+
+<div style="top:150px;left:30px;width:480px;height:50px;">
+	<p class="button" id="entered0" onclick="enter();" onkeydown="keepFocus();"		style="nav-index:0;nav-down:1;nav-up:4;"><![CDATA[
+	Vaccine product-related reaction]]></p>
+</div>
+
+<div style="top:200px;left:30px;width:480px;height:50px;">
+	<p class="button" id="entered1" onclick="enter();" onkeydown="keepFocus();"			style="nav-index:1;nav-up:0;nav-down:2;"><![CDATA[
+	Vaccine quality defect-related reaction]]></p>
+</div>
+
+<div style="top:250px;left:30px;width:480px;height:50px;">
+	<p class="button" id="entered2" onclick="enter();" 	onkeydown="keepFocus();"		style="nav-index:2;nav-up:1;nav-down:3;"><![CDATA[
+	Immunization error-related reaction]]></p>
+</div>
+
+<div style="top:300px;left:30px;width:480px;height:50px;">
+	<p class="button" id="entered3" onclick="enter();" onkeydown="keepFocus();"			style="nav-index:3;nav-up:2;nav-down:4"><![CDATA[
+	Immunization anxiety-related reaction]]></p>
+</div>
+
+<div style="top:350px;left:30px;width:480px;height:50px;">
+	<p class="button" id="entered4" onclick="enter();" onkeydown="keepFocus();"			style="nav-index:4;nav-up:3;nav-down:0"><![CDATA[
+	Coincidental event]]></p>
+</div>
+
+
+<!-- -->
+
+<div id="toggled0" style="background-color-index:1;">
+	<object class="toggled" onclick="toggle();" type="image/X-arib-png"style="top:10px;width:606px;height:153px;visibiity:visible;background-color-index:2;" data="images/buttons/vaccine-text0.png"/>
+</div>
+
+
+<div id="toggled1" style="background-color-index:4;">
+	<object class="toggled" onclick="toggle();" type="image/X-arib-png"style="top:0px;width:600px;height:260px;background-color-index:4;nav-index:20;" data="images/buttons/vaccine-text1.png"/>
+</div>
+
+
+<div id="toggled2" style="background-color-index:4;">
+	<object class="toggled" onclick="toggle();" type="image/X-arib-png"style="top:0px;width:619px;height:161px;background-color-index:4;nav-index:20;" data="images/buttons/vaccine-text2.png"/>
+</div>
+
+<div id="toggled3" style="background-color-index:4;">
+	<object class="toggled" onclick="toggle();" type="image/X-arib-png"style="top:0px;width:604px;height:260px;background-color-index:4;nav-index:20;" data="images/buttons/vaccine-text3.png"/>
+</div>
+<div id="toggled4" class="button" style="background-color-index:4;">
+	<object class="toggled" onclick="toggle();" type="image/X-arib-png"style="top:0px;width:600px;height:419px;background-color-index:4;nav-index:20;" data="images/buttons/vaccine-text4.png"/>
+</div>
+
+<!--
+<p id="display"><![CDATA[]]></p>
+-->
+</body>
+</bml>

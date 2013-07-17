@@ -38,6 +38,8 @@ var obj = document.getElementById("display");
 
 function goback(){ browser.launchDocument("WHOslide-start.bml", "cut");	}
 
+function gonext(){ browser.launchDocument("WHO-ModuleSample.xml", "cut");	}
+
 function alert(str)
 {
 	obj.firstChild.data = str+"\r\n" ;
@@ -92,6 +94,7 @@ function jump(){
 
 <p id="p01" class="button" style="left:250px;color-index:7;background-color-index:8;"  accesskey="R" onclick="goback();"></p>
 
+<p id="p02" class="button" style="left:250px;color-index:7;background-color-index:8;"  accesskey="Y" onclick="gonext();"></p>
 
 <p id="display" style="background-color-index:8"><![CDATA[]]></p>
 </body>
