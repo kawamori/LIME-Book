@@ -45,23 +45,6 @@ function jump(){
 
 
 
-function focus(){
-	var target = document.currentEvent.target;
-	target.nextSibling.normalStyle.visibility = "visible";
-}
-
-function blur(){
-	var target = document.currentEvent.target;
-	target.nextSibling.normalStyle.visibility = "hidden";
-	target.nextSibling.nextSibling.normalStyle.visibility = "hidden";
-	}
-
-function show(){
-	var target = document.currentEvent.target;
-	target.nextSibling.normalStyle.visibility = "visible";
-}
-
-
 function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 		]]></script>
@@ -73,6 +56,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 <div style="top:0px;left:2px;width:956px;height:440px;background-color-index:7;">
 <object id="banner" style="top:0px;left:10px;width:940px;height:188px;nav-index:0;" onkeydown="keydown();" data="media/islam-otsuka-banner.jpg" type="image/jpeg"/>
 
+<object id="video" type="application/X-arib-contentPlayControl" data="http://kawamori.github.com/LIME-Book/lime/resolveconf/speech.cpc" streamstatus="play" style="top:299px;left:182px;width:270px;height:152px;visibility:visible;"></object>
 
 </div>
 
@@ -83,32 +67,16 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 			<p id="item" style="top:10px;left:200px;width:550px;height:400px;color-index:7;"><![CDATA[ JIT Activities and Report]]></p>
 			
 			
-<div style="top:50px;left:250px;width:550px;height:480px;">
-        <p id="0" class="button" style="top:0px;left:0px;width:150px;nav-index:0;nav-down:1"	onfocus="focus();" onblur="blur();" onclick="show();"
-		onclick="jump();">Ramadan</p>
-				
-		<object class="text" type="image/X-arib-png" data="ramadan.png"
-			style="top:140px;width:552px;height:196px;visibility:hidden;"/>	
-	</div>
-
-
-<div style="top:80px;left:250px;width:550px;height:480px;">
-		<p id="1" class="button" style="top:0px;left:0px;width:440px;nav-index:1;nav-down:2;nav-up:0;" 	onfocus="focus();" onblur="blur();" onclick="jump();"
+		
+        <p id="0" class="button" style="top:50px;width:450px;nav-index:0;nav-down:1"
 		onclick="jump();">Visit of Imam Haram Sheikh Adel Al Kalbani</p>
+
+		<p id="1" class="button" style="top:80px;nav-index:1;nav-down:2;nav-up:0;"
+		onclick="jump();">Takidashi</p>
 		
-			<object class="text" type="image/X-arib-png" data="dars.png"
-			style="top:110px;width:575px;height:220px;visibility:hidden;"/>	
-		</div>
+		<p id="2" class="button" style="top:110px;nav-index:2;nav-up:1;nav-down:3;"
+		onclick="jump();">Bazaar</p>
 		
-		
-<div style="top:110px;left:250px;width:550px;height:480px;">		
-		<p id="2" class="button" style="top:0px;left:0px;width:300px;nav-index:2;nav-up:1;nav-down:3;" onfocus="focus();" onblur="blur();" onclick="show();"
-		onclick="jump();">Invitation to Dawah</p>
-		
-		<object class="text" type="image/X-arib-png" data="dawah.png"
-			style="top:80px;width:552px;height:196px;visibility:hidden;"/>	
-			
-			</div>
 		<p id="3" class="button" style="top:140px;nav-index:3;nav-up:2;nav-down:4;"
 		onclick="jump();">...</p>
 		
