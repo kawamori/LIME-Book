@@ -10,7 +10,7 @@
 			p {height:16px;color-index:0;grayscale-color-index:15 15}
 			
 			p:focus{background-color-index:1;width:15px;height:15px;}
-			.button:blur {background-color-index:4;width:10px;height:10px;}
+		     :blur {background-color-index:4;width:10px;height:10px;}
 			.button {width:10px;height:10px;font-size:16px;}
 			.bgm {
 		width:300px; height:300px; top:10px; left:10px;
