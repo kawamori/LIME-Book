@@ -24,7 +24,7 @@
 		urlList[3] = "who/WHO-ModuleSample.xml";
 		urlList[4] = "../lime-html/paris/index.html";
 		urlList[5] = "paris/index.xml";
-		urlList[6] = "ateneo/disaster_v4/homepage.bml";
+		urlList[6] = "ateneo/disaster_v4/homepage-kawamori.html";
 		urlList[7] = "";
 		urlList[8] = "audio/aiff-test.xml";
 		urlList[9] = "http://lime.jgn-x.jp/cgi-bin/computex_so/startover.cgi";
