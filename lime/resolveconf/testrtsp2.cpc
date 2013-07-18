@@ -22,7 +22,7 @@ Content-Length:533
     </header>
     <startup>
         <content_title>test</content_title>
-        <duration>000000</duration>
+        <duration>000021</duration>
         <start>http://192.168.1.4/Paris_Notredame.MTS</start>
     </startup>
     <es_info>
