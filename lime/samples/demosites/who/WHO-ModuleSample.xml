@@ -40,8 +40,8 @@ used-key-list:basic numeric-tuning;}
 		color-index:7;background-color-index:79;}
 	.button	{width:400px;height:42px;text-align:center;grayscale-color-index:171 167;}
 	.text	{width:382px;height:20px;text-align:center;grayscale-color-index:171 167;}
-	:focus	{background-color-index:55;color-index:0}
-	p:blur   {background-color-index:48;color-index:0;grayscale-color-index:171 167;}
+	:focus	{background-color-index:55;color-index:7}
+	:blur   {background-color-index:48;color-index:0;grayscale-color-index:171 167;}
 	.all
 	{
 		left:    0px;
