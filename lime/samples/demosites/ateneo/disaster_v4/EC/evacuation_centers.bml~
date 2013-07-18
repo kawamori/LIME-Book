@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Evacuation Centers</title>
+<meta>Developed based on the Template startup.bml version 1.00 by Art Developers Corporation
+Template startup.bml version 1.00 (Copyright 2008 by Art Developers Corporation)
+Sample LIME content, (Copyright 2010, NTT)
+
+</meta>
+<style>
+<![CDATA[
+
+body { 	
+	resolution:960x540;
+	display-aspect-ratio:16v9;
+	background-color-index:200; 
+	background-image:url(whitebackground.jpg);
+	background-repeat:no-repeat;
+}
+
+]]>
+</style>
+
+
+
+<script>
+<![CDATA[
+// =================== Javascript to control navigation  =============================
+var gD = 2;
+var metaFile="";
+function SG(g,d)
+{
+	if (g == 0)
+	{
+		if (d)
+		{
+			 setData("s5", "choice1.jpg");
+		}
+	} 
+	
+	if (g == 1)
+	{
+		if (d)
+		{
+			 setData("s5", "choice2.jpg");
+		}
+	} 
+
+	if (g == 2)
+	{
+		if (d)
+		{
+			 setData("s5", "choice3.jpg");
+		}
+	} 
+	
+	if (g == 3)
+	{
+		if (d)
+		{
+			 setData("s5", "choice4.jpg");
+		}
+	} 
+	
+	if (g == 4)
+	{
+		if (d)
+		{
+			 setData("s5", "choice5.jpg");
+		}
+	} 
+	if (g == 5)
+	{
+		if (d)
+		{
+			 setData("s6", "concepcione.jpg");
+		}
+	} 
+	if (g == 6)
+	{
+		if (d)
+		{
+			 setData("s7", "radar1.jpg");
+		}
+	} 
+	if (g == 7)
+	{
+		if (d)
+		{
+			 setData("s6", "hbautista.jpg");
+		}
+	} 
+	if (g == 8)
+	{
+		if (d)
+		{
+			 setData("s7", "Radar.jpg");
+		}
+	} 
+}
+
+
+function setParam(p)// setParam
+{
+	var p2i = new Array(2,3,4,5,6,7,8,9,10,11,12,13);
+	var p2k = new Array(
+						Array(1,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,1,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,1,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,1,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,1,0,0,0,0,0,0,0),
+						Array(0,1,0,0,0,0,0,0,0,0,0,0),
+						Array(0,1,0,0,0,0,0,0,0,0,0,0),
+						Array(1,0,0,0,0,0,0,0,0,0,0,0),
+						Array(1,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+			
+						);
+	var n,i;
+	for (n=0; n<p2i.length; n++){
+		if (p2i[n] == p){
+			
+			break;
+			
+		}
+	}
+	browser.lockScreen();
+	for (i=0; i<17; i++){
+		SG(i,p2k[i][n]);
+	}
+	browser.unlockScreen();
+	gD = p;
+}
+
+function load()
+{
+	getObject("mono").focus();
+	setParam(2);
+}
+
+function keyDown() // key down
+{
+	var k = document.currentEvent.keyCode;
+	
+	if(k == 1){
+		if (gD == 2){
+			playSound(9);
+			setParam(6);
+		}
+
+		else if(gD == 6){
+			playSound(9);
+			setParam(5);
+		}
+		else if(gD == 5){
+			playSound(9);
+			setParam(4);
+
+		}
+		else if(gD == 4){
+			playSound(9);
+			setParam(3);
+
+		}
+		else if(gD == 3){
+			playSound(9);
+			setParam(2);
+
+		}
+	}
+	else if(k == 2){
+		if (gD == 2){
+			playSound(9);
+			setParam(3);
+		}
+		else if (gD == 3){
+			playSound(9);
+			setParam(4);
+		}
+		else if(gD == 4){
+			playSound(9);
+			setParam(5);
+		}
+		else if(gD == 5){
+			playSound(9);
+			setParam(6);
+		}
+		else if(gD == 6){
+			playSound(9);
+			setParam(2);
+		}
+		
+	}
+	else if(k == 18){
+		if (gD == 2){
+			playSound(7);
+			
+		}
+		else if (gD == 3){
+			playSound(7);
+			
+		}
+		else if (gD == 4){
+			playSound(7);
+			
+		}
+		else if (gD == 5){
+			playSound(7);
+			
+		}
+		else if (gD == 6){
+			playSound(7);
+			
+		}
+	}
+	
+}
+
+function keyUp()//key up
+{
+	var k = document.currentEvent.keyCode;
+	if(k == 18){
+		if (gD == 2){
+			
+			browser.launchDocument("h.bautista/hbautista.bml");
+		}
+		
+	}
+	else if(k == 19){
+		playSound(7);
+		browser.launchDocument("../homepage2.bml");
+	}
+}
+
+
+function getObject(o)//getObject
+{
+	return document.getElementById(o);
+}
+function setData(o, d)//setData
+{
+	getObject(o).data = d;
+}
+function getStyle(o)//getStyle
+{
+	return getObject(o).normalStyle;
+}
+function setText(o, s)//setText
+{
+	getObject(o).firstChild.data = s;
+}
+function setVisible(o)//setVisible
+{
+	getObject(o).normalStyle.visibility = "visible";
+}
+function hide(o)//hide
+{
+	getObject(o).normalStyle.visibility = "hidden";
+}
+function playSound(n)//playSound
+{
+	browser.playRomSound("romsound://" + n + "");
+}
+function launchURL(u)//launchURL
+{
+	browser.launchDocument(u, "cut");
+}
+]]>
+</script>
+</head>
+
+
+  
+<body id="body" onload="load();">
+	
+	<div id="mono" style="width:960px; height:540px;" onkeyup="keyUp();" onkeydown="keyDown();">
+	
+	<!-- Use graphics for title, rather than text -->	
+	
+		<object id="s2" style="left:150px; top:0px; width:200px; height:900px;" data="gold.jpg" type="image/jpeg"/>
+		<object id="s3" style="left:0px; top:0px; width:1500px; height:900px;" data="Header.jpg" type="image/jpeg"/>
+	    	<object id="s4" style="left:178px; top:105px; width:1500px; height:900px;" data="list2.jpg" type="image/jpeg"/> 
+         	<object id="s5" style="left:195px; top:120px; width:1500px; height:900px;" data="choice1.jpg" type="image/jpeg"/> 
+			<object id="s6" style="left:620px; top:95px; width:1500px; height:900px;" data="hbautista.jpg" type="image/jpeg"/> 
+			<object id="s7" style="left:600px; top:300px; width:1500px; height:900px;" data="Radar.jpg" type="image/jpeg"/> 
+	
+				
+		<!-- buttons --> 
+		
+		
+
+        
+		</div>
+
+	
+	
+</body>
+</bml>

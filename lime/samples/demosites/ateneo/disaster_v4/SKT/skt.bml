@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Homepage</title>
+<meta>Developed based on the Template startup.bml version 1.00 by Art Developers Corporation
+Template startup.bml version 1.00 (Copyright 2008 by Art Developers Corporation)
+Sample LIME content, (Copyright 2010, NTT)
+
+</meta>
+<style>
+<![CDATA[
+
+body { 	
+	resolution:960x540;
+	display-aspect-ratio:16v9;
+	background-color-index:200; 
+	background-image:url(whitebackground.jpg);
+	background-repeat:no-repeat;
+}
+
+]]>
+</style>
+
+
+
+<script>
+<![CDATA[
+// =================== Javascript to control navigation  =============================
+
+function load()
+{
+	getObject("mono").focus();
+	setParam(2);
+}
+
+function keyUp()//key up
+{
+	var k = document.currentEvent.keyCode;
+	if(k == 19){
+	playSound(7);	
+	launchURL("../homepage2.bml");
+	}
+}
+
+
+function getObject(o)//getObject
+{
+	return document.getElementById(o);
+}
+function setData(o, d)//setData
+{
+	getObject(o).data = d;
+}
+function getStyle(o)//getStyle
+{
+	return getObject(o).normalStyle;
+}
+function setText(o, s)//setText
+{
+	getObject(o).firstChild.data = s;
+}
+function setVisible(o)//setVisible
+{
+	getObject(o).normalStyle.visibility = "visible";
+}
+function hide(o)//hide
+{
+	getObject(o).normalStyle.visibility = "hidden";
+}
+function playSound(n)//playSound
+{
+	browser.playRomSound("romsound://" + n + "");
+}
+function launchURL(u)//launchURL
+{
+	browser.launchDocument(u, "cut");
+}
+]]>
+</script>
+</head>
+
+
+  
+<body id="body" onload="load();">
+	
+	<div id="mono" style="width:960px; height:540px;" onkeyup="keyUp();" onkeydown="keyDown();">
+	
+		
+
+	<!-- Use graphics for title, rather than text -->	
+	   
+		<object id="s1" style="left:0px; top:0px; width:1500px; height:900px;" data="Header.jpg" type="image/jpeg"/>
+	    <object id="s2" style="left:700px; top:92px; width:25px; height:540px;" data="gold.jpg" type="image/jpeg"/>
+						
+	
+				
+		<!-- text --> 
+	
+		<object id="s3" style="left:730px; top:120px; width:433px; height:730px;" data="message.jpg" type="image/jpeg"/> 
+		
+		</div>
+
+		<div id="stream" style="left:10px; top:20px; width:920px; height:500px;">
+
+		<!-- Video tag: URL to the manifest file of the video file is to be put here.-->
+
+		<object id="video_1" type="application/X-arib-contentPlayControl" data=" " streamstatus="play" style="left:20px; top:100px;width:650px; height:364px;" />
+	
+		</div>
+	
+	
+</body>
+</bml>

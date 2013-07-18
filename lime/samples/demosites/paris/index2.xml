@@ -32,6 +32,35 @@
 //var base = "http://127.0.0.1/";
 var base = "";
 
+
+
+
+var Index = 0;
+var image ="balloon3L.png";
+var dir = "./";
+
+
+function keydown(){
+	var code = document.currentEvent.keyCode;
+	var prev = Index;
+
+	if( code == 1 ){
+		if(--Index < 0) Index = 4;
+	}
+	else if( code == 2){	
+		if(++Index > 4) Index = 0;
+	}
+
+
+	var next = Index;
+	if( prev != next ){	
+	document.getElementById(prev).data = dir+image;
+	document.getElementById(next).data = dir+"f"+"button1.png";
+	}
+}
+
+
+
 function jump(){
 	var url = urlList[document.currentEvent.target.id]
 	
@@ -50,10 +79,13 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 <div style="left:0px; top:0px; width:960px; height:540px">
 <object type="image/X-arib-png" data="Map-of-Paris-France_fit.png" style="left:200px;top:0;width:752px;height:539px;"/>
 </div>
-		<!--
-<p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ Some System-related Tests ]]></p>
-		-->
-			
+	
+	
+	
+	<div style="left:50px;top:20px;width:600px;height:540px; nav-index:0;" onkeydown="keydown();">
+	
+	<div style="left: 650px;top:225px;width:270px; height:140px">
+<object type="image/X-arib-png" data="balloon3L.png" style="left:0;top:0;width:752px;height:539px;"/></div>
 		
         <p id="0" class="button" style="left: 730px;top:365px;nav-index:0;nav-down:0;nav-up:1;nav-left:4;nav-right:1;"
 		onclick="jump();"></p>
@@ -69,7 +101,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 		
 		<p id="4" class="button" style="left:610px;top:367px;nav-index:4;nav-up:3;nav-down:0;nav-left:4;nav-right:0;"
 		onclick="jump();"></p>
-
+</div>
 <!--
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
 		onclick="jump();"></p>

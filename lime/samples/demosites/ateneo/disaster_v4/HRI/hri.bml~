@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Homepage</title>
+<meta>Developed based on the Template startup.bml version 1.00 by Art Developers Corporation
+Template startup.bml version 1.00 (Copyright 2008 by Art Developers Corporation)
+Sample LIME content, (Copyright 2010, NTT)
+
+</meta>
+<style>
+<![CDATA[
+
+body { 	
+	resolution:960x540;
+	display-aspect-ratio:16v9;
+	background-color-index:200; 
+	background-image:url(whitebackground.jpg);
+	background-repeat:no-repeat;
+}
+
+]]>
+</style>
+
+
+
+<script>
+<![CDATA[
+// =================== Javascript to control navigation  =============================
+var gD = 2;
+function SG(g,d)
+{
+	if (g == 0)
+	{
+		if (d)
+		{
+			 setData("s4", "v_focus_1.jpg");
+		}
+	} 
+}
+
+
+function setParam(p)// setParam
+{
+	var p2i = new Array(2,3,4,5,6,7,8,9,10,11,12,13);
+	var p2k = new Array(
+						Array(1,0,0,0,0,0,0,0,0,0,0,0), //g=0
+						Array(1,0,0,1,0,0,0,0,0,0,0,0), //g=1
+						Array(1,0,0,1,0,0,0,0,0,0,0,0), //g=2
+						Array(1,1,1,0,0,0,0,0,0,0,0,0), //g=3
+						Array(0,1,0,0,0,0,0,0,0,0,0,0),
+						Array(0,1,1,0,0,0,0,0,0,0,0,0),
+						Array(0,0,1,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,1,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,1,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,1,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,1,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,1,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+						Array(0,0,0,0,0,0,0,0,0,0,0,0),
+			
+						);
+	var n,i;
+	for (n=0; n<p2i.length; n++){
+		if (p2i[n] == p){
+			
+			break;
+			
+		}
+	}
+	browser.lockScreen();
+	for (i=0; i<17; i++){
+		SG(i,p2k[i][n]);
+	}
+	browser.unlockScreen();
+	gD = p;
+}
+
+function load()
+{
+	getObject("mono").focus();
+	setParam(2);
+}
+
+function keyDown() // key down
+{
+	var k = document.currentEvent.keyCode;
+	
+	if(k == 4){
+
+		playSound(9);
+
+		if (getObject("s4").data == "v_focus_1.jpg"){			
+			setData("s5","v_focus_2.jpg"); 
+			setData("s4","v_button_1.jpg"); 
+		}
+		
+		else if (getObject("s5").data == "v_focus_2.jpg"){			
+			setData("s6","v_focus_3.jpg"); 
+			setData("s5","v_button_2.jpg"); 
+		}
+		
+		else if (getObject("s6").data == "v_focus_3.jpg"){			
+			setData("s4","v_focus_1.jpg"); 
+			setData("s6","v_button_3.jpg"); 
+		}
+	}
+	
+	else if(k == 3){
+		playSound(9);
+
+		if (getObject("s4").data == "v_focus_1.jpg"){			
+			setData("s6","v_focus_3.jpg"); 
+			setData("s4","v_button_1.jpg"); 
+		}
+		
+		else if (getObject("s6").data == "v_focus_3.jpg"){			
+			setData("s5","v_focus_2.jpg"); 
+			setData("s6","v_button_3.jpg"); 
+		}
+		
+		else if (getObject("s5").data == "v_focus_2.jpg"){			
+			setData("s4","v_focus_1.jpg"); 
+			setData("s5","v_button_2.jpg"); 
+		}
+	}
+	
+}
+
+function keyUp()//key up
+{
+	var k = document.currentEvent.keyCode;
+	
+	if (k == 19){
+		playSound(9);
+		launchURL("../homepage2.bml");
+	}
+}
+
+
+function getObject(o)//getObject
+{
+	return document.getElementById(o);
+}
+function setData(o, d)//setData
+{
+	getObject(o).data = d;
+}
+function getStyle(o)//getStyle
+{
+	return getObject(o).normalStyle;
+}
+function setText(o, s)//setText
+{
+	getObject(o).firstChild.data = s;
+}
+function setVisible(o)//setVisible
+{
+	getObject(o).normalStyle.visibility = "visible";
+}
+function hide(o)//hide
+{
+	getObject(o).normalStyle.visibility = "hidden";
+}
+function playSound(n)//playSound
+{
+	browser.playRomSound("romsound://" + n + "");
+}
+function launchURL(u)//launchURL
+{
+	browser.launchDocument(u, "cut");
+}
+]]>
+</script>
+</head>
+
+
+  
+<body id="body" onload="load();">
+	
+	<div id="mono" style="width:960px; height:540px;" onkeyup="keyUp();" onkeydown="keyDown();">
+	
+		
+
+	<!-- Use graphics for title, rather than text -->	
+	   
+		<object id="s1" style="left:0px; top:0px; width:1500px; height:900px;" data="Header.jpg" type="image/jpeg"/>
+	    
+						
+	
+				
+		<!-- buttons --> 
+	
+<object id="s2" style="left:200px; top:150px; width:624px; height:705px; visibility:hidden;" data="photo_1.jpg" type="image/jpeg"/> 
+		<object id="s3" style="left:15px; top:100px; width:250px; height:540px;" data="verticalpanel.jpg" type="image/jpeg"/>
+		<object id="s4" style="left:175px; top:420px; width:350px; height:180px;" data="v_button_1.jpg" type="image/jpeg"/>
+	    <object id="s5" style="left:360px; top:420px; width:350px; height:180px;" data="v_button_2.jpg" type="image/jpeg"/>
+		<object id="s6" style="left:545px; top:420px; width:350px; height:180px;" data="v_button_3.jpg" type="image/jpeg"/>
+		<object id="s7" style="left:750px; top:92px; width:25px; height:540px;" data="gold.jpg" type="image/jpeg"/>
+		<object id="s8" style="left:780px; top:100px; width:250px; height:540px;" data="verticalpanel_2.jpg" type="image/jpeg"/>
+		</div>
+
+		<div id="stream" style="left:175px; top:0px; width:920px; height:500px;">
+<!-- 
+Video tag: URL to the manifest file of the video file is to be put here.
+-->
+		<object id="video_1" type="application/X-arib-contentPlayControl" data=" " streamstatus="play" style="left:20px; top:100px;width:510px; height:286px;" />
+		<object id="video_2" type="application/X-arib-contentPlayControl" data=" " streamstatus="play" style="left:20px; top:100px;width:510px; height:286px;" />
+		<object id="video_3" type="application/X-arib-contentPlayControl" data=" " streamstatus="play" style="left:20px; top:100px;width:510px; height:286px;" />
+	
+		</div>
+	
+	
+</body>
+</bml>

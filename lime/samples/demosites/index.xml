@@ -21,11 +21,11 @@
 		urlList[0] = "who/startup.bml";
 		urlList[1] = "islam/index.xml";
 		urlList[2] = "who/info-banners.xml";
-		urlList[3] = "paris/index.xml";
+		urlList[3] = "who/WHO-ModuleSample.xml";
 		urlList[4] = "../lime-html/paris/index.html";
-		urlList[5] = "nico/nicostartup.html";
-		urlList[6] = "nico/nicostartup-j.html";
-		urlList[7] = "audio/startup.xml";
+		urlList[5] = "paris/index.xml";
+		urlList[6] = "ateneo/disaster_v4/homepage.bml";
+		urlList[7] = "";
 		urlList[8] = "audio/aiff-test.xml";
 		urlList[9] = "http://lime.jgn-x.jp/cgi-bin/computex_so/startover.cgi";
 		urlList[10] = "itu-test/video.xml";
@@ -66,16 +66,16 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">WHO Banners</p>
 		
 		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
-		onclick="jump();">Paris Clips</p>
+		onclick="jump();">WHO Module</p>
 		
 		
 		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
 		onclick="jump();">My Little Paris</p>
 
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
-		onclick="jump();"></p>
+		onclick="jump();">Paris Clips</p>
    <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
-		onclick="jump();"></p>
+		onclick="jump();">Ateneo DWS</p>
 		
 		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
 		onclick="jump();"></p>
