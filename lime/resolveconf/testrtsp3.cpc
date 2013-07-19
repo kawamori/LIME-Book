@@ -23,7 +23,7 @@ Content-Length:533
     <startup>
         <content_title>test</content_title>
         <duration>000000</duration>
-        <start>http://192.168.1.4/Paris_Sorbonne.MTS</start>
+        <start>http://192.168.12.7/Paris_Sorbonne.MTS</start>
     </startup>
     <es_info>
         <video_info resolution='1' coding ='h264'/>
