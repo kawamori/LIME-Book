@@ -18,9 +18,9 @@
 	<script ><![CDATA[
 
 		var urlList = new Array();
-		urlList[0] = "french.xml";
-		urlList[1] = "italian.xml";
-		urlList[2] = "english.xml";
+		urlList[0] = "video/Matt.html";
+		urlList[1] = "";
+		urlList[2] = "";
 		urlList[3] = "";
 		urlList[4] = "";
 		urlList[5] = "";
@@ -45,7 +45,7 @@ function jump(){
 
 
 
-function goback(){ browser.launchDocument("../index.xml", "cut");	}
+function goback(){ browser.launchDocument("./index.xml", "cut");	}
 
 		]]></script>
 
@@ -57,13 +57,13 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 			
 		
         <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();">French</p>
+		onclick="jump();">Matt Speaking</p>
 
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();">Italian</p>
+		onclick="jump();"></p>
 		
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
-		onclick="jump();">English</p>
+		onclick="jump();"></p>
 		
 		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
 		onclick="jump();"></p>
