@@ -21,7 +21,7 @@
 
 		var urlList = new Array();
 		urlList[0] = "video.html";
-		urlList[1] = "video3.html";
+		urlList[1] = "notredame.html";
 		urlList[2] = "video2.html";
 		urlList[3] = "video4.html";
 		urlList[4] = "video5.html";
