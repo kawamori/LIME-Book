@@ -25,7 +25,7 @@
 		urlList[4] = "../lime-html/paris/index.html";
 		urlList[5] = "paris/index.xml";
 		urlList[6] = "ateneo/disaster_v4/homepage-kawamori.html";
-		urlList[7] = "";
+		urlList[7] = "lang/index.xml";
 		urlList[8] = "audio/aiff-test.xml";
 		urlList[9] = "http://lime.jgn-x.jp/cgi-bin/computex_so/startover.cgi";
 		urlList[10] = "itu-test/video.xml";
@@ -78,7 +78,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">Ateneo DWS</p>
 		
 		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
-		onclick="jump();"></p>
+		onclick="jump();">Languages</p>
 		
 				 <p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
 		onclick="jump();"></p>
