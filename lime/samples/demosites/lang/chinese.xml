@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!DOCTYPE bml PUBLIC "+//ARIB STD-B24:1999//DTD BML Document//JA" "bml_1_0.dtd">
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title/>
+<style><![CDATA[
+	.button {width:140px;height:540px;}
+	.text {top:62px;width:140px;height:320px;}
+	p.button {text-align:center;color-index:7;line-height:30px;}
+	#display	{   font-size:16px;
+    color-index:7;
+    grayscale-color-index:171 167;
+        background-color-index:16;text-align:left;font-size:24px;
+		top:400px;width:700px;height:150px;}
+]]></style>
+
+<script><![CDATA[
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+
+
+function focus(){
+	var target = document.currentEvent.target;
+	target.nextSibling.normalStyle.visibility = "visible";
+	target.nextSibling.nextSibling.streamStatus="play";
+}
+
+function blur(){
+	var target = document.currentEvent.target;
+	target.nextSibling.normalStyle.visibility = "hidden";
+	target.nextSibling.nextSibling.normalStyle.visibility = "hidden";
+		target.nextSibling.nextSibling.streamStatus="stop";
+	}
+
+function show(){
+	var target = document.currentEvent.target;
+	target.nextSibling.nextSibling.streamStatus="play";
+	target.nextSibling.nextSibling.nextSibling.normalStyle.visibility = "visible";
+}
+
+]]></script>
+
+</head>
+<body style="background-color-index:0;">
+<div style="left:50px; top:0px; width:910px; height:540px">
+	<div class="button" style="left:0px;">
+		<object class="button" type="image/X-arib-png" data="images/likashing/likasing-7.png" 			style="top:30px;width:128px;height:486px;nav-index:7;nav-right:6;nav-left:0;"
+			onfocus="focus();" onblur="blur();" onclick="show();"/>
+		<object class="button" type="image/X-arib-png" data="images/buttons/fbuttonr.png" 			style="left:0px;visibility:hidden;"/>
+		<object class="button" id="bgm" data="media/li-kashing-01h_out.aac" type="audio/X-arib-mpeg2-aac" streamstatus=""/>
+		<p class="button"></p>
+	</div>
+
+	<div class="button" style="left:150px;">
+		<object class="button" type="image/X-arib-png" data="images/likashing/likasing-6.png"
+			style="top:30px;nav-index:6;nav-right:5;nav-left:7;"
+			onfocus="focus();" onblur="blur();" onclick="show();"/>
+		<object class="button" type="image/X-arib-png" data="images/buttons/fbuttonr.png"
+			style="left:0px;visibility:hidden;"/>
+		<object class="button" id="bgm" data="media/li-kashing-01g_out.aac" type="audio/X-arib-mpeg2-aac" streamstatus=""/>
+		<p class="button"></p>
+	</div>
+
+	<div class="button" style="left:220px;">
+		<object class="button" type="image/X-arib-png" data="images/likashing/likasing-5.png"		style="top:30px;width:130px;height:485px;nav-index:5;nav-right:4;nav-left:6;"
+			onfocus="focus();" onblur="blur();" onclick="show();"/>
+		<object class="button" type="image/X-arib-png" data="images/buttons/fbuttonr.png"
+			style="visibility:hidden;"/>
+		<object class="button" id="bgm" data="media/li-kashing-01f_out.aac" type="audio/X-arib-mpeg2-aac" streamstatus=""/>
+		<p class="button"></p>
+	</div>
+
+	<div class="button" style="left:370px;">
+		<object class="button" type="image/X-arib-png" data="images/likashing/likasing-4.png"
+			style="top:30px;nav-index:4;nav-right:3;nav-left:5;"
+			onfocus="focus();" onblur="blur();" onclick="show();"/>
+		<object class="button" type="image/X-arib-png" data="images/buttons/fbuttonr.png"
+			style="visibility:hidden;"/>
+		<object class="button" id="bgm" data="media/li-kashing-01e_out.aac" type="audio/X-arib-mpeg2-aac" streamstatus=""/>
+		<p class="button"></p>
+	</div>
+
+	<div class="button" style="left:450px;">
+		<object class="button" type="image/X-arib-png" data="images/likashing/likasing-3.png"
+			style="top:30px;nav-index:3;nav-right:2;nav-left:4;"
+			onfocus="focus();" onblur="blur();" onclick="show();"/>
+		<object class="button" type="image/X-arib-png" data="images/buttons/fbuttonr.png"
+			style="visibility:hidden;"/>
+		<object class="button" id="bgm" data="media/li-kashing-01d_out.aac" type="audio/X-arib-mpeg2-aac" streamstatus=""/>
+		<p class="button"></p>
+	</div>
+	
+<div class="button" style="left:520px;">
+		<object class="button" type="image/X-arib-png" data="images/likashing/likasing-2.png"
+			style="top:30px;nav-index:2;nav-right:1;nav-left:3;"
+			onfocus="focus();" onblur="blur();" onclick="show();"/>
+		<object class="button" type="image/X-arib-png" data="images/buttons/fbuttonr.png"
+			style="visibility:hidden;"/>
+		<object class="button" id="bgm" data="media/li-kashing-01c_out.aac" type="audio/X-arib-mpeg2-aac" streamstatus=""/>
+		<p class="button"></p>
+	</div>
+	
+	<div class="button" style="left:620px;">
+		<object class="button" type="image/X-arib-png" data="images/likashing/likasing-1.png"
+			style="top:30px;nav-index:1;nav-right:0;nav-left:2;"
+			onfocus="focus();" onblur="blur();" onclick="show();"/>
+		<object class="button" type="image/X-arib-png" data="images/buttons/fbuttonr.png"
+			style="visibility:hidden;"/>
+		<object class="button" id="bgm" data="media/li-kashing-01b_out.aac" type="audio/X-arib-mpeg2-aac" streamstatus=""/>
+		<p class="button"></p>
+	</div>
+	<div class="button" style="left:700px;">
+		<object class="button" type="image/X-arib-png" data="images/likashing/likasing.png"
+			style="top:30px;nav-index:0;nav-right:0;nav-left:1;"
+			onfocus="focus();" onblur="blur();" onclick="show();"/>
+		<object class="button" type="image/X-arib-png" data="images/buttons/"
+			style="visibility:hidden;"/>
+		<object class="button" id="bgm" data="" type="audio/X-arib-mpeg2-aac" streamstatus=""/>
+		<p class="button"></p>
+	</div>
+</div>
+
+<!--
+<p id="display"><![CDATA[ Test]]></p>	-->
+</body>
+</bml>
