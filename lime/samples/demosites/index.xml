@@ -26,8 +26,8 @@
 		urlList[5] = "paris/index.xml";
 		urlList[6] = "ateneo/disaster_v4/homepage-kawamori.html";
 		urlList[7] = "lang/index.xml";
-		urlList[8] = "audio/aiff-test.xml";
-		urlList[9] = "http://lime.jgn-x.jp/cgi-bin/computex_so/startover.cgi";
+		urlList[8] = "live/live.html";
+		urlList[9] = "";
 		urlList[10] = "itu-test/video.xml";
 		urlList[11] = "http://173.254.19.154/public_html/iptv/lime/startup.xml";
 		urlList[12] = "";
@@ -81,7 +81,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">Languages</p>
 		
 				 <p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
-		onclick="jump();"></p>
+		onclick="jump();">Live!!</p>
 				
 				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
 		onclick="jump();"></p>
