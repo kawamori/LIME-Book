@@ -27,7 +27,7 @@
 		urlList[6] = "ateneo/disaster_v4/homepage-kawamori.html";
 		urlList[7] = "lang/index.xml";
 		urlList[8] = "live/live.html";
-		urlList[9] = "";
+		urlList[9] = "live/multi.html";
 		urlList[10] = "itu-test/video.xml";
 		urlList[11] = "http://173.254.19.154/public_html/iptv/lime/startup.xml";
 		urlList[12] = "";
@@ -84,7 +84,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 		onclick="jump();">Live!!</p>
 				
 				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
-		onclick="jump();"></p>
+		onclick="jump();">Multicast</p>
 		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
 		onclick="jump();"></p>
 
