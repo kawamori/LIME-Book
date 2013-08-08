@@ -18,18 +18,18 @@
 	<script ><![CDATA[
 
 		var urlList = new Array();
-		urlList[0] = "who/startup.bml";
-		urlList[1] = "islam/index.xml";
-		urlList[2] = "who/info-banners.xml";
-		urlList[3] = "who/WHO-ModuleSample.xml";
-		urlList[4] = "../lime-html/paris/index.html";
-		urlList[5] = "paris/index.xml";
-		urlList[6] = "ateneo/disaster_v4/homepage-kawamori.html";
-		urlList[7] = "lang/index.xml";
-		urlList[8] = "live/live.html";
-		urlList[9] = "live/multi.html";
-		urlList[10] = "itu-test/video.xml";
-		urlList[11] = "japan/index.xml";
+		urlList[0] = "kobe.xml";
+		urlList[1] = "";
+		urlList[2] = "";
+		urlList[3] = "";
+		urlList[4] = "";
+		urlList[5] = "";
+		urlList[6] = "";
+		urlList[7] = "";
+		urlList[8] = "";
+		urlList[9] = "";
+		urlList[10] = "";
+		urlList[11] = "";
 		urlList[12] = "";
 		
 
@@ -45,51 +45,51 @@ function jump(){
 
 
 
-function goback(){ browser.launchDocument("../startup.bml", "cut");	}
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 		]]></script>
 
 </head>
 <body>
 		
-<p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ Some Video-related Tests ]]></p>
+<p id="display" style="top:20px;left:50px;width:550px;height:400px;"><![CDATA[ Japanese cities]]></p>
 		
 			
 		
         <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();">WHO Patient Safety</p>
+		onclick="jump();">Kobe</p>
 
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
-		onclick="jump();">Otsuka Masjid</p>
+		onclick="jump();"></p>
 		
 		<p id="2" class="button" style="top:210px;nav-index:2;nav-up:1;nav-down:3;"
-		onclick="jump();">WHO Banners</p>
+		onclick="jump();"></p>
 		
 		<p id="3" class="button" style="top:240px;nav-index:3;nav-up:2;nav-down:4;"
-		onclick="jump();">WHO Module</p>
+		onclick="jump();"></p>
 		
 		
 		<p id="4" class="button" style="top:270px;nav-index:4;nav-up:3;nav-down:5;"
-		onclick="jump();">My Little Paris</p>
+		onclick="jump();"></p>
 
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
-		onclick="jump();">Paris Clips</p>
+		onclick="jump();"></p>
    <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
-		onclick="jump();">Ateneo DWS</p>
+		onclick="jump();"></p>
 		
 		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
-		onclick="jump();">Languages</p>
+		onclick="jump();"></p>
 		
 				 <p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
-		onclick="jump();">Live!!</p>
+		onclick="jump();"></p>
 				
 				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
-		onclick="jump();">Multicast</p>
+		onclick="jump();"></p>
 		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
 		onclick="jump();"></p>
 
 		<p id="11" class="button" style="top:480px;nav-index:11;nav-up:10;nav-down:12;"
-		onclick="jump();">Japan</p>
+		onclick="jump();"></p>
 		<p id="12" class="button" style="top:510px;nav-index:12;nav-up:11;nav-down:12;"
 		onclick="jump();"></p>
 	
