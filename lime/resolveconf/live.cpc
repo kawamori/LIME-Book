@@ -23,7 +23,7 @@ Content-Length:533
     <startup>
         <content_title>VFJP9900005</content_title>
         <duration>000000</duration>
-        <start>rtsp://180.37.181.188:554/1</start>
+        <start>http://180.37.181.188/Kobe-harbor3.MTS</start>
     </startup>
     <es_info>
         <video_info resolution='1' coding ='h264'/>
