@@ -57,7 +57,7 @@ function goback(){ browser.launchDocument("./index.xml", "cut");	}
 			
 		
         <p id="0" class="button" style="top:150px;nav-index:0;nav-down:1"
-		onclick="jump();"></p>
+		onclick="jump();">Live at Dubai</p>
 
 		<p id="1" class="button" style="top:180px;nav-index:1;nav-down:2;nav-up:0;"
 		onclick="jump();">Kobe Harbor 2</p>
