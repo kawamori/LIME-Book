@@ -23,7 +23,7 @@ Content-Length:533
     <startup>
         <content_title>VFJP9900005</content_title>
         <duration>000000</duration>
-        <start>http://192.168.1.4/media/out.m2ts</start>
+        <start>rtsp://180.37.181.188:554/1</start>
     </startup>
     <es_info>
         <video_info resolution='1' coding ='h264'/>
