@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+	<title>System test</title>
+	<style>
+		<![CDATA[
+		body {clut:url(default.clt);background-color-index:7;}
+			p {height:16px;color-index:0;grayscale-color-index:15 15}
+			
+			p:focus{background-color-index:1;width:15px;height:15px;}
+			.button:blur {background-color-index:4;width:10px;height:10px;}
+			.button {width:10px;height:10px;font-size:16px;}
+			.bgm {
+		width:300px; height:300px; top:10px; left:10px;
+	}
+		]]>
+	</style>
+	<script ><![CDATA[
+
+		var urlList = new Array();
+		urlList[0] = "video.html";
+		urlList[1] = "video3.html";
+		urlList[2] = "video2.html";
+		urlList[3] = "video4.html";
+		urlList[4] = "video5.html";
+	
+		
+
+//var base = "http://localhost/";
+//var base = "http://127.0.0.1/";
+var base = "";
+
+
+
+
+var Index = 0;
+var image ="balloon3L.png";
+var dir = "./";
+
+
+function keydown(){
+	var code = document.currentEvent.keyCode;
+	var prev = Index;
+
+	if( code == 1 ){
+		if(--Index < 0) Index = 4;
+	}
+	else if( code == 2){	
+		if(++Index > 4) Index = 0;
+	}
+
+
+	var next = Index;
+	if( prev != next ){	
+	document.getElementById(prev).data = dir+image;
+	document.getElementById(next).data = dir+"f"+"button1.png";
+	}
+}
+
+
+
+function jump(){
+	var url = urlList[document.currentEvent.target.id]
+	
+		browser.launchDocument(base + url);
+}
+
+
+
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
+
+		]]></script>
+
+</head>
+<body>
+
+<div style="left:0px; top:0px; width:960px; height:540px">
+<object type="image/X-arib-png" data="Map-of-Paris-France_fit.png" style="left:200px;top:0;width:752px;height:539px;"/>
+</div>
+	
+	
+	
+	<div style="left:50px;top:20px;width:600px;height:540px; nav-index:0;" onkeydown="keydown();">
+	
+	<div style="left: 650px;top:225px;width:270px; height:140px">
+<object type="image/X-arib-png" data="balloon3L.png" style="left:0;top:0;width:752px;height:539px;"/></div>
+		
+        <p id="0" class="button" style="left: 730px;top:365px;nav-index:0;nav-down:0;nav-up:1;nav-left:4;nav-right:1;"
+		onclick="jump();"></p>
+
+		<p id="1" class="button" style="left:682px;top:320px;nav-index:1;nav-down:0;nav-up:2;nav-left:2;nav-right:0;"
+		onclick="jump();"></p>
+		
+		<p id="2" class="button" style="left:644px;top:281px;nav-index:2;nav-up:2;nav-down:3;nav-left:3;nav-right:1;"
+		onclick="jump();"></p>
+		
+		<p id="3" class="button" style="left:616px;top:343px;nav-index:3;nav-up:2;nav-down:4;nav-left:4;nav-right:2;"
+		onclick="jump();"></p>
+		
+		<p id="4" class="button" style="left:610px;top:367px;nav-index:4;nav-up:3;nav-down:0;nav-left:4;nav-right:0;"
+		onclick="jump();"></p>
+</div>
+<!--
+	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
+		onclick="jump();"></p>
+   <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
+		onclick="jump();"></p>
+		
+		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
+		onclick="jump();"></p>
+		
+				 <p id="8" class="button" style="top:390px;nav-index:8;nav-up:7;nav-down:9;"
+		onclick="jump();"></p>
+				
+				 <p id="9" class="button" style="top:420px;nav-index:9;nav-up:8;nav-down:10;"
+		onclick="jump();"></p>
+		<p id="10" class="button" style="top:450px;nav-index:10;nav-up:9;nav-down:11;"
+		onclick="jump();"></p>
+
+		<p id="11" class="button" style="top:480px;nav-index:11;nav-up:10;nav-down:12;"
+		onclick="jump();"></p>
+		<p id="12" class="button" style="top:510px;nav-index:12;nav-up:11;nav-down:12;"
+		onclick="jump();"></p>
+	
+-->
+
+
+
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+</body>
+</bml>
+
+
