@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?bml bml-version="100.0" ?>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Slideshow over Video</title>
+
+<style><![CDATA[
+	body{
+		clut:url(zidan.clt);
+
+	}
+.movie {top:290px;left:600px;}
+
+]]></style>
+<script src='mycommon.ecm.js'/>
+<script><![CDATA[
+
+/* Slideshow  movie-----------------------------------*/
+
+/*Initial values*/
+
+var imgNo=0; /* start the 'movie' at the 0-th frame */
+var timeID=null;
+var movSpeed; /* in msec */
+var movMax=31;
+movSpeed=1000;
+
+img =document.getElementById("img0");
+
+
+function animation1(){
+
+      //
+      if(imgNo < movMax)  {
+if(imgNo<10){         img.data="zudab000"+imgNo+".png";
+}else if(imgNo<100){ img.data="zudab00"+imgNo+".png";
+}else { img.data="zudab0"+imgNo+".png";}
+
+         clearTimeout(timeID);
+         timeID=setTimeout("animation1();",movSpeed);
+         imgNo++;     } else       {         clearTimeout(timeID);         }
+  }
+
+
+]]></script>
+</head>
+<body onload="animation1();">
+
+<div style="top:0px;left:0px;width:960px;height:540px;">
+	<object id="vod" type="application/X-arib-contentPlayControl"  data="http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts" streamstatus="play" style="top:0px;left:0px;width:960px;height:540px;visibility:visible;" />
+    <object id="img0"  type="image/X-arib-png" data="" style="top:290px;left:600px;width:352px;height:240px;"/>
+</div>
+</body>
+</html>
