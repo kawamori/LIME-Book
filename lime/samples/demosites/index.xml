@@ -24,7 +24,7 @@
 		urlList[3] = "who/WHO-ModuleSample.xml";
 		urlList[4] = "../lime-html/paris/index.html";
 		urlList[5] = "paris/index.xml";
-		urlList[6] = "ateneo/disaster_v4/homepage-kawamori.html";
+		urlList[6] = "ateneo/designs/thumbnail/thumnails2.xml";
 		urlList[7] = "lang/index.xml";
 		urlList[8] = "live/live.html";
 		urlList[9] = "live/multi.html";
@@ -75,7 +75,7 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 	<p id="5" class="button" style="top:300px;nav-index:5;nav-up:4;nav-down:6;"
 		onclick="jump();">Paris Clips</p>
    <p id="6" class="button" style="top:330px;nav-index:6;nav-up:5;nav-down:7;"
-		onclick="jump();">Ateneo DWS</p>
+		onclick="jump();">Ateneo Design</p>
 		
 		 <p id="7" class="button" style="top:360px;nav-index:7;nav-up:6;nav-down:8;"
 		onclick="jump();">Languages</p>

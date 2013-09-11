@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+	<title>Thumbnail test</title>
+	<style>
+		<![CDATA[
+		.button {width:140px;height:540px;}
+	.text {top:62px;width:140px;height:320px;}
+	p.button {text-align:center;color-index:7;line-height:30px;}
+	#display	{   font-size:16px;
+    color-index:7;
+    grayscale-color-index:171 167;
+        background-color-index:16;text-align:left;font-size:24px;
+		top:400px;width:700px;height:150px;}
+		div:focus {background-color-index:1;}
+		
+		]]>
+	</style>
+	<script ><![CDATA[
+
+		var urlList = new Array();
+		urlList[0] = "http://180.37.183.147/lime/resolveconf/hawaii-01.cpc";
+		urlList[1] = "http://180.37.183.147/lime/resolveconf/hawaii-02.cpc";
+		urlList[2] = "http://180.37.183.147/lime/resolveconf/hawaii-03.cpc";
+		urlList[3] = "http://180.37.183.147/lime/resolveconf/hawaii-04.cpc";
+		urlList[4] = "";
+		urlList[5] = "";
+		urlList[6] = "";
+		urlList[7] = "";
+		urlList[8] = "";
+		urlList[9] = "";
+		urlList[10] = "";
+		urlList[11] = "";
+		urlList[12] = "";
+		
+
+//var base = "http://localhost/";
+//var base = "http://127.0.0.1/";
+var base = "";
+
+function jump(){
+	var url = urlList[document.currentEvent.target.id]
+	
+		browser.launchDocument(base + url);
+}
+
+
+function focus(){
+    var target = document.currentEvent.target;
+	var url = urlList[target.id]
+	var video = document.getElementById("video");
+	
+	target.normalStyle.backgroundColorIndex="1";
+	video.data=url
+	video.streamStatus="play";
+}
+
+function blur(){
+
+		var video = document.getElementById("video");
+		video.streamStatus="stop";
+	}
+
+function show(){
+
+}
+
+function goback(){ browser.launchDocument("./index.xml", "cut");	}
+
+		]]></script>
+
+</head>
+<body>
+
+
+
+<div style="left:0px; top:0px; width:960px; height:540px">
+
+<div style="left:200px; top:0px; width:600px; height:500px">			
+	<object id="video"  type="application/X-arib-contentPlayControl" data="" streamstatus="" style="top:2px;left:25px;width:600px;height:402px;"/>
+	</div>	
+
+	<div class="button"  id="0" style="left:30px;top:410px;width:194px;height:110px;nav-index:0;nav-right:1;nav-left:3;">
+	<!--	<object class="button" type="image/jpeg" data="images/beach-hotel1.jpeg" 			style="top:0px;left:0px;width:192px;height:108px;"	/>-->
+	</div>
+
+	<div id="1" style="left:280px;top:410px;width:194px;height:110px;nav-index:1;nav-right:2;nav-left:0;">
+	<!--	<object class="button" type="image/jpeg" data="images/beach-hotel2.jpeg"
+	style="top:0px;left:0px;width:192px;height:108px;"
+			onfocus="focus();" onblur="blur();" onclick="show();"/>-->
+	</div>
+
+	<div class="button" id="2" style="left:480px;top:410px;width:192px;height:108px;nav-index:2;nav-right:3;nav-left:1;">
+		
+	<!---	
+		<object  class="button" type="image/jpeg" data="images/kualoa-park-beach.jpeg"		style="top:410px;left:0px;width:192px;height:108px;nav-index:2;nav-right:3;nav-left:1;"
+			onfocus="focus();" onblur="blur();" onclick="show();"/>
+		-->
+	</div>
+
+	<div class="button" style="left:710px;">
+		<object id="3" class="button" type="image/jpeg" data="images/notredame.jpeg"
+	style="top:410px;left:0px;width:192px;height:108px;nav-index:3;nav-right:0;nav-left:2;" 			onfocus="focus();" onblur="blur();" onclick="show();"/>
+	
+	</div>
+		
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+</body>
+</bml>
+
+
