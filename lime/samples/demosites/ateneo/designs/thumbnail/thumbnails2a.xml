@@ -25,6 +25,9 @@
 		]]>
 	</style>
 	<script ><![CDATA[
+	
+		var video = document.getElementById("video");
+		var fullScreenFlag=0;
 
 /* list of videos to be displayed */
 
@@ -42,7 +45,7 @@ function focus(){ /* main function to get the id of the focused element <div>, t
     var target = document.currentEvent.target;  /* target element of the focus */
 	var url = urlList[target.id]; /* the url of the video pointed by the focused element */
 	
-	var video = document.getElementById("video");
+
 	
 	video.data=url;
 	video.streamStatus="play"; /*start the video */
@@ -50,12 +53,32 @@ function focus(){ /* main function to get the id of the focused element <div>, t
 }
 
 function blur(){ /* action to be taken when unfocused */
-		var video = document.getElementById("video");
+
 		video.streamStatus="stop"; 
 	}
 
 function show(){ }
 
+function fullScreen(){
+
+if(fullScreenFlag==0){
+video.normalStyle.left=0;
+video.normalStyle.top=0;
+video.normalStyle.width=960;
+video.normalStyle.top=540;
+fullScreenFlag=1;
+}else{
+
+video.normalStyle.left=200;
+video.normalStyle.top=0;
+video.normalStyle.width=500;
+video.normalStyle.top=500;
+fullScreenFlag=0;
+
+}
+
+
+ }
 function goback(){ browser.launchDocument("../../../index.xml", "cut");	}
 
 		]]></script>
@@ -67,10 +90,6 @@ function goback(){ browser.launchDocument("../../../index.xml", "cut");	}
 
 <div style="left:0px; top:0px; width:960px; height:540px">
 
-<!-- main video window -->
-<div style="left:200px; top:0px; width:600px; height:500px">			
-	<object id="video"  type="application/X-arib-contentPlayControl" data="" streamstatus="" style="top:2px;left:25px;width:600px;height:402px;"/>
-	</div>	
 
 <!-- thumbnails -->
 	<div  id="0" style="left:30px;top:410px;width:194px;height:110px;nav-index:0;nav-right:1;nav-left:3;" onfocus="focus();" onblur="blur();" onclick="show();"> 
@@ -96,6 +115,14 @@ function goback(){ browser.launchDocument("../../../index.xml", "cut");	}
 </div>
 
 <p style="top:10px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+<p style="top:10px;left:17px;height:36px;width:64px;background-color-index:8;" accesskey="R" onclick="fullScreen();"></p>
+
+<!-- main video window -->
+<div style="left:200px; top:0px; width:600px; height:500px">			
+	<object id="video"  type="application/X-arib-contentPlayControl" data="" streamstatus="" style="top:2px;left:25px;width:600px;height:402px;"/>
+	</div>	
+
 
 </body>
 </html>
