@@ -49,11 +49,11 @@ function jump(){
 
 function focus(){
     var target = document.currentEvent.target;
-	var url = urlList[target.id]
+	var url = urlList[target.id];
 	var video = document.getElementById("video");
 	
 /*	target.normalStyle.backgroundColorIndex="1";*/
-	video.data=url
+	video.data=url;
 	video.streamStatus="play";
 }
 
@@ -82,22 +82,22 @@ function goback(){ browser.launchDocument("./index.xml", "cut");	}
 	<object id="video"  type="application/X-arib-contentPlayControl" data="" streamstatus="" style="top:2px;left:25px;width:600px;height:402px;"/>
 	</div>	
 
-	<div class="button"  id="0" style="left:30px;top:410px;width:194px;height:110px;nav-index:0;nav-right:1;nav-left:3;" onfocus="focus();" onblur="blur();" onclick="show();">
+	<div  id="0" style="left:30px;top:410px;width:194px;height:110px;nav-index:0;nav-right:1;nav-left:3;" onfocus="focus();" onblur="blur();" onclick="show();">
 		<object class="button" type="image/jpeg" data="images/beach-hotel1.jpeg" 			style="top:1px;left:1px;width:192px;height:108px;"	/>
 	</div>
 
-	<div id="1" style="left:250px;top:410px;width:194px;height:110px;nav-index:1;nav-right:2;nav-left:0;">
+	<div id="1" style="left:250px;top:410px;width:194px;height:110px;nav-index:1;nav-right:2;nav-left:0;" onfocus="focus();" onblur="blur();" onclick="show();">
 		<object  class="button" type="image/jpeg" data="images/beach-hotel2.jpeg"
 	style="top:1px;left:1px;width:192px;height:108px;"
-			onfocus="focus();" onblur="blur();" onclick="show();"/>
+			/>
 	</div>
 
-	<div id="2" style="left:480px;top:410px;width:194px;height:110px;nav-index:2;nav-right:3;nav-left:1;" >
+	<div id="2" style="left:480px;top:410px;width:194px;height:110px;nav-index:2;nav-right:3;nav-left:1;" onfocus="focus();" onblur="blur();" onclick="show();">
 	<object  type="image/jpeg" data="images/kualoa-park-beach.jpeg"		style="top:1px;left:1px;width:192px;height:108px"/>
 		
 	</div>
 
-	<div id="3" style="left:710px;top:410px;width:194px;height:110px;nav-index:3;nav-right:0;nav-left:2;" 	onfocus="focus();" onblur="blur();" onclick="show();">
+	<div id="3" style="left:710px;top:410px;width:194px;height:110px;nav-index:3;nav-right:0;nav-left:2;" onfocus="focus();" onblur="blur();" onclick="show();">
 		<object  class="button" type="image/jpeg" data="images/notredame.jpeg"
 	style="top:1px;left:1px;width:192px;height:108px;" />
 	</div>
