@@ -22,9 +22,9 @@
 
 		var urlList = new Array();
 		urlList[0] = "http://180.37.183.147/lime/resolveconf/hawaii-01.cpc";
-		urlList[1] = "http://180.37.183.147/lime/resolveconf/hawaii-02.cpc";
-		urlList[2] = "http://180.37.183.147/lime/resolveconf/hawaii-03.cpc";
-		urlList[3] = "http://180.37.183.147/lime/resolveconf/hawaii-04.cpc";
+		urlList[1] = "http://180.37.183.147/lime/resolveconf/hawaii-03.cpc";
+		urlList[2] = "http://180.37.183.147/lime/resolveconf/hawaii-05.cpc";
+		urlList[3] = "http://kawamori.github.com/LIME-Book/lime/resolveconf/notredame.cpc";
 		urlList[4] = "";
 		urlList[5] = "";
 		urlList[6] = "";
@@ -67,7 +67,7 @@ function show(){
 
 }
 
-function goback(){ browser.launchDocument("./index.xml", "cut");	}
+function goback(){ browser.launchDocument("../../../video.xml", "cut");	}
 
 		]]></script>
 
