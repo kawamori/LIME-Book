@@ -86,8 +86,8 @@ function goback(){ browser.launchDocument("./index.xml", "cut");	}
 		<object class="button" type="image/jpeg" data="images/beach-hotel1.jpeg" 			style="top:1px;left:1px;width:192px;height:108px;"	/>
 	</div>
 
-	<div style="left:250px;top:410px;width:194px;height:110px;nav-index:1;nav-right:2;nav-left:0;">
-		<object id="1" class="button" type="image/jpeg" data="images/beach-hotel2.jpeg"
+	<div id="1" style="left:250px;top:410px;width:194px;height:110px;nav-index:1;nav-right:2;nav-left:0;">
+		<object  class="button" type="image/jpeg" data="images/beach-hotel2.jpeg"
 	style="top:1px;left:1px;width:192px;height:108px;"
 			onfocus="focus();" onblur="blur();" onclick="show();"/>
 	</div>
@@ -97,8 +97,8 @@ function goback(){ browser.launchDocument("./index.xml", "cut");	}
 		
 	</div>
 
-	<div class="button" style="left:710px;top:410px;width:194px;height:110px;nav-index:3;nav-right:0;nav-left:2;" 	onfocus="focus();" onblur="blur();" onclick="show();">
-		<object id="3" class="button" type="image/jpeg" data="images/notredame.jpeg"
+	<div id="3" style="left:710px;top:410px;width:194px;height:110px;nav-index:3;nav-right:0;nav-left:2;" 	onfocus="focus();" onblur="blur();" onclick="show();">
+		<object  class="button" type="image/jpeg" data="images/notredame.jpeg"
 	style="top:1px;left:1px;width:192px;height:108px;" />
 	</div>
 </div>
