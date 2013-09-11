@@ -24,7 +24,7 @@
 		urlList[3] = "who/WHO-ModuleSample.xml";
 		urlList[4] = "../lime-html/paris/index.html";
 		urlList[5] = "paris/index.xml";
-		urlList[6] = "ateneo/designs/thumbnail/thumnails2.xml";
+		urlList[6] = "ateneo/designs/thumbnail/thumbnails2.xml";
 		urlList[7] = "lang/index.xml";
 		urlList[8] = "live/live.html";
 		urlList[9] = "live/multi.html";
