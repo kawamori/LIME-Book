@@ -6,7 +6,7 @@
 
 <style><![CDATA[
 	body{
-		clut:url(chula/1.clt);
+	
 		background-color-index:7;
 	}
 		.chick {
@@ -28,9 +28,9 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 <div style="width:960px;height:540px;">
 	<object class="chick" data="sign-01.mng" type="image/X-arib-mng" streamstatus="play"/>
-	
+	<!--
 	<object type="image/X-arib-mng" data="chula/1.mng"  streamstatus="play" style="left:0;top:0;width:180px;height:150px;"/>
-	
+	-->
 	<object type="image/X-arib-png" data="dithering-sample.png" style="left:400px;top:400px;width:250px;height:262px;"/>
 </div>
 
