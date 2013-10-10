@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Astem Sign Language test</title>
+
+<style><![CDATA[
+	body{
+		
+		background-color-index:7;
+	}
+		.chick {
+		width:160px; height:88px; top:50px; left:50px;
+	}
+	
+]]></style>
+
+<script ><![CDATA[
+
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
+
+		]]></script>
+</head>
+<body>
+
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+
+<div style="width:960px;height:540px;">
+	<object class="chick" data="sign-1.mng" type="image/X-arib-mng" streamstatus="play"/>
+	
+</div>
+
+
+</body>
+</bml>
+

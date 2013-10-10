@@ -62,16 +62,20 @@ function show(){ }
 function fullScreen(){
 
 if(fullScreenFlag==0){
+
+browser.lockscreen();
+
 video.normalStyle.left=0;
 video.normalStyle.top=0;
 video.normalStyle.width=960;
 video.normalStyle.top=540;
+browser.unlockscreen();
 fullScreenFlag=1;
 }else{
 
 video.normalStyle.left=200;
 video.normalStyle.top=0;
-video.normalStyle.width=500;
+video.normalStyle.width=600;
 video.normalStyle.top=500;
 fullScreenFlag=0;
 
@@ -116,12 +120,12 @@ function goback(){ browser.launchDocument("../../../index.xml", "cut");	}
 
 <p style="top:10px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
 
-<p style="top:10px;left:17px;height:36px;width:64px;background-color-index:8;" accesskey="R" onclick="fullScreen();"></p>
+<p style="top:10px;left:17px;height:36px;width:64px;background-color-index:1;" accesskey="R" onclick="fullScreen();"></p>
 
 <!-- main video window -->
 <div style="left:200px; top:0px; width:600px; height:500px">			
 	<object id="video"  type="application/X-arib-contentPlayControl" data="" streamstatus="" style="top:2px;left:25px;width:600px;height:402px;"/>
-	</div>	
+</div>	
 
 
 </body>

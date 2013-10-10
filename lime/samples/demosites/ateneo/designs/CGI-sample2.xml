@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?bml bml-version="100.0" ?>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title/>
+<style><![CDATA[
+	*	{font-size:20px;}
+	body	{background-color-index:7;used-key-list:basic data-button numeric-tuning;}
+	div	{left:80px;top:40px;width:600px;height:520px;}
+	input	{width:50px;height:20px;border-style:solid;border-width:2px;}
+	#display {top:50px;width:600px;height:420px;background-color-index:15;color-index:0;}
+]]></style>
+
+<script><![CDATA[
+function calc(){
+    var url = "http://192.168.1.6/cgi-bin/twice.pl"; /* the URL of the server*/
+	var obj = document.getElementById("display"); /*where the returned data is to be displayed */
+	var val = document.getElementById("number").value; /* the captured INPUT data*/
+	var ret = browser.transmitTextDataOverIP(url,val,"EUC-JP"); 
+	/* HTTP POST API - returned value (array) is stored in the variable ret */
+	if( ret[0] == 1 ){
+		obj.firstChild.data = "The received data: "+ ret[2];
+	}else{
+		obj.firstChild.data = "ERROR: Failed communication.";
+	}
+}
+]]></script>
+</head>
+
+<body>
+<div>
+
+<!-- INPUT tag  -->
+	<input id="number" value="10" maxlength="4" style="nav-index:0;" onclick="calc();"/>
+	
+	<p id="display"><![CDATA[Please enter a number and push the red button]]></p>
+</div>
+</body>
+</html>

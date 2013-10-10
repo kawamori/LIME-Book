@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?bml bml-version="100.0" ?>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>launchDocumentTest PHP test</title>
+	<style>
+		<![CDATA[
+			p {height:16px;color-index:7;grayscale-color-index:15 15}
+			
+			p:focus{background-color-index:1}
+			
+		]]>
+	</style>
+	<script ><![CDATA[
+
+	/* Change the folowing according your environment */
+var base = "http://127.0.0.1/";
+
+
+function jump(){
+	var url = "test-lime5-hello.php";
+	
+		browser.launchDocument(base + url,cut);
+}
+		]]></script>
+
+</head>
+<body>
+		
+		
+<p id="0"style="top:150px;left:221px;width:229px;height:28px;nav-index:0;"
+		onclick="jump();">Hello LIME!! <br> Click me.</p>
+
+</body>
+</html>
+
+

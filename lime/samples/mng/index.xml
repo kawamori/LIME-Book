@@ -28,7 +28,7 @@
 		urlList[7] = "girls/hyomin-curve.bml";
 		urlList[8] = "girls/hyomin-fingers.bml";
 		urlList[9] = "girls/soyoen.bml";
-		urlList[10] = "";
+		urlList[10] = "astem/index.xml";
 		urlList[11] = "";
 		urlList[12] = "";
 		
@@ -84,12 +84,12 @@ function goback(){ browser.launchDocument("../startup.bml", "cut");	}
 				 <p id="9" class="button" style="top:320px;nav-index:9;nav-up:8;nav-down:10;"
 		onclick="jump();">Soyoen8:224KB</p>
 		<p id="10" class="button" style="top:350px;nav-index:10;nav-up:9;nav-down:11;"
-		onclick="jump();">What is Love? 5:108KB</p>
+		onclick="jump();">ASTEM Tests</p>
 
 		<p id="11" class="button" style="top:380px;nav-index:11;nav-up:10;nav-down:12;"
-		onclick="jump();">Dance</p>
+		onclick="jump();"> </p>
 		<p id="12" class="button" style="top:410px;nav-index:12;nav-up:11;nav-down:12;"
-		onclick="jump();">Nicole Kidman smiles 8:486KB</p>
+		onclick="jump();"> </p>
 	
 
 
