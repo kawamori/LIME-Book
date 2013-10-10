@@ -34,6 +34,8 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 	<object type="image/X-arib-png" data="dithering-sample.png" style="left:400px;top:270px;width:250px;height:262px;"/>
 	
 		<object type="image/X-arib-png" data="dithering-sample2.png" style="left:100px;top:270px;width:250px;height:262px;"/>
+		
+				<object type="image/gif" data="starbucks-logo.gif" style="left:100px;top:0px;width:200px;height:200px;"/>
 </div>
 
 
