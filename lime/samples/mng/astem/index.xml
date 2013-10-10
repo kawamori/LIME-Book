@@ -27,7 +27,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 
 <div style="width:960px;height:540px;">
-	<object class="chick" data="sign-1.mng" type="image/X-arib-mng" streamstatus="play"/>
+	<object class="chick" data="sign-01.mng" type="image/X-arib-mng" streamstatus="play"/>
 	
 </div>
 
