@@ -31,7 +31,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 	<!--
 	<object type="image/X-arib-mng" data="chula/1.mng"  streamstatus="play" style="left:0;top:0;width:180px;height:150px;"/>
 	-->
-	<object type="image/X-arib-png" data="dithering-sample.png" style="left:400px;top:400px;width:250px;height:262px;"/>
+	<object type="image/X-arib-png" data="dithering-sample.png" style="left:400px;top:270px;width:250px;height:262px;"/>
 </div>
 
 
