@@ -27,7 +27,7 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 
 <div style="width:960px;height:540px;">
-	<object class="chick" data="sign-01.mng" type="image/X-arib-mng" streamstatus="play"/>
+	<object class="chick" data="sign-02.mng" type="image/X-arib-mng" streamstatus="play" style="left:0px;top:0px;width:392px;height:379px;"/>
 	<!--
 	<object type="image/X-arib-mng" data="chula/1.mng"  streamstatus="play" style="left:0;top:0;width:180px;height:150px;"/>
 	-->
@@ -35,7 +35,8 @@ function goback(){ browser.launchDocument("../index.xml", "cut");	}
 	
 		<object type="image/X-arib-png" data="dithering-sample2.png" style="left:100px;top:270px;width:250px;height:262px;"/>
 		
-				<object type="image/gif" data="starbucks-logo.gif" style="left:100px;top:0px;width:200px;height:200px;"/>
+		<!--
+				<object type="image/gif" data="starbucks-logo.gif" style="left:100px;top:0px;width:200px;height:200px;"/>-->
 </div>
 
 
