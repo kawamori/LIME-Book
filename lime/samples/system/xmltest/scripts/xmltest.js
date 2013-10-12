@@ -62,6 +62,8 @@ alert ("root is "+rootObj+"\n");
 					alert("foo? "+rootObj.contents[0].name);
 					alert("bar? "+rootObj.contents[0].contents[1].name);
 					alert("div? "+rootObj.contents[0].contents[1].contents[0].name);
+					alert("next ? "+rootObj.contents[0].contents[1].contents[1].name);
+					alert("next next? "+rootObj.contents[0].contents[1].contents[2].name);
 		if(rootObj.contents[0].name == "tt"){
 			if(rootObj.contents[0].contents[0].name == "body"){
 				if(rootObj.contents[0].contents[0].contents[0].name == "div"){
