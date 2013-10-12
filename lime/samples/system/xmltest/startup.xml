@@ -14,7 +14,7 @@
        #
 
 ]]></style>
-<script src="scripts/xmltest.js"/>
+<script src="scripts/getRII.js"/>
 <script src="scripts/xparse.ecm"/>
 <script><![CDATA[
 
