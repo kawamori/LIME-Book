@@ -37,7 +37,7 @@ function loadXML(xmlFile, captionArray){
 alert("called from xmltest.js\n");
 
 	// 改行コード除去
-	var str = deleteLineFeed(array[2]);
+	var str = deleteLineFeed(splitMulti(array[2]));
 
 	var captionCounter = 0;
 	var startEndFlag = 0;
@@ -119,5 +119,13 @@ function clockTime2msec( strTime ) {
 		fSec += msec;
 	} //printd(" fSec: "+fSec);
 	return fSec;
+
+}
+
+function splitMulti(msg){
+
+var part=msg.split("--THIS_STRING_SEPARATES");
+
+return part[2];
 
 }
