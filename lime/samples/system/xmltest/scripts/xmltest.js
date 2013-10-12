@@ -13,8 +13,8 @@ var gCaption_bad = new Array();
 var gCaption_good = new Array();
 
 
-/*************************  ¶¦ÄÌ´ğÁÃ´Ø¿E *******************************/
-/* ½èÍıÊä½E/
+/*************************  ¶¦ÄÌ´ğÁÃ´Ø¡¦E *******************************/
+/* ½èÍıÊä¡¦E/
 function getElementById(id){return document.getElementById(id);}
 function showElem(id){getElementById(id).normalStyle.visibility="visible";}
 function hideElem(id){getElementById(id).normalStyle.visibility="hidden";}
@@ -23,14 +23,14 @@ function lockScreen(){browser.lockScreen();}
 function unlockScreen(){browser.unlockScreen();}
 
 /****************************************************************  
-* µ¡¡¡Ç½¡§ XML»úËEÕ¥¡¥¤¥EòÆÉ¤ß¹ş¤ßÇÛÎó¤Ë³ÊÇ¼¤¹¤E
-* °ú¡¡¿ô¡§ XML¥Õ¥¡¥¤¥EÑ¥¹¡¢»úËEÛÎE
-* Ìá¤EÍ¡§ ¤Ê¤·
+* µ¡¡¡Ç½¡§ XML»ú¡¦EÕ¥¡¥¤¥¡¦òÆÉ¤ß¹¡¦ßÇÛÎó¤Ë³ÊÇ¼¤¹¤¡¦
+* °ú¡¡¿ô¡§ XML¥Õ¥¡¥¤¡¦EÑ¥¹¡¢»úË¡¦ÛÎ¡¦
+* Ìá¡¦EÍ¡¡¦¤Ê¤·
 ****************************************************************/ 
 function loadXML(xmlFile, captionArray){
 /*modified by Kawamori*/
 
-	/* ³°Éô»úËEÕ¥¡¥¤¥E/
+	/* ³°Éô»ú¡¦EÕ¥¡¥¤¥¡¦/
 	var array = browser.transmitTextDataOverIP(xmlFile, "" , "EUC-JP");
 	
 /*	if( array[0] == 1 ){
@@ -40,7 +40,7 @@ function loadXML(xmlFile, captionArray){
 	}
 */
 
-	// ²ş¹Ô¥³¡¼¥É½EE
+	// ²ş¹Ô¥³¡¼¥É¡¦E¡¦
 	var str = deleteLineFeed(array[2]);
 
 	var captionCounter = 0;
@@ -61,6 +61,7 @@ function loadXML(xmlFile, captionArray){
 							for (var pname in rootObj.contents[0].contents[0].contents[0].contents[i].attributes){
 								if(startEndFlag == 0){
 									startTimeMsec = clockTime2msec(rootObj.contents[0].contents[0].contents[0].contents[i].attributes[pname]);
+									alert(startTimeMsec);
 									startEndFlag = 1;
 								} else {
 									endTimeMsec = clockTime2msec(rootObj.contents[0].contents[0].contents[0].contents[i].attributes[pname]);
@@ -79,9 +80,9 @@ function loadXML(xmlFile, captionArray){
 
 
 /****************************************************************  
-* µ¡¡¡Ç½¡§ ²ş¹Ô¥³¡¼¥É¤ÎºEE
+* µ¡¡¡Ç½¡§ ²ş¹Ô¥³¡¼¥É¤Î¡¦E¡¦
 * °ú¡¡¿ô¡§ Ê¸¸À
-* Ìá¤EÍ¡§ ²ş¹Ô¥³¡¼¥É¤Ê¤·¤ÎÊ¸¸À
+* Ìá¡¦EÍ¡¡¦²ş¹Ô¥³¡¼¥É¤Ê¤·¤ÎÊ¸¸À
 ****************************************************************/ 
 function deleteLineFeed(myLen) {
 	var newLen = "";  
@@ -97,8 +98,8 @@ function deleteLineFeed(myLen) {
 
 /****************************************************************  
 * µ¡¡¡Ç½¡§ »ş´Ö¥Õ¥©¡¼¥Ş¥Ã¥È¤òÊÑ´¹ 
-* °ú¡¡¿ô¡§ ¥¯¥úÁÃ¥¯¥¿¥¤¥E
-* Ìá¤EÍ¡§ msec
+* °ú¡¡¿ô¡§ ¥¯¡¦ÁÃ¥¯¥¿¥¤¡¦E
+* Ìá¡¦EÍ¡¡¦msec
 ****************************************************************/ 
 // Clock-time to msec
 function clockTime2msec( strTime ) {
