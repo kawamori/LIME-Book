@@ -41,9 +41,9 @@ alert("foo3");
 	
 	alert("fooboo");
 
-	alert("fooboowoo"+gCaptionXML_bad);
+	alert("fooboowoo\n"+gCaptionXML_bad);
 	
-alert("caption "+gCaption_bad);
+alert("caption \n"+gCaption_bad);
 
 }
 

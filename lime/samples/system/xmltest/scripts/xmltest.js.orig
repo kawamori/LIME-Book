@@ -2,19 +2,19 @@
 
 
 var gVodURL = "http://hls.okimediaserver.com/pcs/resolvecontent?contents_path=/moviebox/hotel/sanjya_matsuri_480i_out.mp4&protocol=http_tts";
-//var gVodLength = 730;	// Show VOD Time [100msec] ex.10=1sec, 300=30sec
+/*var gVodLength = 730;	// Show VOD Time [100msec] ex.10=1sec, 300=30sec*/
 var gVodLength = 12150;
-var gCaptionXML_bad = "../scripts/caption_bad_tagalog2.xml";
-//var gCaptionXML_bad = "http://nec.iptvf.jp/hello/bml/Shenzhen/aIPTV/scripts/tagalog.xml";
-var gCaptionXML_good = "http://kawamori.github.com/LIME-Book/lime/samples/video/caption/scripts/caption_good.xml";
-//var gCaptionXML_good = "http://nec.iptvf.jp/hello/bml/Shenzhen/aIPTV/scripts/chinese.xml";
+/*var gCaptionXML_bad = "../scripts/htmlsample2.html";*/
+var gCaptionXML_bad = "../scripts/caption_bad_tagalog.xml";
+/*var gCaptionXML_good = "../scripts/htmlsample1.html";*/
+/*var gCaptionXML_good = "http://nec.iptvf.jp/hello/bml/Shenzhen/aIPTV/scripts/chinese.xml";*/
 
 var gCaption_bad = new Array();
 var gCaption_good = new Array();
 
 
-/*************************  共通基礎関数  *******************************/
-// 処理補助
+/*************************  共通基礎関・E *******************************/
+/* 処理補・E/
 function getElementById(id){return document.getElementById(id);}
 function showElem(id){getElementById(id).normalStyle.visibility="visible";}
 function hideElem(id){getElementById(id).normalStyle.visibility="hidden";}
@@ -23,18 +23,24 @@ function lockScreen(){browser.lockScreen();}
 function unlockScreen(){browser.unlockScreen();}
 
 /****************************************************************  
-* 機　能： XML字幕ファイルを読み込み配列に格納する
-* 引　数： XMLファイルパス、字幕配列
-* 戻り値： なし
+* 機　能： XML字・E侫．ぅ・鯑匹濆・瀁枸鵑乏頁爾垢・
+* 引　数： XMLファイ・E僖后∋�法�枸・
+* 戻・E諭・なし
 ****************************************************************/ 
 function loadXML(xmlFile, captionArray){
-//modified by Kawamori
+/*modified by Kawamori*/
 
-	// 外部字幕ファイル
+	/* 外部字・E侫．ぅ・/
 	var array = browser.transmitTextDataOverIP(xmlFile, "" , "EUC-JP");
+	
+/*	if( array[0] == 1 ){
+		return ;
+	}else{
+		return("Transmission failed");
+	}
+*/
 
-
-	// 改行コード除去
+	// 改行コード・E・
 	var str = deleteLineFeed(array[2]);
 
 	var captionCounter = 0;
@@ -49,23 +55,24 @@ function loadXML(xmlFile, captionArray){
 
 		if(rootObj.contents[0].name == "tt"){
 			if(rootObj.contents[0].contents[0].name == "body"){
-				if(rootObj.contents[0].contents[0].contents[0].name == "div"){
-					for(var i=0; i<rootObj.contents[0].contents[0].contents[0].contents.length; i++){
+			if(rootObj.contents[0].contents[0].contents[0].name == "div"){
+										for(var i=0; i<rootObj.contents[0].contents[0].contents[0].contents.length; i++){
 						if(rootObj.contents[0].contents[0].contents[0].contents[i].name == "p"){
 							for (var pname in rootObj.contents[0].contents[0].contents[0].contents[i].attributes){
 								if(startEndFlag == 0){
 									startTimeMsec = clockTime2msec(rootObj.contents[0].contents[0].contents[0].contents[i].attributes[pname]);
+									alert(startTimeMsec);
 									startEndFlag = 1;
 								} else {
 									endTimeMsec = clockTime2msec(rootObj.contents[0].contents[0].contents[0].contents[i].attributes[pname]);
 									startEndFlag = 0;
 								}
-							}
+							} /*end of for */
 							captionArray[captionCounter] = new Array(startTimeMsec, endTimeMsec, rootObj.contents[0].contents[0].contents[0].contents[i].contents[0].value);
 							captionCounter++;
-						}
-					}
-				}
+						} /*  end of if <p> */
+					}/*  end of for <p> */
+			}  	/*end of if <div> */
 			}
 		}
 	}
@@ -73,9 +80,9 @@ function loadXML(xmlFile, captionArray){
 
 
 /****************************************************************  
-* 機　能： 改行コードの削除 
+* 機　能： 改行コードの・E・
 * 引　数： 文言
-* 戻り値： 改行コードなしの文言
+* 戻・E諭・改行コードなしの文言
 ****************************************************************/ 
 function deleteLineFeed(myLen) {
 	var newLen = "";  
@@ -91,8 +98,8 @@ function deleteLineFeed(myLen) {
 
 /****************************************************************  
 * 機　能： 時間フォーマットを変換 
-* 引　数： クロックタイム
-* 戻り値： msec
+* 引　数： ク・礎クタイ・E
+* 戻・E諭・msec
 ****************************************************************/ 
 // Clock-time to msec
 function clockTime2msec( strTime ) {
