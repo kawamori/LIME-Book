@@ -35,8 +35,8 @@ alert("foo2");
 
 
 alert("foo3");	
-	// XMLファイルの読み込み
-	var rii = loadXML(gCaptionXML_good, gCaption );
+	//  reads a CPC file with RII
+	var rii = lgetRII(gCaptionXML_good);
 	
 	/*  "../scripts/htmlsample2.html"*/
 	

@@ -27,6 +27,28 @@ var part=msg.split("--THIS_STRING_SEPARATES");
 return part[2]; }
 
 /****************************************************************  
+* 機　能： Receives a CPC file (multi-part XML) and returns its RII value
+* 引　数： URL
+* 戻り値： RII
+****************************************************************/ 
+function getRII(url){
+
+/* get the CPC file from a URL */
+	var array = browser.transmitTextDataOverIP(url, "" , "EUC-JP");
+
+var partXML = splitMulti(array[2]);
+var str = _strip(deleteLineFeed(partXML));
+
+	if(array[0] == 1){
+		var rootObj = Xparse(str);
+		return rootObj.contents[0].contents[1].contents[2].contents[0];
+		
+	}
+}
+
+
+
+/****************************************************************  
 * 機　能： XML字幕ファイルを読み込み配列に格納する
 * 引　数： XMLファイルパス、字幕配列
 * 戻り値： なし
