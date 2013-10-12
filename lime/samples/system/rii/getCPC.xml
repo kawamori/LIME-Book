@@ -41,17 +41,17 @@ alert("hello");
 
 function changeText(){ 
 
-ret = browser.transmitTextDataOverIP(url2,val,"EUC-JP");
+ret = browser.transmitTextDataOverIP(url2,"","EUC-JP");
 
 	
 	if( ret[0] == 1 ){
-		alert("Returned value: " + ret[2];
-		      );
+		alert("Returned value: " + ret[2]);
 	}else{
 		alert("Transmission failed");
 	}
 
 }
+
 /*
 function splitMulti(msg){
 
