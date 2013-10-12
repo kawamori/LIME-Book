@@ -19,7 +19,7 @@
 <script><![CDATA[
 
 	
-var gCaptionXML_good = "http://iptv.oesf-global.org/public_html/iptv/lime/caption_good_orig.xml";
+var gCaptionXML_good = "http://iptv.oesf-global.org/public_html/iptv/lime/hawaii-rii.cpc";
 
  var gCaptionXML_bad  = "http://iptv.oesf-global.org/public_html/iptv/lime/caption_bad_tagalog.xml";
 var offset;
