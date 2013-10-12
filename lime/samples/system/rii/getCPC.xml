@@ -20,7 +20,8 @@
 
 var msg="";
 var ret;
-/*	var url = ""; var url2 = "http://180.37.183.147/sample.html";*/
+/*	var url = ""; */
+var url2 = "http://180.37.183.147/sample.html";
 
 function alert(str){
 	var obj = document.getElementById("display");
@@ -33,8 +34,7 @@ function main(){
 alert("hello");
 
 	var val="";
-
-/*	alert(" retrieving data from "+ url2);*/
+	alert(" retrieving data from "+ url2);
 
 }
 
