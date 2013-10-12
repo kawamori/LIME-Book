@@ -40,7 +40,7 @@ function loadXML(xmlFile, captionArray){
 
 alert("called from xmltest.js\n");
 
-alert("xml? "+array[2]));
+alert("xml? "+array[2]);
 
 	// 改行コード除去
 	var str = deleteLineFeed(array[2]);
