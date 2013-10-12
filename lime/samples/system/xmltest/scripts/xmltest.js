@@ -31,11 +31,11 @@ return part[2]; }
 * 引　数： XMLファイルパス、字幕配列
 * 戻り値： なし
 ****************************************************************/ 
-function loadXML(xmlFile, captionArray){
+function loadXML(url, captionArray){
 //modified by Kawamori
 
 	// 外部字幕ファイル
-	var array = browser.transmitTextDataOverIP(xmlFile, "" , "EUC-JP");
+	var array = browser.transmitTextDataOverIP(url, "" , "EUC-JP");
 
 
 alert("called from xmltest.js\n");
