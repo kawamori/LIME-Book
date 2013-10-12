@@ -43,7 +43,7 @@ alert("called from xmltest.js\n");
 alert("xml? "+array[2]));
 
 	// 改行コード除去
-	var str = deleteLineFeed(splitMulti(array[2]));
+	var str = deleteLineFeed(array[2]);
 
 	var captionCounter = 0;
 	var startEndFlag = 0;
