@@ -21,7 +21,7 @@
 	
 var gCaptionXML_good = "http://iptv.oesf-global.org/public_html/iptv/lime/caption_good_orig.xml";
 
-var gCaption_bad ="http://iptv.oesf-global.org/public_html/iptv/lime/caption_bad_orig.xml";
+ var gCaptionXML_bad  = "http://iptv.oesf-global.org/public_html/iptv/lime/caption_bad_orig.xml";
 var offset;
 var origin;
 
@@ -36,14 +36,14 @@ alert("foo2");
 
 alert("foo3");	
 	// XMLファイルの読み込み
-	loadXML(gCaptionXML_good, gCaption_bad);
+	loadXML(gCaptionXML_good, gCaptionXML_bad );
 	/*  "../scripts/htmlsample2.html"*/
 	
 	alert("fooboo");
 
 	alert("fooboowoo\n"+gCaptionXML_bad);
 	
-alert("caption \n"+gCaption_bad);
+alert("caption \n"+gCaptionXML_bad);
 
 }
 
