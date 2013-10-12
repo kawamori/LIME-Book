@@ -12,16 +12,15 @@
 		top:30px;left:30px;width:600px;height:530px;}
 ]]></style>
 
+<!--
 <script src="scripts/common.js"/>
-<script src="scripts/xparse.ecm"/>
-
+-->
 <script><![CDATA[
 
 
 var msg="";
 var ret;
-/*	var url = "";*/
-	var url2 = "http://180.37.183.147/sample.html";
+/*	var url = ""; var url2 = "http://180.37.183.147/sample.html";*/
 
 function alert(str){
 	var obj = document.getElementById("display");
@@ -39,6 +38,7 @@ alert("hello");
 
 }
 
+/*
 function changeText(){ 
 
 ret = browser.transmitTextDataOverIP(url2,val,"EUC-JP");
@@ -51,8 +51,6 @@ ret = browser.transmitTextDataOverIP(url2,val,"EUC-JP");
 		alert("Transmission failed");
 	}
 
-/*alert(ret);*/
-
 }
 
 function splitMulti(msg){
@@ -62,7 +60,7 @@ var part=msg.split("--THIS_STRING_SEPARATES");
 return part[2];
 
 }
-
+*/
 function goback(){ browser.launchDocument("../index.xml", "cut");	}
 
 
