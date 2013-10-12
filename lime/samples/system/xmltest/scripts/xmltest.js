@@ -48,7 +48,7 @@ alert("called from xmltest.js\n");
 	// XMLをパースして開始時間、終了時間、表示文字列を配列に格納
 	if(array[0] == 1){
 		var rootObj = Xparse(str);
-alert ("root is "+rootObj);
+alert ("root is "+rootObj+"\n");
 
 		if(rootObj.contents[0].name == "tt"){
 			if(rootObj.contents[0].contents[0].name == "body"){
@@ -58,6 +58,7 @@ alert ("root is "+rootObj);
 							for (var pname in rootObj.contents[0].contents[0].contents[0].contents[i].attributes){
 								if(startEndFlag == 0){
 									startTimeMsec = clockTime2msec(rootObj.contents[0].contents[0].contents[0].contents[i].attributes[pname]);
+									alert("start time is "+startTimeMsec);
 									startEndFlag = 1;
 								} else {
 									endTimeMsec = clockTime2msec(rootObj.contents[0].contents[0].contents[0].contents[i].attributes[pname]);
