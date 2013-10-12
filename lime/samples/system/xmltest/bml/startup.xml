@@ -74,7 +74,7 @@ function alert(str){
 	var obj = document.getElementById("display");
 	obj.firstChild.data += str + "\r\n";
 }
-function goback(){ browser.launchDocument("../../index.xml", "cut");	}
+function goback(){ browser.launchDocument("index.xml", "cut");	}
 function refresh(){ browser.reloadActiveDocument();}
 
 ]]></script>
