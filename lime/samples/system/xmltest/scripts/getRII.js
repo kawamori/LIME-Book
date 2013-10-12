@@ -38,7 +38,7 @@ function loadXML(url, captionArray){
 	var array = browser.transmitTextDataOverIP(url, "" , "EUC-JP");
 
 
-alert("called from xmltest.js\n");
+/* alert("called from xmltest.js\n");*/
 
 /* alert("xml? "+splitMulti(array[2]));*/
 
@@ -58,9 +58,12 @@ var str = _strip(deleteLineFeed(partXML));
 	// XMLをパースして開始時間、終了時間、表示文字列を配列に格納
 	if(array[0] == 1){
 		var rootObj = Xparse(str);
-
+		return rootObj.contents[0].contents[1].contents[2].contents[0];
+		
+/*
 					alert("next next? "+rootObj.contents[0].contents[1].contents[2].name);
 					alert("RII value "+rootObj.contents[0].contents[1].contents[2].contents[0]);
+					*/
 	}
 }
 

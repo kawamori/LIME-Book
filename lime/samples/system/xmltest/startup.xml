@@ -36,10 +36,11 @@ alert("foo2");
 
 alert("foo3");	
 	// XMLファイルの読み込み
-	loadXML(gCaptionXML_good, gCaption );
+	var rii = loadXML(gCaptionXML_good, gCaption );
+	
 	/*  "../scripts/htmlsample2.html"*/
 	
-	alert("fooboo");
+	alert("rii ="+ rii);
 
 	alert("fooboowoo\n"+gCaptionXML_bad);
 	
