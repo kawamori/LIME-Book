@@ -22,6 +22,10 @@ function romSound(id){browser.playRomSound("romsound://"+id);}
 function lockScreen(){browser.lockScreen();}
 function unlockScreen(){browser.unlockScreen();}
 
+function splitMulti(msg){
+var part=msg.split("--THIS_STRING_SEPARATES");
+return part[2]; }
+
 /****************************************************************  
 * 機　能： XML字幕ファイルを読み込み配列に格納する
 * 引　数： XMLファイルパス、字幕配列
