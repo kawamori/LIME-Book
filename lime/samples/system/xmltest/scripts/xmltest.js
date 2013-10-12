@@ -52,7 +52,7 @@ alert ("root is "+rootObj+"\n");
 
 		if(rootObj.contents[0].name == "tt"){
 			if(rootObj.contents[0].contents[0].name == "body"){
-				if(rootObj.contents[0].contents[0].contents[1].name == "div"){
+				if(rootObj.contents[0].contents[0].contents[0].name == "div"){
 					for(var i=0; i<rootObj.contents[0].contents[0].contents[0].contents.length; i++){
 						if(rootObj.contents[0].contents[0].contents[0].contents[i].name == "p"){
 							for (var pname in rootObj.contents[0].contents[0].contents[0].contents[i].attributes){
