@@ -34,6 +34,8 @@ function loadXML(xmlFile, captionArray){
 	var array = browser.transmitTextDataOverIP(xmlFile, "" , "EUC-JP");
 
 
+alert("called from xmltest.js");
+
 	// 改行コード除去
 	var str = deleteLineFeed(array[2]);
 
