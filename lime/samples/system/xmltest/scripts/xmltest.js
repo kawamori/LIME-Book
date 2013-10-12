@@ -60,7 +60,7 @@ var str = deleteLineFeed(partXML);
 		var rootObj = Xparse(str);
 alert ("root is "+rootObj+"\n");
 					alert("foo? "+rootObj.contents[0].name);
-					alert("bar? "+rootObj.contents[].contents[1].name);
+					alert("bar? "+rootObj.contents[0].contents[1].name);
 					alert("div? "+rootObj.contents[0].contents[0].contents[0].name);
 		if(rootObj.contents[0].name == "tt"){
 			if(rootObj.contents[0].contents[0].name == "body"){
