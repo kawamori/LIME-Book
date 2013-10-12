@@ -34,7 +34,7 @@ function loadXML(xmlFile, captionArray){
 	var array = browser.transmitTextDataOverIP(xmlFile, "" , "EUC-JP");
 
 
-alert("called from xmltest.js");
+alert("called from xmltest.js\n");
 
 	// 改行コード除去
 	var str = deleteLineFeed(array[2]);
@@ -48,6 +48,7 @@ alert("called from xmltest.js");
 	// XMLをパースして開始時間、終了時間、表示文字列を配列に格納
 	if(array[0] == 1){
 		var rootObj = Xparse(str);
+alert ("root is "+rootObj);
 
 		if(rootObj.contents[0].name == "tt"){
 			if(rootObj.contents[0].contents[0].name == "body"){
