@@ -38,7 +38,7 @@ alert("hello");
 
 }
 
-/*
+
 function changeText(){ 
 
 ret = browser.transmitTextDataOverIP(url2,val,"EUC-JP");
@@ -52,7 +52,7 @@ ret = browser.transmitTextDataOverIP(url2,val,"EUC-JP");
 	}
 
 }
-
+/*
 function splitMulti(msg){
 
 var part=msg.split("--THIS_STRING_SEPARATES");
