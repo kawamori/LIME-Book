@@ -66,7 +66,7 @@ alert("called from xmltest.js\n");
 				    
 				    	alert(" tag is "+rootObj.contents[0].contents[0].contents[5].contents[1].name);
                               for (var pname in rootObj.contents[0].contents[0].contents[5].contents[1].attributes){
-                              	       alert("pname "+ +rootObj.contents[0].contents[0].contents[5].contents[1].attributes[pname]);
+                              	       alert("pname "+ rootObj.contents[0].contents[0].contents[5].contents[1].attributes[pname]);
                          			  }
                         
 		              		alert(" tag is "+rootObj.contents[0].contents[0].contents[5].contents[3].name);
