@@ -19,7 +19,7 @@
 <script><![CDATA[
 
 	
-var gCaptionXML_good = "https://stg.drpc.me/BbwD28kt";
+var gCaptionXML_good = "http://iptv.oesf-global.org/public_html/iptv/drpc/RII-sample1.xml";
 
  var gCaptionXML_bad  = "http://iptv.oesf-global.org/public_html/iptv/lime/caption_bad_tagalog.xml";
 var offset;
