@@ -18,8 +18,11 @@
 <script src="scripts/xparse.ecm"/>
 <script><![CDATA[
 
-	
-var gCaptionXML_good = "http://iptv.oesf-global.org/public_html/iptv/drpc/RII-sample2-payload.xml";
+	var HOST = "http://iptv.oesf-global.org/public_html/iptv/drpc/";
+	var drpcFile ="RII-sample2-payload.xml";
+var gCaptionXML_good = HOST + drpcFile;
+/*
+"http://iptv.oesf-global.org/public_html/iptv/drpc/RII-sample2-payload.xml";*/
 
  var gCaptionXML_bad  = "http://iptv.oesf-global.org/public_html/iptv/lime/caption_bad_tagalog.xml";
 var offset;
@@ -31,7 +34,7 @@ var captionSelectFlag = 0;
 
 function onmyload(){
 
-alert("Demonstrating DRPC/RII");
+alert("Demonstrating DRPC/RII from "+ drpcFile);
 
 	
 	//  reads a CPC file with RII
