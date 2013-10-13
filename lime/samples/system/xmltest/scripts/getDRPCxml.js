@@ -77,7 +77,7 @@ alert("calling getDRPCxml.js\n");
 					
 					alert(" tag is "+rootObj.contents[0].contents[0].contents[5].contents[5].name);
                               for (var pname in rootObj.contents[0].contents[0].contents[5].contents[5].attributes){
-                              	       alert("pname\t"+pname +rootObj.contents[0].contents[0].contents[5].contents[5].attributes[pname]);
+                              	       alert("\t"+pname " is "+rootObj.contents[0].contents[0].contents[5].contents[5].attributes[pname]);
                          			  }
                          			  
 				
