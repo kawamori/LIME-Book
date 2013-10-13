@@ -44,7 +44,7 @@ alert("called from xmltest.js\n");
                       /*alert("xml? "+array[2]);*/
 /*var partXML = splitMulti(array[2]);*/
 	// 改行コード除去
-	var str = deleteLineFeed(_strip(array[2]));
+	var str = deleteLineFeed(array[2]);
    /*var str = deleteLineFeed(partXML);*/
 alert("str: "+str);
 
