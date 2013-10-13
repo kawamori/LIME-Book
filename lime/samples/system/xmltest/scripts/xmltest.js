@@ -62,17 +62,12 @@ alert("called from xmltest.js\n");
 				   
 					}*/
 					
-				    	                for(var i=0; i<rootObj.contents[0].contents[0].contents[5].contents.length; i++){ /*1 */
-				    	                	if (rootObj.contents[0].contents[0].contents[5].contents[i].name){/* 2 */
-                                                   if (rootObj.contents[0].contents[0].contents[5].contents[i].attributes){/* 3*/
-                                     for (var pname in rootObj.contents[0].contents[0].contents[5].contents[i].attributes){ /* 4*/
+				    	                for(var i=0; i<rootObj.contents[0].contents[0].contents[5].contents.length; i++){ 
+				    	                	if (rootObj.contents[0].contents[0].contents[5].contents[i].name){
+                                            
                    alert("PERMISSION_CLASSIFICATION_UNIT "+ i+ "th tag is "+rootObj.contents[0].contents[0].contents[5].contents[i].name); 
-                                     alert("pname is "+pname);
-                                     alert("value is "+rootObj.contents[0].contents[0].contents[0].contents[i].attributes[pname]);
-                                    /*4*/  }else {alert("no attribute");}
-                                     /*3*/    }
-                                    /*2*/ }
-		              		/*1 */	}
+                                              }
+		              			}
 					
 					
 					alert("next next? "+rootObj.contents[0].contents[0].contents[2].name);/* gives the tag name */
