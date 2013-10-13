@@ -65,6 +65,34 @@ alert ("root is "+rootObj+"\n");
 					alert("next ? "+rootObj.contents[0].contents[1].contents[1].name);
 					alert("next next? "+rootObj.contents[0].contents[1].contents[2].name);/* gives the tag name */
 					alert("next next  "+rootObj.contents[0].contents[1].contents[2].contents[0]); /*gives the value of the tag */
+					alert("DRPC=  " + rootObj.contents[0].contents[2].contents[0].name); 
+					
+					/*-----------------------------
+					
+					<DRPC_RESPONSE>
+						<CODE>201</CODE>
+						<MESSAGE>DRPCの取得に成功しました。</MESSAGE>
+						<DRPC>
+							<PERMISSION_CODE>
+								<VERSION_UNIT>
+									<VERSION>1.2</VERSION>
+								</VERSION_UNIT>
+								<PERMISSION_ACTOR_UNIT>
+									<CONTENT_ID>VPJP010000000003</CONTENT_ID>
+									<ISSUER_ID>HJPC010100000003</ISSUER_ID>
+									<RECEIVER_ID>UJPI010000000002</RECEIVER_ID>
+								</PERMISSION_ACTOR_UNIT>
+								<PERMISSION_CLASSIFICATION_UNIT>
+									<DISCLOSURE_CLASS disclosure_type="open permission"/>
+									<USAGE_PURPOSE_CLASS usage_purpose_type="public permission"/>
+									<CHARGE_MODEL_CLASS charge_model_type="free of charge" pay_per_use_flag="false" subscription_flag="false" coupon_flag="false"/>
+									<BILLING_CLASS billing_type="ad hoc billing"/>
+									<APPLICATION_CLASS application_type="ad hoc permission"/>
+									<SPONSOR_CLASS sponsor_type="not exist"/>
+								
+								
+								
+											*/
 		if(rootObj.contents[0].name == "tt"){
 			if(rootObj.contents[0].contents[0].name == "body"){
 				if(rootObj.contents[0].contents[0].contents[0].name == "div"){

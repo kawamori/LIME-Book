@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE bml PUBLIC "-//ARIB STD-B24:1999//DTD BML Document for IPTV//JA" "http://www.arib.or.jp/B24/DTD/bml_x_x_iptv.dtd">
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title>aIPTV</title>
+<style><![CDATA[
+	body{
+		clut:url(../images/default.clt);
+	}
+
+       #display	{ font-size:20px;  background-color-index:16; color-index:7;font-size:16px;top:40px;left:60px;width:880px;height:440px;}
+       #
+
+]]></style>
+<script src="scripts/xmltest.js"/>
+<script src="scripts/xparse.ecm"/>
+<script><![CDATA[
+
+	
+var gCaptionXML_good = "https://stg.drpc.me/BbwD28kt";
+
+ var gCaptionXML_bad  = "http://iptv.oesf-global.org/public_html/iptv/lime/caption_bad_tagalog.xml";
+var offset;
+var origin;
+
+var vodTimerID = NaN;
+var fullscreenFlag = 0;
+var captionSelectFlag = 0;
+
+function onmyload(){
+
+alert("foo2");
+
+
+alert("foo3");	
+	//  reads a CPC file with RII
+	loadXML(gCaptionXML_good,gCaptionXML_bad);
+	
+	/*  "../scripts/htmlsample2.html"*/
+
+
+	alert("fooboowoo\n"+gCaptionXML_bad);
+	
+alert("caption \n"+gCaption);
+
+}
+
+function onunload(){
+
+}
+
+function checkTime(){
+
+}
+
+function keydown(){
+
+}
+
+function dataKey(){
+		// Unimplemented
+}
+
+
+
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+function goback(){ browser.launchDocument("index.xml", "cut");	}
+function refresh(){ browser.reloadActiveDocument();}
+
+]]></script>
+
+
+<bevent>
+	<beitem id="top" type="DataButtonPressed" onoccur="dataKey();" subscribe="subscribe" />
+</bevent>
+
+</head>
+<body id="body" style="used-key-list:basic data-button numeric-tuning;" onload="onmyload();" onunload="onunload();">
+
+
+ <p id="display" style=""><![CDATA[]]></p>
+
+
+
+<p style="top:520px;left:700px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+ 
+ 
+<p id="p01" class="button" style="top:520px;left:840px;height:36px;width:64px;background-color-index:1;" onclick="refresh();"  accesskey="R">Reload</p>
+
+</body>
+</bml>
