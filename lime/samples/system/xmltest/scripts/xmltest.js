@@ -52,7 +52,7 @@ alert("called from xmltest.js\n");
 	if(array[0] == 1){
 		alert("\nstarting XML parse ...");
 		
-		var rootObj = _strip(Xparse(str));
+		var rootObj = Xparse(str);
 alert ("root is "+rootObj+"\n");
 					alert("foo? "+rootObj.contents[0].name);
 					alert("bar? "+rootObj.contents[0].contents[1].name);
