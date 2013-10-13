@@ -57,10 +57,10 @@ alert("called from xmltest.js\n");
 					alert("foo? "+rootObj.contents[0].name);/* DRPC*/
 					alert("bar? "+rootObj.contents[0].contents[0].name); /* permission code*/
 					alert("div? "+rootObj.contents[0].contents[0].contents[0].name); /* undef */
-			    	for(var i=0; i<rootObj.contents[0].contents[0].contents.length; i++){
+			    /*	for(var i=0; i<rootObj.contents[0].contents[0].contents.length; i++){
 				   alert("next "+i+"th tag is "+rootObj.contents[0].contents[0].contents[i].name); 
 				   
-					}
+					}*/
 					
 				  	  for(var i=0; i<rootObj.contents[0].contents[0].contents[5].contents.length; i++){
 		alert("PERMISSION_CLASSIFICATION_UNIT "+i+"th tag is "+rootObj.contents[0].contents[0].contents[5].contents[i].name); 
