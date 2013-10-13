@@ -46,7 +46,7 @@ alert("called from xmltest.js\n");
 	// 改行コード除去
 	var str = deleteLineFeed(_strip(array[2]));
    /*var str = deleteLineFeed(partXML);*/
-alert("str: "+str);
+/*alert("str: "+str);*/
 
 	var captionCounter = 0;
 	var startEndFlag = 0;
