@@ -64,9 +64,10 @@ alert("called from xmltest.js\n");
 					
 				    	                for(var i=0; i<rootObj.contents[0].contents[0].contents[5].contents.length; i++){ 
 				    	                	if (rootObj.contents[0].contents[0].contents[5].contents[i].name){
+				    	                		alert("PERMISSION_CLASSIFICATION_UNIT "+ i+ "th tag is "+rootObj.contents[0].contents[0].contents[5].contents[i].name);
                               for (var pname in rootObj.contents[0].contents[0].contents[5].contents[i].attributes){
                               	       alert("pname "+rootObj.contents[0].contents[0].contents[5].contents[i].attributes[pname]);
-                   /*alert("PERMISSION_CLASSIFICATION_UNIT "+ i+ "th tag is "+rootObj.contents[0].contents[0].contents[5].contents[i].name); */
+               
                    			  }
                            }
 		              	}
