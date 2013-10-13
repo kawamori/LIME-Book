@@ -46,13 +46,13 @@ alert("called from xmltest.js\n");
 	// 改行コード除去
 	var str = deleteLineFeed(array[2]);
    /*var str = deleteLineFeed(partXML);*/
-alert("str: "+str);
+/*alert("str: "+str);*/
 
 	// XMLをパースして開始時間、終了時間、表示文字列を配列に格納
 	if(array[0] == 1){
 		alert("\nstarting XML parse ...");
 		
-		var rootObj = Xparse(str);
+		var rootObj = _strip(Xparse(str));
 alert ("root is "+rootObj+"\n");
 					alert("foo? "+rootObj.contents[0].name);
 					alert("bar? "+rootObj.contents[0].contents[1].name);
