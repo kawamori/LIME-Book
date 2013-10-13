@@ -66,11 +66,13 @@ alert("called from xmltest.js\n");
 				    	                	if (rootObj.contents[0].contents[0].contents[5].contents[i].name){
 alert("PERMISSION_CLASSIFICATION_UNIT "+ i+ 
                                      "th tag is "+rootObj.contents[0].contents[0].contents[5].contents[i].name); 
+if (rootObj.contents[0].contents[0].contents[5].contents[i].attributes){
                                      for (var pname in rootObj.contents[0].contents[0].contents[5].contents[i].attributes){
                                      	 alert("pname is "+pname);
                                      alert("value is "+rootObj.contents[0].contents[0].contents[0].contents[i].attributes[pname]);
+                                     }else {alert("no attribute");return;}
                                          }
-                                            }
+                                     }
 		              			}
 					
 					
