@@ -62,10 +62,14 @@ alert("called from xmltest.js\n");
 				   
 					}
 					
+				  	  for(var i=0; i<rootObj.contents[0].contents[0].contents[5].contents.length; i++){
+		alert("PERMISSION_CLASSIFICATION_UNIT "+i+"th tag is "+rootObj.contents[0].contents[0].contents[5].contents[i].name); 
+				   
+					}
+					
 					
 					alert("next next? "+rootObj.contents[0].contents[0].contents[2].name);/* gives the tag name */
-					alert("next next  "+rootObj.contents[0].contents[0].contents[2].contents[0]); /*gives the value of the tag */
-					alert("DRPC=  " + rootObj.contents[0].contents[0].contents[2].name); 
+				
 					
 					/*-----------------------------
 					
