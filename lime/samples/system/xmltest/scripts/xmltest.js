@@ -50,7 +50,7 @@ alert("called from xmltest.js\n");
 
 	// XMLをパースして開始時間、終了時間、表示文字列を配列に格納
 	if(array[0] == 1){
-		alert("\nstarting XML parse ...");
+		alert("starting XML parse ...");
 		
 		var rootObj = Xparse(str);
 /*alert ("root is "+rootObj+"\n");*/
