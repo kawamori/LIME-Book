@@ -53,7 +53,7 @@ alert("called from xmltest.js\n");
 		alert("\nstarting XML parse ...");
 		
 		var rootObj = Xparse(str);
-alert ("root is "+rootObj+"\n");
+/*alert ("root is "+rootObj+"\n");*/
 					alert("foo? "+rootObj.contents[0].name);/* DRPC*/
 					alert("bar? "+rootObj.contents[0].contents[0].name); /* permission code*/
 					alert("div? "+rootObj.contents[0].contents[0].contents[0].name); /* undef */
