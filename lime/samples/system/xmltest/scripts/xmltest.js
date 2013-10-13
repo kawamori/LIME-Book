@@ -54,13 +54,13 @@ alert("called from xmltest.js\n");
 		
 		var rootObj = Xparse(str);
 alert ("root is "+rootObj+"\n");
-					alert("foo? "+rootObj.contents[0].name);
-					alert("bar? "+rootObj.contents[0].contents[1].name);
-					alert("div? "+rootObj.contents[0].contents[1].contents[0].name);
-					alert("next ? "+rootObj.contents[0].contents[1].contents[1].name);
-					alert("next next? "+rootObj.contents[0].contents[1].contents[2].name);/* gives the tag name */
-					alert("next next  "+rootObj.contents[0].contents[1].contents[2].contents[0]); /*gives the value of the tag */
-					alert("DRPC=  " + rootObj.contents[0].contents[2].contents[0].name); 
+					alert("foo? "+rootObj.contents[0].name);/* DRPC*/
+					alert("bar? "+rootObj.contents[0].contents[0].name);
+					alert("div? "+rootObj.contents[0].contents[0].contents[0].name);
+					alert("next ? "+rootObj.contents[0].contents[0].contents[1].name);
+					alert("next next? "+rootObj.contents[0].contents[0].contents[2].name);/* gives the tag name */
+					alert("next next  "+rootObj.contents[0].contents[0].contents[2].contents[0]); /*gives the value of the tag */
+					alert("DRPC=  " + rootObj.contents[0].contents[0].contents[2].name); 
 					
 					/*-----------------------------
 					
