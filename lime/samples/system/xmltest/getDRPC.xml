@@ -31,19 +31,16 @@ var captionSelectFlag = 0;
 
 function onmyload(){
 
-alert("foo2");
+alert("Demonstrating DRPC/RII");
 
-
-alert("foo3");	
+	
 	//  reads a CPC file with RII
 	loadXML(gCaptionXML_good,gCaptionXML_bad);
 	
 	/*  "../scripts/htmlsample2.html"*/
 
+alert("End of Permission Information");
 
-	alert("fooboowoo\n"+gCaptionXML_bad);
-	
-alert("caption \n"+gCaption);
 
 }
 

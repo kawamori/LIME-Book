@@ -38,7 +38,7 @@ function loadXML(url, captionArray){
 	var array = browser.transmitTextDataOverIP(url, "" , "EUC-JP");
 
 
-alert("called from xmltest.js\n");
+alert("calling getDRPCxml.js\n");
 
 /* alert("xml? "+splitMulti(array[2]));*/
                       /*alert("xml? "+array[2]);*/
@@ -54,9 +54,9 @@ alert("called from xmltest.js\n");
 		
 		var rootObj = Xparse(str);
 /*alert ("root is "+rootObj+"\n");*/
-					alert("foo? "+rootObj.contents[0].name);/* DRPC*/
-					alert("bar? "+rootObj.contents[0].contents[0].name); /* permission code*/
-					alert("div? "+rootObj.contents[0].contents[0].contents[0].name); /* undef */
+			/*		alert("foo? "+rootObj.contents[0].name);
+					alert("bar? "+rootObj.contents[0].contents[0].name); 
+					alert("div? "+rootObj.contents[0].contents[0].contents[0].name); */
 			    /*	for(var i=0; i<rootObj.contents[0].contents[0].contents.length; i++){
 				   alert("next "+i+"th tag is "+rootObj.contents[0].contents[0].contents[i].name); 
 				   
@@ -66,18 +66,18 @@ alert("called from xmltest.js\n");
 				    
 				    	alert(" tag is "+rootObj.contents[0].contents[0].contents[5].contents[1].name);
                               for (var pname in rootObj.contents[0].contents[0].contents[5].contents[1].attributes){
-                              	       alert("pname "+ rootObj.contents[0].contents[0].contents[5].contents[1].attributes[pname]);
+                              	       alert("pname\t"+ rootObj.contents[0].contents[0].contents[5].contents[1].attributes[pname]);
                          			  }
                         
 		              		alert(" tag is "+rootObj.contents[0].contents[0].contents[5].contents[3].name);
                               for (var pname in rootObj.contents[0].contents[0].contents[5].contents[3].attributes){
-                              	       alert("pname " +rootObj.contents[0].contents[0].contents[5].contents[3].attributes[pname]);
+                              	       alert("pname\t" +rootObj.contents[0].contents[0].contents[5].contents[3].attributes[pname]);
                          			  }
 					
 					
 					alert(" tag is "+rootObj.contents[0].contents[0].contents[5].contents[5].name);
                               for (var pname in rootObj.contents[0].contents[0].contents[5].contents[5].attributes){
-                              	       alert("pname " +rootObj.contents[0].contents[0].contents[5].contents[5].attributes[pname]);
+                              	       alert("pname\t" +rootObj.contents[0].contents[0].contents[5].contents[5].attributes[pname]);
                          			  }
                          			  
 				
