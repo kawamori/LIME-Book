@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title>Art Gallery test</title>
+
+<style><![CDATA[
+	body{
+		clut:url(default.clt);
+		background-color-index:1;
+	}
+.wall {	background-color-index:2;}
+p {color-index:2;}
+	
+	object {left:0px; top:0px; width:960px; height:540px;}
+  #display	{ font-size:20px;
+    background-color-index:16;
+    color-index:7;
+    font-size:16px;
+	top:450px;left:760px;width:200px;height:80px;}
+	
+]]></style>
+
+<script>
+<![CDATA[
+
+
+var     max_pics=7;	/* <---- set this value to the total number of pictures in film */
+
+
+/* **** animation runtime module ****/ 
+
+var timer
+var position;
+var myid; 
+var prev;
+
+
+function load(){
+
+	GE("bgm").streamStatus="play";
+	browser.setInterval("BGMrp();",17800,0);
+	
+/*alert("onload");*/
+    position=1;
+    /* timer = setTimeout("forward()", 1000);*/
+    timer  = browser.setInterval("forward();", 7000, 0);
+/*	forward();*/
+}
+
+function restartShow() {
+
+    browser.clearTimer(timer);
+    forward();
+}
+        
+function forward() {
+myid = "t"+position;
+/*prev = "t"+ (position -1);*/
+prev = "t" + ((position <= 1) ? max_pics : (position -1));    
+
+
+
+    if (position < max_pics) {
+            position++;
+    } else {
+        position = 1;
+    }
+
+ /*
+ printd("myid="+myid);
+ printd("previous id is "+prev);
+*/
+var viz1=document.getElementById(myid).normalStyle;
+	viz1.visibility = 'visible';
+   
+var viz2 =document.getElementById(prev).normalStyle;
+	viz2.visibility = 'hidden';
+
+/*printd(myid+viz1+":"+prev+viz2);*/
+    
+   
+}
+
+function onunload(){
+	browser.clearTimer(timer);
+}
+
+
+function printd(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data = str ;
+}
+
+function printlnd(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+
+
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+
+
+
+function GE(id){
+	return document.getElementById(id);
+}
+function BGMrp(){
+	GE("bgm").streamStatus="stop";
+	GE("bgm").streamStatus="play";
+}
+
+
+function setTimeout(code,delay){
+         return   browser.setInterval(code,delay,1);
+        }
+        
+/*function goback(){ browser.launchDocument("top.xml", "cut");	}*/
+function goback(){ browser.launchDocument("http://eric-brechemier.github.com/lime-iptv-portal/bml/startup.bml", "cut");	
+/*
+http://lime.jgn-x.jp/cgi-bin/computex_so/startover.cgi
+*/
+}
+
+      
+function handler()
+{
+	var evt = document.currentEvent;
+	var kcode =evt.keyCode;
+	
+	if (kcode == 19){goback();}
+} 
+
+]]></script>
+
+</head>
+<body onload="load();">
+
+
+<div>
+	<object id="bgm" data="audio/genghis-attenborough__wave-guitar-1.aac" type="audio/X-arib-mpeg2-aac" streamstatus="stop"/>
+</div>
+
+
+<div id="t6"  class="wall"  style="left:0px; top:0px; width:960px; height:540px;visibility:hidden"> 
+ <object type="image/jpeg" data="images/00001.jpg"  style=""></object>
+</div>
+
+<div id="t5" class="wall" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden;">
+
+  <object type="image/jpeg" data="images/000030.jpg" style=""></object>
+</div>
+
+
+<div id="t4" class="wall" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden;">
+ <object type="image/jpeg" data="images/000045.jpg"  style=""></object>
+</div>
+
+
+<div id="t3"  class="wall" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden;">
+ <object type="image/jpeg" data="images/000047.jpg"  style=""></object>
+</div>
+
+
+<div id="t2"   class="wall" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden;">
+ <object type="image/jpeg" data="images/000048.JPG" style=""></object>
+</div>
+
+
+<div id="t1"  class="wall"  style="left:0px; top:0px; width:960px; height:540px;visibility:hidden;"> 
+ <object type="image/jpeg" data="images/000068.jpg" style=""></object>
+</div>
+
+ 
+<div id="t0"  class="wall" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden;"> 
+ <object type="image/jpeg" data="images/00068.jpg" style=""></object>
+</div>
+
+
+
+
+<!--
+ <p id="display" style=""><![CDATA[]]></p>
+<p style="top:470px;left:850px;height:36px;width:60px;background-color-index:4;color-index:7;" accesskey="B" onclick="goback();">Back</p>-->
+<p style="top:0px;left:0px;height:1px;width:1px;background-color-index:8;nav-index:0;" onkeydown="handler();" onkeyup="handler();" onclick="handler();"><![CDATA[]]></p>
+
+
+</body>
+</bml>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<?bml bml-version="100.0" ?>
+
+<bml>
+<head>
+<title>Elephant Dream: Sample</title>
+
+<style><![CDATA[
+	body{
+		clut:url(default.clt);
+		background-color-index:0;
+	}
+
+p {color-index:2;}
+
+  #display	{ font-size:20px;
+    background-color-index:16;
+    color-index:7;
+    font-size:16px;
+	top:450px;left:760px;width:200px;height:80px;}
+	
+]]></style>
+
+<script>
+<![CDATA[
+
+function goback(){ browser.launchDocument("top.xml", "cut");	}
+
+var     max_pics=7;	/* <---- set this value to the total number of pictures in film */
+
+
+/* **** animation runtime module ****/ 
+
+var timer
+var position;
+var myid; 
+var prev;
+
+
+function load(){
+/*alert("onload");*/
+    position=1;
+	    /* timer = setTimeout("forward()", 1000);*/
+    timer  = browser.setInterval("forward();", 6000, 0);
+/*	forward();*/
+}
+
+function restartShow() {
+
+    browser.clearTimer(timer);
+    forward();
+    
+}
+        
+function forward() {
+myid = "t"+position;
+/*prev = "t"+ (position -1);*/
+prev = "t" + ((position <= 1) ? max_pics : (position -1));    
+
+
+
+    if (position < max_pics) {
+            position++;
+    } else {
+        position = 1;
+    }
+
+ 
+ printd("myid="+myid);
+ printd("previous id is "+prev);
+
+var viz1=document.getElementById(myid).normalStyle;
+	viz1.visibility = 'visible';
+   
+var viz2 =document.getElementById(prev).normalStyle;
+	viz2.visibility = 'hidden';
+
+printd(myid+viz1+":"+prev+viz2);
+    
+    /*timer = setTimeout("forward()", 7000);*/
+}
+
+function onunload(){
+	browser.clearTimer(timer);
+}
+
+
+function printd(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data = str ;
+}
+
+function printlnd(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+
+
+function alert(str){
+	var obj = document.getElementById("display");
+	obj.firstChild.data += str + "\r\n";
+}
+
+
+function setTimeout(code,delay){
+         return   browser.setInterval(code,delay,1);
+        }
+        
+
+]]></script>
+
+</head>
+<body onload="load();">
+ 
+<div id="t0" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden"> 
+  	<object data="sign-x12.mng" type="image/X-arib-mng" streamstatus="play" style="left:0px;top:0px;width:392px;height:379px;"/>                    
+</div>
+
+<div id="t1" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden;"> 
+<object data="sign-x6.mng" type="image/X-arib-mng" streamstatus="play" style="left:0px;top:0px;width:392px;height:379px;"/>
+</div>
+
+<div id="t2" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden;">
+<object data="1.mng" type="image/X-arib-mng" streamstatus="play" style="left:0px;top:0px;width:392px;height:379px;"/>
+</div>
+
+
+
+<div id="t3" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+<object data="49_big.mng" type="image/X-arib-mng" streamstatus="play" style="left:0px;top:0px;width:392px;height:379px;"/>
+</div>
+
+
+<div id="t4" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+<object data="51_big.mng" type="image/X-arib-mng" streamstatus="play" style="left:0px;top:0px;width:392px;height:379px;"/>
+</div>
+
+<div id="t5" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+<object data="psy6.mng" type="image/X-arib-mng" streamstatus="play" style="left:0px;top:0px;width:392px;height:379px;"/>
+</div>
+
+
+<div id="t6" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+<object data="soyoen.mng" type="image/X-arib-mng" streamstatus="play" style="left:0px;top:0px;width:392px;height:379px;"/>      
+</div>
+
+
+<div id="t7" style="left:0px; top:0px; width:960px; height:540px;visibility:hidden">
+<object data="fist.mng" type="image/X-arib-mng" streamstatus="play" style="left:0px;top:0px;width:392px;height:379px;"/>       
+</div>
+
+
+ <p id="display" style=""><![CDATA[]]></p>
+<p style="top:470px;left:850px;height:36px;width:60px;background-color-index:4;color-index:7;" accesskey="B" onclick="goback();">Back</p>
+</body>
+</bml>

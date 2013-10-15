@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<?bml bml-version="100.0" ?>
+<bml>
+<head>
+<title>Astem Sign Language test</title>
+
+<style><![CDATA[
+	body{
+	clut:url(default.clt);
+		background-color-index:7;
+	}
+
+	}
+	
+]]></style>
+
+<script ><![CDATA[
+
+function goback(){ browser.launchDocument("../index.xml", "cut");	}
+
+		]]></script>
+</head>
+<body>
+
+<p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
+
+
+<div style="width:960px;height:540px;">
+	<object data="sign-x12.mng" type="image/X-arib-mng" streamstatus="play" style="left:0px;top:0px;width:392px;height:379px;"/>
+	<!--
+	<object type="image/X-arib-mng" data="chula/1.mng"  streamstatus="play" style="left:0;top:0;width:180px;height:150px;"/>
+	-->
+	<object type="image/X-arib-png" data="130921_handsign_3fps0000481.png" style="left:400px;top:270px;width:250px;height:262px;"/>
+	
+		<!--
+				<object type="image/gif" data="starbucks-logo.gif" style="left:100px;top:0px;width:200px;height:200px;"/>-->
+</div>
+
+
+</body>
+</bml>
+
