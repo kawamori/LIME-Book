@@ -2,7 +2,7 @@
 <?bml bml-version="100.0" ?>
 <bml>
 <head>
-<title>Chula Test</title>
+<title>Hide/Visible Test</title>
 
 <style><![CDATA[
 	body{
@@ -19,15 +19,24 @@
 
 function goback(){ browser.launchDocument("index.xml", "cut");	}
 
+function hide(){ var hd = document.getElementByID("hide"); 
+                     hd.normalStyle.visibility="hidden";
+
+
+
+ }
+
 		]]></script>
 </head>
 <body>
 
 <p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
 
+<p style="top:470px;left:50px;height:36px;width:64px;background-color-index:1;" accesskey="R" onclick="hide();">Hide </p>
+
 
 <div style="width:960px;height:540px;">
-	<object class="chick" data="51.mng" type="image/X-arib-mng" streamstatus="play"/>
+	<object id="hide" class="chick" data="51.mng" type="image/X-arib-mng" streamstatus="play" style=""/>
 	<object class="chick" data="51_big.mng" type="image/X-arib-mng" streamstatus="play" style="width:324;height:180px;top:340px;left:110px;"/>
 	
 	
