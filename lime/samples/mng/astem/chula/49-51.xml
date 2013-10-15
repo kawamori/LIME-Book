@@ -19,7 +19,8 @@
 
 function goback(){ browser.launchDocument("index.xml", "cut");	}
 
-function hide(){ var hd = document.getElementByID("hide"); 
+function hide(){ var hd = document.getElementById("hide"); 
+                    
                      hd.normalStyle.visibility="hidden";
 
 
@@ -32,7 +33,7 @@ function hide(){ var hd = document.getElementByID("hide");
 
 <p style="top:470px;left:17px;height:36px;width:64px;background-color-index:4;" accesskey="B" onclick="goback();">Back </p>
 
-<p style="top:470px;left:50px;height:36px;width:64px;background-color-index:1;" accesskey="R" onclick="hide();">Hide </p>
+<p style="top:470px;left:150px;height:36px;width:64px;background-color-index:1;" accesskey="R" onclick="hide();">Hide </p>
 
 
 <div style="width:960px;height:540px;">
