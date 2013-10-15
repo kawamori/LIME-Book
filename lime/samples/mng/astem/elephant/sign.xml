@@ -41,7 +41,7 @@ function load(){
 /*alert("onload");*/
     position=1;
 	    /* timer = setTimeout("forward()", 1000);*/
-    timer  = browser.setInterval("forward();", 6000, 0);
+    timer  = browser.setInterval("forward();", 10000, 0);
 /*	forward();*/
 }
 
